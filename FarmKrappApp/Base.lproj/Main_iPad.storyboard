@@ -152,7 +152,9 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Farm Crap App" id="Uvu-No-Zc5"/>
+                    <navigationItem key="navigationItem" title="Farm Crap App" id="Uvu-No-Zc5">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="oKf-UO-afn"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Zqk-nq-5zZ">
@@ -176,7 +178,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1494" y="-302"/>
+            <point key="canvasLocation" x="-608" y="-334"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Fuy-bu-Lre">
@@ -194,7 +196,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="moO-o7-htm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="452" y="-282"/>
+            <point key="canvasLocation" x="-1628" y="-334"/>
         </scene>
     </scenes>
     <resources>
