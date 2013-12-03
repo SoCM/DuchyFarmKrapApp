@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07345139184DC316004FBC1E /* SoCMAboutViewController-iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 07345138184DC316004FBC1E /* SoCMAboutViewController-iPhone.m */; };
+		0734513D184DC717004FBC1E /* UIViewController+FCAFrontPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */; };
 		07EACC021848689700D6A59E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC011848689700D6A59E /* Foundation.framework */; };
 		07EACC041848689700D6A59E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC031848689700D6A59E /* CoreGraphics.framework */; };
 		07EACC061848689700D6A59E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC051848689700D6A59E /* UIKit.framework */; };
@@ -36,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07345137184DC316004FBC1E /* SoCMAboutViewController-iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SoCMAboutViewController-iPhone.h"; sourceTree = "<group>"; };
+		07345138184DC316004FBC1E /* SoCMAboutViewController-iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SoCMAboutViewController-iPhone.m"; sourceTree = "<group>"; };
+		0734513B184DC717004FBC1E /* UIViewController+FCAFrontPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FCAFrontPage.h"; sourceTree = "<group>"; };
+		0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FCAFrontPage.m"; sourceTree = "<group>"; };
 		07EACBFE1848689700D6A59E /* FarmKrappApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarmKrappApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EACC011848689700D6A59E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07EACC031848689700D6A59E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -83,6 +89,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0734513A184DC32E004FBC1E /* Front Page */ = {
+			isa = PBXGroup;
+			children = (
+				07EACC191848689700D6A59E /* SoCMViewController.h */,
+				07EACC1A1848689700D6A59E /* SoCMViewController.m */,
+				07345137184DC316004FBC1E /* SoCMAboutViewController-iPhone.h */,
+				07345138184DC316004FBC1E /* SoCMAboutViewController-iPhone.m */,
+				0734513B184DC717004FBC1E /* UIViewController+FCAFrontPage.h */,
+				0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */,
+			);
+			name = "Front Page";
+			sourceTree = "<group>";
+		};
 		07EACBF51848689700D6A59E = {
 			isa = PBXGroup;
 			children = (
@@ -121,8 +140,7 @@
 				07EACC111848689700D6A59E /* SoCMAppDelegate.m */,
 				07EACC131848689700D6A59E /* Main_iPhone.storyboard */,
 				07EACC161848689700D6A59E /* Main_iPad.storyboard */,
-				07EACC191848689700D6A59E /* SoCMViewController.h */,
-				07EACC1A1848689700D6A59E /* SoCMViewController.m */,
+				0734513A184DC32E004FBC1E /* Front Page */,
 				07EACC1C1848689700D6A59E /* Images.xcassets */,
 				07EACC081848689700D6A59E /* Supporting Files */,
 			);
@@ -262,7 +280,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				07EACC121848689700D6A59E /* SoCMAppDelegate.m in Sources */,
+				0734513D184DC717004FBC1E /* UIViewController+FCAFrontPage.m in Sources */,
 				07EACC1B1848689700D6A59E /* SoCMViewController.m in Sources */,
+				07345139184DC316004FBC1E /* SoCMAboutViewController-iPhone.m in Sources */,
 				07EACC0E1848689700D6A59E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

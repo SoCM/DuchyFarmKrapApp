@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B35" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B35" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="lns-pP-19F">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--SoCM View Controller-->
+        <!--SoCM View Controller - Farm Crap App-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="SoCMViewController" sceneMemberID="viewController">
@@ -14,30 +14,30 @@
                         <viewControllerLayoutGuide type="bottom" id="60G-oV-Wes"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Farm Crap App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wk-Dn-lim">
-                                <rect key="frame" x="207" y="160" width="339" height="47"/>
+                                <rect key="frame" x="207" y="140" width="339" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="39"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage your muck with the Farm Crap App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QY5-bR-7Y0">
-                                <rect key="frame" x="173" y="226" width="424" height="27"/>
+                                <rect key="frame" x="173" y="206" width="424" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOS Version Developed by:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r16-Xy-V8O">
-                                <rect key="frame" x="282" y="336" width="205" height="21"/>
+                                <rect key="frame" x="282" y="304" width="205" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plymouth University, UK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMH-so-Nlx">
-                                <rect key="frame" x="262" y="365" width="244" height="28"/>
+                                <rect key="frame" x="262" y="333" width="244" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
@@ -48,13 +48,13 @@
                                 </connections>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="on behalf of" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Leb-8c-os4">
-                                <rect key="frame" x="339" y="485" width="91" height="21"/>
+                                <rect key="frame" x="339" y="498" width="91" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The SWARM Knowledge Hub" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ti3-09-UoE">
-                                <rect key="frame" x="235" y="514" width="299" height="28"/>
+                                <rect key="frame" x="235" y="527" width="299" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
@@ -71,13 +71,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initiative managed by:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rj-OH-hdG">
-                                <rect key="frame" x="300" y="676" width="169" height="21"/>
+                                <rect key="frame" x="300" y="701" width="169" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo_duchy" translatesAutoresizingMaskIntoConstraints="NO" id="505-VC-5TG">
-                                <rect key="frame" x="289" y="28" width="190" height="96"/>
+                                <rect key="frame" x="289" y="8" width="190" height="96"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -89,7 +89,7 @@
                                 </connections>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duchy College Rural Business School" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guc-Vs-lad">
-                                <rect key="frame" x="193" y="705" width="382" height="28"/>
+                                <rect key="frame" x="193" y="730" width="382" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
@@ -100,7 +100,7 @@
                                 </connections>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBM-eh-tjm">
-                                <rect key="frame" x="328" y="924" width="112" height="39"/>
+                                <rect key="frame" x="328" y="860" width="112" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Get Started">
@@ -111,28 +111,28 @@
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="rbx-fS-mNN">
-                                <rect key="frame" x="122" y="160" width="48" height="48"/>
+                                <rect key="frame" x="122" y="140" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Xnh-7R-djw">
-                                <rect key="frame" x="583" y="160" width="48" height="48"/>
+                                <rect key="frame" x="583" y="140" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rbx-fS-mNN" firstAttribute="centerY" secondItem="9wk-Dn-lim" secondAttribute="centerY" constant="0.5" id="3ki-8m-Y97"/>
-                            <constraint firstItem="Leb-8c-os4" firstAttribute="top" secondItem="FMH-so-Nlx" secondAttribute="bottom" priority="750" constant="92" id="7wt-6E-eLi"/>
+                            <constraint firstItem="Leb-8c-os4" firstAttribute="top" secondItem="FMH-so-Nlx" secondAttribute="bottom" priority="750" constant="137" id="7wt-6E-eLi"/>
                             <constraint firstAttribute="centerX" secondItem="4rj-OH-hdG" secondAttribute="centerX" id="DwD-TF-FrB"/>
                             <constraint firstAttribute="centerX" secondItem="MBM-eh-tjm" secondAttribute="centerX" id="HFA-tR-tCA"/>
                             <constraint firstAttribute="centerX" secondItem="r16-Xy-V8O" secondAttribute="centerX" id="Lzx-nH-6DD"/>
-                            <constraint firstAttribute="centerY" secondItem="ti3-09-UoE" secondAttribute="centerY" constant="-16" id="MCC-gM-zEZ"/>
+                            <constraint firstAttribute="centerY" secondItem="ti3-09-UoE" secondAttribute="centerY" constant="-61" id="MCC-gM-zEZ"/>
                             <constraint firstAttribute="centerX" secondItem="FMH-so-Nlx" secondAttribute="centerX" id="Mcs-LW-3t7"/>
                             <constraint firstItem="9wk-Dn-lim" firstAttribute="leading" secondItem="rbx-fS-mNN" secondAttribute="trailing" constant="37" id="Q0V-19-Z7p"/>
                             <constraint firstAttribute="centerX" secondItem="9wk-Dn-lim" secondAttribute="centerX" constant="7.5" id="Qt4-zM-Stl"/>
                             <constraint firstAttribute="centerX" secondItem="ti3-09-UoE" secondAttribute="centerX" constant="-0.5" id="SKM-1L-N18"/>
                             <constraint firstItem="ti3-09-UoE" firstAttribute="top" secondItem="Leb-8c-os4" secondAttribute="bottom" constant="8" id="Sn5-la-tx0"/>
-                            <constraint firstItem="4rj-OH-hdG" firstAttribute="top" secondItem="lNJ-Xt-o6H" secondAttribute="bottom" priority="750" constant="92" id="Tg9-8l-7db"/>
+                            <constraint firstItem="4rj-OH-hdG" firstAttribute="top" secondItem="lNJ-Xt-o6H" secondAttribute="bottom" priority="750" constant="117" id="Tg9-8l-7db"/>
                             <constraint firstItem="505-VC-5TG" firstAttribute="top" secondItem="UeP-bv-x6d" secondAttribute="bottom" constant="20" symbolic="YES" id="Trr-YF-bUW"/>
                             <constraint firstAttribute="centerX" secondItem="QY5-bR-7Y0" secondAttribute="centerX" constant="-0.5" id="UHD-Gl-HPP"/>
                             <constraint firstItem="MBM-eh-tjm" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Guc-Vs-lad" secondAttribute="bottom" constant="40" id="W89-Bd-7RE"/>
@@ -142,7 +142,7 @@
                             <constraint firstItem="Xnh-7R-djw" firstAttribute="leading" secondItem="9wk-Dn-lim" secondAttribute="trailing" constant="37" id="nfL-1X-zSG"/>
                             <constraint firstItem="QY5-bR-7Y0" firstAttribute="top" secondItem="9wk-Dn-lim" secondAttribute="bottom" constant="19" id="pS4-Am-sUU"/>
                             <constraint firstItem="FMH-so-Nlx" firstAttribute="top" secondItem="r16-Xy-V8O" secondAttribute="bottom" constant="8" id="pmg-Yc-o56"/>
-                            <constraint firstItem="lNJ-Xt-o6H" firstAttribute="top" secondItem="ti3-09-UoE" secondAttribute="bottom" constant="21" id="rQy-F3-zk9"/>
+                            <constraint firstItem="lNJ-Xt-o6H" firstAttribute="top" secondItem="ti3-09-UoE" secondAttribute="bottom" constant="8" symbolic="YES" id="rQy-F3-zk9"/>
                             <constraint firstAttribute="centerX" secondItem="505-VC-5TG" secondAttribute="centerX" id="rRl-s8-mbV"/>
                             <constraint firstAttribute="centerX" secondItem="lNJ-Xt-o6H" secondAttribute="centerX" id="toE-cu-TrQ"/>
                             <constraint firstAttribute="centerX" secondItem="Leb-8c-os4" secondAttribute="centerX" constant="-0.5" id="weC-eI-TNr"/>
@@ -151,6 +151,8 @@
                             <constraint firstItem="60G-oV-Wes" firstAttribute="top" secondItem="MBM-eh-tjm" secondAttribute="bottom" constant="61" id="zdz-8a-S10"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Farm Crap App" id="Uvu-No-Zc5"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Zqk-nq-5zZ">
@@ -174,6 +176,25 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="1494" y="-302"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Fuy-bu-Lre">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lns-pP-19F" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8eT-kh-qaw">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="i7B-ge-9L0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="moO-o7-htm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="452" y="-282"/>
         </scene>
     </scenes>
     <resources>

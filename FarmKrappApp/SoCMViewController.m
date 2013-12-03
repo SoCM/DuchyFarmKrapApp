@@ -7,6 +7,7 @@
 //
 
 #import "SoCMViewController.h"
+#import "UIViewController+FCAFrontPage.h"
 
 @interface SoCMViewController ()
 
@@ -26,30 +27,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-/**********************
- ACTIONS for Front Page
-***********************/
-
--(void)openSiteWithURLString:(NSString*) strURL
+//Change the name of this method to match the view controller you are using
+- (IBAction)unwindToFrontPageViewController:(UIStoryboardSegue*)sender
 {
-    NSURL* urlWebSite = [NSURL URLWithString:strURL];
-    [[UIApplication sharedApplication] openURL:urlWebSite];
-}
-
-- (IBAction)showPlymouthUniversityWWW:(id)sender {
-    [self openSiteWithURLString:@"http://www.plymouth.ac.uk"];
-}
-
-- (IBAction)showSWARMWWW:(id)sender {
-    [self openSiteWithURLString:@"http://www.swarmhub.co.uk"];
-}
-
-- (IBAction)showDuchyRBSWWW:(id)sender {
-    [self openSiteWithURLString:@"https://www.ruralbusinessschool.org.uk"];
-}
-
-- (IBAction)showDuchyCollegeWWW:(id)sender {
-    [self openSiteWithURLString:@"http://www.duchy.ac.uk"];
+    
 }
 
 - (IBAction)doGetStarted:(id)sender {

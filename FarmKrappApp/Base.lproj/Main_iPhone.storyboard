@@ -1,26 +1,271 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4451" systemVersion="13A461" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B35" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sZi-52-jpw">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3676"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier View Controller-->
+        <!--SoCM View Controller - Farm Crap App-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="SoCMViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wdg-vE-FYJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="dLb-kC-uca"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo_duchy" translatesAutoresizingMaskIntoConstraints="NO" id="hEp-T4-cME">
+                                <rect key="frame" x="65" y="15" width="190" height="96"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="yJQ-WU-XEz" appends="YES" id="OCf-dl-Jow"/>
+                                </connections>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Manage your muck with the Farm Crap App" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="189" translatesAutoresizingMaskIntoConstraints="NO" id="Nwk-11-GA2">
+                                <rect key="frame" x="65" y="187" width="189" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uql-pt-P9X">
+                                <rect key="frame" x="1" y="372" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="About" id="fbF-JA-sIJ">
+                                        <connections>
+                                            <segue destination="WgR-Nd-kGF" kind="modal" identifier="modalBout" id="Uqf-Ba-Fxh"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The Farm Crap App" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Xgn-GZ-kfX">
+                                <rect key="frame" x="19" y="119" width="280" height="78"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Szv-T0-dKY">
+                                <rect key="frame" x="137" y="287" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hEp-T4-cME" firstAttribute="top" secondItem="wdg-vE-FYJ" secondAttribute="bottom" constant="15" id="Giq-Vz-jdK"/>
+                            <constraint firstAttribute="centerX" secondItem="hEp-T4-cME" secondAttribute="centerX" id="HTN-0F-fAq"/>
+                        </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="Farm Crap App" id="cmr-xQ-KWm">
+                        <barButtonItem key="rightBarButtonItem" title="Begin" id="NKK-LZ-uEp">
+                            <connections>
+                                <action selector="doGetStarted:" destination="vXZ-lx-hvc" id="CSn-fV-8ob"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="yJQ-WU-XEz">
+                    <connections>
+                        <action selector="showDuchyCollegeWWW:" destination="vXZ-lx-hvc" id="Hxx-kx-gco"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="pdG-6W-r4S">
+                    <connections>
+                        <action selector="showSWARMWWW:" destination="vXZ-lx-hvc" id="CiF-se-xAR"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="nBg-l1-Jjc">
+                    <connections>
+                        <action selector="showDuchyRBSWWW:" destination="vXZ-lx-hvc" id="wOe-Q1-SxO"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="602" y="929"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Hn2-Bn-lCy">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sZi-52-jpw" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pxS-rz-9qV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="M2T-gf-apo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ock-Un-IDg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="63" y="929"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Qmh-oP-kNc">
+            <objects>
+                <viewController id="WgR-Nd-kGF" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QAM-P4-8eT"/>
+                        <viewControllerLayoutGuide type="bottom" id="XQk-ja-63L"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pus-cF-uSb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The SWARM Knowledge Hub" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8I6-rR-fSB">
+                                <rect key="frame" x="25" y="272" width="237" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="rFG-Kw-A4K" appends="YES" id="kP9-kB-qd2"/>
+                                </connections>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duchy College Rural Business School" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="170" translatesAutoresizingMaskIntoConstraints="NO" id="ddP-bs-kTs">
+                                <rect key="frame" x="25" y="353" width="170" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="sUr-ww-caU" appends="YES" id="v4Y-Z4-183"/>
+                                </connections>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="developered on behalf of" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdM-3A-zls">
+                                <rect key="frame" x="25" y="243" width="191" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="managed by" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Sw-Ha-GYH">
+                                <rect key="frame" x="25" y="324" width="96" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Farm Crap App" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="226" translatesAutoresizingMaskIntoConstraints="NO" id="pPT-vg-X9r">
+                                <rect key="frame" x="25" y="108" width="226" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Zv-4m-kPJ">
+                                <rect key="frame" x="234" y="425" width="66" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Dismiss">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="f00-TC-fE2" kind="unwind" unwindAction="unwindToFrontPageViewController:" id="qJM-j1-qfy"/>
+                                </connections>
+                            </button>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Km6-tT-udl">
+                                <rect key="frame" x="20" y="28" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOS Version Developed by:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrz-3x-VKm">
+                                <rect key="frame" x="25" y="170" width="205" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plymouth University, UK" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bci-yk-SNT">
+                                <rect key="frame" x="25" y="193" width="195" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="fZY-jH-kt2" appends="YES" id="2iF-l0-ovN"/>
+                                </connections>
+                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="logo_duchy" translatesAutoresizingMaskIntoConstraints="NO" id="UXQ-ic-JLT">
+                                <rect key="frame" x="152" y="17" width="148" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="148" id="4P6-0d-JfX"/>
+                                    <constraint firstAttribute="height" constant="70" id="mbx-pQ-Xsv"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="mdd-tC-NZh" appends="YES" id="9aM-O2-XKQ"/>
+                                </connections>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pPT-vg-X9r" firstAttribute="leading" secondItem="pus-cF-uSb" secondAttribute="leading" constant="25" id="52g-Xn-ziG"/>
+                            <constraint firstItem="XQk-ja-63L" firstAttribute="top" secondItem="0Zv-4m-kPJ" secondAttribute="bottom" constant="20" id="8PW-Gb-U5Y"/>
+                            <constraint firstItem="6Sw-Ha-GYH" firstAttribute="leading" secondItem="BdM-3A-zls" secondAttribute="leading" id="F51-na-DwI"/>
+                            <constraint firstAttribute="centerY" secondItem="8I6-rR-fSB" secondAttribute="centerY" constant="-43" id="GuJ-0C-mj9"/>
+                            <constraint firstItem="Km6-tT-udl" firstAttribute="centerY" secondItem="UXQ-ic-JLT" secondAttribute="centerY" id="TIm-oi-oRh"/>
+                            <constraint firstItem="UXQ-ic-JLT" firstAttribute="top" secondItem="pus-cF-uSb" secondAttribute="top" constant="17" id="U80-4t-vwH"/>
+                            <constraint firstItem="pPT-vg-X9r" firstAttribute="top" secondItem="Km6-tT-udl" secondAttribute="bottom" constant="32" id="Wgm-ZC-2br"/>
+                            <constraint firstItem="bci-yk-SNT" firstAttribute="top" secondItem="mrz-3x-VKm" secondAttribute="bottom" constant="2" id="Wo7-rW-7YO"/>
+                            <constraint firstItem="6Sw-Ha-GYH" firstAttribute="leading" secondItem="bci-yk-SNT" secondAttribute="leading" id="bS0-WL-xv4"/>
+                            <constraint firstItem="6Sw-Ha-GYH" firstAttribute="leading" secondItem="8I6-rR-fSB" secondAttribute="leading" id="cUx-Gg-mGR"/>
+                            <constraint firstItem="8I6-rR-fSB" firstAttribute="top" secondItem="BdM-3A-zls" secondAttribute="bottom" constant="8" id="crv-d6-WYd"/>
+                            <constraint firstAttribute="trailing" secondItem="0Zv-4m-kPJ" secondAttribute="trailing" constant="20" id="dpG-If-Bdk"/>
+                            <constraint firstItem="6Sw-Ha-GYH" firstAttribute="leading" secondItem="mrz-3x-VKm" secondAttribute="leading" id="hjB-dq-U9y"/>
+                            <constraint firstItem="6Sw-Ha-GYH" firstAttribute="leading" secondItem="pPT-vg-X9r" secondAttribute="leading" id="lDb-v6-LX7"/>
+                            <constraint firstItem="6Sw-Ha-GYH" firstAttribute="top" secondItem="8I6-rR-fSB" secondAttribute="bottom" constant="30" id="oi4-Eb-RYB"/>
+                            <constraint firstItem="ddP-bs-kTs" firstAttribute="top" secondItem="6Sw-Ha-GYH" secondAttribute="bottom" constant="8" id="qCJ-KV-1i2"/>
+                            <constraint firstAttribute="trailing" secondItem="UXQ-ic-JLT" secondAttribute="trailing" constant="20" id="tHU-RE-wRa"/>
+                            <constraint firstItem="BdM-3A-zls" firstAttribute="top" secondItem="bci-yk-SNT" secondAttribute="bottom" constant="28" id="uRU-LB-khC"/>
+                            <constraint firstItem="6Sw-Ha-GYH" firstAttribute="leading" secondItem="ddP-bs-kTs" secondAttribute="leading" id="vSH-t1-yMR"/>
+                            <constraint firstItem="Km6-tT-udl" firstAttribute="leading" secondItem="pus-cF-uSb" secondAttribute="leading" constant="20" id="vuZ-gD-lB6"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1M0-ww-uLo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="f00-TC-fE2" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="fZY-jH-kt2">
+                    <connections>
+                        <action selector="showPlymouthUniversityWWW:" destination="WgR-Nd-kGF" id="EIh-aZ-dsD"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="rFG-Kw-A4K">
+                    <connections>
+                        <action selector="showSWARMWWW:" destination="WgR-Nd-kGF" id="cF8-kw-krB"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="sUr-ww-caU">
+                    <connections>
+                        <action selector="showDuchyRBSWWW:" destination="WgR-Nd-kGF" id="7OP-ZM-uJ9"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="mdd-tC-NZh">
+                    <connections>
+                        <action selector="showDuchyCollegeWWW:" destination="WgR-Nd-kGF" id="QUI-SR-PCq"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="65" y="1553"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="48" height="48"/>
+        <image name="logo_duchy" width="190" height="96"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>
