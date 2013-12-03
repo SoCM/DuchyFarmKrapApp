@@ -32,11 +32,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uql-pt-P9X">
-                                <rect key="frame" x="1" y="372" width="320" height="44"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uql-pt-P9X">
+                                <rect key="frame" x="0.0" y="372" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="About" id="fbF-JA-sIJ">
+                                    <barButtonItem title="Credits" id="fbF-JA-sIJ">
                                         <connections>
                                             <segue destination="WgR-Nd-kGF" kind="modal" identifier="modalBout" id="Uqf-Ba-Fxh"/>
                                         </connections>
@@ -57,8 +57,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Uql-pt-P9X" secondAttribute="trailing" id="5Na-Xu-wKm"/>
                             <constraint firstItem="hEp-T4-cME" firstAttribute="top" secondItem="wdg-vE-FYJ" secondAttribute="bottom" constant="15" id="Giq-Vz-jdK"/>
                             <constraint firstAttribute="centerX" secondItem="hEp-T4-cME" secondAttribute="centerX" id="HTN-0F-fAq"/>
+                            <constraint firstItem="dLb-kC-uca" firstAttribute="top" secondItem="Uql-pt-P9X" secondAttribute="bottom" id="QGX-dv-KBd"/>
+                            <constraint firstItem="Uql-pt-P9X" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="jFZ-M6-9JP"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
