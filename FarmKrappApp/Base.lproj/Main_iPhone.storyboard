@@ -63,6 +63,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Farm Crap App" id="cmr-xQ-KWm">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="qfp-5o-VvN"/>
                         <barButtonItem key="rightBarButtonItem" title="Begin" id="NKK-LZ-uEp">
                             <connections>
                                 <action selector="doGetStarted:" destination="vXZ-lx-hvc" id="CSn-fV-8ob"/>
