@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		07345139184DC316004FBC1E /* SoCMAboutViewController-iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 07345138184DC316004FBC1E /* SoCMAboutViewController-iPhone.m */; };
 		0734513D184DC717004FBC1E /* UIViewController+FCAFrontPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */; };
+		0777B4F4184DD4E300842DBA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0777B4F3184DD4E300842DBA /* CoreData.framework */; };
+		0777B4F7184DD51F00842DBA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */; };
+		0777B4F8184DD51F00842DBA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */; };
+		0777B54A184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */; };
+		0777B54B184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */; };
 		07EACC021848689700D6A59E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC011848689700D6A59E /* Foundation.framework */; };
 		07EACC041848689700D6A59E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC031848689700D6A59E /* CoreGraphics.framework */; };
 		07EACC061848689700D6A59E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC051848689700D6A59E /* UIKit.framework */; };
@@ -42,6 +47,10 @@
 		07345138184DC316004FBC1E /* SoCMAboutViewController-iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SoCMAboutViewController-iPhone.m"; sourceTree = "<group>"; };
 		0734513B184DC717004FBC1E /* UIViewController+FCAFrontPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FCAFrontPage.h"; sourceTree = "<group>"; };
 		0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FCAFrontPage.m"; sourceTree = "<group>"; };
+		0777B4F3184DD4E300842DBA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		0777B4F6184DD51F00842DBA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		0777B548184DDE3C00842DBA /* SoCMViewControllerCommonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoCMViewControllerCommonBase.h; sourceTree = "<group>"; };
+		0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoCMViewControllerCommonBase.m; sourceTree = "<group>"; };
 		07EACBFE1848689700D6A59E /* FarmKrappApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarmKrappApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EACC011848689700D6A59E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07EACC031848689700D6A59E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -70,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0777B4F4184DD4E300842DBA /* CoreData.framework in Frameworks */,
 				07EACC041848689700D6A59E /* CoreGraphics.framework in Frameworks */,
 				07EACC061848689700D6A59E /* UIKit.framework in Frameworks */,
 				07EACC021848689700D6A59E /* Foundation.framework in Frameworks */,
@@ -102,9 +112,20 @@
 			name = "Front Page";
 			sourceTree = "<group>";
 		};
+		0777B547184DDCD300842DBA /* CommonCode */ = {
+			isa = PBXGroup;
+			children = (
+				0777B548184DDE3C00842DBA /* SoCMViewControllerCommonBase.h */,
+				0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */,
+			);
+			name = CommonCode;
+			path = FarmKrappApp;
+			sourceTree = "<group>";
+		};
 		07EACBF51848689700D6A59E = {
 			isa = PBXGroup;
 			children = (
+				0777B547184DDCD300842DBA /* CommonCode */,
 				07EACC071848689700D6A59E /* FarmKrappApp */,
 				07EACC291848689700D6A59E /* FarmKrappAppTests */,
 				07EACC001848689700D6A59E /* Frameworks */,
@@ -127,6 +148,7 @@
 			children = (
 				07EACC011848689700D6A59E /* Foundation.framework */,
 				07EACC031848689700D6A59E /* CoreGraphics.framework */,
+				0777B4F3184DD4E300842DBA /* CoreData.framework */,
 				07EACC051848689700D6A59E /* UIKit.framework */,
 				07EACC231848689700D6A59E /* XCTest.framework */,
 			);
@@ -138,6 +160,7 @@
 			children = (
 				07EACC101848689700D6A59E /* SoCMAppDelegate.h */,
 				07EACC111848689700D6A59E /* SoCMAppDelegate.m */,
+				0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */,
 				07EACC131848689700D6A59E /* Main_iPhone.storyboard */,
 				07EACC161848689700D6A59E /* Main_iPad.storyboard */,
 				0734513A184DC32E004FBC1E /* Front Page */,
@@ -281,9 +304,11 @@
 			files = (
 				07EACC121848689700D6A59E /* SoCMAppDelegate.m in Sources */,
 				0734513D184DC717004FBC1E /* UIViewController+FCAFrontPage.m in Sources */,
+				0777B54A184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */,
 				07EACC1B1848689700D6A59E /* SoCMViewController.m in Sources */,
 				07345139184DC316004FBC1E /* SoCMAboutViewController-iPhone.m in Sources */,
 				07EACC0E1848689700D6A59E /* main.m in Sources */,
+				0777B4F7184DD51F00842DBA /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +317,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				07EACC301848689700D6A59E /* FarmKrappAppTests.m in Sources */,
+				0777B54B184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */,
+				0777B4F8184DD51F00842DBA /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +545,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0777B4F6184DD51F00842DBA /* Model.xcdatamodel */,
+			);
+			currentVersion = 0777B4F6184DD51F00842DBA /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 07EACBF61848689700D6A59E /* Project object */;
 }
