@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SoCMViewControllerCommonBase.h"
 
-@interface SoCMViewController : UIViewController
+@interface SoCMViewController : SoCMViewControllerCommonBase
+
+
 
 @end

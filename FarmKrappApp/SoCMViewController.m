@@ -8,6 +8,7 @@
 
 #import "SoCMViewController.h"
 #import "UIViewController+FCAFrontPage.h"
+#import "SoCMAppDelegate.h"
 
 @interface SoCMViewController ()
 
@@ -35,6 +36,9 @@
 
 - (IBAction)doGetStarted:(id)sender {
     NSLog(@"GO");
+    
 }
+
+
 
 @end
