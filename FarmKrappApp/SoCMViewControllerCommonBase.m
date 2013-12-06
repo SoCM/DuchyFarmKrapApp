@@ -11,7 +11,7 @@
 
 
 #import "SoCMViewControllerCommonBase.h"
-#import "SoCMAppDelegate.h"
+#import "FCADataModel.h"
 
 @interface SoCMViewControllerCommonBase ()
 
@@ -19,30 +19,6 @@
 
 @implementation SoCMViewControllerCommonBase
 @synthesize managedObjectContext = _managedObjectContext;
-
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
-//
-//- (void)viewDidLoad
-//{
-//    [super viewDidLoad];
-//	// Do any additional setup after loading the view.
-//}
-//
-//- (void)didReceiveMemoryWarning
-//{
-//    [super didReceiveMemoryWarning];
-//    // Dispose of any resources that can be recreated.
-//}
-
-
-
 
 
 //************
@@ -54,11 +30,8 @@
 {
     if (_managedObjectContext == nil) {
         
-        //Singleton Application Delegate
-        SoCMAppDelegate* ad = [[UIApplication sharedApplication] delegate];
-        
         //Singleton managed object context
-        self.managedObjectContext = [ad managedObjectContext];
+        self.managedObjectContext = [FCADataModel managedObjectContext];
     }
     return _managedObjectContext;
 }
