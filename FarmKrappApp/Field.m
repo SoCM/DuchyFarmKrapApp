@@ -17,4 +17,5 @@
 @dynamic sizeInHectares;
 @dynamic spreadingEvents;
 
+
 @end
