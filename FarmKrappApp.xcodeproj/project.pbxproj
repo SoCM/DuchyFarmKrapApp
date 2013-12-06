@@ -14,6 +14,12 @@
 		0777B4F8184DD51F00842DBA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */; };
 		0777B54A184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */; };
 		0777B54B184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */; };
+		078B27771850EB5700E78747 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B27761850EB5700E78747 /* Field.m */; };
+		078B27781850EB5700E78747 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B27761850EB5700E78747 /* Field.m */; };
+		078B277B1850EB5800E78747 /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B277A1850EB5800E78747 /* SpreadingEvent.m */; };
+		078B277C1850EB5800E78747 /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B277A1850EB5800E78747 /* SpreadingEvent.m */; };
+		078B278618519AB000E78747 /* FCADataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B278518519AB000E78747 /* FCADataModel.m */; };
+		078B278718519AB000E78747 /* FCADataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B278518519AB000E78747 /* FCADataModel.m */; };
 		07EACC021848689700D6A59E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC011848689700D6A59E /* Foundation.framework */; };
 		07EACC041848689700D6A59E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC031848689700D6A59E /* CoreGraphics.framework */; };
 		07EACC061848689700D6A59E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC051848689700D6A59E /* UIKit.framework */; };
@@ -51,6 +57,12 @@
 		0777B4F6184DD51F00842DBA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		0777B548184DDE3C00842DBA /* SoCMViewControllerCommonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoCMViewControllerCommonBase.h; sourceTree = "<group>"; };
 		0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoCMViewControllerCommonBase.m; sourceTree = "<group>"; };
+		078B27751850EB5700E78747 /* Field.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Field.h; sourceTree = "<group>"; };
+		078B27761850EB5700E78747 /* Field.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Field.m; sourceTree = "<group>"; };
+		078B27791850EB5800E78747 /* SpreadingEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpreadingEvent.h; sourceTree = "<group>"; };
+		078B277A1850EB5800E78747 /* SpreadingEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpreadingEvent.m; sourceTree = "<group>"; };
+		078B278418519AB000E78747 /* FCADataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCADataModel.h; sourceTree = "<group>"; };
+		078B278518519AB000E78747 /* FCADataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCADataModel.m; sourceTree = "<group>"; };
 		07EACBFE1848689700D6A59E /* FarmKrappApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarmKrappApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EACC011848689700D6A59E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07EACC031848689700D6A59E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -110,6 +122,7 @@
 				0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */,
 			);
 			name = "Front Page";
+			path = FarmKrappApp;
 			sourceTree = "<group>";
 		};
 		0777B547184DDCD300842DBA /* CommonCode */ = {
@@ -122,11 +135,28 @@
 			path = FarmKrappApp;
 			sourceTree = "<group>";
 		};
+		078B27741850EB2600E78747 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */,
+				078B27791850EB5800E78747 /* SpreadingEvent.h */,
+				078B277A1850EB5800E78747 /* SpreadingEvent.m */,
+				078B27751850EB5700E78747 /* Field.h */,
+				078B27761850EB5700E78747 /* Field.m */,
+				078B278418519AB000E78747 /* FCADataModel.h */,
+				078B278518519AB000E78747 /* FCADataModel.m */,
+			);
+			name = CoreDataModel;
+			path = FarmKrappApp;
+			sourceTree = "<group>";
+		};
 		07EACBF51848689700D6A59E = {
 			isa = PBXGroup;
 			children = (
-				0777B547184DDCD300842DBA /* CommonCode */,
 				07EACC071848689700D6A59E /* FarmKrappApp */,
+				0734513A184DC32E004FBC1E /* Front Page */,
+				078B27741850EB2600E78747 /* CoreDataModel */,
+				0777B547184DDCD300842DBA /* CommonCode */,
 				07EACC291848689700D6A59E /* FarmKrappAppTests */,
 				07EACC001848689700D6A59E /* Frameworks */,
 				07EACBFF1848689700D6A59E /* Products */,
@@ -160,10 +190,8 @@
 			children = (
 				07EACC101848689700D6A59E /* SoCMAppDelegate.h */,
 				07EACC111848689700D6A59E /* SoCMAppDelegate.m */,
-				0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */,
 				07EACC131848689700D6A59E /* Main_iPhone.storyboard */,
 				07EACC161848689700D6A59E /* Main_iPad.storyboard */,
-				0734513A184DC32E004FBC1E /* Front Page */,
 				07EACC1C1848689700D6A59E /* Images.xcassets */,
 				07EACC081848689700D6A59E /* Supporting Files */,
 			);
@@ -304,10 +332,13 @@
 			files = (
 				07EACC121848689700D6A59E /* SoCMAppDelegate.m in Sources */,
 				0734513D184DC717004FBC1E /* UIViewController+FCAFrontPage.m in Sources */,
+				078B277B1850EB5800E78747 /* SpreadingEvent.m in Sources */,
 				0777B54A184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */,
 				07EACC1B1848689700D6A59E /* SoCMViewController.m in Sources */,
 				07345139184DC316004FBC1E /* SoCMAboutViewController-iPhone.m in Sources */,
+				078B278618519AB000E78747 /* FCADataModel.m in Sources */,
 				07EACC0E1848689700D6A59E /* main.m in Sources */,
+				078B27771850EB5700E78747 /* Field.m in Sources */,
 				0777B4F7184DD51F00842DBA /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,7 +349,10 @@
 			files = (
 				07EACC301848689700D6A59E /* FarmKrappAppTests.m in Sources */,
 				0777B54B184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */,
+				078B27781850EB5700E78747 /* Field.m in Sources */,
 				0777B4F8184DD51F00842DBA /* Model.xcdatamodeld in Sources */,
+				078B278718519AB000E78747 /* FCADataModel.m in Sources */,
+				078B277C1850EB5800E78747 /* SpreadingEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
