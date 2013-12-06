@@ -12,10 +12,13 @@
 #import "SpreadingEvent.h"
 
 
-@interface FarmKrappAppTests : XCTestCase
+@interface FarmKrappAppTests : XCTestCase {
+
+}
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
 @end
 
 @implementation FarmKrappAppTests
@@ -41,39 +44,71 @@
     [super tearDown];
 }
 
--(void)testCoreData
+#pragma mark - Field Category
+//TESTS FOR CATEGORY ON FIELD
+-(void)testFieldCategoryMethods
 {
-    NSError* err;
-    
-    //Insert some data
-    NSEntityDescription* ed = [[NSEntityDescription alloc] init];
-    [ed setName:@"Field"];
-    
-    Field* field = [[Field alloc] initWithEntity:ed insertIntoManagedObjectContext:self.managedObjectContext];
-    [field setName:@"Top"];
-    [field setSoilType:@1];
-    [field setCropType:@2];
-    [field setSizeInHectares:@1.5];
-    
-    
-    [FCADataModel saveContext];
-    
-//    [self.managedObjectContext insertObject:<#(NSManagedObject *)#>]
-    
-    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Field"];
-    [fr setSortDescriptors:@[@"name"]];
-    [fr setPredicate:[NSPredicate predicateWithFormat:@"name = Top"]];
-    
-    NSArray* result = [self.managedObjectContext executeFetchRequest:fr error:&err];
-    
-    
+     XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);   
 }
 
-- (void)testExample
+#pragma mark - Spreading Event Category
+//TESTS FOR CATEGORY ON SPREADING EVENT
+-(void)testSpreadEventCategoryMethods
 {
     XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 }
 
+#pragma mark - Field
+// TESTS FOR FCADATA MODEL (CoreData wrapper class)
+-(void)testAddNewField
+{
+    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+-(void)testUpdateField
+{
+    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+-(void)testRemoveField
+{
+    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+-(void)testArrayOfFields
+{
+    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+- (void)testArrayOfFieldsWithSortString
+{
+    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+- (void)testNumberOfFields
+{
+    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+#pragma mark - Spreading Event
+-(void)testAddNewSpreadingEvent
+{
+    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+-(void)testUpdateSpreadingEvent
+{
+    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+-(void)testRemoveSpreadingEvent
+{
+    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+-(void)testArrayOfSpreadingEventsForField
+{
+    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+-(void)testarrayOfSpreadingEventsForFieldWithSortString
+{
+    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+-(void)testNumberOfSpreadingEventsForField
+{
+    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
 
 
 
