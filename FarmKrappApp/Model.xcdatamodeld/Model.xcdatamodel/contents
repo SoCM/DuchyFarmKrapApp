@@ -5,7 +5,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sizeInHectares" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="soilType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="spreadingEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SpreadingEvent" inverseName="field" inverseEntity="SpreadingEvent" syncable="YES"/>
+        <relationship name="spreadingEvents" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SpreadingEvent" inverseName="field" inverseEntity="SpreadingEvent" syncable="YES"/>
     </entity>
     <entity name="SpreadingEvent" representedClassName="SpreadingEvent" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>

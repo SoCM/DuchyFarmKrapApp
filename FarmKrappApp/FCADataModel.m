@@ -17,18 +17,11 @@
 //CATEGORY ON FIELD*
 //******************
 @implementation Field (FCADataModel)
-- (id)initWithDefaults
+
++(id)InsertFieldWithName:(NSString*)nameString soilType:(SOIL_TYPE)soil_type cropType:(CROP_TYPE)crop_type sizeInHectares:(NSNumber*)size
 {
-    NSEntityDescription* ed = [NSEntityDescription entityForName:@"Field" inManagedObjectContext:self.managedObjectContext];
-    self = [super initWithEntity:ed insertIntoManagedObjectContext:self.managedObjectContext];
-    if (self != nil) {
-        // Perform additional initialization.
-    }
-    return self;
-}
-+(id)FieldWithName:(NSString*)nameString soilType:(SOIL_TYPE)soil_type cropType:(CROP_TYPE)crop_type sizeInHectares:(NSNumber*)size
-{
-    Field* field = [[Field alloc] initWithDefaults];
+    NSEntityDescription* ed = [NSEntityDescription entityForName:@"Field" inManagedObjectContext:[FCA_APP_DELEGATE managedObjectContext]];
+    Field* field = [[Field alloc] initWithEntity:ed insertIntoManagedObjectContext:[FCA_APP_DELEGATE managedObjectContext]];
     if (field) {
         field.name = nameString;
         field.soilType = [NSNumber numberWithInt:soil_type];
@@ -44,18 +37,11 @@
 //CATEGORY ON SPREADING EVENT*
 //****************************
 @implementation SpreadingEvent (FCADataModel)
-- (id)initWithDefaults
+
++(SpreadingEvent*)InsertSpreadingEventWithDate:(NSDate*)date manureType:(MANURE_TYPE)manure_type quality:(MANURE_QUALITY)manure_quality density:(NSNumber*)manure_density
 {
-    NSEntityDescription* ed = [NSEntityDescription entityForName:@"SpreadingEvent" inManagedObjectContext:self.managedObjectContext];
-    self = [super initWithEntity:ed insertIntoManagedObjectContext:self.managedObjectContext];
-    if (self != nil) {
-        // Perform additional initialization.
-    }
-    return self;
-}
-+(SpreadingEvent*)spreadingEventWithDate:(NSDate*)date manureType:(MANURE_TYPE)manure_type quality:(MANURE_QUALITY)manure_quality density:(NSNumber*)manure_density
-{
-    SpreadingEvent* se = [[SpreadingEvent alloc] initWithDefaults];
+    NSEntityDescription* ed = [NSEntityDescription entityForName:@"SpreadingEvent" inManagedObjectContext:[FCA_APP_DELEGATE managedObjectContext]];
+    SpreadingEvent* se = [[SpreadingEvent alloc] initWithEntity:ed insertIntoManagedObjectContext:[FCA_APP_DELEGATE managedObjectContext]];
     if (se) {
         se.date = date;
         se.manureType = [NSNumber numberWithInt:manure_type];
@@ -85,65 +71,73 @@
 @implementation FCADataModel
 
 // Fields
-+(void)addNewField:(Field*)field
++(id)addNewFieldWithName:(NSString*)nameString soilType:(SOIL_TYPE)soil_type cropType:(CROP_TYPE)crop_type sizeInHectares:(NSNumber*)size
 {
-    //Safety check
-    if (field == nil) {
-        NSLog(@"Error - nil field cannot be added");
-        return;
-    }
-    [[FCADataModel managedObjectContext] insertObject:field];
+    Field* result = [Field InsertFieldWithName:nameString soilType:soil_type cropType:crop_type sizeInHectares:size];
     [FCA_APP_DELEGATE saveContext];
-}
-
-+(void)updateField:(Field*)oldField withNewFieldData:(Field*)newField
-{
-    
+    return result;
 }
 +(void)removeField:(Field*)field
 {  
-    
+    [[FCA_APP_DELEGATE managedObjectContext] deleteObject:field];
+    [FCA_APP_DELEGATE saveContext];
 }
 +(NSArray*)arrayOfFields
 {
-    NSArray* result = nil;
+    NSError* err;
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Field"];
+    NSArray* result = [[FCA_APP_DELEGATE managedObjectContext] executeFetchRequest:fr error:&err];
     return result;
 }
 +(NSArray*)arrayOfFieldsWithSortString:(NSString*)predicateString
 {
-    //NSPredicate* pred = [NSPredicate predicateWithFormat:predicateString];
-    NSArray* result = nil;
+    NSError* err;
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Field"];
+    fr.predicate = [NSPredicate predicateWithFormat:predicateString];
+    NSArray* result = [[FCA_APP_DELEGATE managedObjectContext] executeFetchRequest:fr error:&err];
+    
     return result;
 }
 +(NSNumber*)numberOfFields
 {
-    return nil;
+    return [NSNumber numberWithInt:[[FCADataModel arrayOfFields]count]];
+
 }
 
 #pragma mark - DataModel Wrapper Class Methods - Spreading Events
 
 // Spreading events
-+(void)addNewSpreadingEvent:(SpreadingEvent*)spreadingEvent toField:(Field*)field
++(id)addNewSpreadingEventWithDate:(NSDate*)date manureType:(MANURE_TYPE)manure_type quality:(MANURE_QUALITY)manure_quality density:(NSNumber*)manure_density toField:(Field*)field
 {
-    
+    SpreadingEvent* result = [SpreadingEvent InsertSpreadingEventWithDate:date
+                                                               manureType:manure_type
+                                                                  quality:manure_quality
+                                                                  density:manure_density];
+    [field addSpreadingEvents:[NSSet setWithObject:result]];
+    [FCA_APP_DELEGATE saveContext];
+    return result;
 }
-+(void)updateSpreadingEvent:(SpreadingEvent*)oldSpreadingEvent toNewSpreadingEvent:(SpreadingEvent*)newSpreadingEvent
++(void)removeSpreadingEvent:(SpreadingEvent*)spreadingEvent
 {
-    
-}
-+(void)removeSpreadingEvent:spreadingEvent
-{
-    
+    //Remove from the field
+    [[FCA_APP_DELEGATE managedObjectContext] deleteObject:spreadingEvent];    
+    [FCA_APP_DELEGATE saveContext];
 }
 +(NSArray*)arrayOfSpreadingEventsForField:(Field*)field
 {
-    NSArray* result = nil;
+    NSError* err;
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"field == %@", field];
+    NSArray* result = [[FCA_APP_DELEGATE managedObjectContext] executeFetchRequest:fr error:&err];
     return result;
 }
 +(NSArray*)arrayOfSpreadingEventsForField:(Field*)field withSortString:(NSString*)predicateString
 {
-    //NSPredicate* pred = [NSPredicate predicateWithFormat:predicateString];
-    NSArray* result = nil;
+    NSError* err;
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"field == %@", field];
+    fr.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ];
+    NSArray* result = [[FCA_APP_DELEGATE managedObjectContext] executeFetchRequest:fr error:&err];
     return result;
 }
 +(NSNumber*)numberOfSpreadingEventsForField:(Field*)field
