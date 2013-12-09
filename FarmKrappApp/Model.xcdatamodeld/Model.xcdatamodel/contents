@@ -7,15 +7,22 @@
         <attribute name="soilType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="spreadingEvents" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SpreadingEvent" inverseName="field" inverseEntity="SpreadingEvent" syncable="YES"/>
     </entity>
+    <entity name="Photo" representedClassName="Photo" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="spreadingEvent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpreadingEvent" inverseName="photos" inverseEntity="SpreadingEvent" syncable="YES"/>
+    </entity>
     <entity name="SpreadingEvent" representedClassName="SpreadingEvent" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="density" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="manureType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="quality" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="field" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Field" inverseName="spreadingEvents" inverseEntity="Field" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="spreadingEvent" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Field" positionX="-4419" positionY="-693" width="128" height="118"/>
-        <element name="SpreadingEvent" positionX="-4034" positionY="-765" width="128" height="118"/>
+        <element name="Field" positionX="-4520" positionY="-595" width="128" height="118"/>
+        <element name="SpreadingEvent" positionX="-4185" positionY="-720" width="128" height="133"/>
+        <element name="Photo" positionX="-3764" positionY="-774" width="128" height="88"/>
     </elements>
 </model>
