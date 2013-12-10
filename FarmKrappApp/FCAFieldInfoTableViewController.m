@@ -59,10 +59,12 @@
     if (indexPath.row != 0) {
         [self.nameTextBox resignFirstResponder];
     }
+    [self.tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 //Respond to return key (make k/b go away)
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
     [textField resignFirstResponder];
     return YES;
 }
@@ -70,6 +72,8 @@
     //Make k/b go away if visible
     [self.nameTextBox resignFirstResponder];
     NSLog(@"Segment changed to %u", self.soilTypeSegmentControl.selectedSegmentIndex);
+    [self.tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionTop animated:YES];
+
 }
 
 - (IBAction)doSliderChanged:(id)sender {
