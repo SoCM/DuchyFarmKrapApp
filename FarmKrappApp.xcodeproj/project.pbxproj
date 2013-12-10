@@ -153,13 +153,13 @@
 			path = FarmKrappApp;
 			sourceTree = "<group>";
 		};
-		0777B547184DDCD300842DBA /* CommonCode */ = {
+		0777B547184DDCD300842DBA /* CommonCodeForViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				0777B548184DDE3C00842DBA /* SoCMViewControllerCommonBase.h */,
 				0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */,
 			);
-			name = CommonCode;
+			name = CommonCodeForViewControllers;
 			path = FarmKrappApp;
 			sourceTree = "<group>";
 		};
@@ -213,7 +213,7 @@
 				07EACC071848689700D6A59E /* FarmKrappApp */,
 				0734513A184DC32E004FBC1E /* Front Page */,
 				078B27741850EB2600E78747 /* CoreDataModel */,
-				0777B547184DDCD300842DBA /* CommonCode */,
+				0777B547184DDCD300842DBA /* CommonCodeForViewControllers */,
 				07EACC291848689700D6A59E /* FarmKrappAppTests */,
 				07EACC001848689700D6A59E /* Frameworks */,
 				07EACBFF1848689700D6A59E /* Products */,
