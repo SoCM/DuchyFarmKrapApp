@@ -11,6 +11,7 @@
 #import "SoCMAppDelegate.h"
 #import "Field.h"
 #import "SpreadingEvent.h"
+#import "Photo.h"
 
 #pragma mark - Enumerated
 //ENUMERATED TYPES - ALLOWING FOR SUBCATEGORIES TO BE ADDED LATER
@@ -40,13 +41,23 @@ typedef enum {MANUREQUALITY_THIN_SOUP=100, MANUREQUALITY_THICK_SOUP=200, MANUREQ
 //Category on Field
 @interface Field (FCADataModel)
 +(id)InsertFieldWithName:(NSString*)nameString soilType:(SOIL_TYPE)soil_type cropType:(CROP_TYPE)crop_type sizeInHectares:(NSNumber*)size;
+-(NSArray*)arrayOfSpreadingEvents;
 @end
 
 #pragma mark - Category on SpreadingEvent
 //Category on Spreading Event
 @interface SpreadingEvent (FCADataModel)
 +(SpreadingEvent*)InsertSpreadingEventWithDate:(NSDate*)date manureType:(MANURE_TYPE)manure_type quality:(MANURE_QUALITY)manure_quality density:(NSNumber*)manure_density;
+-(NSArray*)arrayOfPhotos;
 @end
+
+#pragma mark - Category on Photo
+//Category on Photo
+@interface Photo (FCADataModel)
++(Photo*)InsertPhotoWithImageData:(NSData*)imageData onDate:(NSDate*)date;
++(NSData*)imageDataForPhoto:(Photo*)photo;
+@end
+
 
 #pragma mark - FCADataModel CLASS
 //DATA MODEL WRAPPER CLASS
@@ -56,14 +67,21 @@ typedef enum {MANUREQUALITY_THIN_SOUP=100, MANUREQUALITY_THICK_SOUP=200, MANUREQ
 +(id)addNewFieldWithName:(NSString*)nameString soilType:(SOIL_TYPE)soil_type cropType:(CROP_TYPE)crop_type sizeInHectares:(NSNumber*)size;
 +(void)removeField:(Field*)field;
 +(NSArray*)arrayOfFields;
-+(NSArray*)arrayOfFieldsWithSortString:(NSString*)predicateString;
++(NSArray*)arrayOfFieldsWithSortString:(NSString*)sortString;
++(NSArray*)arrayOfFieldsWithSortString:(NSString*)sortString andPredicateString:(NSString*)predicateString;
 +(NSNumber*)numberOfFields;
 #pragma mark - SpreadingEvent
 +(id)addNewSpreadingEventWithDate:(NSDate*)date manureType:(MANURE_TYPE)manure_type quality:(MANURE_QUALITY)manure_quality density:(NSNumber*)manure_density toField:(Field*)field;
 +(void)removeSpreadingEvent:spreadingEvent;
 +(NSArray*)arrayOfSpreadingEventsForField:(Field*)field;
-+(NSArray*)arrayOfSpreadingEventsForField:(Field*)field withSortString:(NSString*)predicateString;
++(NSArray*)arrayOfSpreadingEventsForField:(Field*)field withSortString:(NSString*)sortString;
+
 +(NSNumber*)numberOfSpreadingEventsForField:(Field*)field;
+#pragma mark - Photo
++(void)addImageData:(NSData*)image toSpreadingEvent:(SpreadingEvent*)se onDate:(NSDate*)date;
++(void)removeImageData:(NSData*)image fromSpreadingEvent:(SpreadingEvent*)se;
++(NSArray*)arrayOfPhotosForSpreadingEvent:(SpreadingEvent*)se;
++(NSNumber*)numberOfPhotosForSpreadingEvent:(SpreadingEvent*)se;
 
 #pragma mark - CoreData Convenience Methods
 //CORE DATA Convenience Methods

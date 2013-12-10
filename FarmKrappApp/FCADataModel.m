@@ -30,6 +30,10 @@
     }
     return field;
 }
+-(NSArray*)arrayOfSpreadingEvents
+{
+    return [FCADataModel arrayOfSpreadingEventsForField:self];
+}
 @end
 
 #pragma mark - Category on Spreading Event
@@ -50,16 +54,32 @@
     }
     return se;
 }
+-(NSArray*)arrayOfPhotos
+{
+    return [FCADataModel arrayOfPhotosForSpreadingEvent:self];
+}
 @end
 
+#pragma mark - Category on Photo
+//*******************
+//CATEGORY ON PHOTO *
+//*******************
+@implementation Photo (FCADataModel)
 
-//
-// NOTE TO SELF:
-//
-//    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Field"];
-//    [fr setSortDescriptors:@[@"name"]];
-//    [fr setPredicate:[NSPredicate predicateWithFormat:@"name = Top"]];
-//    NSArray* result = [self.managedObjectContext executeFetchRequest:fr error:&err];
++(Photo*)InsertPhotoWithImageData:(NSData*)imageData onDate:(NSDate*)date
+{
+    NSEntityDescription* ed = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:[FCA_APP_DELEGATE managedObjectContext]];
+    Photo *ph = [[Photo alloc] initWithEntity:ed insertIntoManagedObjectContext:[FCA_APP_DELEGATE managedObjectContext]];
+    ph.date = date;
+    ph.photo = imageData;
+    return ph;
+}
++(NSData*)imageDataForPhoto:(Photo*)photo
+{
+    return photo.photo;
+}
+
+@end
 
 
 
@@ -84,18 +104,19 @@
 }
 +(NSArray*)arrayOfFields
 {
-    NSError* err;
-    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Field"];
-    NSArray* result = [[FCA_APP_DELEGATE managedObjectContext] executeFetchRequest:fr error:&err];
-    return result;
+    return [FCADataModel arrayOfFieldsWithSortString:@"name"];
 }
-+(NSArray*)arrayOfFieldsWithSortString:(NSString*)predicateString
++(NSArray*)arrayOfFieldsWithSortString:(NSString*)sortString
+{
+    return [FCADataModel arrayOfFieldsWithSortString:sortString andPredicateString:nil];
+}
++(NSArray*)arrayOfFieldsWithSortString:(NSString*)sortString andPredicateString:(NSString*)predicateString
 {
     NSError* err;
     NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Field"];
+    fr.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:sortString ascending:YES] ];
     fr.predicate = [NSPredicate predicateWithFormat:predicateString];
-    NSArray* result = [[FCA_APP_DELEGATE managedObjectContext] executeFetchRequest:fr error:&err];
-    
+    NSArray * result = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
     return result;
 }
 +(NSNumber*)numberOfFields
@@ -125,24 +146,53 @@
 }
 +(NSArray*)arrayOfSpreadingEventsForField:(Field*)field
 {
-    NSError* err;
-    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
-    fr.predicate = [NSPredicate predicateWithFormat:@"field == %@", field];
-    NSArray* result = [[FCA_APP_DELEGATE managedObjectContext] executeFetchRequest:fr error:&err];
-    return result;
+    return [FCADataModel arrayOfSpreadingEventsForField:field withSortString:@"date"];
 }
-+(NSArray*)arrayOfSpreadingEventsForField:(Field*)field withSortString:(NSString*)predicateString
++(NSArray*)arrayOfSpreadingEventsForField:(Field*)field withSortString:(NSString*)sortString
 {
     NSError* err;
     NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
     fr.predicate = [NSPredicate predicateWithFormat:@"field == %@", field];
-    fr.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ];
+    fr.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:sortString ascending:YES] ];
     NSArray* result = [[FCA_APP_DELEGATE managedObjectContext] executeFetchRequest:fr error:&err];
     return result;
 }
 +(NSNumber*)numberOfSpreadingEventsForField:(Field*)field
 {
     return nil;
+}
+
+#pragma mark - DataModel Wrapper Class Methods - Photo
++(void)addImageData:(NSData*)image toSpreadingEvent:(SpreadingEvent*)se onDate:(NSDate*)date
+{
+    Photo* photo = [Photo InsertPhotoWithImageData:image onDate:date];
+    [se addPhotos:[NSSet setWithObject:photo]];
+    [FCADataModel saveContext];
+}
++(void)removeImageData:(NSData*)image fromSpreadingEvent:(SpreadingEvent*)se
+{
+    //Fetch the matching image
+    NSError* err;
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"photo == %@", image];
+    NSArray* array = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
+    Photo* photoToBeDeleted = (Photo*)array[0];
+    [[FCADataModel managedObjectContext] deleteObject:photoToBeDeleted];
+    [FCADataModel saveContext];
+}
++(NSArray*)arrayOfPhotosForSpreadingEvent:(SpreadingEvent*)se
+{
+    NSError* err;
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    fr.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ];
+    fr.predicate = [NSPredicate predicateWithFormat:@"spreadingEvent == %@", se];
+    NSArray* arrayOfPhotos = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
+    //Extract the array of imageData
+    return [arrayOfPhotos valueForKeyPath:@"photo"];
+}
++(NSNumber*)numberOfPhotosForSpreadingEvent:(SpreadingEvent*)se
+{
+    return ([NSNumber numberWithInteger:se.photos.count]);
 }
 
 #pragma mark - CORE DATA Convenience Methods
