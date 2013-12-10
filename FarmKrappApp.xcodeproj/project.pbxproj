@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		070F18E418574C9D0008FA19 /* FCAFieldsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F18E318574C9D0008FA19 /* FCAFieldsViewController.m */; };
 		070F18E518574C9D0008FA19 /* FCAFieldsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F18E318574C9D0008FA19 /* FCAFieldsViewController.m */; };
+		070F18E9185762990008FA19 /* FCAFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F18E8185762990008FA19 /* FCAFieldCell.m */; };
+		070F18EA185762990008FA19 /* FCAFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F18E8185762990008FA19 /* FCAFieldCell.m */; };
+		072B83B518576D7B00339018 /* FCAFieldInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072B83B418576D7B00339018 /* FCAFieldInfoTableViewController.m */; };
+		072B83B618576D7B00339018 /* FCAFieldInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072B83B418576D7B00339018 /* FCAFieldInfoTableViewController.m */; };
 		07345139184DC316004FBC1E /* SoCMAboutViewController-iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 07345138184DC316004FBC1E /* SoCMAboutViewController-iPhone.m */; };
 		0734513D184DC717004FBC1E /* UIViewController+FCAFrontPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */; };
 		075E74651857330E006B3FFA /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 075E74641857330E006B3FFA /* SpreadingEvent.m */; };
@@ -67,6 +71,10 @@
 /* Begin PBXFileReference section */
 		070F18E218574C9D0008FA19 /* FCAFieldsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAFieldsViewController.h; sourceTree = "<group>"; };
 		070F18E318574C9D0008FA19 /* FCAFieldsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAFieldsViewController.m; sourceTree = "<group>"; };
+		070F18E7185762990008FA19 /* FCAFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAFieldCell.h; sourceTree = "<group>"; };
+		070F18E8185762990008FA19 /* FCAFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAFieldCell.m; sourceTree = "<group>"; };
+		072B83B318576D7B00339018 /* FCAFieldInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAFieldInfoTableViewController.h; sourceTree = "<group>"; };
+		072B83B418576D7B00339018 /* FCAFieldInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAFieldInfoTableViewController.m; sourceTree = "<group>"; };
 		07345137184DC316004FBC1E /* SoCMAboutViewController-iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SoCMAboutViewController-iPhone.h"; sourceTree = "<group>"; };
 		07345138184DC316004FBC1E /* SoCMAboutViewController-iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SoCMAboutViewController-iPhone.m"; sourceTree = "<group>"; };
 		0734513B184DC717004FBC1E /* UIViewController+FCAFrontPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FCAFrontPage.h"; sourceTree = "<group>"; };
@@ -146,10 +154,30 @@
 		070F18E118574BD40008FA19 /* FieldsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				070F18E6185761880008FA19 /* Cells */,
 				070F18E218574C9D0008FA19 /* FCAFieldsViewController.h */,
 				070F18E318574C9D0008FA19 /* FCAFieldsViewController.m */,
+				072B83B218576D3F00339018 /* FieldInfo */,
 			);
 			name = FieldsViewController;
+			sourceTree = "<group>";
+		};
+		070F18E6185761880008FA19 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				070F18E7185762990008FA19 /* FCAFieldCell.h */,
+				070F18E8185762990008FA19 /* FCAFieldCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		072B83B218576D3F00339018 /* FieldInfo */ = {
+			isa = PBXGroup;
+			children = (
+				072B83B318576D7B00339018 /* FCAFieldInfoTableViewController.h */,
+				072B83B418576D7B00339018 /* FCAFieldInfoTableViewController.m */,
+			);
+			name = FieldInfo;
 			sourceTree = "<group>";
 		};
 		0734513A184DC32E004FBC1E /* Front Page */ = {
@@ -409,9 +437,11 @@
 				070F18E418574C9D0008FA19 /* FCAFieldsViewController.m in Sources */,
 				07EACC1B1848689700D6A59E /* SoCMViewController.m in Sources */,
 				07345139184DC316004FBC1E /* SoCMAboutViewController-iPhone.m in Sources */,
+				072B83B518576D7B00339018 /* FCAFieldInfoTableViewController.m in Sources */,
 				07B7E281185611FA00B90F61 /* UIImageUOPCategory.m in Sources */,
 				078B278618519AB000E78747 /* FCADataModel.m in Sources */,
 				07B7E28C185612AA00B90F61 /* PhotoViewController.m in Sources */,
+				070F18E9185762990008FA19 /* FCAFieldCell.m in Sources */,
 				075E74651857330E006B3FFA /* SpreadingEvent.m in Sources */,
 				07EACC0E1848689700D6A59E /* main.m in Sources */,
 				07B7E285185611FA00B90F61 /* NSString+OOTY.m in Sources */,
@@ -433,10 +463,12 @@
 				0777B54B184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */,
 				07B7E286185611FA00B90F61 /* NSString+OOTY.m in Sources */,
 				078B27781850EB5700E78747 /* Field.m in Sources */,
+				070F18EA185762990008FA19 /* FCAFieldCell.m in Sources */,
 				07B7E282185611FA00B90F61 /* UIImageUOPCategory.m in Sources */,
 				0777B4F8184DD51F00842DBA /* Model.xcdatamodeld in Sources */,
 				07B7E28D185612AA00B90F61 /* PhotoViewController.m in Sources */,
 				07B7E280185611FA00B90F61 /* NSBundleUOPCategory.m in Sources */,
+				072B83B618576D7B00339018 /* FCAFieldInfoTableViewController.m in Sources */,
 				078B278718519AB000E78747 /* FCADataModel.m in Sources */,
 				07B7E284185611FA00B90F61 /* NSDate+NSDateUOPCategory.m in Sources */,
 				07B7E288185611FA00B90F61 /* UIScreen+OOTY.m in Sources */,

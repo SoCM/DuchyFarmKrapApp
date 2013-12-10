@@ -37,6 +37,8 @@ typedef enum {MANUREQUALITY_THIN_SOUP=100, MANUREQUALITY_THICK_SOUP=200, MANUREQ
 #define kMANUREQUALITY_THICK_SOUP   [NSNumber numberWithInt:(MANURE_QUALITY)MANUREQUALITY_THICK_SOUP]
 #define kMANUREQUALITY_PORRIGDE     [NSNumber numberWithInt:(MANURE_QUALITY)MANUREQUALITY_PORRIGDE]
 
+#define kACRES_PER_HECTARE 2.47105
+
 #pragma mark - Category on Field
 //Category on Field
 @interface Field (FCADataModel)

@@ -7,6 +7,9 @@
 //
 
 #import "FCAFieldsViewController.h"
+#import "FCADataModel.h"
+#import "FCAFieldInfoTableViewController.h"
+#import "FCAFieldCell.h"
 
 @interface FCAFieldsViewController ()
 
@@ -42,28 +45,43 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    // Return the number of rows - one more than the number of fields (use a plus)
+    return [[FCADataModel numberOfFields] intValue]+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Field";
     
-    // Configure the cell...
-    
-    return cell;
+    //Select the cell type
+    NSUInteger numberOfFields = [[FCADataModel numberOfFields] intValue];
+    if (indexPath.row == numberOfFields) {
+        //The last row is always a PLUS cell
+        CellIdentifier = @"Plus";
+        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        return cell;
+    } else {
+        CellIdentifier = @"Field";
+        FCAFieldCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        NSArray* fields = [FCADataModel arrayOfFields];
+        Field* field = [fields objectAtIndex:indexPath.row];
+        cell.nameLabel.text = field.name;
+        cell.spreadingEventLabel.text = [NSString stringWithFormat:@"%u", field.spreadingEvents.count];
+        cell.sizeLabel.text = [NSString stringWithFormat:@"%5.1f", field.sizeInHectares.doubleValue];
+        return cell;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSUInteger numberOfFields = [[FCADataModel numberOfFields] intValue];
+    if (indexPath.row == numberOfFields) {
+        return 80.0;
+    } else {
+        return 110.0;
+    }
 }
 
 /*
@@ -105,16 +123,18 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    FCAFieldInfoTableViewController* vc;
+    vc = [segue destinationViewController];
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
 
- */
+
 
 @end
