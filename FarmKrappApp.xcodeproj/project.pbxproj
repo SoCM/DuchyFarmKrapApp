@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		07345139184DC316004FBC1E /* SoCMAboutViewController-iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 07345138184DC316004FBC1E /* SoCMAboutViewController-iPhone.m */; };
 		0734513D184DC717004FBC1E /* UIViewController+FCAFrontPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */; };
+		075E74651857330E006B3FFA /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 075E74641857330E006B3FFA /* SpreadingEvent.m */; };
+		075E74661857330E006B3FFA /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 075E74641857330E006B3FFA /* SpreadingEvent.m */; };
 		0777B4F4184DD4E300842DBA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0777B4F3184DD4E300842DBA /* CoreData.framework */; };
 		0777B4F7184DD51F00842DBA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */; };
 		0777B4F8184DD51F00842DBA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */; };
@@ -16,10 +18,22 @@
 		0777B54B184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */; };
 		078B27771850EB5700E78747 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B27761850EB5700E78747 /* Field.m */; };
 		078B27781850EB5700E78747 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B27761850EB5700E78747 /* Field.m */; };
-		078B277B1850EB5800E78747 /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B277A1850EB5800E78747 /* SpreadingEvent.m */; };
-		078B277C1850EB5800E78747 /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B277A1850EB5800E78747 /* SpreadingEvent.m */; };
 		078B278618519AB000E78747 /* FCADataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B278518519AB000E78747 /* FCADataModel.m */; };
 		078B278718519AB000E78747 /* FCADataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B278518519AB000E78747 /* FCADataModel.m */; };
+		07B7E27218560CFD00B90F61 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E27118560CFD00B90F61 /* Photo.m */; };
+		07B7E27318560CFD00B90F61 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E27118560CFD00B90F61 /* Photo.m */; };
+		07B7E27F185611FA00B90F61 /* NSBundleUOPCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E276185611FA00B90F61 /* NSBundleUOPCategory.m */; };
+		07B7E280185611FA00B90F61 /* NSBundleUOPCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E276185611FA00B90F61 /* NSBundleUOPCategory.m */; };
+		07B7E281185611FA00B90F61 /* UIImageUOPCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E278185611FA00B90F61 /* UIImageUOPCategory.m */; };
+		07B7E282185611FA00B90F61 /* UIImageUOPCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E278185611FA00B90F61 /* UIImageUOPCategory.m */; };
+		07B7E283185611FA00B90F61 /* NSDate+NSDateUOPCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E27A185611FA00B90F61 /* NSDate+NSDateUOPCategory.m */; };
+		07B7E284185611FA00B90F61 /* NSDate+NSDateUOPCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E27A185611FA00B90F61 /* NSDate+NSDateUOPCategory.m */; };
+		07B7E285185611FA00B90F61 /* NSString+OOTY.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E27C185611FA00B90F61 /* NSString+OOTY.m */; };
+		07B7E286185611FA00B90F61 /* NSString+OOTY.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E27C185611FA00B90F61 /* NSString+OOTY.m */; };
+		07B7E287185611FA00B90F61 /* UIScreen+OOTY.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E27E185611FA00B90F61 /* UIScreen+OOTY.m */; };
+		07B7E288185611FA00B90F61 /* UIScreen+OOTY.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E27E185611FA00B90F61 /* UIScreen+OOTY.m */; };
+		07B7E28C185612AA00B90F61 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E28B185612AA00B90F61 /* PhotoViewController.m */; };
+		07B7E28D185612AA00B90F61 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E28B185612AA00B90F61 /* PhotoViewController.m */; };
 		07EACC021848689700D6A59E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC011848689700D6A59E /* Foundation.framework */; };
 		07EACC041848689700D6A59E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC031848689700D6A59E /* CoreGraphics.framework */; };
 		07EACC061848689700D6A59E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC051848689700D6A59E /* UIKit.framework */; };
@@ -53,16 +67,30 @@
 		07345138184DC316004FBC1E /* SoCMAboutViewController-iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SoCMAboutViewController-iPhone.m"; sourceTree = "<group>"; };
 		0734513B184DC717004FBC1E /* UIViewController+FCAFrontPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FCAFrontPage.h"; sourceTree = "<group>"; };
 		0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FCAFrontPage.m"; sourceTree = "<group>"; };
+		075E74631857330E006B3FFA /* SpreadingEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpreadingEvent.h; sourceTree = "<group>"; };
+		075E74641857330E006B3FFA /* SpreadingEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpreadingEvent.m; sourceTree = "<group>"; };
 		0777B4F3184DD4E300842DBA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		0777B4F6184DD51F00842DBA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		0777B548184DDE3C00842DBA /* SoCMViewControllerCommonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoCMViewControllerCommonBase.h; sourceTree = "<group>"; };
 		0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoCMViewControllerCommonBase.m; sourceTree = "<group>"; };
 		078B27751850EB5700E78747 /* Field.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Field.h; sourceTree = "<group>"; };
 		078B27761850EB5700E78747 /* Field.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Field.m; sourceTree = "<group>"; };
-		078B27791850EB5800E78747 /* SpreadingEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpreadingEvent.h; sourceTree = "<group>"; };
-		078B277A1850EB5800E78747 /* SpreadingEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpreadingEvent.m; sourceTree = "<group>"; };
 		078B278418519AB000E78747 /* FCADataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCADataModel.h; sourceTree = "<group>"; };
 		078B278518519AB000E78747 /* FCADataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCADataModel.m; sourceTree = "<group>"; };
+		07B7E27018560CFD00B90F61 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		07B7E27118560CFD00B90F61 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		07B7E275185611FA00B90F61 /* NSBundleUOPCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBundleUOPCategory.h; sourceTree = "<group>"; };
+		07B7E276185611FA00B90F61 /* NSBundleUOPCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBundleUOPCategory.m; sourceTree = "<group>"; };
+		07B7E277185611FA00B90F61 /* UIImageUOPCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageUOPCategory.h; sourceTree = "<group>"; };
+		07B7E278185611FA00B90F61 /* UIImageUOPCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageUOPCategory.m; sourceTree = "<group>"; };
+		07B7E279185611FA00B90F61 /* NSDate+NSDateUOPCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+NSDateUOPCategory.h"; sourceTree = "<group>"; };
+		07B7E27A185611FA00B90F61 /* NSDate+NSDateUOPCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+NSDateUOPCategory.m"; sourceTree = "<group>"; };
+		07B7E27B185611FA00B90F61 /* NSString+OOTY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OOTY.h"; sourceTree = "<group>"; };
+		07B7E27C185611FA00B90F61 /* NSString+OOTY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OOTY.m"; sourceTree = "<group>"; };
+		07B7E27D185611FA00B90F61 /* UIScreen+OOTY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScreen+OOTY.h"; sourceTree = "<group>"; };
+		07B7E27E185611FA00B90F61 /* UIScreen+OOTY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+OOTY.m"; sourceTree = "<group>"; };
+		07B7E28A185612AA00B90F61 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		07B7E28B185612AA00B90F61 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		07EACBFE1848689700D6A59E /* FarmKrappApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarmKrappApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EACC011848689700D6A59E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07EACC031848689700D6A59E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -139,8 +167,10 @@
 			isa = PBXGroup;
 			children = (
 				0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */,
-				078B27791850EB5800E78747 /* SpreadingEvent.h */,
-				078B277A1850EB5800E78747 /* SpreadingEvent.m */,
+				075E74631857330E006B3FFA /* SpreadingEvent.h */,
+				075E74641857330E006B3FFA /* SpreadingEvent.m */,
+				07B7E27018560CFD00B90F61 /* Photo.h */,
+				07B7E27118560CFD00B90F61 /* Photo.m */,
 				078B27751850EB5700E78747 /* Field.h */,
 				078B27761850EB5700E78747 /* Field.m */,
 				078B278418519AB000E78747 /* FCADataModel.h */,
@@ -150,9 +180,36 @@
 			path = FarmKrappApp;
 			sourceTree = "<group>";
 		};
+		07B7E274185611DD00B90F61 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				07B7E275185611FA00B90F61 /* NSBundleUOPCategory.h */,
+				07B7E276185611FA00B90F61 /* NSBundleUOPCategory.m */,
+				07B7E277185611FA00B90F61 /* UIImageUOPCategory.h */,
+				07B7E278185611FA00B90F61 /* UIImageUOPCategory.m */,
+				07B7E279185611FA00B90F61 /* NSDate+NSDateUOPCategory.h */,
+				07B7E27A185611FA00B90F61 /* NSDate+NSDateUOPCategory.m */,
+				07B7E27B185611FA00B90F61 /* NSString+OOTY.h */,
+				07B7E27C185611FA00B90F61 /* NSString+OOTY.m */,
+				07B7E27D185611FA00B90F61 /* UIScreen+OOTY.h */,
+				07B7E27E185611FA00B90F61 /* UIScreen+OOTY.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		07B7E2891856129900B90F61 /* PhotoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				07B7E28A185612AA00B90F61 /* PhotoViewController.h */,
+				07B7E28B185612AA00B90F61 /* PhotoViewController.m */,
+			);
+			name = PhotoViewController;
+			sourceTree = "<group>";
+		};
 		07EACBF51848689700D6A59E = {
 			isa = PBXGroup;
 			children = (
+				07B7E274185611DD00B90F61 /* Categories */,
 				07EACC071848689700D6A59E /* FarmKrappApp */,
 				0734513A184DC32E004FBC1E /* Front Page */,
 				078B27741850EB2600E78747 /* CoreDataModel */,
@@ -188,6 +245,7 @@
 		07EACC071848689700D6A59E /* FarmKrappApp */ = {
 			isa = PBXGroup;
 			children = (
+				07B7E2891856129900B90F61 /* PhotoViewController */,
 				07EACC101848689700D6A59E /* SoCMAppDelegate.h */,
 				07EACC111848689700D6A59E /* SoCMAppDelegate.m */,
 				07EACC131848689700D6A59E /* Main_iPhone.storyboard */,
@@ -331,14 +389,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				07EACC121848689700D6A59E /* SoCMAppDelegate.m in Sources */,
+				07B7E27F185611FA00B90F61 /* NSBundleUOPCategory.m in Sources */,
 				0734513D184DC717004FBC1E /* UIViewController+FCAFrontPage.m in Sources */,
-				078B277B1850EB5800E78747 /* SpreadingEvent.m in Sources */,
 				0777B54A184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */,
 				07EACC1B1848689700D6A59E /* SoCMViewController.m in Sources */,
 				07345139184DC316004FBC1E /* SoCMAboutViewController-iPhone.m in Sources */,
+				07B7E281185611FA00B90F61 /* UIImageUOPCategory.m in Sources */,
 				078B278618519AB000E78747 /* FCADataModel.m in Sources */,
+				07B7E28C185612AA00B90F61 /* PhotoViewController.m in Sources */,
+				075E74651857330E006B3FFA /* SpreadingEvent.m in Sources */,
 				07EACC0E1848689700D6A59E /* main.m in Sources */,
+				07B7E285185611FA00B90F61 /* NSString+OOTY.m in Sources */,
+				07B7E283185611FA00B90F61 /* NSDate+NSDateUOPCategory.m in Sources */,
+				07B7E27218560CFD00B90F61 /* Photo.m in Sources */,
 				078B27771850EB5700E78747 /* Field.m in Sources */,
+				07B7E287185611FA00B90F61 /* UIScreen+OOTY.m in Sources */,
 				0777B4F7184DD51F00842DBA /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,12 +412,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B7E27318560CFD00B90F61 /* Photo.m in Sources */,
 				07EACC301848689700D6A59E /* FarmKrappAppTests.m in Sources */,
 				0777B54B184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */,
+				07B7E286185611FA00B90F61 /* NSString+OOTY.m in Sources */,
 				078B27781850EB5700E78747 /* Field.m in Sources */,
+				07B7E282185611FA00B90F61 /* UIImageUOPCategory.m in Sources */,
 				0777B4F8184DD51F00842DBA /* Model.xcdatamodeld in Sources */,
+				07B7E28D185612AA00B90F61 /* PhotoViewController.m in Sources */,
+				07B7E280185611FA00B90F61 /* NSBundleUOPCategory.m in Sources */,
 				078B278718519AB000E78747 /* FCADataModel.m in Sources */,
-				078B277C1850EB5800E78747 /* SpreadingEvent.m in Sources */,
+				07B7E284185611FA00B90F61 /* NSDate+NSDateUOPCategory.m in Sources */,
+				07B7E288185611FA00B90F61 /* UIScreen+OOTY.m in Sources */,
+				075E74661857330E006B3FFA /* SpreadingEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
