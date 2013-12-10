@@ -100,7 +100,7 @@
                                 </connections>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBM-eh-tjm">
-                                <rect key="frame" x="328" y="860" width="112" height="39"/>
+                                <rect key="frame" x="328" y="816" width="112" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Get Started">
@@ -108,6 +108,7 @@
                                 </state>
                                 <connections>
                                     <action selector="doGetStarted:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P4A-Y5-nc2"/>
+                                    <segue destination="rGe-Hx-6w7" kind="push" identifier="BeginSegue" id="yJK-R6-5fe"/>
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="rbx-fS-mNN">
@@ -180,16 +181,58 @@
             </objects>
             <point key="canvasLocation" x="-608" y="-334"/>
         </scene>
+        <!--Fields View Controller - Your Fields-->
+        <scene sceneID="NSL-6e-OCj">
+            <objects>
+                <tableViewController id="rGe-Hx-6w7" customClass="FCAFieldsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="gzD-0T-jhw">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="htb-6g-4Dp">
+                                <rect key="frame" x="0.0" y="119" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="htb-6g-4Dp" id="BS4-BU-8Qp">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="rGe-Hx-6w7" id="wsc-ht-LVp"/>
+                            <outlet property="delegate" destination="rGe-Hx-6w7" id="dos-FE-hgZ"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Info" id="Q3E-VF-VHr"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="q5F-fD-tYl"/>
+                        <barButtonItem title="Calc" id="z61-5h-DbS"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="yKR-zV-ViU"/>
+                        <barButtonItem systemItem="action" id="EvK-mR-ti5"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Your Fields" id="vkY-5D-Qxj">
+                        <barButtonItem key="backBarButtonItem" title="Fields" id="FCp-O4-tKd"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uJO-SP-tLz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="327" y="-334"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Fuy-bu-Lre">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lns-pP-19F" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="lns-pP-19F" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8eT-kh-qaw">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="p5N-cU-BLJ">
+                        <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="i7B-ge-9L0"/>
                     </connections>

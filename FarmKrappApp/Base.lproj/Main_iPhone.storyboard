@@ -32,17 +32,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uql-pt-P9X">
-                                <rect key="frame" x="0.0" y="372" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Credits" id="fbF-JA-sIJ">
-                                        <connections>
-                                            <segue destination="WgR-Nd-kGF" kind="modal" identifier="modalBout" id="Uqf-Ba-Fxh"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The Farm Crap App" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Xgn-GZ-kfX">
                                 <rect key="frame" x="19" y="119" width="280" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -57,19 +46,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Uql-pt-P9X" secondAttribute="trailing" id="5Na-Xu-wKm"/>
                             <constraint firstItem="hEp-T4-cME" firstAttribute="top" secondItem="wdg-vE-FYJ" secondAttribute="bottom" constant="15" id="Giq-Vz-jdK"/>
                             <constraint firstAttribute="centerX" secondItem="hEp-T4-cME" secondAttribute="centerX" id="HTN-0F-fAq"/>
-                            <constraint firstItem="dLb-kC-uca" firstAttribute="top" secondItem="Uql-pt-P9X" secondAttribute="bottom" id="QGX-dv-KBd"/>
-                            <constraint firstItem="Uql-pt-P9X" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="jFZ-M6-9JP"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <toolbarItems>
+                        <barButtonItem title="Credits" id="a27-nN-bht">
+                            <connections>
+                                <segue destination="WgR-Nd-kGF" kind="modal" identifier="creditsModal" id="2Ch-ZD-tID"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Farm Crap App" id="cmr-xQ-KWm">
                         <barButtonItem key="backBarButtonItem" title="Back" id="qfp-5o-VvN"/>
                         <barButtonItem key="rightBarButtonItem" title="Begin" id="NKK-LZ-uEp">
                             <connections>
                                 <action selector="doGetStarted:" destination="vXZ-lx-hvc" id="CSn-fV-8ob"/>
+                                <segue destination="QAi-wO-pA8" kind="push" identifier="BeginSegue" id="tCS-wv-xL0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -91,25 +85,67 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="602" y="929"/>
+            <point key="canvasLocation" x="170" y="805"/>
+        </scene>
+        <!--Fields View Controller - Your Fields-->
+        <scene sceneID="dy1-P9-xyN">
+            <objects>
+                <tableViewController id="QAi-wO-pA8" customClass="FCAFieldsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="GzO-FJ-oZS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="MTR-XA-mOk">
+                                <rect key="frame" x="0.0" y="119" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MTR-XA-mOk" id="pqD-oJ-d51">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QAi-wO-pA8" id="u66-5u-BaL"/>
+                            <outlet property="delegate" destination="QAi-wO-pA8" id="ATM-Es-4uH"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Info" id="2xA-oy-HSf"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Qgr-eG-KEQ"/>
+                        <barButtonItem title="Calc" id="Vzl-ZF-KTr"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="uwm-QR-OeB"/>
+                        <barButtonItem systemItem="action" id="5GL-77-PZe"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Your Fields" id="14i-sz-vrK">
+                        <barButtonItem key="backBarButtonItem" title="Fields" id="dMl-ME-I5W"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w80-7f-1Hv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="667" y="805"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hn2-Bn-lCy">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sZi-52-jpw" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" toolbarHidden="NO" id="sZi-52-jpw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pxS-rz-9qV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="kUt-SX-DfE">
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="M2T-gf-apo"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ock-Un-IDg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="63" y="929"/>
+            <point key="canvasLocation" x="-369" y="805"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Qmh-oP-kNc">
@@ -260,7 +296,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="65" y="1553"/>
+            <point key="canvasLocation" x="-367" y="1429"/>
         </scene>
     </scenes>
     <resources>
