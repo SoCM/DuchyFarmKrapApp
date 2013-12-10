@@ -96,11 +96,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Field" rowHeight="110" id="MTR-XA-mOk" customClass="FCAFieldCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Field" editingAccessoryType="detailDisclosureButton" rowHeight="110" id="MTR-XA-mOk" customClass="FCAFieldCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="110"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MTR-XA-mOk" id="pqD-oJ-d51">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="109"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rR7-r8-a01">
@@ -152,17 +152,16 @@
                                     <outlet property="nameLabel" destination="rR7-r8-a01" id="90J-Ma-R5p"/>
                                     <outlet property="sizeLabel" destination="g8i-uk-3Aa" id="Ykh-Kj-xAZ"/>
                                     <outlet property="spreadingEventLabel" destination="BeY-MJ-uHs" id="tQu-an-n9j"/>
-                                    <segue destination="PZr-ji-H13" kind="push" identifier="EditFieldSegue" id="Ger-BR-u21"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Plus" rowHeight="80" id="y8N-XP-FeB" customClass="FCAFieldCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Plus" rowHeight="80" id="y8N-XP-FeB" customClass="FCAFieldCell">
                                 <rect key="frame" x="0.0" y="196" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y8N-XP-FeB" id="kPc-cL-pMO">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="79"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ri6-Pb-wqg">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ri6-Pb-wqg">
                                             <rect key="frame" x="134" y="20" width="19" height="39"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="32"/>
@@ -187,7 +186,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Info" id="2xA-oy-HSf"/>
+                        <barButtonItem title="info" id="2xA-oy-HSf"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Qgr-eG-KEQ"/>
                         <barButtonItem title="Calc" id="Vzl-ZF-KTr"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="uwm-QR-OeB"/>
@@ -196,8 +195,11 @@
                         <barButtonItem systemItem="action" id="5GL-77-PZe"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Your Fields" id="14i-sz-vrK">
-                        <barButtonItem key="backBarButtonItem" title="Cancel" id="dMl-ME-I5W"/>
+                        <barButtonItem key="backBarButtonItem" title="Fields" id="sFx-CK-AmV"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="PZr-ji-H13" kind="push" identifier="EditFieldSegue" id="PSI-FG-Hmp"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w80-7f-1Hv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -542,6 +544,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Ger-BR-u21"/>
+        <segue reference="cgV-9g-Mc0"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -34,7 +34,12 @@
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[self tableView] reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,28 +89,45 @@
     }
 }
 
-/*
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"EditFieldSegue" sender:self];
+}
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    NSUInteger numberOfFields = [[FCADataModel numberOfFields] intValue];
+    if (indexPath.row == numberOfFields) {
+        return NO;
+    } else {
+        return YES;
+    }
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        //Delete data from data store
+        NSArray* array = [FCADataModel arrayOfFields];
+        Field* field = [array objectAtIndex:indexPath.row];
+        [FCADataModel removeField:field];
+        //Make row dissapear
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -131,6 +153,18 @@
 {
     FCAFieldInfoTableViewController* vc;
     vc = [segue destinationViewController];
+    
+    NSString* identifier = [segue identifier];
+    
+    if ([identifier isEqualToString:@"EditFieldSegue"]) {
+        //EDIT
+        //TO DO - get field object and configure destination
+        
+    }
+    else if ([identifier isEqualToString:@"AddFieldSegue"]) {
+        vc.managedFieldObject = nil;
+        //TODO - add defaults
+    }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
