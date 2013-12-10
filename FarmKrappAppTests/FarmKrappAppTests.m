@@ -10,11 +10,13 @@
 #import "FCADataModel.h"
 #import "Field.h"
 #import "SpreadingEvent.h"
-
+#import "Photo.h"
+#import "UIImageUOPCategory.h"
 
 @interface FarmKrappAppTests : XCTestCase {
     NSUInteger numberOfFields;
     NSUInteger numberOFSpreadingEvents;
+    NSUInteger numberOfPhotos;
 }
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -44,6 +46,9 @@
     
     fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
     numberOFSpreadingEvents = [[[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err] count];
+
+    fr = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    numberOfPhotos = [[[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err] count];
 }
 
 - (void)tearDown
@@ -55,9 +60,13 @@
     
     fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
     NSUInteger numberOFSpreadingEventsOut = [[[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err] count];
-    
+
+    fr = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    NSUInteger numberOfPhotosOut = [[[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err] count];
+
     XCTAssertTrue(numberOfFieldsOut == numberOfFields, @"Number of fields unbalaned");
     XCTAssertTrue(numberOFSpreadingEventsOut == numberOFSpreadingEvents, @"Number of spreading events unbalaned");
+    XCTAssertTrue(numberOfPhotosOut == numberOfPhotos, @"Number of photos unbalaned");
     
     self.managedObjectContext = nil;
     self.managedObjectModel = nil;
@@ -67,13 +76,6 @@
 }
 
 #pragma mark - Field Category
-
-
-//typedef enum {SANDY_SHALLOW=100, MEDIUM_HEAVY=200} SOIL_TYPE;
-//typedef enum {ALL_CROPS=100, GRASSLAND_OR_WINTER_OILSEED_RAPE=200} CROP_TYPE;
-//typedef enum {CATTLE_SLURRY=100, FARMYARD_MANURE=200, PIG_SLURRY=300, POULTRY_LITTER=400} MANURE_TYPE;
-//typedef enum {THIN_SOUP=100, THICK_SOUP=200, PORRIGDE=300} MANURE_QUALITY;
-
 //TESTS FOR CATEGORY ON FIELD
 -(void)testFieldCategoryMethods
 {
@@ -146,6 +148,48 @@
     XCTAssertTrue((results.count==0), @"Incorrect number of entries = %d", results.count);
 }
 
+#pragma mark - Photo Category
+//+(Photo*)InsertPhotoWithImageData:(NSData*)imageData onDate:(NSDate*)date;
+//+(NSData*)imageDataForPhoto:(Photo*)photo;
+
+-(void)testPhotoCategoryMethods
+{
+    NSError* err;
+    NSFetchRequest *fr = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"date = %@", [NSDate dateWithTimeIntervalSince1970:123.0]];
+    NSArray* res = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
+    NSUInteger before = [res count];
+    
+    UIImage* img = [UIImage imageNamed:@"logo"];
+    XCTAssertNotNil(img, @"Cannot load test image");
+
+    NSData* imgData = [img imageAsData];
+    XCTAssertNotNil(imgData, @"Cannot load test image");
+
+    //Create photo object (testing InsertPhotoWithImageData)
+    [Photo InsertPhotoWithImageData:imgData onDate:[NSDate dateWithTimeIntervalSince1970:123.0]];
+    
+    //Check core data (testing imageDateForPhoto)
+    fr = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"date = %@", [NSDate dateWithTimeIntervalSince1970:123.0]];
+    res = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
+    NSUInteger after = [res count];
+    XCTAssertTrue((after-before)==1, @"Wrong number of photos: delta = %u", (after-before));
+    XCTAssertEqualObjects(imgData, [Photo imageDataForPhoto:res[0]], @"Wrong number of photos: delta = %u", (after-before) );
+    
+    //Tidy up
+    [[FCADataModel managedObjectContext] deleteObject:res[0] ];
+    
+    //Check
+    fr = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"date = %@", [NSDate dateWithTimeIntervalSince1970:123.0]];
+    res = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
+    after = [res count];
+    XCTAssertTrue((after-before)==0, @"Wrong number of photos");
+
+}
+
+
 #pragma mark - Field
 // TESTS FOR FCADATA MODEL (CoreData wrapper class)
 -(void)testAddNewField
@@ -211,16 +255,42 @@
 
 - (void)testArrayOfFieldsWithSortString
 {
-    NSArray* allFields = [FCADataModel arrayOfFieldsWithSortString:@"sizeInHectares > 10"];
+    NSArray* allFields = [FCADataModel arrayOfFieldsWithSortString:@"sizeInHectares"];
     NSUInteger before = [allFields count];
     
     Field* f1 = [FCADataModel addNewFieldWithName:@"TED" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
-    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:SOILTYPE_SANDY_SHALLOW cropType:CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE sizeInHectares:@20];
-    Field* f3 = [FCADataModel addNewFieldWithName:@"LOWERFIELD" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE sizeInHectares:@30];
+    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:SOILTYPE_SANDY_SHALLOW cropType:CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE sizeInHectares:@30];
+    Field* f3 = [FCADataModel addNewFieldWithName:@"LOWERFIELD" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE sizeInHectares:@20];
 
-    allFields = [FCADataModel arrayOfFieldsWithSortString:@"sizeInHectares > 10"];
+    allFields = [FCADataModel arrayOfFieldsWithSortString:@"sizeInHectares"];
+    NSUInteger after = [allFields count];
+    XCTAssertTrue((after-before)==3, @"Number of fields was expected to be 3.");
+    
+    //Are they sorted in the correct sequence?
+    XCTAssertEqualObjects(f1, allFields[0], @"Sort failed");
+    XCTAssertEqualObjects(f2, allFields[2], @"Sort failed");
+    XCTAssertEqualObjects(f3, allFields[1], @"Sort failed");
+    
+    [FCADataModel removeField:f1];
+    [FCADataModel removeField:f2];
+    [FCADataModel removeField:f3];
+}
+- (void)testArrayOfFieldsWithSortStringAndPredicate
+{
+    NSArray* allFields = [FCADataModel arrayOfFieldsWithSortString:@"sizeInHectares" andPredicateString:@"sizeInHectares > 10"];
+    NSUInteger before = [allFields count];
+    
+    Field* f1 = [FCADataModel addNewFieldWithName:@"TED" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
+    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:SOILTYPE_SANDY_SHALLOW cropType:CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE sizeInHectares:@30];
+    Field* f3 = [FCADataModel addNewFieldWithName:@"LOWERFIELD" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE sizeInHectares:@20];
+    
+    allFields = [FCADataModel arrayOfFieldsWithSortString:@"sizeInHectares" andPredicateString:@"sizeInHectares > 10"];
     NSUInteger after = [allFields count];
     XCTAssertTrue((after-before)==2, @"Number of fields was expected to be 2.");
+    
+    //Are they sorted in the correct sequence?
+    XCTAssertEqualObjects(f2, allFields[1], @"Sort failed");
+    XCTAssertEqualObjects(f3, allFields[0], @"Sort failed");
     
     [FCADataModel removeField:f1];
     [FCADataModel removeField:f2];
@@ -274,7 +344,7 @@
     SpreadingEvent* res = (SpreadingEvent*)[arrayOfSpreads objectAtIndex:0];
     XCTAssertTrue(res.manureType.intValue == MANURETYPE_CATTLE_SLURRY, @"Manure type wrong");
     XCTAssertTrue(res.quality.intValue == MANUREQUALITY_THICK_SOUP, @"Manure quality wrong");
-    XCTAssertTrue(res.density.intValue == 10, @"Manure density wrong");
+    XCTAssertTrue(res.density.intValue == 10, @"Manure density wrong, should be 10, found %d", res.density.intValue);
 
     //Create additional field and add am identical spreading event - verify these are unique relationships
     Field* f2 = [FCADataModel addNewFieldWithName:@"TED" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
@@ -423,7 +493,8 @@
                                                              quality:MANUREQUALITY_PORRIGDE
                                                              density:@20
                                                              toField:f1];
-    
+
+    //This one looks identical, but is added to a different field
     SpreadingEvent* se3 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:1.0]
                                                           manureType:MANURETYPE_PIG_SLURRY
                                                              quality:MANUREQUALITY_PORRIGDE
@@ -524,6 +595,215 @@
     se3 = nil;
 }
 
+#pragma mark - Test Photo
+
+-(void)testAddImageData
+{
+    NSError* err;
+    
+    //Get the nunber of photos before
+    NSUInteger before = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
+    
+    //Create a new field
+    Field *f1 = [FCADataModel addNewFieldWithName:@"FREDDY"
+                                         soilType:SOILTYPE_MEDIUM_HEAVY
+                                         cropType:CROPTYPE_ALL_CROPS
+                                   sizeInHectares:@2];
+    //Add spreading event
+    SpreadingEvent* se = [FCADataModel addNewSpreadingEventWithDate:[NSDate date]
+                                                         manureType:MANURETYPE_CATTLE_SLURRY
+                                                            quality:MANUREQUALITY_THICK_SOUP
+                                                            density:@1.5
+                                                            toField:f1 ];
+    XCTAssertNotNil(se, @"spreading event in test not formed");
+    
+    //Grab some images
+    UIImage* img1 = [UIImage imageNamed:@"logo"];
+    NSData* imgData1 = [img1 imageAsData];
+    UIImage* img2 = [UIImage imageNamed:@"logo_duchy"];
+    NSData* imgData2 = [img2 imageAsData];
+    XCTAssertNotNil(imgData1, @"image in test not formed");
+    XCTAssertNotNil(imgData2, @"image in test not formed");
+    
+    //Add images to spreading event
+    [FCADataModel addImageData:imgData1 toSpreadingEvent:se onDate:[NSDate dateWithTimeIntervalSince1970:1.0]];
+    [FCADataModel addImageData:imgData2 toSpreadingEvent:se onDate:[NSDate dateWithTimeIntervalSince1970:2.0]];
+
+    //Check Photo entity for spreading event is the correct size
+    NSSet* setOfPhotos = se.photos;
+    XCTAssertNotNil(setOfPhotos, @"Photo is nil");
+    XCTAssertTrue([setOfPhotos count]==2, @"Wrong number of photos");
+    
+    //Check that each Photo entity for spreading event contains a valid photos
+    id collection = [setOfPhotos valueForKeyPath:@"photo"]; //Returns a collection of objects type NSData* (using the photo key)
+    XCTAssertTrue([collection containsObject:imgData1], @"Photo not found");
+    XCTAssertTrue([collection containsObject:imgData2], @"Photo not found");
+    
+    //Tidy up + cascade delete
+    [FCADataModel removeField:f1];
+    
+    //Check number of photos remains unchanged
+    NSUInteger after = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
+    XCTAssertTrue((before==after), @"Was expecting %u photos, found %u", before, after);
+}
+
+-(void)testRemoveImagedata
+{
+    NSError* err;
+    
+    //Get the nunber of photos before
+    NSUInteger before = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
+    
+    //    +(void)addImageData:(NSData*)image toSpreadingEvent:(SpreadingEvent*)se;
+    Field *f1 = [FCADataModel addNewFieldWithName:@"FREDDY"
+                                         soilType:SOILTYPE_MEDIUM_HEAVY
+                                         cropType:CROPTYPE_ALL_CROPS
+                                   sizeInHectares:@2];
+    
+    SpreadingEvent* se = [FCADataModel addNewSpreadingEventWithDate:[NSDate date]
+                                                         manureType:MANURETYPE_CATTLE_SLURRY
+                                                            quality:MANUREQUALITY_THICK_SOUP
+                                                            density:@1.5
+                                                            toField:f1 ];
+    XCTAssertNotNil(se, @"spreading event in test not formed");
+    
+    //Grab some images
+    UIImage* img1 = [UIImage imageNamed:@"logo"];
+    NSData* imgData1 = [img1 imageAsData];
+    UIImage* img2 = [UIImage imageNamed:@"logo_duchy"];
+    NSData* imgData2 = [img2 imageAsData];
+    XCTAssertNotNil(imgData1, @"image in test not formed");
+    XCTAssertNotNil(imgData2, @"image in test not formed");
+    
+    //Add images to spreading event
+    [FCADataModel addImageData:imgData1 toSpreadingEvent:se onDate:[NSDate dateWithTimeIntervalSince1970:1.0]];
+    [FCADataModel addImageData:imgData2 toSpreadingEvent:se onDate:[NSDate dateWithTimeIntervalSince1970:2.0]];
+    
+    //Check Photo entity for spreading event is the correct size
+    NSSet* setOfPhotos = se.photos;
+    XCTAssertNotNil(setOfPhotos, @"Photo = nil");
+    XCTAssertTrue([setOfPhotos count]==2, @"Wrong number of photos");
+    
+    //Check that each Photo entity for spreading event contains a valid photos
+    id collection = [setOfPhotos valueForKeyPath:@"photo"]; //Returns a collection of objects type NSData* (using the photo key)
+    XCTAssertTrue([collection containsObject:imgData1], @"Photo not found");
+    XCTAssertTrue([collection containsObject:imgData2], @"Photo not found");
+    
+    //TEST REMOVE IMAGE DATA
+    [FCADataModel removeImageData:imgData1 fromSpreadingEvent:se];
+    
+    //Check that each Photo entity for spreading event contains a valid photos
+    collection = [setOfPhotos valueForKeyPath:@"photo"]; //Returns a collection of objects type NSData* (using the photo key)
+    XCTAssertFalse([collection containsObject:imgData1], @"Photo not found");
+    XCTAssertTrue([collection containsObject:imgData2], @"Photo not found");
+    
+    //Check number
+    NSUInteger after = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
+    XCTAssertTrue((after-before)==1, @"Was expecting %u photos, found %u", before-1, after);
+    
+    //Tidy up + cascade delete
+    [FCADataModel removeField:f1];
+    
+    //Check number of photos remains unchanged
+    after = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
+    XCTAssertTrue((before==after), @"Was expecting %u photos, found %u", before, after);
+
+}
+-(void)testArrayOfPhotosForSpreadingEvent
+{
+    NSError* err;
+    
+    //Get the nunber of photos before
+    NSUInteger before = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
+    
+    //Create a new field
+    Field *f1 = [FCADataModel addNewFieldWithName:@"FREDDY"
+                                         soilType:SOILTYPE_MEDIUM_HEAVY
+                                         cropType:CROPTYPE_ALL_CROPS
+                                   sizeInHectares:@2];
+    //Add spreading event
+    SpreadingEvent* se = [FCADataModel addNewSpreadingEventWithDate:[NSDate date]
+                                                         manureType:MANURETYPE_CATTLE_SLURRY
+                                                            quality:MANUREQUALITY_THICK_SOUP
+                                                            density:@1.5
+                                                            toField:f1 ];
+    XCTAssertNotNil(se, @"spreading event in test not formed");
+    
+    //Grab some images
+    UIImage* img1 = [UIImage imageNamed:@"logo"];
+    NSData* imgData1 = [img1 imageAsData];
+    UIImage* img2 = [UIImage imageNamed:@"logo_duchy"];
+    NSData* imgData2 = [img2 imageAsData];
+    XCTAssertNotNil(imgData1, @"image in test not formed");
+    XCTAssertNotNil(imgData2, @"image in test not formed");
+    
+    //Add images to spreading event
+    [FCADataModel addImageData:imgData1 toSpreadingEvent:se onDate:[NSDate dateWithTimeIntervalSince1970:2.0]];
+    [FCADataModel addImageData:imgData2 toSpreadingEvent:se onDate:[NSDate dateWithTimeIntervalSince1970:1.0]];
+    
+    //Get sorted array of photos for spreading event
+    NSArray* arrayOfImages = [FCADataModel arrayOfPhotosForSpreadingEvent:se];
+    XCTAssertTrue(arrayOfImages.count == 2, @"Found %d, expected 2", arrayOfImages.count);
+    
+    //Are the images found in the correct order
+    XCTAssertEqualObjects(imgData1, arrayOfImages[1], @"Wrong image found");
+    XCTAssertEqualObjects(imgData2, arrayOfImages[0], @"Wrong image found");
+    
+    //Tidy up + cascade delete
+    [FCADataModel removeField:f1];
+    
+    //Check number of photos remains unchanged
+    NSUInteger after = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
+    XCTAssertTrue((before==after), @"Was expecting %u photos, found %u", before, after);
+    
+}
+-(void)testNumberOfPhotosForSpreadingEvent
+{
+    NSError* err;
+    
+    //Get the nunber of photos before
+    NSUInteger before = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
+    
+    //Create a new field
+    Field *f1 = [FCADataModel addNewFieldWithName:@"FREDDY"
+                                         soilType:SOILTYPE_MEDIUM_HEAVY
+                                         cropType:CROPTYPE_ALL_CROPS
+                                   sizeInHectares:@2];
+    //Add spreading event
+    SpreadingEvent* se = [FCADataModel addNewSpreadingEventWithDate:[NSDate date]
+                                                         manureType:MANURETYPE_CATTLE_SLURRY
+                                                            quality:MANUREQUALITY_THICK_SOUP
+                                                            density:@1.5
+                                                            toField:f1 ];
+    XCTAssertNotNil(se, @"spreading event in test not formed");
+    
+    //Grab some images
+    UIImage* img1 = [UIImage imageNamed:@"logo"];
+    NSData* imgData1 = [img1 imageAsData];
+    UIImage* img2 = [UIImage imageNamed:@"logo_duchy"];
+    NSData* imgData2 = [img2 imageAsData];
+    XCTAssertNotNil(imgData1, @"image in test not formed");
+    XCTAssertNotNil(imgData2, @"image in test not formed");
+    
+    //Add images to spreading event
+    [FCADataModel addImageData:imgData1 toSpreadingEvent:se onDate:[NSDate dateWithTimeIntervalSince1970:2.0]];
+    [FCADataModel addImageData:imgData2 toSpreadingEvent:se onDate:[NSDate dateWithTimeIntervalSince1970:1.0]];
+    
+    //Get sorted array of photos for spreading event
+    NSNumber* N = [FCADataModel numberOfPhotosForSpreadingEvent:se];
+    XCTAssertTrue(N.intValue == 2, @"Found %d, expected 2", N.intValue);
+    
+    //Tidy up + cascade delete
+    [FCADataModel removeField:f1];
+    
+    //What is the field is deleted?
+    N = [FCADataModel numberOfPhotosForSpreadingEvent:se];
+    XCTAssertTrue(N.intValue == 0, @"Found %d, expected 0", N.intValue);
+    
+    //Check number of photos remains unchanged
+    NSUInteger after = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
+    XCTAssertTrue((before==after), @"Was expecting %u photos, found %u", before, after);
+}
 
 
 @end
