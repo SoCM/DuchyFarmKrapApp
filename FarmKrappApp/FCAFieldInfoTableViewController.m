@@ -7,7 +7,7 @@
 //
 
 #import "FCAFieldInfoTableViewController.h"
-
+#import "UIScreen+OOTY.h"
 
 @interface FCAFieldInfoTableViewController ()
 
@@ -59,12 +59,17 @@
     if (indexPath.row != 0) {
         [self.nameTextBox resignFirstResponder];
     }
-    [self.tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionTop animated:YES];
+    if ([UIScreen deviceClass] == UIScreenDeviceClassiPhone4SAspect1p5) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        
+    }
 }
 //Respond to return key (make k/b go away)
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+    if ([UIScreen deviceClass] == UIScreenDeviceClassiPhone4SAspect1p5) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
     [textField resignFirstResponder];
     return YES;
 }
@@ -72,7 +77,9 @@
     //Make k/b go away if visible
     [self.nameTextBox resignFirstResponder];
     NSLog(@"Segment changed to %u", self.soilTypeSegmentControl.selectedSegmentIndex);
-    [self.tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionTop animated:YES];
+    if ([UIScreen deviceClass] == UIScreenDeviceClassiPhone4SAspect1p5) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
 
 }
 

@@ -41,6 +41,11 @@
 {
     [[self tableView] reloadData];
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSUInteger lastRow = [[FCADataModel numberOfFields] intValue];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:lastRow inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
 
 - (void)didReceiveMemoryWarning
 {
