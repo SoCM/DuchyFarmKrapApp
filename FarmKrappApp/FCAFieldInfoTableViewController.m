@@ -33,6 +33,23 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    //In edit mode, there will already be a valid Field object
+    if (self.managedFieldObject) {
+        //EDIT MODE
+        self.name = self.managedFieldObject.name;
+        self.soilType = self.managedFieldObject.soilType.intValue;
+        self.cropType = self.managedFieldObject.cropType.intValue;
+        self.fieldSize = self.managedFieldObject.sizeInHectares.floatValue;
+    } else {
+        //ADD MODE (defaults)
+        self.name = @"";
+        self.soilType = SOILTYPE_SANDY_SHALLOW;
+        self.cropType = CROPTYPE_ALL_CROPS;
+        self.fieldSize = 10.0;
+    }
+    [self updateViewFromModel];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,6 +102,7 @@
 
 - (IBAction)doSliderChanged:(id)sender {
     double val = self.fieldSizeSlider.value;
+    val = 0.5*round(val*2);
     self.fieldSizeStepper.value = val;
     self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f", val];
 }
@@ -133,7 +151,51 @@
     }
     
     //Get the field size (round to nearest 0.5)
-    self.fieldSize = floor(0.5+10.0*self.fieldSizeSlider.value)/10.0;
+    self.fieldSize = self.fieldSizeSlider.value;
+}
+//Update view based on model data
+-(void)updateViewFromModel
+{
+    //Field name
+    self.nameTextBox.text = self.name;
+    
+    //Segmented controls
+    
+    //Soil type
+    switch (self.soilType) {
+        case SOILTYPE_SANDY_SHALLOW:
+            self.soilTypeSegmentControl.selectedSegmentIndex = 0;
+            break;
+        case SOILTYPE_MEDIUM_HEAVY:
+            self.soilTypeSegmentControl.selectedSegmentIndex = 1;
+            break;
+            
+        default:
+            NSLog(@"INVALID SOIL TYPE");
+            break;
+    }
+    
+    //Crop type
+    switch (self.cropType) {
+        case CROPTYPE_ALL_CROPS:
+            self.cropTypeSegmentControl.selectedSegmentIndex = 0;
+            break;
+            
+        case CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE:
+            self.cropTypeSegmentControl.selectedSegmentIndex = 1;
+            break;
+            
+        default:
+            NSLog(@"INVALID CROP TYPE");
+            break;
+    }
+    
+    //Field size
+    // TBD - I need one access for all of these
+    self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f", self.fieldSize];
+    self.fieldSizeSlider.value = self.fieldSize;
+    self.fieldSizeStepper.value = self.fieldSize;
+    
 }
 - (IBAction)doSave:(id)sender {
     
@@ -160,7 +222,7 @@
         [FCADataModel saveContext];
         
     } else {
-        //ADD
+        //ADD MODE - create new managed object (via my own model API)
         [FCADataModel addNewFieldWithName:self.name
                                  soilType:self.soilType
                                  cropType:self.cropType

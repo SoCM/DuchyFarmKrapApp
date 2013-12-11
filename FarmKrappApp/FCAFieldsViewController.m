@@ -90,7 +90,7 @@
     if (indexPath.row == numberOfFields) {
         return 80.0;
     } else {
-        return 110.0;
+        return 88.0;
     }
 }
 
@@ -101,7 +101,8 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"EditFieldSegue" sender:self];
+    
+    [self performSegueWithIdentifier:@"EditFieldSegue" sender:indexPath];
 }
 
 // Override to support conditional editing of the table view.
@@ -158,20 +159,22 @@
 {
     FCAFieldInfoTableViewController* vc;
     vc = [segue destinationViewController];
-    
     NSString* identifier = [segue identifier];
     
     if ([identifier isEqualToString:@"EditFieldSegue"]) {
-        //EDIT
-        //TO DO - get field object and configure destination
-        
+        //EDIT - pass reference of managed object to destination controller
+        FCAFieldInfoTableViewController* dest = (FCAFieldInfoTableViewController*)vc;
+        NSIndexPath* indexPath = (NSIndexPath*)sender;
+        dest.managedFieldObject = [[FCADataModel arrayOfFields] objectAtIndex:indexPath.row];
     }
     else if ([identifier isEqualToString:@"AddFieldSegue"]) {
+        //Ensure the reference to the managed object is nil (signals a new entity)
         vc.managedFieldObject = nil;
-        //TODO - add defaults
     }
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    //Turn off editing before the transition
+    [self setEditing:FALSE animated:YES];
+    
 }
 
 
