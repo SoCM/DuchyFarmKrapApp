@@ -666,6 +666,7 @@
                         <outlet property="applicationRateLabel" destination="H9S-bN-dk1" id="zEh-9t-a2e"/>
                         <outlet property="applicationRateSlider" destination="wmV-0p-nIC" id="MNx-7D-eeS"/>
                         <outlet property="dateLabel" destination="3dh-BI-krQ" id="d3n-ci-zet"/>
+                        <outlet property="dateTableViewCell" destination="dc7-qC-tV7" id="j1v-u9-jta"/>
                         <outlet property="fieldNameLabel" destination="b10-3W-Fj7" id="Q9T-0x-sfq"/>
                         <outlet property="manureQualityLabel" destination="nZW-OE-Jgb" id="hvM-oF-MqE"/>
                         <outlet property="manureTypeLabel" destination="PVz-Iy-KHq" id="gIb-yC-LAB"/>
