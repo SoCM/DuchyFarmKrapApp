@@ -1,22 +1,21 @@
 //
-//  FCAFieldsViewController.m
+//  FCASpreadingEventViewController.m
 //  FarmKrappApp
 //
-//  Created by Nicholas Outram on 10/12/2013.
+//  Created by Nicholas Outram on 13/12/2013.
 //  Copyright (c) 2013 Plymouth University. All rights reserved.
 //
 
-#import "FCAFieldsViewController.h"
-#import "FCADataModel.h"
-#import "FCAFieldInfoTableViewController.h"
-#import "FCAFieldCell.h"
 #import "FCASpreadingEventViewController.h"
+#import "NSDate+NSDateUOPCategory.h"
+#import "FCASpreadingEventDetailsTableViewController.h"
+#import "FCASpreadingEventSummaryTableViewController.h"
 
-@interface FCAFieldsViewController ()
+@interface FCASpreadingEventViewController ()
 
 @end
 
-@implementation FCAFieldsViewController
+@implementation FCASpreadingEventViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,14 +36,14 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [[self tableView] reloadData];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    NSUInteger lastRow = [[FCADataModel numberOfFields] intValue];
+    //Scroll to last row
+    NSUInteger lastRow = [[FCADataModel numberOfSpreadingEventsForField:self.fieldSelected] intValue];
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:lastRow inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
@@ -56,42 +55,47 @@
 
 #pragma mark - Table view data source
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows - one more than the number of fields (use a plus)
-    return [[FCADataModel numberOfFields] intValue]+1;
+    // Return the number of rows in the section.
+    return [[FCADataModel numberOfSpreadingEventsForField:self.fieldSelected] intValue]+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Field";
+    static NSString *CellIdentifier = @"SpreadingEvent";
     
     //Select the cell type
-    NSUInteger numberOfFields = [[FCADataModel numberOfFields] intValue];
-    if (indexPath.row == numberOfFields) {
+    NSUInteger numberOfSE = [[FCADataModel numberOfSpreadingEventsForField:self.fieldSelected] intValue];
+    if (indexPath.row == numberOfSE) {
         //The last row is always a PLUS cell
-        CellIdentifier = @"Plus";
+        CellIdentifier = @"AddSpreadingEventCell";
         UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         return cell;
     } else {
-        CellIdentifier = @"Field";
-        FCAFieldCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        NSArray* fields = [FCADataModel arrayOfFields];
-        Field* field = [fields objectAtIndex:indexPath.row];
-        cell.nameLabel.text = field.name;
-        cell.spreadingEventLabel.text = [NSString stringWithFormat:@"%u", field.spreadingEvents.count];
-        cell.sizeLabel.text = [NSString stringWithFormat:@"%5.1f", field.sizeInHectares.doubleValue];
+        CellIdentifier = @"SpreadingEventSummaryCell";
+        FCASpreadingEventCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        NSArray* arrayOfSE = [FCADataModel arrayOfSpreadingEventsForField:self.fieldSelected];
+        SpreadingEvent* se = [arrayOfSE objectAtIndex:indexPath.row];
+        cell.manureTypeLabel.text = [MANURETYPE_STRING_DICT objectForKey:se.manureType];
+        cell.dateLabel.text = [se.date stringForUKShortFormatUsingGMT:YES];
         return cell;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSUInteger numberOfFields = [[FCADataModel numberOfFields] intValue];
-    if (indexPath.row == numberOfFields) {
-        return 80.0;
+    NSUInteger numberOfSpreadingEvents = [[FCADataModel numberOfSpreadingEventsForField:self.fieldSelected] intValue];
+    if (indexPath.row == numberOfSpreadingEvents) {
+        return 69.0;
     } else {
-        return 88.0;
+        return 69.0;
     }
 }
 
@@ -102,34 +106,36 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    
-    [self performSegueWithIdentifier:@"EditFieldSegue" sender:indexPath];
+    [self performSegueWithIdentifier:@"EditSegue" sender:indexPath];
 }
+
+
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    NSUInteger numberOfFields = [[FCADataModel numberOfFields] intValue];
-    if (indexPath.row == numberOfFields) {
+    NSUInteger numberOfSpreadingEvents = [[FCADataModel numberOfSpreadingEventsForField:self.fieldSelected] intValue];
+    if (indexPath.row == numberOfSpreadingEvents) {
         return NO;
     } else {
         return YES;
     }
 }
 
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        //Delete data from data store
-        NSArray* array = [FCADataModel arrayOfFields];
-        Field* field = [array objectAtIndex:indexPath.row];
-        [FCADataModel removeField:field];
-        //Make row dissapear
+        //Delete object in data store
+        NSArray* array = [FCADataModel arrayOfSpreadingEventsForField:self.fieldSelected];
+        SpreadingEvent* se = [array objectAtIndex:indexPath.row];
+        [FCADataModel removeSpreadingEvent:se];
+        
+        // Delete the row from the table
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
+    }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
@@ -158,34 +164,34 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+
     UITableViewController* vc;
     vc = [segue destinationViewController];
     NSString* identifier = [segue identifier];
     
-    if ([identifier isEqualToString:@"EditFieldSegue"]) {
+    if ([identifier isEqualToString:@"EditSegue"] || [identifier isEqualToString:@"SummarySegue"]) {
         //EDIT - pass reference of managed object to destination controller
-        FCAFieldInfoTableViewController* dest = (FCAFieldInfoTableViewController*)vc;
+        FCASpreadingEventDetailsTableViewController* dest = (FCASpreadingEventDetailsTableViewController*)vc;
         NSIndexPath* indexPath = (NSIndexPath*)sender;
-        dest.managedFieldObject = [[FCADataModel arrayOfFields] objectAtIndex:indexPath.row];
+        //Pass the selected (existing) spreading event
+        dest.managedObject = [[FCADataModel arrayOfSpreadingEventsForField:self.fieldSelected] objectAtIndex:indexPath.row];
     }
-    else if ([identifier isEqualToString:@"AddFieldSegue"]) {
+    else if ([identifier isEqualToString:@"AddSegue"]) {
         //Ensure the reference to the managed object is nil (signals a new entity)
-        FCAFieldInfoTableViewController* dest = (FCAFieldInfoTableViewController*)vc;
-        dest.managedFieldObject = nil;
+        FCASpreadingEventDetailsTableViewController* dest = (FCASpreadingEventDetailsTableViewController*)vc;
+        //Flag this is a new record by passing a field (not a spreading event)
+        dest.managedObject = self.fieldSelected;
+        
     }
-    else if ([identifier isEqualToString:@"ShowSpreadingEvent"]) {
-        FCASpreadingEventViewController* dest = (FCASpreadingEventViewController*)vc;
-        UITableViewCell* cell = (UITableViewCell*)sender;
-        NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
-        dest.fieldSelected = [[FCADataModel arrayOfFields] objectAtIndex:indexPath.row];
-    }
-    else {
+    else
+    {
         NSLog(@"ERROR!");
     }
     
     //Turn off editing before the transition
-    [self setEditing:FALSE animated:YES];
-    
+    [self setEditing:FALSE animated:YES];    
 }
 
 

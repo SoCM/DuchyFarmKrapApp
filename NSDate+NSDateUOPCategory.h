@@ -12,5 +12,5 @@
 
 -(NSDictionary*)dateComponentsAsDictionaryUsingGMT:(BOOL)usingGMT;
 -(NSString*)filenameFriendlyDescription;
-
+-(NSString*)stringForUKShortFormatUsingGMT:(BOOL)usingGMT;
 @end

@@ -74,6 +74,26 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
+#pragma mark - Data model generic
+-(void)testConstants
+{
+    //These must not crash - require visual verification (for now)
+    NSLog(@"%@", [SOILTYPE_STRING_DICT objectForKey:kSOILTYPE_MEDIUM_HEAVY] );
+    NSLog(@"%@", [SOILTYPE_STRING_DICT objectForKey:kSOILTYPE_SANDY_SHALLOW] );
+    NSLog(@"%@", [CROPTYPE_STRING_DICT objectForKey:kCROPTYPE_ALL_CROPS]);
+    NSLog(@"%@", [CROPTYPE_STRING_DICT objectForKey:kCROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE]);
+    NSLog(@"%@", [MANURETYPE_STRING_DICT objectForKey:kMANURETYPE_CATTLE_SLURRY]);
+    NSLog(@"And today's menu is....");
+    NSLog(@"%@", [MANURETYPE_STRING_DICT objectForKey:kMANURETYPE_FARMYARD_MANURE]);
+    NSLog(@"%@", [MANURETYPE_STRING_DICT objectForKey:kMANURETYPE_PIG_SLURRY]);
+    NSLog(@"%@", [MANURETYPE_STRING_DICT objectForKey:kMANURETYPE_POULTRY_LITTER]);
+    NSLog(@"And how you you like your food sir?");
+    NSLog(@"%@", [MANUREQUALITY_STRING_DICT objectForKey:kMANUREQUALITY_THIN_SOUP]);
+    NSLog(@"%@", [MANUREQUALITY_STRING_DICT objectForKey:kMANUREQUALITY_THICK_SOUP]);
+    NSLog(@"%@", [MANUREQUALITY_STRING_DICT objectForKey:kMANUREQUALITY_PORRIGDE]);
+    NSLog(@"With or without onions?");
+}
+
 
 #pragma mark - Field Category
 //TESTS FOR CATEGORY ON FIELD

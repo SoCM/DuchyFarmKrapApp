@@ -90,6 +90,7 @@
 //*************************
 @implementation FCADataModel
 
+
 // Fields
 +(id)addNewFieldWithName:(NSString*)nameString soilType:(SOIL_TYPE)soil_type cropType:(CROP_TYPE)crop_type sizeInHectares:(NSNumber*)size
 {

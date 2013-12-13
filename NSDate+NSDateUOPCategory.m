@@ -41,4 +41,13 @@
     [newDesc replaceOccurrencesOfString:@":" withString:@"_" options:0 range:r];
     return newDesc;
 }
+//String as DD/MM/YYYY
+-(NSString*)stringForUKShortFormatUsingGMT:(BOOL)usingGMT
+{
+    NSString *dd   = [[self dateComponentsAsDictionaryUsingGMT:YES] objectForKey:@"day"];
+    NSString *mm   = [[self dateComponentsAsDictionaryUsingGMT:YES] objectForKey:@"month"];
+    NSString *yyyy = [[self dateComponentsAsDictionaryUsingGMT:YES] objectForKey:@"year"];
+    NSString *result = [NSString stringWithFormat:@"%@/%@/%@", dd, mm, yyyy];
+    return result;
+}
 @end
