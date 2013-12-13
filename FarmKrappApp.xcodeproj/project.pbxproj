@@ -17,6 +17,14 @@
 		0734513D184DC717004FBC1E /* UIViewController+FCAFrontPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */; };
 		075E74651857330E006B3FFA /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 075E74641857330E006B3FFA /* SpreadingEvent.m */; };
 		075E74661857330E006B3FFA /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 075E74641857330E006B3FFA /* SpreadingEvent.m */; };
+		07609F5F185B013E00177718 /* FCASpreadingEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F5E185B013E00177718 /* FCASpreadingEventViewController.m */; };
+		07609F60185B013E00177718 /* FCASpreadingEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F5E185B013E00177718 /* FCASpreadingEventViewController.m */; };
+		07609F64185B04A000177718 /* FCASpreadingEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F63185B04A000177718 /* FCASpreadingEventCell.m */; };
+		07609F65185B04A000177718 /* FCASpreadingEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F63185B04A000177718 /* FCASpreadingEventCell.m */; };
+		07609F69185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F68185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m */; };
+		07609F6A185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F68185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m */; };
+		07609F6E185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F6D185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m */; };
+		07609F6F185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F6D185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m */; };
 		0777B4F4184DD4E300842DBA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0777B4F3184DD4E300842DBA /* CoreData.framework */; };
 		0777B4F7184DD51F00842DBA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */; };
 		0777B4F8184DD51F00842DBA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */; };
@@ -81,6 +89,14 @@
 		0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FCAFrontPage.m"; sourceTree = "<group>"; };
 		075E74631857330E006B3FFA /* SpreadingEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpreadingEvent.h; sourceTree = "<group>"; };
 		075E74641857330E006B3FFA /* SpreadingEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpreadingEvent.m; sourceTree = "<group>"; };
+		07609F5D185B013E00177718 /* FCASpreadingEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASpreadingEventViewController.h; sourceTree = "<group>"; };
+		07609F5E185B013E00177718 /* FCASpreadingEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCASpreadingEventViewController.m; sourceTree = "<group>"; };
+		07609F62185B04A000177718 /* FCASpreadingEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASpreadingEventCell.h; sourceTree = "<group>"; };
+		07609F63185B04A000177718 /* FCASpreadingEventCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCASpreadingEventCell.m; sourceTree = "<group>"; };
+		07609F67185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASpreadingEventDetailsTableViewController.h; sourceTree = "<group>"; };
+		07609F68185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCASpreadingEventDetailsTableViewController.m; sourceTree = "<group>"; };
+		07609F6C185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASpreadingEventSummaryTableViewController.h; sourceTree = "<group>"; };
+		07609F6D185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCASpreadingEventSummaryTableViewController.m; sourceTree = "<group>"; };
 		0777B4F3184DD4E300842DBA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		0777B4F6184DD51F00842DBA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		0777B548184DDE3C00842DBA /* SoCMViewControllerCommonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoCMViewControllerCommonBase.h; sourceTree = "<group>"; };
@@ -193,6 +209,45 @@
 			name = "Front Page";
 			sourceTree = "<group>";
 		};
+		07609F5C185B010000177718 /* SpreadingEventsController */ = {
+			isa = PBXGroup;
+			children = (
+				07609F61185B015100177718 /* Cells */,
+				07609F5D185B013E00177718 /* FCASpreadingEventViewController.h */,
+				07609F5E185B013E00177718 /* FCASpreadingEventViewController.m */,
+				07609F66185B0C1200177718 /* SpreadingEventDetails */,
+				07609F6B185B0C8B00177718 /* SpreadingEventSummary */,
+			);
+			name = SpreadingEventsController;
+			sourceTree = "<group>";
+		};
+		07609F61185B015100177718 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				07609F62185B04A000177718 /* FCASpreadingEventCell.h */,
+				07609F63185B04A000177718 /* FCASpreadingEventCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		07609F66185B0C1200177718 /* SpreadingEventDetails */ = {
+			isa = PBXGroup;
+			children = (
+				07609F67185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.h */,
+				07609F68185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m */,
+			);
+			name = SpreadingEventDetails;
+			sourceTree = "<group>";
+		};
+		07609F6B185B0C8B00177718 /* SpreadingEventSummary */ = {
+			isa = PBXGroup;
+			children = (
+				07609F6C185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.h */,
+				07609F6D185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m */,
+			);
+			name = SpreadingEventSummary;
+			sourceTree = "<group>";
+		};
 		0777B547184DDCD300842DBA /* CommonCodeForViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,6 +342,7 @@
 			children = (
 				0734513A184DC32E004FBC1E /* Front Page */,
 				070F18E118574BD40008FA19 /* FieldsViewController */,
+				07609F5C185B010000177718 /* SpreadingEventsController */,
 				07B7E2891856129900B90F61 /* PhotoViewController */,
 				07EACC101848689700D6A59E /* SoCMAppDelegate.h */,
 				07EACC111848689700D6A59E /* SoCMAppDelegate.m */,
@@ -443,12 +499,16 @@
 				07B7E28C185612AA00B90F61 /* PhotoViewController.m in Sources */,
 				070F18E9185762990008FA19 /* FCAFieldCell.m in Sources */,
 				075E74651857330E006B3FFA /* SpreadingEvent.m in Sources */,
+				07609F64185B04A000177718 /* FCASpreadingEventCell.m in Sources */,
 				07EACC0E1848689700D6A59E /* main.m in Sources */,
 				07B7E285185611FA00B90F61 /* NSString+OOTY.m in Sources */,
 				07B7E283185611FA00B90F61 /* NSDate+NSDateUOPCategory.m in Sources */,
 				07B7E27218560CFD00B90F61 /* Photo.m in Sources */,
 				078B27771850EB5700E78747 /* Field.m in Sources */,
 				07B7E287185611FA00B90F61 /* UIScreen+OOTY.m in Sources */,
+				07609F69185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m in Sources */,
+				07609F5F185B013E00177718 /* FCASpreadingEventViewController.m in Sources */,
+				07609F6E185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m in Sources */,
 				0777B4F7184DD51F00842DBA /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,6 +517,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07609F60185B013E00177718 /* FCASpreadingEventViewController.m in Sources */,
+				07609F65185B04A000177718 /* FCASpreadingEventCell.m in Sources */,
 				070F18E518574C9D0008FA19 /* FCAFieldsViewController.m in Sources */,
 				07B7E27318560CFD00B90F61 /* Photo.m in Sources */,
 				07EACC301848689700D6A59E /* FarmKrappAppTests.m in Sources */,
@@ -466,8 +528,10 @@
 				070F18EA185762990008FA19 /* FCAFieldCell.m in Sources */,
 				07B7E282185611FA00B90F61 /* UIImageUOPCategory.m in Sources */,
 				0777B4F8184DD51F00842DBA /* Model.xcdatamodeld in Sources */,
+				07609F6A185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m in Sources */,
 				07B7E28D185612AA00B90F61 /* PhotoViewController.m in Sources */,
 				07B7E280185611FA00B90F61 /* NSBundleUOPCategory.m in Sources */,
+				07609F6F185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m in Sources */,
 				072B83B618576D7B00339018 /* FCAFieldInfoTableViewController.m in Sources */,
 				078B278718519AB000E78747 /* FCADataModel.m in Sources */,
 				07B7E284185611FA00B90F61 /* NSDate+NSDateUOPCategory.m in Sources */,
