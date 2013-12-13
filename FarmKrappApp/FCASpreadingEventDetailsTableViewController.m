@@ -8,6 +8,7 @@
 
 #import "FCASpreadingEventDetailsTableViewController.h"
 #include "NSDate+NSDateUOPCategory.h"
+#import "FCADatePickerViewController.h"
 
 #define ActionSheetManureType 1
 #define ActionSheetManureQuality 2
@@ -32,12 +33,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *previewImage;
 @property (weak, nonatomic) IBOutlet UITableViewCell *dateTableViewCell;
 
-@property (readwrite, nonatomic, strong) NSNumber* dateRowHeight;
-
 @end
 
 @implementation FCASpreadingEventDetailsTableViewController
-@synthesize dateRowHeight = _dateRowHeight;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -92,16 +90,6 @@
     //Eitherway, we know the field
     self.fieldNameLabel.text = self.field.name;
     
-}
-
-//The default row height for the date row
--(NSNumber*)dateRowHeight
-{
-    if (!_dateRowHeight) {
-        
-        _dateRowHeight = @64;
-    }
-    return _dateRowHeight;
 }
 
 - (void)didReceiveMemoryWarning
@@ -214,10 +202,6 @@
         case 1:
             //Set date
             NSLog(@"Select date");
-            self.dateRowHeight = @128.0;
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView reloadRowsAtIndexPaths:@[ indexPath ]  withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView reloadData];
             break;
         case 2:
             //Set manure type
@@ -235,15 +219,7 @@
             break;
     }
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    float h = [super tableView:tableView heightForRowAtIndexPath:indexPath];
-    if (indexPath.row == 1) {
-        return  self.dateRowHeight.floatValue;
-    } else {
-        return h;
-    }
-}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString *selectionString = [actionSheet buttonTitleAtIndex:buttonIndex];
@@ -319,15 +295,29 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-/*
+
+
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    void(^doUpdatedate)(NSDate*) = ^(NSDate* date) {
+        if (date) {
+            self.date = date;
+            self.dateLabel.text = [self.date stringForUKShortFormatUsingGMT:YES];
+            [self dismissViewControllerAnimated:YES completion:NULL];
+            [self.tableView reloadData];
+        }
+    };
+    if ([[segue identifier] isEqualToString:@"modalDate"]) {
+        FCADatePickerViewController* vc = [segue destinationViewController];
+        if (self.date) {
+            vc.initialDate = self.date;
+        }
+        vc.callBackWithDate = doUpdatedate;
+    }
 }
 
- */
+
 #undef ActionSheetManureType
 #undef ActionSheetManureQuality
 

@@ -14,5 +14,4 @@
 @interface FCASpreadingEventDetailsTableViewController : UITableViewController<UIActionSheetDelegate>
 
 @property(readwrite, nonatomic, strong) NSManagedObject* managedObject;
-
 @end

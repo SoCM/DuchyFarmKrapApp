@@ -30,6 +30,8 @@
 		0777B4F8184DD51F00842DBA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */; };
 		0777B54A184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */; };
 		0777B54B184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */; };
+		077B8408185B78F700D0F002 /* FCADatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B8407185B78F700D0F002 /* FCADatePickerViewController.m */; };
+		077B8409185B78F700D0F002 /* FCADatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B8407185B78F700D0F002 /* FCADatePickerViewController.m */; };
 		078B27771850EB5700E78747 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B27761850EB5700E78747 /* Field.m */; };
 		078B27781850EB5700E78747 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B27761850EB5700E78747 /* Field.m */; };
 		078B278618519AB000E78747 /* FCADataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B278518519AB000E78747 /* FCADataModel.m */; };
@@ -101,6 +103,8 @@
 		0777B4F6184DD51F00842DBA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		0777B548184DDE3C00842DBA /* SoCMViewControllerCommonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoCMViewControllerCommonBase.h; sourceTree = "<group>"; };
 		0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoCMViewControllerCommonBase.m; sourceTree = "<group>"; };
+		077B8406185B78F700D0F002 /* FCADatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCADatePickerViewController.h; sourceTree = "<group>"; };
+		077B8407185B78F700D0F002 /* FCADatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCADatePickerViewController.m; sourceTree = "<group>"; };
 		078B27751850EB5700E78747 /* Field.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Field.h; sourceTree = "<group>"; };
 		078B27761850EB5700E78747 /* Field.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Field.m; sourceTree = "<group>"; };
 		078B278418519AB000E78747 /* FCADataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCADataModel.h; sourceTree = "<group>"; };
@@ -235,6 +239,8 @@
 			children = (
 				07609F67185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.h */,
 				07609F68185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m */,
+				077B8406185B78F700D0F002 /* FCADatePickerViewController.h */,
+				077B8407185B78F700D0F002 /* FCADatePickerViewController.m */,
 			);
 			name = SpreadingEventDetails;
 			sourceTree = "<group>";
@@ -510,6 +516,7 @@
 				07609F5F185B013E00177718 /* FCASpreadingEventViewController.m in Sources */,
 				07609F6E185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m in Sources */,
 				0777B4F7184DD51F00842DBA /* Model.xcdatamodeld in Sources */,
+				077B8408185B78F700D0F002 /* FCADatePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +538,7 @@
 				07609F6A185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m in Sources */,
 				07B7E28D185612AA00B90F61 /* PhotoViewController.m in Sources */,
 				07B7E280185611FA00B90F61 /* NSBundleUOPCategory.m in Sources */,
+				077B8409185B78F700D0F002 /* FCADatePickerViewController.m in Sources */,
 				07609F6F185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m in Sources */,
 				072B83B618576D7B00339018 /* FCAFieldInfoTableViewController.m in Sources */,
 				078B278718519AB000E78747 /* FCADataModel.m in Sources */,

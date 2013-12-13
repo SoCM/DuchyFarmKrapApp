@@ -160,7 +160,8 @@
 }
 +(NSNumber*)numberOfSpreadingEventsForField:(Field*)field
 {
-    return nil;
+    NSInteger N = [[self arrayOfSpreadingEventsForField:field] count];
+    return [NSNumber numberWithInt:N];
 }
 
 #pragma mark - DataModel Wrapper Class Methods - Photo

@@ -64,7 +64,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [[FCADataModel numberOfSpreadingEventsForField:self.fieldSelected] intValue]+1;
+    NSLog(@"Field: %@", self.fieldSelected.name);
+    NSInteger N = [[FCADataModel numberOfSpreadingEventsForField:self.fieldSelected] intValue]+1;
+    return N;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -171,7 +173,7 @@
     vc = [segue destinationViewController];
     NSString* identifier = [segue identifier];
     
-    if ([identifier isEqualToString:@"EditSegue"] || [identifier isEqualToString:@"SummarySegue"]) {
+    if ([identifier isEqualToString:@"EditSegue"]) {
         //EDIT - pass reference of managed object to destination controller
         FCASpreadingEventDetailsTableViewController* dest = (FCASpreadingEventDetailsTableViewController*)vc;
         NSIndexPath* indexPath = (NSIndexPath*)sender;
@@ -185,9 +187,9 @@
         dest.managedObject = self.fieldSelected;
         
     }
-    else
+    else if ([identifier isEqualToString:@"SummarySegue"])
     {
-        NSLog(@"ERROR!");
+        NSLog(@"HERE WE GO");
     }
     
     //Turn off editing before the transition
