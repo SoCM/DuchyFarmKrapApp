@@ -32,6 +32,30 @@
 		0777B54B184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */; };
 		077B8408185B78F700D0F002 /* FCADatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B8407185B78F700D0F002 /* FCADatePickerViewController.m */; };
 		077B8409185B78F700D0F002 /* FCADatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B8407185B78F700D0F002 /* FCADatePickerViewController.m */; };
+		077B8414185B89AB00D0F002 /* cattle_100m3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B840B185B89AB00D0F002 /* cattle_100m3.jpg */; };
+		077B8415185B89AB00D0F002 /* cattle_100m3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B840B185B89AB00D0F002 /* cattle_100m3.jpg */; };
+		077B8416185B89AB00D0F002 /* cattle_25m3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B840C185B89AB00D0F002 /* cattle_25m3.jpg */; };
+		077B8417185B89AB00D0F002 /* cattle_25m3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B840C185B89AB00D0F002 /* cattle_25m3.jpg */; };
+		077B8418185B89AB00D0F002 /* cattle_50m3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B840D185B89AB00D0F002 /* cattle_50m3.jpg */; };
+		077B8419185B89AB00D0F002 /* cattle_50m3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B840D185B89AB00D0F002 /* cattle_50m3.jpg */; };
+		077B841A185B89AB00D0F002 /* fym_25t.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B840E185B89AB00D0F002 /* fym_25t.jpg */; };
+		077B841B185B89AB00D0F002 /* fym_25t.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B840E185B89AB00D0F002 /* fym_25t.jpg */; };
+		077B841C185B89AB00D0F002 /* fym_50t.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B840F185B89AB00D0F002 /* fym_50t.jpg */; };
+		077B841D185B89AB00D0F002 /* fym_50t.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B840F185B89AB00D0F002 /* fym_50t.jpg */; };
+		077B841E185B89AB00D0F002 /* pig_25m3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8410185B89AB00D0F002 /* pig_25m3.jpg */; };
+		077B841F185B89AB00D0F002 /* pig_25m3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8410185B89AB00D0F002 /* pig_25m3.jpg */; };
+		077B8420185B89AB00D0F002 /* pig_50m3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8411185B89AB00D0F002 /* pig_50m3.jpg */; };
+		077B8421185B89AB00D0F002 /* pig_50m3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8411185B89AB00D0F002 /* pig_50m3.jpg */; };
+		077B8422185B89AB00D0F002 /* poultry_10t.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8412185B89AB00D0F002 /* poultry_10t.jpg */; };
+		077B8423185B89AB00D0F002 /* poultry_10t.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8412185B89AB00D0F002 /* poultry_10t.jpg */; };
+		077B8424185B89AB00D0F002 /* poultry_5t.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8413185B89AB00D0F002 /* poultry_5t.jpg */; };
+		077B8425185B89AB00D0F002 /* poultry_5t.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8413185B89AB00D0F002 /* poultry_5t.jpg */; };
+		077B8427185B8BB500D0F002 /* 30m3ha cattle.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8426185B8BB500D0F002 /* 30m3ha cattle.jpg */; };
+		077B8428185B8BB500D0F002 /* 30m3ha cattle.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8426185B8BB500D0F002 /* 30m3ha cattle.jpg */; };
+		077B842A185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8429185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg */; };
+		077B842B185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8429185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg */; };
+		077B842D185B8D8900D0F002 /* manure_types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 077B842C185B8D8900D0F002 /* manure_types.plist */; };
+		077B842E185B8D8900D0F002 /* manure_types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 077B842C185B8D8900D0F002 /* manure_types.plist */; };
 		078B27771850EB5700E78747 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B27761850EB5700E78747 /* Field.m */; };
 		078B27781850EB5700E78747 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B27761850EB5700E78747 /* Field.m */; };
 		078B278618519AB000E78747 /* FCADataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B278518519AB000E78747 /* FCADataModel.m */; };
@@ -105,6 +129,18 @@
 		0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoCMViewControllerCommonBase.m; sourceTree = "<group>"; };
 		077B8406185B78F700D0F002 /* FCADatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCADatePickerViewController.h; sourceTree = "<group>"; };
 		077B8407185B78F700D0F002 /* FCADatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCADatePickerViewController.m; sourceTree = "<group>"; };
+		077B840B185B89AB00D0F002 /* cattle_100m3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cattle_100m3.jpg; sourceTree = "<group>"; };
+		077B840C185B89AB00D0F002 /* cattle_25m3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cattle_25m3.jpg; sourceTree = "<group>"; };
+		077B840D185B89AB00D0F002 /* cattle_50m3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cattle_50m3.jpg; sourceTree = "<group>"; };
+		077B840E185B89AB00D0F002 /* fym_25t.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fym_25t.jpg; sourceTree = "<group>"; };
+		077B840F185B89AB00D0F002 /* fym_50t.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fym_50t.jpg; sourceTree = "<group>"; };
+		077B8410185B89AB00D0F002 /* pig_25m3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pig_25m3.jpg; sourceTree = "<group>"; };
+		077B8411185B89AB00D0F002 /* pig_50m3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pig_50m3.jpg; sourceTree = "<group>"; };
+		077B8412185B89AB00D0F002 /* poultry_10t.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = poultry_10t.jpg; sourceTree = "<group>"; };
+		077B8413185B89AB00D0F002 /* poultry_5t.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = poultry_5t.jpg; sourceTree = "<group>"; };
+		077B8426185B8BB500D0F002 /* 30m3ha cattle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "30m3ha cattle.jpg"; sourceTree = "<group>"; };
+		077B8429185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pig slurry 75m3 dm 4.jpg"; sourceTree = "<group>"; };
+		077B842C185B8D8900D0F002 /* manure_types.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = manure_types.plist; sourceTree = "<group>"; };
 		078B27751850EB5700E78747 /* Field.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Field.h; sourceTree = "<group>"; };
 		078B27761850EB5700E78747 /* Field.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Field.m; sourceTree = "<group>"; };
 		078B278418519AB000E78747 /* FCADataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCADataModel.h; sourceTree = "<group>"; };
@@ -264,6 +300,24 @@
 			path = FarmKrappApp;
 			sourceTree = "<group>";
 		};
+		077B840A185B89AB00D0F002 /* poop-piccies */ = {
+			isa = PBXGroup;
+			children = (
+				077B840B185B89AB00D0F002 /* cattle_100m3.jpg */,
+				077B840C185B89AB00D0F002 /* cattle_25m3.jpg */,
+				077B840D185B89AB00D0F002 /* cattle_50m3.jpg */,
+				077B8426185B8BB500D0F002 /* 30m3ha cattle.jpg */,
+				077B840E185B89AB00D0F002 /* fym_25t.jpg */,
+				077B840F185B89AB00D0F002 /* fym_50t.jpg */,
+				077B8410185B89AB00D0F002 /* pig_25m3.jpg */,
+				077B8411185B89AB00D0F002 /* pig_50m3.jpg */,
+				077B8429185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg */,
+				077B8412185B89AB00D0F002 /* poultry_10t.jpg */,
+				077B8413185B89AB00D0F002 /* poultry_5t.jpg */,
+			);
+			path = "poop-piccies";
+			sourceTree = "<group>";
+		};
 		078B27741850EB2600E78747 /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +330,7 @@
 				078B27761850EB5700E78747 /* Field.m */,
 				078B278418519AB000E78747 /* FCADataModel.h */,
 				078B278518519AB000E78747 /* FCADataModel.m */,
+				077B842C185B8D8900D0F002 /* manure_types.plist */,
 			);
 			name = CoreDataModel;
 			path = FarmKrappApp;
@@ -310,6 +365,7 @@
 		07EACBF51848689700D6A59E = {
 			isa = PBXGroup;
 			children = (
+				077B840A185B89AB00D0F002 /* poop-piccies */,
 				07B7E274185611DD00B90F61 /* Categories */,
 				0777B547184DDCD300842DBA /* CommonCodeForViewControllers */,
 				078B27741850EB2600E78747 /* CoreDataModel */,
@@ -470,10 +526,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				07EACC181848689700D6A59E /* Main_iPad.storyboard in Resources */,
+				077B841A185B89AB00D0F002 /* fym_25t.jpg in Resources */,
+				077B842D185B8D8900D0F002 /* manure_types.plist in Resources */,
+				077B8422185B89AB00D0F002 /* poultry_10t.jpg in Resources */,
 				07EACC3A1848697D00D6A59E /* TODO in Resources */,
+				077B8424185B89AB00D0F002 /* poultry_5t.jpg in Resources */,
 				07EACC1D1848689700D6A59E /* Images.xcassets in Resources */,
+				077B841C185B89AB00D0F002 /* fym_50t.jpg in Resources */,
 				07EACC151848689700D6A59E /* Main_iPhone.storyboard in Resources */,
+				077B841E185B89AB00D0F002 /* pig_25m3.jpg in Resources */,
+				077B842A185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg in Resources */,
+				077B8416185B89AB00D0F002 /* cattle_25m3.jpg in Resources */,
+				077B8414185B89AB00D0F002 /* cattle_100m3.jpg in Resources */,
 				07EACC0C1848689700D6A59E /* InfoPlist.strings in Resources */,
+				077B8418185B89AB00D0F002 /* cattle_50m3.jpg in Resources */,
+				077B8427185B8BB500D0F002 /* 30m3ha cattle.jpg in Resources */,
+				077B8420185B89AB00D0F002 /* pig_50m3.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,7 +549,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				077B8415185B89AB00D0F002 /* cattle_100m3.jpg in Resources */,
+				077B841B185B89AB00D0F002 /* fym_25t.jpg in Resources */,
 				07EACC2E1848689700D6A59E /* InfoPlist.strings in Resources */,
+				077B8417185B89AB00D0F002 /* cattle_25m3.jpg in Resources */,
+				077B8425185B89AB00D0F002 /* poultry_5t.jpg in Resources */,
+				077B842B185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg in Resources */,
+				077B841D185B89AB00D0F002 /* fym_50t.jpg in Resources */,
+				077B842E185B8D8900D0F002 /* manure_types.plist in Resources */,
+				077B841F185B89AB00D0F002 /* pig_25m3.jpg in Resources */,
+				077B8419185B89AB00D0F002 /* cattle_50m3.jpg in Resources */,
+				077B8423185B89AB00D0F002 /* poultry_10t.jpg in Resources */,
+				077B8421185B89AB00D0F002 /* pig_50m3.jpg in Resources */,
+				077B8428185B8BB500D0F002 /* 30m3ha cattle.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
