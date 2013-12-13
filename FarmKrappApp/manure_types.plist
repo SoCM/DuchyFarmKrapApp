@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Cattle Slurry</key>
+	<array>
+		<dict>
+			<key>desc</key>
+			<string>2% DM (Thin Soup)</string>
+			<key>seq</key>
+			<integer>100</integer>
+		</dict>
+		<dict>
+			<key>desc</key>
+			<string>6% DM (Thick Soup)</string>
+			<key>seq</key>
+			<integer>200</integer>
+		</dict>
+		<dict>
+			<key>desc</key>
+			<string>10% DM (Porridge)</string>
+			<key>seq</key>
+			<integer>300</integer>
+		</dict>
+	</array>
+	<key>Farmyard Manure</key>
+	<array>
+		<dict>
+			<key>desc</key>
+			<string>Fresh and soil incorporated</string>
+			<key>seq</key>
+			<integer>100</integer>
+		</dict>
+		<dict>
+			<key>desc</key>
+			<string>Old and soil incorporated</string>
+			<key>seq</key>
+			<integer>200</integer>
+		</dict>
+		<dict>
+			<key>desc</key>
+			<string>Fresh and surface applied</string>
+			<key>seq</key>
+			<integer>300</integer>
+		</dict>
+		<dict>
+			<key>desc</key>
+			<string>Old and surface applied</string>
+			<key>seq</key>
+			<integer>400</integer>
+		</dict>
+	</array>
+	<key>Pig Slurry</key>
+	<array>
+		<dict>
+			<key>desc</key>
+			<string>2% DM (Thin soup)</string>
+			<key>seq</key>
+			<integer>100</integer>
+		</dict>
+		<dict>
+			<key>desc</key>
+			<string>4% DM (Thick soup)</string>
+			<key>seq</key>
+			<integer>200</integer>
+		</dict>
+		<dict>
+			<key>desc</key>
+			<string>6% DM (Porridge)</string>
+			<key>seq</key>
+			<integer>300</integer>
+		</dict>
+	</array>
+	<key>Poultry Litter</key>
+	<array>
+		<dict>
+			<key>desc</key>
+			<string>Layer manure</string>
+			<key>seq</key>
+			<integer>100</integer>
+		</dict>
+		<dict>
+			<key>desc</key>
+			<string>Broiler litter</string>
+			<key>seq</key>
+			<integer>200</integer>
+		</dict>
+	</array>
+</dict>
+</plist>
