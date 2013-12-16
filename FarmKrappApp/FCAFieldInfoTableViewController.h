@@ -23,7 +23,7 @@
 @property(readwrite, nonatomic, strong) NSString* name;
 @property(readwrite, nonatomic, strong) NSNumber* soilType;
 @property(readwrite, nonatomic, strong) NSNumber* cropType;
-@property(readwrite, nonatomic, assign) NSNumber* fieldSize;
+@property(readwrite, nonatomic, strong) NSNumber* fieldSize;
 
 //Master copy
 @property(readwrite, nonatomic, strong) Field* managedFieldObject;
