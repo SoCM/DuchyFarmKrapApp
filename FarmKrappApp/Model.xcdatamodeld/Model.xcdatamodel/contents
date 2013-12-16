@@ -1,28 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="v1" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B40" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="CropType" representedClassName="CropType" syncable="YES">
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="seqID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="fields" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Field" inverseName="cropType" inverseEntity="Field" syncable="YES"/>
+    </entity>
     <entity name="Field" representedClassName="Field" syncable="YES">
-        <attribute name="cropType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sizeInHectares" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
-        <attribute name="soilType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="cropType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CropType" inverseName="fields" inverseEntity="CropType" syncable="YES"/>
+        <relationship name="soilType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SoilType" inverseName="fields" inverseEntity="SoilType" syncable="YES"/>
         <relationship name="spreadingEvents" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SpreadingEvent" inverseName="field" inverseEntity="SpreadingEvent" syncable="YES"/>
+    </entity>
+    <entity name="ManureQuality" representedClassName="ManureQuality" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="seqID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="manureType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManureType" inverseName="qualitySet" inverseEntity="ManureType" syncable="YES"/>
+        <relationship name="spreadingEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SpreadingEvent" inverseName="manureQuality" inverseEntity="SpreadingEvent" syncable="YES"/>
+    </entity>
+    <entity name="ManureType" representedClassName="ManureType" syncable="YES">
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stringID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="qualitySet" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManureQuality" inverseName="manureType" inverseEntity="ManureQuality" syncable="YES"/>
+        <relationship name="spreadingEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SpreadingEvent" inverseName="manureType" inverseEntity="SpreadingEvent" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="spreadingEvent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpreadingEvent" inverseName="photos" inverseEntity="SpreadingEvent" syncable="YES"/>
     </entity>
+    <entity name="SoilType" representedClassName="SoilType" syncable="YES">
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="seqID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="fields" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Field" inverseName="soilType" inverseEntity="Field" syncable="YES"/>
+    </entity>
     <entity name="SpreadingEvent" representedClassName="SpreadingEvent" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="density" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="manureType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="quality" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="field" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Field" inverseName="spreadingEvents" inverseEntity="Field" syncable="YES"/>
+        <relationship name="manureQuality" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManureQuality" inverseName="spreadingEvents" inverseEntity="ManureQuality" syncable="YES"/>
+        <relationship name="manureType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManureType" inverseName="spreadingEvents" inverseEntity="ManureType" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="spreadingEvent" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Field" positionX="-4520" positionY="-595" width="128" height="118"/>
-        <element name="SpreadingEvent" positionX="-4185" positionY="-720" width="128" height="133"/>
-        <element name="Photo" positionX="-3764" positionY="-774" width="128" height="88"/>
+        <element name="Field" positionX="-4547" positionY="-585" width="128" height="118"/>
+        <element name="ManureQuality" positionX="-4347" positionY="-751" width="128" height="103"/>
+        <element name="ManureType" positionX="-4538" positionY="-751" width="128" height="103"/>
+        <element name="Photo" positionX="-4538" positionY="-441" width="128" height="88"/>
+        <element name="SpreadingEvent" positionX="-4329" positionY="-556" width="128" height="133"/>
+        <element name="CropType" positionX="-4788" positionY="-675" width="128" height="88"/>
+        <element name="SoilType" positionX="-4790" positionY="-475" width="128" height="88"/>
     </elements>
 </model>

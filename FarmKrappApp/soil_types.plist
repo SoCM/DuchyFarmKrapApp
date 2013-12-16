@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SandyShallow</key>
+	<dict>
+		<key>displayName</key>
+		<string>Sandy/Shallow</string>
+		<key>seqID</key>
+		<integer>100</integer>
+	</dict>
+	<key>MediumHeavy</key>
+	<dict>
+		<key>displayName</key>
+		<string>Medium Heavy</string>
+		<key>seqID</key>
+		<integer>200</integer>
+	</dict>
+</dict>
+</plist>

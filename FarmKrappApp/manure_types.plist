@@ -2,89 +2,109 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Cattle Slurry</key>
-	<array>
-		<dict>
-			<key>desc</key>
-			<string>2% DM (Thin Soup)</string>
-			<key>seq</key>
-			<integer>100</integer>
-		</dict>
-		<dict>
-			<key>desc</key>
-			<string>6% DM (Thick Soup)</string>
-			<key>seq</key>
-			<integer>200</integer>
-		</dict>
-		<dict>
-			<key>desc</key>
-			<string>10% DM (Porridge)</string>
-			<key>seq</key>
-			<integer>300</integer>
-		</dict>
-	</array>
-	<key>Farmyard Manure</key>
-	<array>
-		<dict>
-			<key>desc</key>
-			<string>Fresh and soil incorporated</string>
-			<key>seq</key>
-			<integer>100</integer>
-		</dict>
-		<dict>
-			<key>desc</key>
-			<string>Old and soil incorporated</string>
-			<key>seq</key>
-			<integer>200</integer>
-		</dict>
-		<dict>
-			<key>desc</key>
-			<string>Fresh and surface applied</string>
-			<key>seq</key>
-			<integer>300</integer>
-		</dict>
-		<dict>
-			<key>desc</key>
-			<string>Old and surface applied</string>
-			<key>seq</key>
-			<integer>400</integer>
-		</dict>
-	</array>
-	<key>Pig Slurry</key>
-	<array>
-		<dict>
-			<key>desc</key>
-			<string>2% DM (Thin soup)</string>
-			<key>seq</key>
-			<integer>100</integer>
-		</dict>
-		<dict>
-			<key>desc</key>
-			<string>4% DM (Thick soup)</string>
-			<key>seq</key>
-			<integer>200</integer>
-		</dict>
-		<dict>
-			<key>desc</key>
-			<string>6% DM (Porridge)</string>
-			<key>seq</key>
-			<integer>300</integer>
-		</dict>
-	</array>
-	<key>Poultry Litter</key>
-	<array>
-		<dict>
-			<key>desc</key>
-			<string>Layer manure</string>
-			<key>seq</key>
-			<integer>100</integer>
-		</dict>
-		<dict>
-			<key>desc</key>
-			<string>Broiler litter</string>
-			<key>seq</key>
-			<integer>200</integer>
-		</dict>
-	</array>
+	<key>CattleSlurry</key>
+	<dict>
+		<key>displayName</key>
+		<string>Cattle Slurry</string>
+		<key>types</key>
+		<array>
+			<dict>
+				<key>displayName</key>
+				<string>2% DM (Thin soup)</string>
+				<key>seqID</key>
+				<integer>100</integer>
+			</dict>
+			<dict>
+				<key>displayName</key>
+				<string>6% DM (Thick soup)</string>
+				<key>seqID</key>
+				<integer>200</integer>
+			</dict>
+			<dict>
+				<key>displayName</key>
+				<string>10% DM (Porridge)</string>
+				<key>seqID</key>
+				<integer>300</integer>
+			</dict>
+		</array>
+	</dict>
+	<key>FarmyardManure</key>
+	<dict>
+		<key>displayName</key>
+		<string>Farmyard Manure</string>
+		<key>types</key>
+		<array>
+			<dict>
+				<key>displayName</key>
+				<string>Fresh and soil incorporated</string>
+				<key>seqID</key>
+				<integer>400</integer>
+			</dict>
+			<dict>
+				<key>displayName</key>
+				<string>Old and soil incorporated</string>
+				<key>seqID</key>
+				<integer>500</integer>
+			</dict>
+			<dict>
+				<key>displayName</key>
+				<string>Fresh and surface applied</string>
+				<key>seqID</key>
+				<integer>600</integer>
+			</dict>
+			<dict>
+				<key>displayName</key>
+				<string>Old and surface applied</string>
+				<key>seqID</key>
+				<integer>700</integer>
+			</dict>
+		</array>
+	</dict>
+	<key>PigSlurry</key>
+	<dict>
+		<key>displayName</key>
+		<string>Pig Slurry</string>
+		<key>types</key>
+		<array>
+			<dict>
+				<key>displayName</key>
+				<string>2% DM (Thin soup)</string>
+				<key>seqID</key>
+				<integer>800</integer>
+			</dict>
+			<dict>
+				<key>displayName</key>
+				<string>4% DM (Thick soup)</string>
+				<key>seqID</key>
+				<integer>900</integer>
+			</dict>
+			<dict>
+				<key>displayName</key>
+				<string>6% DM (Porridge)</string>
+				<key>seqID</key>
+				<integer>1000</integer>
+			</dict>
+		</array>
+	</dict>
+	<key>PoultryLitter</key>
+	<dict>
+		<key>displayName</key>
+		<string>Poultry Litter</string>
+		<key>types</key>
+		<array>
+			<dict>
+				<key>displayName</key>
+				<string>Layer manure</string>
+				<key>seqID</key>
+				<integer>1100</integer>
+			</dict>
+			<dict>
+				<key>displayName</key>
+				<string>Broiler litter</string>
+				<key>seqID</key>
+				<integer>1200</integer>
+			</dict>
+		</array>
+	</dict>
 </dict>
 </plist>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>GrassWinterOilseedRape</key>
+	<dict>
+		<key>displayName</key>
+		<string>Grassland/Winter oilseed rape</string>
+		<key>seqID</key>
+		<integer>200</integer>
+	</dict>
+	<key>AllCrops</key>
+	<dict>
+		<key>displayName</key>
+		<string>All crops</string>
+		<key>seqID</key>
+		<integer>100</integer>
+	</dict>
+</dict>
+</plist>
