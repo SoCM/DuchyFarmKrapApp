@@ -38,15 +38,15 @@
     if (self.managedFieldObject) {
         //EDIT MODE
         self.name = self.managedFieldObject.name;
-        self.soilType = self.managedFieldObject.soilType.intValue;
-        self.cropType = self.managedFieldObject.cropType.intValue;
-        self.fieldSize = self.managedFieldObject.sizeInHectares.floatValue;
+        self.soilType = ((SoilType*)self.managedFieldObject.soilType).seqID;
+        self.cropType = ((CropType*)self.managedFieldObject.cropType).seqID;
+        self.fieldSize = self.managedFieldObject.sizeInHectares;
     } else {
         //ADD MODE (defaults)
         self.name = @"";
-        self.soilType = SOILTYPE_SANDY_SHALLOW;
-        self.cropType = CROPTYPE_ALL_CROPS;
-        self.fieldSize = 10.0;
+        self.soilType = kSOILTYPE_SANDY_SHALLOW;
+        self.cropType = kCROPTYPE_ALL_CROPS;
+        self.fieldSize = @10.0;
     }
     [self updateViewFromModel];
 
@@ -102,7 +102,7 @@
 
 - (IBAction)doSliderChanged:(id)sender {
     double val = self.fieldSizeSlider.value;
-    val = 0.5*round(val*2);
+    val = 0.5*round(val*2.0);
     self.fieldSizeStepper.value = val;
     self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f", val];
 }
@@ -123,10 +123,10 @@
     switch (self.soilTypeSegmentControl.selectedSegmentIndex) {
         
         case 0:
-            self.soilType = SOILTYPE_SANDY_SHALLOW;
+            self.soilType = kSOILTYPE_SANDY_SHALLOW;;
             break;
         case 1:
-            self.soilType = SOILTYPE_MEDIUM_HEAVY;
+            self.soilType = kSOILTYPE_MEDIUM_HEAVY;
             break;
         default:
             //Do nothing - very bad!
@@ -137,11 +137,11 @@
     //Get the selected crop type
     switch (self.cropTypeSegmentControl.selectedSegmentIndex) {
         case 0:
-            self.cropType = CROPTYPE_ALL_CROPS;
+            self.cropType = kCROPTYPE_ALL_CROPS;
             break;
             
         case 1:
-            self.cropType = CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE;
+            self.cropType = kCROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE;
             break;
             
         default:
@@ -149,9 +149,9 @@
             NSLog(@"INVALID CROP TYPE");
             break;
     }
-    
-    //Get the field size (round to nearest 0.5)
-    self.fieldSize = self.fieldSizeSlider.value;
+    float sz = self.fieldSizeSlider.value;
+    sz = 0.5*round(sz*2.0);
+    self.fieldSize = [NSNumber numberWithFloat:sz];
 }
 //Update view based on model data
 -(void)updateViewFromModel
@@ -162,7 +162,7 @@
     //Segmented controls
     
     //Soil type
-    switch (self.soilType) {
+    switch (self.soilType.intValue) {
         case SOILTYPE_SANDY_SHALLOW:
             self.soilTypeSegmentControl.selectedSegmentIndex = 0;
             break;
@@ -176,7 +176,7 @@
     }
     
     //Crop type
-    switch (self.cropType) {
+    switch (self.cropType.intValue) {
         case CROPTYPE_ALL_CROPS:
             self.cropTypeSegmentControl.selectedSegmentIndex = 0;
             break;
@@ -192,9 +192,9 @@
     
     //Field size
     // TBD - I need one access for all of these
-    self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f", self.fieldSize];
-    self.fieldSizeSlider.value = self.fieldSize;
-    self.fieldSizeStepper.value = self.fieldSize;
+    self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f", self.fieldSize.floatValue];
+    self.fieldSizeSlider.value = self.fieldSize.floatValue;
+    self.fieldSizeStepper.value = self.fieldSize.floatValue;
     
 }
 - (IBAction)doSave:(id)sender {
@@ -211,23 +211,23 @@
     
     //All data is now assumed to be valid
     //Edit or Add?
+    
+    SoilType* st = [SoilType FetchSoilTypeForID:self.soilType];
+    CropType* ct = [CropType FetchCropTypeForID:self.cropType];
+    
     if (self.managedFieldObject) {
         //EDIT MODE - SIMPLY UPDATE THE RECORD
         NSLog(@"EDIT FIELD");
         self.managedFieldObject.name = self.name;
-        self.managedFieldObject.soilType = [NSNumber numberWithInt:self.soilType];
-        self.managedFieldObject.cropType = [NSNumber numberWithInt:self.cropType];
-        self.managedFieldObject.sizeInHectares = [NSNumber numberWithFloat:self.fieldSize];
+        self.managedFieldObject.soilType = st;
+        self.managedFieldObject.cropType = ct;
+        self.managedFieldObject.sizeInHectares = self.fieldSize;
         //Persist the changes
         [FCADataModel saveContext];
         
     } else {
         //ADD MODE - create new managed object (via my own model API)
-        [FCADataModel addNewFieldWithName:self.name
-                                 soilType:self.soilType
-                                 cropType:self.cropType
-                           sizeInHectares:[NSNumber numberWithFloat:self.fieldSize]
-         ];
+        [Field InsertFieldWithName:self.name soilType:st cropType:ct sizeInHectares:self.fieldSize];
         NSLog(@"ADDED FIELD");
     }
     

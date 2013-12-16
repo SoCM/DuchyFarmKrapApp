@@ -21,9 +21,9 @@
 
 //Temporary holding properties
 @property(readwrite, nonatomic, strong) NSString* name;
-@property(readwrite, nonatomic, assign) SOIL_TYPE soilType;
-@property(readwrite, nonatomic, assign) CROP_TYPE cropType;
-@property(readwrite, nonatomic, assign) float fieldSize;
+@property(readwrite, nonatomic, strong) NSNumber* soilType;
+@property(readwrite, nonatomic, strong) NSNumber* cropType;
+@property(readwrite, nonatomic, assign) NSNumber* fieldSize;
 
 //Master copy
 @property(readwrite, nonatomic, strong) Field* managedFieldObject;
