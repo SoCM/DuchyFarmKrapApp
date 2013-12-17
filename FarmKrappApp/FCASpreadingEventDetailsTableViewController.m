@@ -7,35 +7,42 @@
 //
 
 #import "FCASpreadingEventDetailsTableViewController.h"
-#include "NSDate+NSDateUOPCategory.h"
-#import "FCADatePickerViewController.h"
+#import "NSDate+NSDateUOPCategory.h"
 
-#define ActionSheetManureType 1
-#define ActionSheetManureQuality 2
+#import "FCADataModel.h"
+#import "FCASpreadingEventSingleLabelCell.h"
+#import "FCADateStringCell.h"
+#import "FCAManureTypeCell.h"
+#import "FCAManureQualityCell.h"
+#import "FCADatePickerCell.h"
+#import "FCAPickerCell.h"
+#import "FCAApplicationRateCell.h"
+#import "FCASquareImageCell.h"
 
 @interface FCASpreadingEventDetailsTableViewController ()
+- (IBAction)doDateUpdate:(id)sender;
 
 @property(readwrite, nonatomic, strong) Field* field;
 @property(readwrite, nonatomic, strong) SpreadingEvent* spreadingEvent;
 
 //Local temporary data
-@property (readwrite, nonatomic, strong) NSDate * date;
-@property (readwrite, nonatomic, strong) NSNumber* manureType;
+@property (readwrite, nonatomic, strong) NSDate* date;
+@property (readwrite, nonatomic, strong) NSString* manureType;
 @property (readwrite, nonatomic, strong) NSNumber* manureQuality;
 @property (readwrite, nonatomic, strong) NSNumber* applicationRate;
 
-@property (weak, nonatomic) IBOutlet UILabel *fieldNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *manureTypeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *manureQualityLabel;
-@property (weak, nonatomic) IBOutlet UILabel *applicationRateLabel;
-@property (weak, nonatomic) IBOutlet UISlider *applicationRateSlider;
-@property (weak, nonatomic) IBOutlet UIImageView *previewImage;
-@property (weak, nonatomic) IBOutlet UITableViewCell *dateTableViewCell;
+//State
+@property(readwrite, nonatomic, assign) BOOL datePickerShowing;
+@property(readwrite, nonatomic, assign) BOOL manureTypePickerShowing;
+@property(readwrite, nonatomic, assign) BOOL manureQualityPickerShowing;
+@property(readwrite, nonatomic, assign) BOOL imageShowing;
+
+@property(readwrite, nonatomic, strong) NSNumber* numberOfManureTypes;
 
 @end
 
 @implementation FCASpreadingEventDetailsTableViewController
+@synthesize numberOfManureTypes = _numberOfManureTypes;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -62,7 +69,7 @@
         //This is a new spreading event - only the field is provided
         self.field = (Field*)self.managedObject;
         self.spreadingEvent = nil;
-        self.date = nil;
+        self.date = [NSDate date];
         self.manureType = nil;
         self.manureQuality = nil;
         self.applicationRate = nil;
@@ -72,24 +79,19 @@
         //This is an existing spreading event
         self.spreadingEvent = (SpreadingEvent*)self.managedObject;
         self.field = self.spreadingEvent.field;
-
         self.date = self.spreadingEvent.date;
-        self.dateLabel.text = [self.spreadingEvent.date stringForUKShortFormatUsingGMT:YES];
-        
-        self.manureType = self.spreadingEvent.manureType;
-        self.manureTypeLabel.text = [MANURETYPE_STRING_DICT objectForKey:self.spreadingEvent.manureType];
-        
-        self.manureQuality = self.spreadingEvent.quality;
-        self.manureQualityLabel.text = [MANUREQUALITY_STRING_DICT objectForKey:self.spreadingEvent.quality];
-        
+        self.manureType = ((ManureType*)self.spreadingEvent.manureType).stringID;
+        self.manureQuality = ((ManureQuality*)self.spreadingEvent.manureQuality).seqID;
         self.applicationRate = self.spreadingEvent.density;
-        self.applicationRateSlider.value = self.spreadingEvent.density.floatValue;
-        self.applicationRateLabel.text = [NSString stringWithFormat:@"%5.1f m3/ha", self.applicationRateSlider.value];
     }
     
     //Eitherway, we know the field
-    self.fieldNameLabel.text = self.field.name;
     
+    //Initial state
+    self.datePickerShowing = NO;
+    self.manureQualityPickerShowing = NO;
+    self.manureTypePickerShowing = NO;
+    self.imageShowing = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,156 +102,281 @@
 
 
 #pragma mark - Table view data source
-/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 6;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return @"FIELD NAME:";
+            break;
+        case 1:
+            return @"DATE:";
+            break;
+        case 2:
+            return @"MANURE TYPE";
+            break;
+        case 3:
+            return @"MANURE QUALITY";
+            break;
+        case 4:
+            return @"APPLICATION RATE";
+            break;
+        case 5:
+            return @"Guide image:";
+            break;
+        default:
+            return @"";
+            break;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSUInteger section = indexPath.section;
+    NSUInteger row = indexPath.row;
+    switch (section) {
+        case 0:
+            return 60.0;
+            break;
+        case 1:
+        case 2:
+        case 3:
+            return (row==0) ? 60.0 : 160.0;
+            break;
+        case 4:
+            return 130.0;
+            break;
+        case 5:
+            return 320.0;
+            break;
+        default:
+            return 60.0;
+            break;
+    }
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
+    switch (section) {
+        case 0:
+            //Field name
+            return 1;
+            break;
+            
+        case 1:
+            //Date + Date Picker
+            if (self.datePickerShowing == YES) {
+                return 2;
+            } else {
+                return 1;
+            }
+            break;
+            
+        case 2:
+            //Manure Type + Picker
+            if (self.manureTypePickerShowing == YES) {
+                return 2;
+            } else {
+                return 1;
+            }
+            break;
+            
+        case 3:
+            if (self.manureQualityPickerShowing == YES) {
+                return 2;
+            } else {
+                return 1;
+            }
+            break;
+            
+        case 4:
+            //Application rate
+            return 1;
+            break;
+            
+        case 5:
+            //Image
+            if (self.imageShowing) {
+                return 1;
+            } else {
+                return 0;
+            }
+            break;
+
+            
+        default:
+            break;
+    }
     return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+#warning This needs checking
+    UITableViewCell *cell;
+    FCASpreadingEventSingleLabelCell* fieldNameCell;
+    FCAManureTypeCell* manureTypeCell;
+    FCAManureQualityCell* manureQualityCell;
+    FCADateStringCell* dateStringCell;
+    FCADatePickerCell* datePickerCell;
+    FCAPickerCell* pickerCell;
+    FCAApplicationRateCell* appRateCell;
+    FCASquareImageCell* imageCell;
+    
+    switch (indexPath.section) {
+        case 0:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SingleLabelCell" forIndexPath:indexPath];
+//            cell = [tableView dequeueReusableCellWithIdentifier:@"SingleLabelCell"];
+            fieldNameCell = (FCASpreadingEventSingleLabelCell*)cell;
+            fieldNameCell.label.text = self.field.name;
+            //TO DO
+            break;
+            
+        case 1:
+            if (indexPath.row == 0) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"DateStringCell" forIndexPath:indexPath];
+                dateStringCell = (FCADateStringCell*)cell;
+                dateStringCell.label.text = [self.date stringForUKShortFormatUsingGMT:YES];
+                //TBD
+            } else {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"DatePickerCell" forIndexPath:indexPath];
+                datePickerCell = (FCADatePickerCell*)cell;
+                if (self.date) {
+                    datePickerCell.datePicker.date = self.date;
+                }
+            }
+            break;
+
+        case 2:
+        case 3:
+            if (indexPath.row == 0) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"ManureTypeStringCell" forIndexPath:indexPath];
+                manureTypeCell = (FCAManureTypeCell*)cell;
+                if (self.manureType) {
+                    manureTypeCell.label.text = self.manureType;
+                } else {
+                    manureTypeCell.label.text = @"Select manure type";
+                }
+            } else {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"PickerCell" forIndexPath:indexPath];
+                pickerCell = (FCAPickerCell*)cell;
+                pickerCell.pickerView.tag = 1;
+                //TBD
+            }
+            break;
+                        
+        case 4:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"ApplicationRateCell" forIndexPath:indexPath];
+            appRateCell = (FCAApplicationRateCell*)cell;
+            //TBD
+            break;
+            
+        case 5:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"ImageCell" forIndexPath:indexPath];
+            imageCell = (FCASquareImageCell*)cell;
+            //TBD
+            break;
+                          
+                          
+        default:
+            break;
+    }
+    
     
     // Configure the cell...
     
     return cell;
 }
-*/
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 
 #pragma mark - UITableViewDelgate methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+#warning NOT FINISHED
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSLog(@"ROW = %d", indexPath.row);
     
-    NSString* strCS = [MANURETYPE_STRING_DICT objectForKey:kMANURETYPE_CATTLE_SLURRY];
-    NSString* strPS = [MANURETYPE_STRING_DICT objectForKey:kMANURETYPE_PIG_SLURRY];
-    NSString* strPL = [MANURETYPE_STRING_DICT objectForKey:kMANURETYPE_POULTRY_LITTER];
-    UIActionSheet* asManureType = [[UIActionSheet alloc] initWithTitle:@"Manure Type"
-                                                              delegate:self cancelButtonTitle:@"Cancel"
-                                                destructiveButtonTitle:nil
-                                                     otherButtonTitles:strCS,strPS, strPL, nil];
-    asManureType.tag = ActionSheetManureType;
-    
-    
-    NSString* strTHIN     = [MANUREQUALITY_STRING_DICT objectForKey:kMANUREQUALITY_THIN_SOUP];
-    NSString* strTHICK    = [MANUREQUALITY_STRING_DICT objectForKey:kMANUREQUALITY_THICK_SOUP];
-    NSString* strPORRIDGE = [MANUREQUALITY_STRING_DICT objectForKey:kMANUREQUALITY_PORRIGDE];
-    UIActionSheet* asManureQuality = [[UIActionSheet alloc] initWithTitle:@"Manure Quality"
-                                                              delegate:self cancelButtonTitle:@"Cancel"
-                                                destructiveButtonTitle:nil
-                                                     otherButtonTitles:strTHIN, strTHICK, strPORRIDGE, nil];
-    asManureQuality.tag = ActionSheetManureQuality;
-
-    
-    switch (indexPath.row) {
+    switch (indexPath.section) {
         case 0:
-        case 4:
-        case 5:
-            //Name - do nothing
+            //Field name
+            break;
+        case 1:
+            //Date + date picker
+            self.datePickerShowing = !self.datePickerShowing;
+            [tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
+
             break;
             
-        case 1:
-            //Set date
-            NSLog(@"Select date");
-            break;
         case 2:
-            //Set manure type
-            NSLog(@"Select Type");
-            [asManureType showFromToolbar:self.navigationController.toolbar];
+            //ManureType + ManureTypePicker
+            self.manureTypePickerShowing = !self.manureTypePickerShowing;
+            [tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
             
         case 3:
-            //Manure Quality
-            NSLog(@"Select quality");
-            [asManureQuality showFromToolbar:self.navigationController.toolbar];
-            break;
+            //ManureQuality + ManureQualityPicker
+            self.manureQualityPickerShowing = !self.manureQualityPickerShowing;
+            [tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
             
+            break;
+        case 4:
+            //Application rate
+            break;
+        case 5:
+            //Image
+            break;
         default:
             break;
     }
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+#pragma mark - Picker Datasource
+// returns the number of 'columns' to display.
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    NSString *selectionString = [actionSheet buttonTitleAtIndex:buttonIndex];
-    if ([selectionString isEqualToString:@"Cancel"]) {
-        return;
+    return 1;
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [ManureType count];
+}
+#pragma mark - Picker Delegate
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSArray* arrayOfManagedObjects = [ManureType allManagedObjectsSortedByName];
+    ManureType* mt = [arrayOfManagedObjects objectAtIndex:row];
+    return mt.displayName;
+}
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return 40.0;
+}
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSArray* arrayOfManagedObjects = [ManureType allManagedObjectsSortedByName];
+    ManureType* mt = [arrayOfManagedObjects objectAtIndex:row];
+    self.manureType = mt.displayName;
+    [self.tableView reloadData];
+}
+
+-(NSNumber*)numberOfManureTypes
+{
+    if (_numberOfManureTypes == nil) {
+        self.numberOfManureTypes = [NSNumber numberWithInt:[ManureType count]];
     }
-    
-    NSLog(@"%@", selectionString);
-    NSLog(@"Selected %d", buttonIndex);
-    switch (actionSheet.tag) {
-        case ActionSheetManureType:
-            //The following works because all objects and keys are unique
-            self.manureTypeLabel.text = selectionString;
-            self.manureType = [[MANURETYPE_STRING_DICT allKeysForObject:selectionString] objectAtIndex:0];
-            break;
-            
-        case ActionSheetManureQuality:
-            self.manureQualityLabel.text = selectionString;
-            self.manureQuality = [[MANUREQUALITY_STRING_DICT allKeysForObject:selectionString] objectAtIndex:0];
-            break;
-            
-        default:
-            break;
-    }
+    return _numberOfManureTypes;
+
 }
 #pragma mark - actions
-- (IBAction)doSliderValueChanged:(id)sender {
-    self.applicationRateLabel.text = [NSString stringWithFormat:@"%5.1f m3/ha", self.applicationRateSlider.value];
-    self.applicationRate = [NSNumber numberWithFloat:self.applicationRateSlider.value];
-}
 
 - (IBAction)doSave:(id)sender {
     //Validate form
@@ -280,14 +407,14 @@
     //If we get this far, the data is complete - we simple save
     if (!self.spreadingEvent) {
         self.spreadingEvent = [FCADataModel addNewSpreadingEventWithDate:self.date
-                                                              manureType:self.manureType.intValue
-                                                                 quality:self.manureQuality.intValue
+                                                              manureType:[ManureType FetchManureTypeForStringID:self.manureType]
+                                                                 quality:[ManureQuality FetchManureQualityForID:self.manureQuality]
                                                                  density:self.applicationRate
                                                                  toField:self.field];
     } else {
         self.spreadingEvent.date = self.date;
-        self.spreadingEvent.manureType = self.manureType;
-        self.spreadingEvent.quality = self.manureQuality;
+        self.spreadingEvent.manureType = [ManureType FetchManureTypeForStringID:self.manureType];
+        self.spreadingEvent.manureQuality = [ManureQuality FetchManureQualityForID:self.manureQuality];
         self.spreadingEvent.density = self.applicationRate;
     }
     //Save and pop back
@@ -297,28 +424,49 @@
 
 
 
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    void(^doUpdatedate)(NSDate*) = ^(NSDate* date) {
-        if (date) {
-            self.date = date;
-            self.dateLabel.text = [self.date stringForUKShortFormatUsingGMT:YES];
-            [self dismissViewControllerAnimated:YES completion:NULL];
-            [self.tableView reloadData];
-        }
-    };
-    if ([[segue identifier] isEqualToString:@"modalDate"]) {
-        FCADatePickerViewController* vc = [segue destinationViewController];
-        if (self.date) {
-            vc.initialDate = self.date;
-        }
-        vc.callBackWithDate = doUpdatedate;
-    }
+
+- (IBAction)doDateUpdate:(id)sender {
+    UIDatePicker* datePicker = (UIDatePicker*)sender;
+    self.date = datePicker.date;
+    [self.tableView reloadData];
 }
 
+/*
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
-#undef ActionSheetManureType
-#undef ActionSheetManureQuality
+/*
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ }
+ else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
+/*
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
+
+/*
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 @end

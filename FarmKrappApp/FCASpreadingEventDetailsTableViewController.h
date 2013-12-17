@@ -11,7 +11,7 @@
 #import "Field.h"
 #import "FCADataModel.h"
 
-@interface FCASpreadingEventDetailsTableViewController : UITableViewController<UIActionSheetDelegate>
+@interface FCASpreadingEventDetailsTableViewController : UITableViewController<UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property(readwrite, nonatomic, strong) NSManagedObject* managedObject;
 @end
