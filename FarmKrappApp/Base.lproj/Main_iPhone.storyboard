@@ -615,7 +615,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <connections>
                                     <outlet property="manureQualityLabel" destination="q1B-SD-EKx" id="T5O-a4-hD3"/>
                                     <outlet property="manureTypeLabel" destination="p5X-8t-oBg" id="emd-tc-Jxu"/>
-                                    <segue destination="cB2-x3-KFc" kind="push" id="aZV-dK-7oo"/>
+                                    <segue destination="cB2-x3-KFc" kind="push" identifier="ManureDetailsSegue" id="aZV-dK-7oo"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ApplicationRateCell" rowHeight="130" id="v06-Xm-HLW" customClass="FCAApplicationRateCell">
@@ -625,27 +625,39 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Application Rate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5B-f1-NUU">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Application Rate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5B-f1-NUU">
                                             <rect key="frame" x="20" y="20" width="132" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dg8-Ua-9kE">
-                                            <rect key="frame" x="160" y="20" width="42" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dg8-Ua-9kE">
+                                            <rect key="frame" x="160" y="20" width="20" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="XcW-LR-FTT">
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="XcW-LR-FTT">
                                             <rect key="frame" x="13" y="63" width="289" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <connections>
+                                                <action selector="doApplicationRateSliderUpdate:" destination="dq7-ZN-cKu" eventType="valueChanged" id="npi-K9-vBU"/>
+                                            </connections>
                                         </slider>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="p5B-f1-NUU" firstAttribute="top" secondItem="pUn-5k-6uG" secondAttribute="top" constant="20" id="JOF-dt-FvD"/>
+                                        <constraint firstItem="p5B-f1-NUU" firstAttribute="leading" secondItem="pUn-5k-6uG" secondAttribute="leading" constant="20" id="at1-01-SqC"/>
+                                        <constraint firstItem="dg8-Ua-9kE" firstAttribute="centerY" secondItem="p5B-f1-NUU" secondAttribute="centerY" id="cXt-dZ-rDz"/>
+                                        <constraint firstItem="XcW-LR-FTT" firstAttribute="leading" secondItem="pUn-5k-6uG" secondAttribute="leading" constant="15" id="h4a-lh-pKq"/>
+                                        <constraint firstAttribute="trailing" secondItem="XcW-LR-FTT" secondAttribute="trailing" constant="20" id="hDO-gk-T6j"/>
+                                        <constraint firstItem="XcW-LR-FTT" firstAttribute="top" secondItem="p5B-f1-NUU" secondAttribute="bottom" constant="22" id="rHj-N5-sXf"/>
+                                        <constraint firstItem="dg8-Ua-9kE" firstAttribute="leading" secondItem="p5B-f1-NUU" secondAttribute="trailing" constant="8" id="vne-cu-cgh"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="label" destination="dg8-Ua-9kE" id="ll6-fu-8Wt"/>
-                                    <outlet property="slider" destination="XcW-LR-FTT" id="ZlF-RX-7ib"/>
+                                    <outlet property="slider" destination="XcW-LR-FTT" id="Yas-Xe-NAi"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" rowHeight="320" id="Az4-cC-L9Y" customClass="FCASquareImageCell">
@@ -656,17 +668,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lun-Ws-A0b">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="319"/>
+                                            <rect key="frame" x="20" y="20" width="280" height="279"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="centerY" secondItem="Lun-Ws-A0b" secondAttribute="centerY" id="3Za-Ef-vee"/>
-                                        <constraint firstAttribute="trailing" secondItem="Lun-Ws-A0b" secondAttribute="trailing" id="HFp-8r-8jG"/>
-                                        <constraint firstAttribute="centerX" secondItem="Lun-Ws-A0b" secondAttribute="centerX" id="OVR-vw-7MD"/>
-                                        <constraint firstItem="Lun-Ws-A0b" firstAttribute="top" secondItem="8Hb-Eg-QIM" secondAttribute="top" id="RYX-pM-fNo"/>
-                                        <constraint firstAttribute="bottom" secondItem="Lun-Ws-A0b" secondAttribute="bottom" id="Wj6-m5-Eyh"/>
-                                        <constraint firstItem="Lun-Ws-A0b" firstAttribute="leading" secondItem="8Hb-Eg-QIM" secondAttribute="leading" id="Wuz-sn-MEd"/>
+                                        <constraint firstItem="Lun-Ws-A0b" firstAttribute="leading" secondItem="8Hb-Eg-QIM" secondAttribute="leading" constant="20" symbolic="YES" id="CZD-o9-Egw"/>
+                                        <constraint firstAttribute="bottom" secondItem="Lun-Ws-A0b" secondAttribute="bottom" constant="20" symbolic="YES" id="TaM-FF-LMQ"/>
+                                        <constraint firstItem="Lun-Ws-A0b" firstAttribute="top" secondItem="8Hb-Eg-QIM" secondAttribute="top" constant="20" symbolic="YES" id="ocs-3P-brL"/>
+                                        <constraint firstAttribute="trailing" secondItem="Lun-Ws-A0b" secondAttribute="trailing" constant="20" symbolic="YES" id="z36-40-4Z7"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

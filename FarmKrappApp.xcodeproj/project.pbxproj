@@ -7,31 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070B850618616FBE00609C72 /* FCAManureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070B850518616FBE00609C72 /* FCAManureCell.m */; };
 		070F18E418574C9D0008FA19 /* FCAFieldsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F18E318574C9D0008FA19 /* FCAFieldsViewController.m */; };
-		070F18E518574C9D0008FA19 /* FCAFieldsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F18E318574C9D0008FA19 /* FCAFieldsViewController.m */; };
 		070F18E9185762990008FA19 /* FCAFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F18E8185762990008FA19 /* FCAFieldCell.m */; };
-		070F18EA185762990008FA19 /* FCAFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F18E8185762990008FA19 /* FCAFieldCell.m */; };
+		071CF1D5185EF7EB00F0224B /* manure_types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 071CF1D2185EF7EB00F0224B /* manure_types.plist */; };
+		071CF1D6185EF7EB00F0224B /* manure_types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 071CF1D2185EF7EB00F0224B /* manure_types.plist */; };
+		071CF1D7185EF7EB00F0224B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 071CF1D3185EF7EB00F0224B /* Model.xcdatamodeld */; };
+		071CF1D8185EF7EB00F0224B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 071CF1D3185EF7EB00F0224B /* Model.xcdatamodeld */; };
+		071CF1F6185F08D400F0224B /* crop_types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 071CF1F5185F08D400F0224B /* crop_types.plist */; };
+		071CF1F7185F08D400F0224B /* crop_types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 071CF1F5185F08D400F0224B /* crop_types.plist */; };
+		071CF1F9185F08ED00F0224B /* soil_types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 071CF1F8185F08ED00F0224B /* soil_types.plist */; };
+		071CF1FA185F08ED00F0224B /* soil_types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 071CF1F8185F08ED00F0224B /* soil_types.plist */; };
+		071CF1FD185F0C4D00F0224B /* ManureQuality.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF1FC185F0C4D00F0224B /* ManureQuality.m */; };
+		071CF1FE185F0C4D00F0224B /* ManureQuality.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF1FC185F0C4D00F0224B /* ManureQuality.m */; };
+		071CF201185F0C4E00F0224B /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF200185F0C4E00F0224B /* Field.m */; };
+		071CF202185F0C4E00F0224B /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF200185F0C4E00F0224B /* Field.m */; };
+		071CF205185F0C4E00F0224B /* ManureType.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF204185F0C4E00F0224B /* ManureType.m */; };
+		071CF206185F0C4E00F0224B /* ManureType.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF204185F0C4E00F0224B /* ManureType.m */; };
+		071CF209185F0C4E00F0224B /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF208185F0C4E00F0224B /* Photo.m */; };
+		071CF20A185F0C4E00F0224B /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF208185F0C4E00F0224B /* Photo.m */; };
+		071CF20D185F0C4E00F0224B /* CropType.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF20C185F0C4E00F0224B /* CropType.m */; };
+		071CF20E185F0C4E00F0224B /* CropType.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF20C185F0C4E00F0224B /* CropType.m */; };
+		071CF211185F0C4E00F0224B /* SoilType.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF210185F0C4E00F0224B /* SoilType.m */; };
+		071CF212185F0C4E00F0224B /* SoilType.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF210185F0C4E00F0224B /* SoilType.m */; };
+		071CF215185F0C4E00F0224B /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF214185F0C4E00F0224B /* SpreadingEvent.m */; };
+		071CF216185F0C4E00F0224B /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF214185F0C4E00F0224B /* SpreadingEvent.m */; };
 		072B83B518576D7B00339018 /* FCAFieldInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072B83B418576D7B00339018 /* FCAFieldInfoTableViewController.m */; };
-		072B83B618576D7B00339018 /* FCAFieldInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072B83B418576D7B00339018 /* FCAFieldInfoTableViewController.m */; };
+		073028BA185F683900DFD9F9 /* FCASpreadingEventSingleLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 073028B9185F683900DFD9F9 /* FCASpreadingEventSingleLabelCell.m */; };
+		073028C6185F6ADE00DFD9F9 /* FCADatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 073028C5185F6ADE00DFD9F9 /* FCADatePickerCell.m */; };
+		073028CC185F6B0200DFD9F9 /* FCAApplicationRateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 073028CB185F6B0200DFD9F9 /* FCAApplicationRateCell.m */; };
+		073028CF185F6B3500DFD9F9 /* FCASquareImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 073028CE185F6B3500DFD9F9 /* FCASquareImageCell.m */; };
 		07345139184DC316004FBC1E /* SoCMAboutViewController-iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 07345138184DC316004FBC1E /* SoCMAboutViewController-iPhone.m */; };
 		0734513D184DC717004FBC1E /* UIViewController+FCAFrontPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */; };
-		075E74651857330E006B3FFA /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 075E74641857330E006B3FFA /* SpreadingEvent.m */; };
-		075E74661857330E006B3FFA /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 075E74641857330E006B3FFA /* SpreadingEvent.m */; };
 		07609F5F185B013E00177718 /* FCASpreadingEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F5E185B013E00177718 /* FCASpreadingEventViewController.m */; };
-		07609F60185B013E00177718 /* FCASpreadingEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F5E185B013E00177718 /* FCASpreadingEventViewController.m */; };
 		07609F64185B04A000177718 /* FCASpreadingEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F63185B04A000177718 /* FCASpreadingEventCell.m */; };
-		07609F65185B04A000177718 /* FCASpreadingEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F63185B04A000177718 /* FCASpreadingEventCell.m */; };
 		07609F69185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F68185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m */; };
-		07609F6A185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F68185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m */; };
 		07609F6E185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F6D185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m */; };
-		07609F6F185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F6D185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m */; };
 		0777B4F4184DD4E300842DBA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0777B4F3184DD4E300842DBA /* CoreData.framework */; };
-		0777B4F7184DD51F00842DBA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */; };
-		0777B4F8184DD51F00842DBA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */; };
 		0777B54A184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */; };
 		0777B54B184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */; };
 		077B8408185B78F700D0F002 /* FCADatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B8407185B78F700D0F002 /* FCADatePickerViewController.m */; };
-		077B8409185B78F700D0F002 /* FCADatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B8407185B78F700D0F002 /* FCADatePickerViewController.m */; };
 		077B8414185B89AB00D0F002 /* cattle_100m3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B840B185B89AB00D0F002 /* cattle_100m3.jpg */; };
 		077B8415185B89AB00D0F002 /* cattle_100m3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B840B185B89AB00D0F002 /* cattle_100m3.jpg */; };
 		077B8416185B89AB00D0F002 /* cattle_25m3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B840C185B89AB00D0F002 /* cattle_25m3.jpg */; };
@@ -54,14 +69,10 @@
 		077B8428185B8BB500D0F002 /* 30m3ha cattle.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8426185B8BB500D0F002 /* 30m3ha cattle.jpg */; };
 		077B842A185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8429185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg */; };
 		077B842B185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8429185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg */; };
-		077B842D185B8D8900D0F002 /* manure_types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 077B842C185B8D8900D0F002 /* manure_types.plist */; };
-		077B842E185B8D8900D0F002 /* manure_types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 077B842C185B8D8900D0F002 /* manure_types.plist */; };
-		078B27771850EB5700E78747 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B27761850EB5700E78747 /* Field.m */; };
-		078B27781850EB5700E78747 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B27761850EB5700E78747 /* Field.m */; };
 		078B278618519AB000E78747 /* FCADataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B278518519AB000E78747 /* FCADataModel.m */; };
 		078B278718519AB000E78747 /* FCADataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B278518519AB000E78747 /* FCADataModel.m */; };
-		07B7E27218560CFD00B90F61 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E27118560CFD00B90F61 /* Photo.m */; };
-		07B7E27318560CFD00B90F61 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E27118560CFD00B90F61 /* Photo.m */; };
+		079E840D1861798D003309B6 /* FCAManureTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 079E840C1861798D003309B6 /* FCAManureTypeViewController.m */; };
+		079E84101861799D003309B6 /* FCAManureQualityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 079E840F1861799D003309B6 /* FCAManureQualityViewController.m */; };
 		07B7E27F185611FA00B90F61 /* NSBundleUOPCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E276185611FA00B90F61 /* NSBundleUOPCategory.m */; };
 		07B7E280185611FA00B90F61 /* NSBundleUOPCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E276185611FA00B90F61 /* NSBundleUOPCategory.m */; };
 		07B7E281185611FA00B90F61 /* UIImageUOPCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E278185611FA00B90F61 /* UIImageUOPCategory.m */; };
@@ -73,7 +84,7 @@
 		07B7E287185611FA00B90F61 /* UIScreen+OOTY.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E27E185611FA00B90F61 /* UIScreen+OOTY.m */; };
 		07B7E288185611FA00B90F61 /* UIScreen+OOTY.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E27E185611FA00B90F61 /* UIScreen+OOTY.m */; };
 		07B7E28C185612AA00B90F61 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E28B185612AA00B90F61 /* PhotoViewController.m */; };
-		07B7E28D185612AA00B90F61 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E28B185612AA00B90F61 /* PhotoViewController.m */; };
+		07C3FC1A186049EC007C7442 /* FCADateStringCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FC19186049EC007C7442 /* FCADateStringCell.m */; };
 		07EACC021848689700D6A59E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC011848689700D6A59E /* Foundation.framework */; };
 		07EACC041848689700D6A59E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC031848689700D6A59E /* CoreGraphics.framework */; };
 		07EACC061848689700D6A59E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC051848689700D6A59E /* UIKit.framework */; };
@@ -90,6 +101,7 @@
 		07EACC2E1848689700D6A59E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07EACC2C1848689700D6A59E /* InfoPlist.strings */; };
 		07EACC301848689700D6A59E /* FarmKrappAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EACC2F1848689700D6A59E /* FarmKrappAppTests.m */; };
 		07EACC3A1848697D00D6A59E /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 07EACC391848697D00D6A59E /* TODO */; };
+		07FF4DFD185C690500825A8B /* SoCMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EACC111848689700D6A59E /* SoCMAppDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,18 +115,44 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		070B850418616FBE00609C72 /* FCAManureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAManureCell.h; sourceTree = "<group>"; };
+		070B850518616FBE00609C72 /* FCAManureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAManureCell.m; sourceTree = "<group>"; };
 		070F18E218574C9D0008FA19 /* FCAFieldsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAFieldsViewController.h; sourceTree = "<group>"; };
 		070F18E318574C9D0008FA19 /* FCAFieldsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAFieldsViewController.m; sourceTree = "<group>"; };
 		070F18E7185762990008FA19 /* FCAFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAFieldCell.h; sourceTree = "<group>"; };
 		070F18E8185762990008FA19 /* FCAFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAFieldCell.m; sourceTree = "<group>"; };
+		071CF1D2185EF7EB00F0224B /* manure_types.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = manure_types.plist; sourceTree = "<group>"; };
+		071CF1D4185EF7EB00F0224B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		071CF1F5185F08D400F0224B /* crop_types.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = crop_types.plist; sourceTree = "<group>"; };
+		071CF1F8185F08ED00F0224B /* soil_types.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = soil_types.plist; sourceTree = "<group>"; };
+		071CF1FB185F0C4D00F0224B /* ManureQuality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManureQuality.h; path = ../ManureQuality.h; sourceTree = "<group>"; };
+		071CF1FC185F0C4D00F0224B /* ManureQuality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManureQuality.m; path = ../ManureQuality.m; sourceTree = "<group>"; };
+		071CF1FF185F0C4E00F0224B /* Field.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Field.h; path = ../Field.h; sourceTree = "<group>"; };
+		071CF200185F0C4E00F0224B /* Field.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Field.m; path = ../Field.m; sourceTree = "<group>"; };
+		071CF203185F0C4E00F0224B /* ManureType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManureType.h; path = ../ManureType.h; sourceTree = "<group>"; };
+		071CF204185F0C4E00F0224B /* ManureType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManureType.m; path = ../ManureType.m; sourceTree = "<group>"; };
+		071CF207185F0C4E00F0224B /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = ../Photo.h; sourceTree = "<group>"; };
+		071CF208185F0C4E00F0224B /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = ../Photo.m; sourceTree = "<group>"; };
+		071CF20B185F0C4E00F0224B /* CropType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CropType.h; path = ../CropType.h; sourceTree = "<group>"; };
+		071CF20C185F0C4E00F0224B /* CropType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CropType.m; path = ../CropType.m; sourceTree = "<group>"; };
+		071CF20F185F0C4E00F0224B /* SoilType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoilType.h; path = ../SoilType.h; sourceTree = "<group>"; };
+		071CF210185F0C4E00F0224B /* SoilType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoilType.m; path = ../SoilType.m; sourceTree = "<group>"; };
+		071CF213185F0C4E00F0224B /* SpreadingEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpreadingEvent.h; path = ../SpreadingEvent.h; sourceTree = "<group>"; };
+		071CF214185F0C4E00F0224B /* SpreadingEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpreadingEvent.m; path = ../SpreadingEvent.m; sourceTree = "<group>"; };
 		072B83B318576D7B00339018 /* FCAFieldInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAFieldInfoTableViewController.h; sourceTree = "<group>"; };
 		072B83B418576D7B00339018 /* FCAFieldInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAFieldInfoTableViewController.m; sourceTree = "<group>"; };
+		073028B8185F683900DFD9F9 /* FCASpreadingEventSingleLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASpreadingEventSingleLabelCell.h; sourceTree = "<group>"; };
+		073028B9185F683900DFD9F9 /* FCASpreadingEventSingleLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCASpreadingEventSingleLabelCell.m; sourceTree = "<group>"; };
+		073028C4185F6ADE00DFD9F9 /* FCADatePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCADatePickerCell.h; sourceTree = "<group>"; };
+		073028C5185F6ADE00DFD9F9 /* FCADatePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCADatePickerCell.m; sourceTree = "<group>"; };
+		073028CA185F6B0200DFD9F9 /* FCAApplicationRateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAApplicationRateCell.h; sourceTree = "<group>"; };
+		073028CB185F6B0200DFD9F9 /* FCAApplicationRateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAApplicationRateCell.m; sourceTree = "<group>"; };
+		073028CD185F6B3500DFD9F9 /* FCASquareImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASquareImageCell.h; sourceTree = "<group>"; };
+		073028CE185F6B3500DFD9F9 /* FCASquareImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCASquareImageCell.m; sourceTree = "<group>"; };
 		07345137184DC316004FBC1E /* SoCMAboutViewController-iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SoCMAboutViewController-iPhone.h"; sourceTree = "<group>"; };
 		07345138184DC316004FBC1E /* SoCMAboutViewController-iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SoCMAboutViewController-iPhone.m"; sourceTree = "<group>"; };
 		0734513B184DC717004FBC1E /* UIViewController+FCAFrontPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FCAFrontPage.h"; sourceTree = "<group>"; };
 		0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FCAFrontPage.m"; sourceTree = "<group>"; };
-		075E74631857330E006B3FFA /* SpreadingEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpreadingEvent.h; sourceTree = "<group>"; };
-		075E74641857330E006B3FFA /* SpreadingEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpreadingEvent.m; sourceTree = "<group>"; };
 		07609F5D185B013E00177718 /* FCASpreadingEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASpreadingEventViewController.h; sourceTree = "<group>"; };
 		07609F5E185B013E00177718 /* FCASpreadingEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCASpreadingEventViewController.m; sourceTree = "<group>"; };
 		07609F62185B04A000177718 /* FCASpreadingEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASpreadingEventCell.h; sourceTree = "<group>"; };
@@ -124,7 +162,6 @@
 		07609F6C185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASpreadingEventSummaryTableViewController.h; sourceTree = "<group>"; };
 		07609F6D185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCASpreadingEventSummaryTableViewController.m; sourceTree = "<group>"; };
 		0777B4F3184DD4E300842DBA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		0777B4F6184DD51F00842DBA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		0777B548184DDE3C00842DBA /* SoCMViewControllerCommonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoCMViewControllerCommonBase.h; sourceTree = "<group>"; };
 		0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoCMViewControllerCommonBase.m; sourceTree = "<group>"; };
 		077B8406185B78F700D0F002 /* FCADatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCADatePickerViewController.h; sourceTree = "<group>"; };
@@ -140,13 +177,12 @@
 		077B8413185B89AB00D0F002 /* poultry_5t.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = poultry_5t.jpg; sourceTree = "<group>"; };
 		077B8426185B8BB500D0F002 /* 30m3ha cattle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "30m3ha cattle.jpg"; sourceTree = "<group>"; };
 		077B8429185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pig slurry 75m3 dm 4.jpg"; sourceTree = "<group>"; };
-		077B842C185B8D8900D0F002 /* manure_types.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = manure_types.plist; sourceTree = "<group>"; };
-		078B27751850EB5700E78747 /* Field.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Field.h; sourceTree = "<group>"; };
-		078B27761850EB5700E78747 /* Field.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Field.m; sourceTree = "<group>"; };
 		078B278418519AB000E78747 /* FCADataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCADataModel.h; sourceTree = "<group>"; };
 		078B278518519AB000E78747 /* FCADataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCADataModel.m; sourceTree = "<group>"; };
-		07B7E27018560CFD00B90F61 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		07B7E27118560CFD00B90F61 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		079E840B1861798D003309B6 /* FCAManureTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAManureTypeViewController.h; sourceTree = "<group>"; };
+		079E840C1861798D003309B6 /* FCAManureTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAManureTypeViewController.m; sourceTree = "<group>"; };
+		079E840E1861799D003309B6 /* FCAManureQualityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAManureQualityViewController.h; sourceTree = "<group>"; };
+		079E840F1861799D003309B6 /* FCAManureQualityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAManureQualityViewController.m; sourceTree = "<group>"; };
 		07B7E275185611FA00B90F61 /* NSBundleUOPCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBundleUOPCategory.h; sourceTree = "<group>"; };
 		07B7E276185611FA00B90F61 /* NSBundleUOPCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBundleUOPCategory.m; sourceTree = "<group>"; };
 		07B7E277185611FA00B90F61 /* UIImageUOPCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageUOPCategory.h; sourceTree = "<group>"; };
@@ -159,6 +195,8 @@
 		07B7E27E185611FA00B90F61 /* UIScreen+OOTY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+OOTY.m"; sourceTree = "<group>"; };
 		07B7E28A185612AA00B90F61 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		07B7E28B185612AA00B90F61 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		07C3FC18186049EC007C7442 /* FCADateStringCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCADateStringCell.h; sourceTree = "<group>"; };
+		07C3FC19186049EC007C7442 /* FCADateStringCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCADateStringCell.m; sourceTree = "<group>"; };
 		07EACBFE1848689700D6A59E /* FarmKrappApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarmKrappApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EACC011848689700D6A59E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07EACC031848689700D6A59E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -236,6 +274,25 @@
 			name = FieldInfo;
 			sourceTree = "<group>";
 		};
+		073028AB185F675E00DFD9F9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				073028B8185F683900DFD9F9 /* FCASpreadingEventSingleLabelCell.h */,
+				073028B9185F683900DFD9F9 /* FCASpreadingEventSingleLabelCell.m */,
+				07C3FC18186049EC007C7442 /* FCADateStringCell.h */,
+				07C3FC19186049EC007C7442 /* FCADateStringCell.m */,
+				073028C4185F6ADE00DFD9F9 /* FCADatePickerCell.h */,
+				073028C5185F6ADE00DFD9F9 /* FCADatePickerCell.m */,
+				070B850418616FBE00609C72 /* FCAManureCell.h */,
+				070B850518616FBE00609C72 /* FCAManureCell.m */,
+				073028CA185F6B0200DFD9F9 /* FCAApplicationRateCell.h */,
+				073028CB185F6B0200DFD9F9 /* FCAApplicationRateCell.m */,
+				073028CD185F6B3500DFD9F9 /* FCASquareImageCell.h */,
+				073028CE185F6B3500DFD9F9 /* FCASquareImageCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		0734513A184DC32E004FBC1E /* Front Page */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +330,8 @@
 		07609F66185B0C1200177718 /* SpreadingEventDetails */ = {
 			isa = PBXGroup;
 			children = (
+				079E840A186175CE003309B6 /* DetailControllers */,
+				073028AB185F675E00DFD9F9 /* Cells */,
 				07609F67185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.h */,
 				07609F68185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m */,
 				077B8406185B78F700D0F002 /* FCADatePickerViewController.h */,
@@ -321,19 +380,40 @@
 		078B27741850EB2600E78747 /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */,
-				075E74631857330E006B3FFA /* SpreadingEvent.h */,
-				075E74641857330E006B3FFA /* SpreadingEvent.m */,
-				07B7E27018560CFD00B90F61 /* Photo.h */,
-				07B7E27118560CFD00B90F61 /* Photo.m */,
-				078B27751850EB5700E78747 /* Field.h */,
-				078B27761850EB5700E78747 /* Field.m */,
+				071CF1F5185F08D400F0224B /* crop_types.plist */,
+				071CF1F8185F08ED00F0224B /* soil_types.plist */,
+				071CF1D2185EF7EB00F0224B /* manure_types.plist */,
+				071CF213185F0C4E00F0224B /* SpreadingEvent.h */,
+				071CF214185F0C4E00F0224B /* SpreadingEvent.m */,
+				071CF20F185F0C4E00F0224B /* SoilType.h */,
+				071CF210185F0C4E00F0224B /* SoilType.m */,
+				071CF20B185F0C4E00F0224B /* CropType.h */,
+				071CF20C185F0C4E00F0224B /* CropType.m */,
+				071CF207185F0C4E00F0224B /* Photo.h */,
+				071CF208185F0C4E00F0224B /* Photo.m */,
+				071CF203185F0C4E00F0224B /* ManureType.h */,
+				071CF204185F0C4E00F0224B /* ManureType.m */,
+				071CF1FF185F0C4E00F0224B /* Field.h */,
+				071CF200185F0C4E00F0224B /* Field.m */,
+				071CF1FB185F0C4D00F0224B /* ManureQuality.h */,
+				071CF1FC185F0C4D00F0224B /* ManureQuality.m */,
+				071CF1D3185EF7EB00F0224B /* Model.xcdatamodeld */,
 				078B278418519AB000E78747 /* FCADataModel.h */,
 				078B278518519AB000E78747 /* FCADataModel.m */,
-				077B842C185B8D8900D0F002 /* manure_types.plist */,
 			);
 			name = CoreDataModel;
 			path = FarmKrappApp;
+			sourceTree = "<group>";
+		};
+		079E840A186175CE003309B6 /* DetailControllers */ = {
+			isa = PBXGroup;
+			children = (
+				079E840B1861798D003309B6 /* FCAManureTypeViewController.h */,
+				079E840C1861798D003309B6 /* FCAManureTypeViewController.m */,
+				079E840E1861799D003309B6 /* FCAManureQualityViewController.h */,
+				079E840F1861799D003309B6 /* FCAManureQualityViewController.m */,
+			);
+			name = DetailControllers;
 			sourceTree = "<group>";
 		};
 		07B7E274185611DD00B90F61 /* Categories */ = {
@@ -525,9 +605,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				071CF1F6185F08D400F0224B /* crop_types.plist in Resources */,
 				07EACC181848689700D6A59E /* Main_iPad.storyboard in Resources */,
 				077B841A185B89AB00D0F002 /* fym_25t.jpg in Resources */,
-				077B842D185B8D8900D0F002 /* manure_types.plist in Resources */,
+				071CF1D5185EF7EB00F0224B /* manure_types.plist in Resources */,
 				077B8422185B89AB00D0F002 /* poultry_10t.jpg in Resources */,
 				07EACC3A1848697D00D6A59E /* TODO in Resources */,
 				077B8424185B89AB00D0F002 /* poultry_5t.jpg in Resources */,
@@ -540,6 +621,7 @@
 				077B8414185B89AB00D0F002 /* cattle_100m3.jpg in Resources */,
 				07EACC0C1848689700D6A59E /* InfoPlist.strings in Resources */,
 				077B8418185B89AB00D0F002 /* cattle_50m3.jpg in Resources */,
+				071CF1F9185F08ED00F0224B /* soil_types.plist in Resources */,
 				077B8427185B8BB500D0F002 /* 30m3ha cattle.jpg in Resources */,
 				077B8420185B89AB00D0F002 /* pig_50m3.jpg in Resources */,
 			);
@@ -550,13 +632,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				077B8415185B89AB00D0F002 /* cattle_100m3.jpg in Resources */,
+				071CF1FA185F08ED00F0224B /* soil_types.plist in Resources */,
 				077B841B185B89AB00D0F002 /* fym_25t.jpg in Resources */,
 				07EACC2E1848689700D6A59E /* InfoPlist.strings in Resources */,
 				077B8417185B89AB00D0F002 /* cattle_25m3.jpg in Resources */,
 				077B8425185B89AB00D0F002 /* poultry_5t.jpg in Resources */,
 				077B842B185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg in Resources */,
 				077B841D185B89AB00D0F002 /* fym_50t.jpg in Resources */,
-				077B842E185B8D8900D0F002 /* manure_types.plist in Resources */,
+				071CF1D6185EF7EB00F0224B /* manure_types.plist in Resources */,
+				071CF1F7185F08D400F0224B /* crop_types.plist in Resources */,
 				077B841F185B89AB00D0F002 /* pig_25m3.jpg in Resources */,
 				077B8419185B89AB00D0F002 /* cattle_50m3.jpg in Resources */,
 				077B8423185B89AB00D0F002 /* poultry_10t.jpg in Resources */,
@@ -574,29 +658,41 @@
 			files = (
 				07EACC121848689700D6A59E /* SoCMAppDelegate.m in Sources */,
 				07B7E27F185611FA00B90F61 /* NSBundleUOPCategory.m in Sources */,
+				073028BA185F683900DFD9F9 /* FCASpreadingEventSingleLabelCell.m in Sources */,
 				0734513D184DC717004FBC1E /* UIViewController+FCAFrontPage.m in Sources */,
+				073028CC185F6B0200DFD9F9 /* FCAApplicationRateCell.m in Sources */,
+				073028CF185F6B3500DFD9F9 /* FCASquareImageCell.m in Sources */,
+				070B850618616FBE00609C72 /* FCAManureCell.m in Sources */,
 				0777B54A184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */,
+				079E84101861799D003309B6 /* FCAManureQualityViewController.m in Sources */,
+				071CF209185F0C4E00F0224B /* Photo.m in Sources */,
 				070F18E418574C9D0008FA19 /* FCAFieldsViewController.m in Sources */,
 				07EACC1B1848689700D6A59E /* SoCMViewController.m in Sources */,
+				071CF201185F0C4E00F0224B /* Field.m in Sources */,
+				071CF1FD185F0C4D00F0224B /* ManureQuality.m in Sources */,
+				071CF20D185F0C4E00F0224B /* CropType.m in Sources */,
+				071CF215185F0C4E00F0224B /* SpreadingEvent.m in Sources */,
 				07345139184DC316004FBC1E /* SoCMAboutViewController-iPhone.m in Sources */,
 				072B83B518576D7B00339018 /* FCAFieldInfoTableViewController.m in Sources */,
 				07B7E281185611FA00B90F61 /* UIImageUOPCategory.m in Sources */,
+				071CF1D7185EF7EB00F0224B /* Model.xcdatamodeld in Sources */,
+				07C3FC1A186049EC007C7442 /* FCADateStringCell.m in Sources */,
 				078B278618519AB000E78747 /* FCADataModel.m in Sources */,
 				07B7E28C185612AA00B90F61 /* PhotoViewController.m in Sources */,
 				070F18E9185762990008FA19 /* FCAFieldCell.m in Sources */,
-				075E74651857330E006B3FFA /* SpreadingEvent.m in Sources */,
+				079E840D1861798D003309B6 /* FCAManureTypeViewController.m in Sources */,
+				073028C6185F6ADE00DFD9F9 /* FCADatePickerCell.m in Sources */,
 				07609F64185B04A000177718 /* FCASpreadingEventCell.m in Sources */,
 				07EACC0E1848689700D6A59E /* main.m in Sources */,
 				07B7E285185611FA00B90F61 /* NSString+OOTY.m in Sources */,
 				07B7E283185611FA00B90F61 /* NSDate+NSDateUOPCategory.m in Sources */,
-				07B7E27218560CFD00B90F61 /* Photo.m in Sources */,
-				078B27771850EB5700E78747 /* Field.m in Sources */,
 				07B7E287185611FA00B90F61 /* UIScreen+OOTY.m in Sources */,
 				07609F69185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m in Sources */,
 				07609F5F185B013E00177718 /* FCASpreadingEventViewController.m in Sources */,
 				07609F6E185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m in Sources */,
-				0777B4F7184DD51F00842DBA /* Model.xcdatamodeld in Sources */,
 				077B8408185B78F700D0F002 /* FCADatePickerViewController.m in Sources */,
+				071CF211185F0C4E00F0224B /* SoilType.m in Sources */,
+				071CF205185F0C4E00F0224B /* ManureType.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,27 +700,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07609F60185B013E00177718 /* FCASpreadingEventViewController.m in Sources */,
-				07609F65185B04A000177718 /* FCASpreadingEventCell.m in Sources */,
-				070F18E518574C9D0008FA19 /* FCAFieldsViewController.m in Sources */,
-				07B7E27318560CFD00B90F61 /* Photo.m in Sources */,
+				071CF20A185F0C4E00F0224B /* Photo.m in Sources */,
 				07EACC301848689700D6A59E /* FarmKrappAppTests.m in Sources */,
 				0777B54B184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */,
 				07B7E286185611FA00B90F61 /* NSString+OOTY.m in Sources */,
-				078B27781850EB5700E78747 /* Field.m in Sources */,
-				070F18EA185762990008FA19 /* FCAFieldCell.m in Sources */,
 				07B7E282185611FA00B90F61 /* UIImageUOPCategory.m in Sources */,
-				0777B4F8184DD51F00842DBA /* Model.xcdatamodeld in Sources */,
-				07609F6A185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m in Sources */,
-				07B7E28D185612AA00B90F61 /* PhotoViewController.m in Sources */,
 				07B7E280185611FA00B90F61 /* NSBundleUOPCategory.m in Sources */,
-				077B8409185B78F700D0F002 /* FCADatePickerViewController.m in Sources */,
-				07609F6F185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m in Sources */,
-				072B83B618576D7B00339018 /* FCAFieldInfoTableViewController.m in Sources */,
+				07FF4DFD185C690500825A8B /* SoCMAppDelegate.m in Sources */,
+				071CF202185F0C4E00F0224B /* Field.m in Sources */,
+				071CF206185F0C4E00F0224B /* ManureType.m in Sources */,
+				071CF216185F0C4E00F0224B /* SpreadingEvent.m in Sources */,
+				071CF20E185F0C4E00F0224B /* CropType.m in Sources */,
 				078B278718519AB000E78747 /* FCADataModel.m in Sources */,
+				071CF1D8185EF7EB00F0224B /* Model.xcdatamodeld in Sources */,
 				07B7E284185611FA00B90F61 /* NSDate+NSDateUOPCategory.m in Sources */,
 				07B7E288185611FA00B90F61 /* UIScreen+OOTY.m in Sources */,
-				075E74661857330E006B3FFA /* SpreadingEvent.m in Sources */,
+				071CF212185F0C4E00F0224B /* SoilType.m in Sources */,
+				071CF1FE185F0C4D00F0224B /* ManureQuality.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -853,12 +945,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		0777B4F5184DD51F00842DBA /* Model.xcdatamodeld */ = {
+		071CF1D3185EF7EB00F0224B /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				0777B4F6184DD51F00842DBA /* Model.xcdatamodel */,
+				071CF1D4185EF7EB00F0224B /* Model.xcdatamodel */,
 			);
-			currentVersion = 0777B4F6184DD51F00842DBA /* Model.xcdatamodel */;
+			currentVersion = 071CF1D4185EF7EB00F0224B /* Model.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
