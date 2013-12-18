@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FCADataModel.h"
 
 @interface FCAManureTypeViewController : UITableViewController
-
+@property (readwrite,nonatomic, copy) void(^callBackBlock)(ManureType*, ManureQuality*);
 @end

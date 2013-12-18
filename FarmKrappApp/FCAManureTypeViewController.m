@@ -7,7 +7,7 @@
 //
 
 #import "FCAManureTypeViewController.h"
-#import "FCADataModel.h"
+
 #import "FCAManureQualityViewController.h"
 
 @interface FCAManureTypeViewController ()
@@ -189,7 +189,8 @@
     //A quality type must have been selected
     NSInteger item = indexPath.row-1;
     self.selectedManureQuality = [self.arrayOfAllManureQuality objectAtIndex:item];
-    NSLog(@"You picked %@", self.selectedManureQuality.name);
+    self.callBackBlock(self.selectedManureType, self.selectedManureQuality);
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 
