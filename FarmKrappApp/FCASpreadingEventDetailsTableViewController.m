@@ -12,10 +12,8 @@
 #import "FCADataModel.h"
 #import "FCASpreadingEventSingleLabelCell.h"
 #import "FCADateStringCell.h"
-#import "FCAManureTypeCell.h"
-#import "FCAManureQualityCell.h"
 #import "FCADatePickerCell.h"
-#import "FCAPickerCell.h"
+#import "FCAManureCell.h"
 #import "FCAApplicationRateCell.h"
 #import "FCASquareImageCell.h"
 
@@ -37,12 +35,9 @@
 @property(readwrite, nonatomic, assign) BOOL manureQualityPickerShowing;
 @property(readwrite, nonatomic, assign) BOOL imageShowing;
 
-@property(readwrite, nonatomic, strong) NSNumber* numberOfManureTypes;
-
 @end
 
 @implementation FCASpreadingEventDetailsTableViewController
-@synthesize numberOfManureTypes = _numberOfManureTypes;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -105,7 +100,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 6;
+    return 5;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -118,15 +113,12 @@
             return @"DATE:";
             break;
         case 2:
-            return @"MANURE TYPE";
+            return @"MANURE TYPE & QUALITY";
             break;
         case 3:
-            return @"MANURE QUALITY";
-            break;
-        case 4:
             return @"APPLICATION RATE";
             break;
-        case 5:
+        case 4:
             return @"Guide image:";
             break;
         default:
@@ -135,25 +127,36 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 60.0;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger section = indexPath.section;
     NSUInteger row = indexPath.row;
     switch (section) {
         case 0:
+            //Field name
             return 60.0;
             break;
         case 1:
-        case 2:
-        case 3:
+            //Date + Picker
             return (row==0) ? 60.0 : 160.0;
+        case 2:
+            //Manure type + quality
+            return 100;
             break;
-        case 4:
+        case 3:
+            //Application rate
             return 130.0;
             break;
-        case 5:
+        case 4:
+            //Image
             return 320.0;
             break;
+            //Should not be needed
         default:
             return 60.0;
             break;
@@ -181,28 +184,13 @@
             break;
             
         case 2:
-            //Manure Type + Picker
-            if (self.manureTypePickerShowing == YES) {
-                return 2;
-            } else {
-                return 1;
-            }
-            break;
-            
+            //Manure Type + quality
         case 3:
-            if (self.manureQualityPickerShowing == YES) {
-                return 2;
-            } else {
-                return 1;
-            }
-            break;
-            
-        case 4:
             //Application rate
             return 1;
             break;
             
-        case 5:
+        case 4:
             //Image
             if (self.imageShowing) {
                 return 1;
@@ -211,7 +199,6 @@
             }
             break;
 
-            
         default:
             break;
     }
@@ -223,24 +210,22 @@
 #warning This needs checking
     UITableViewCell *cell;
     FCASpreadingEventSingleLabelCell* fieldNameCell;
-    FCAManureTypeCell* manureTypeCell;
-    FCAManureQualityCell* manureQualityCell;
     FCADateStringCell* dateStringCell;
     FCADatePickerCell* datePickerCell;
-    FCAPickerCell* pickerCell;
+    FCAManureCell* manureCell;
     FCAApplicationRateCell* appRateCell;
     FCASquareImageCell* imageCell;
     
     switch (indexPath.section) {
         case 0:
+            //Field
             cell = [tableView dequeueReusableCellWithIdentifier:@"SingleLabelCell" forIndexPath:indexPath];
-//            cell = [tableView dequeueReusableCellWithIdentifier:@"SingleLabelCell"];
             fieldNameCell = (FCASpreadingEventSingleLabelCell*)cell;
             fieldNameCell.label.text = self.field.name;
-            //TO DO
             break;
             
         case 1:
+            //Date
             if (indexPath.row == 0) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"DateStringCell" forIndexPath:indexPath];
                 dateStringCell = (FCADateStringCell*)cell;
@@ -256,24 +241,18 @@
             break;
 
         case 2:
-        case 3:
-            if (indexPath.row == 0) {
-                cell = [tableView dequeueReusableCellWithIdentifier:@"ManureTypeStringCell" forIndexPath:indexPath];
-                manureTypeCell = (FCAManureTypeCell*)cell;
-                if (self.manureType) {
-                    manureTypeCell.label.text = self.manureType;
-                } else {
-                    manureTypeCell.label.text = @"Select manure type";
-                }
+            //Manure type + quality
+            cell = [tableView dequeueReusableCellWithIdentifier:@"ManureCell" forIndexPath:indexPath];
+            manureCell = (FCAManureCell*)cell;
+            if (self.manureType) {
+                //TBD
             } else {
-                cell = [tableView dequeueReusableCellWithIdentifier:@"PickerCell" forIndexPath:indexPath];
-                pickerCell = (FCAPickerCell*)cell;
-                pickerCell.pickerView.tag = 1;
                 //TBD
             }
             break;
-                        
-        case 4:
+            
+        case 3:
+            //Application rate
             cell = [tableView dequeueReusableCellWithIdentifier:@"ApplicationRateCell" forIndexPath:indexPath];
             appRateCell = (FCAApplicationRateCell*)cell;
             //TBD
@@ -337,70 +316,25 @@
     }
 }
 
-#pragma mark - Picker Datasource
-// returns the number of 'columns' to display.
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
-// returns the # of rows in each component..
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return [ManureType count];
-}
-#pragma mark - Picker Delegate
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    NSArray* arrayOfManagedObjects = [ManureType allManagedObjectsSortedByName];
-    ManureType* mt = [arrayOfManagedObjects objectAtIndex:row];
-    return mt.displayName;
-}
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-{
-    return 40.0;
-}
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    NSArray* arrayOfManagedObjects = [ManureType allManagedObjectsSortedByName];
-    ManureType* mt = [arrayOfManagedObjects objectAtIndex:row];
-    self.manureType = mt.displayName;
-    [self.tableView reloadData];
-}
-
--(NSNumber*)numberOfManureTypes
-{
-    if (_numberOfManureTypes == nil) {
-        self.numberOfManureTypes = [NSNumber numberWithInt:[ManureType count]];
-    }
-    return _numberOfManureTypes;
-
-}
 #pragma mark - actions
 
 - (IBAction)doSave:(id)sender {
     //Validate form
     if (!self.date) {
         UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please provide a date" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         [av show];
         return;
     }
     if (!self.manureType) {
         UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please select a manure type" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-        [av show];
-        return;
-    }
-    if (!self.manureQuality) {
-        UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please select a manure quality" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         [av show];
         return;
     }
     if (!self.applicationRate) {
         UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please provide a spreading rate" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         [av show];
         return;
     }
@@ -467,6 +401,48 @@
  {
  // Return NO if you do not want the item to be re-orderable.
  return YES;
+ }
+ */
+
+
+/*
+ // returns the number of 'columns' to display.
+ - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+ {
+ return 1;
+ }
+ 
+ // returns the # of rows in each component..
+ - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+ {
+ return [ManureType count];
+ }
+ #pragma mark - Picker Delegate
+ - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+ {
+ NSArray* arrayOfManagedObjects = [ManureType allManagedObjectsSortedByName];
+ ManureType* mt = [arrayOfManagedObjects objectAtIndex:row];
+ return mt.displayName;
+ }
+ - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+ {
+ return 40.0;
+ }
+ - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+ {
+ NSArray* arrayOfManagedObjects = [ManureType allManagedObjectsSortedByName];
+ ManureType* mt = [arrayOfManagedObjects objectAtIndex:row];
+ self.manureType = mt.displayName;
+ [self.tableView reloadData];
+ }
+ 
+ -(NSNumber*)numberOfManureTypes
+ {
+ if (_numberOfManureTypes == nil) {
+ self.numberOfManureTypes = [NSNumber numberWithInt:[ManureType count]];
+ }
+ return _numberOfManureTypes;
+ 
  }
  */
 @end

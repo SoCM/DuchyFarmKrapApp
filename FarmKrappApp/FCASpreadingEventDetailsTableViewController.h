@@ -10,8 +10,8 @@
 #import "SpreadingEvent.h"
 #import "Field.h"
 #import "FCADataModel.h"
-
-@interface FCASpreadingEventDetailsTableViewController : UITableViewController<UIPickerViewDataSource, UIPickerViewDelegate>
+ 
+@interface FCASpreadingEventDetailsTableViewController : UITableViewController
 
 @property(readwrite, nonatomic, strong) NSManagedObject* managedObject;
 @end
