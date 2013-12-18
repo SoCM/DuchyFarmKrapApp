@@ -130,6 +130,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 60.0;
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -356,7 +357,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
+//Change the name of this method to match the view controller you are using
+- (IBAction)unwindToSpreadingEventDetails:(UIStoryboardSegue*)sender
+{
+    NSLog(@"Back!");
+}
 
 
 - (IBAction)doDateUpdate:(id)sender {
