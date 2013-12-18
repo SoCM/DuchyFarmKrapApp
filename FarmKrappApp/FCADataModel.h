@@ -9,9 +9,14 @@
 
 #import <Foundation/Foundation.h>
 #import "SoCMAppDelegate.h"
+#import "SoilType.h"
+#import "CropType.h"
 #import "Field.h"
-#import "SpreadingEvent.h"
+#import "ManureType.h"
+#import "ManureQuality.h"
 #import "Photo.h"
+#import "SpreadingEvent.h"
+
 
 #pragma mark - Enumerated
 //ENUMERATED TYPES - ALLOWING FOR SUBCATEGORIES TO BE ADDED LATER
@@ -44,16 +49,39 @@ typedef enum {MANUREQUALITY_THIN_SOUP=100, MANUREQUALITY_THICK_SOUP=200, MANUREQ
 #define kACRES_PER_HECTARE 2.47105
 
 #pragma mark - Category on Field
+//Category on SoilType
+@interface SoilType (FCADataModel)
++(SoilType*)FetchSoilTypeForID:(NSNumber*)seqID;
+@end
+
+//Category on CropType
+@interface CropType (FCADataModel)
++(CropType*)FetchCropTypeForID:(NSNumber*)seqID;
+@end
+
+//Category on ManureType
+@interface ManureType (FCADataModel)
++(ManureType*)FetchManureTypeForStringID:(NSString*)stringID;
++(NSUInteger)count;
++(NSArray*)allManagedObjectsSortedByName;
+@end
+
+//Category on ManureQuality
+@interface ManureQuality (FCADataModel)
++(ManureQuality*)FetchManureQualityForID:(NSNumber*)seqID;
++(NSArray*)allSortedManagedObjectsForManureType:(ManureType*)mt;
+@end
+
 //Category on Field
 @interface Field (FCADataModel)
-+(id)InsertFieldWithName:(NSString*)nameString soilType:(SOIL_TYPE)soil_type cropType:(CROP_TYPE)crop_type sizeInHectares:(NSNumber*)size;
++(id)InsertFieldWithName:(NSString*)nameString soilType:(SoilType*)soil_type cropType:(CropType*)crop_type sizeInHectares:(NSNumber*)size;
 -(NSArray*)arrayOfSpreadingEvents;
 @end
 
 #pragma mark - Category on SpreadingEvent
 //Category on Spreading Event
 @interface SpreadingEvent (FCADataModel)
-+(SpreadingEvent*)InsertSpreadingEventWithDate:(NSDate*)date manureType:(MANURE_TYPE)manure_type quality:(MANURE_QUALITY)manure_quality density:(NSNumber*)manure_density;
++(SpreadingEvent*)InsertSpreadingEventWithDate:(NSDate*)date manureType:(ManureType*)manure_type quality:(ManureQuality*)manure_quality density:(NSNumber*)manure_density;
 -(NSArray*)arrayOfPhotos;
 @end
 
@@ -69,14 +97,14 @@ typedef enum {MANUREQUALITY_THIN_SOUP=100, MANUREQUALITY_THICK_SOUP=200, MANUREQ
 @interface FCADataModel : NSObject
 //MODEL API
 #pragma mark - Field
-+(id)addNewFieldWithName:(NSString*)nameString soilType:(SOIL_TYPE)soil_type cropType:(CROP_TYPE)crop_type sizeInHectares:(NSNumber*)size;
++(id)addNewFieldWithName:(NSString*)nameString soilType:(SoilType*)soil_type cropType:(CropType*)crop_type sizeInHectares:(NSNumber*)size;
 +(void)removeField:(Field*)field;
 +(NSArray*)arrayOfFields;
 +(NSArray*)arrayOfFieldsWithSortString:(NSString*)sortString;
 +(NSArray*)arrayOfFieldsWithSortString:(NSString*)sortString andPredicateString:(NSString*)predicateString;
 +(NSNumber*)numberOfFields;
 #pragma mark - SpreadingEvent
-+(id)addNewSpreadingEventWithDate:(NSDate*)date manureType:(MANURE_TYPE)manure_type quality:(MANURE_QUALITY)manure_quality density:(NSNumber*)manure_density toField:(Field*)field;
++(id)addNewSpreadingEventWithDate:(NSDate*)date manureType:(ManureType*)manure_type quality:(ManureQuality*)manure_quality density:(NSNumber*)manure_density toField:(Field*)field;
 +(void)removeSpreadingEvent:spreadingEvent;
 +(NSArray*)arrayOfSpreadingEventsForField:(Field*)field;
 +(NSArray*)arrayOfSpreadingEventsForField:(Field*)field withSortString:(NSString*)sortString;

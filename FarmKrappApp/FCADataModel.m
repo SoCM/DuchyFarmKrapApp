@@ -16,20 +16,88 @@
 //******************
 //CATEGORY ON FIELD*
 //******************
+
+@implementation SoilType (FCADataModel)
++(SoilType*)FetchSoilTypeForID:(NSNumber*)seqID
+{
+    NSError* err;
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"SoilType"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"seqID == %@", seqID];
+    return ([[[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err] objectAtIndex:0]);
+}
+@end
+
+@implementation CropType (FCADataModel)
++(CropType*)FetchCropTypeForID:(NSNumber*)seqID
+{
+    NSError* err;
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"CropType"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"seqID == %@", seqID];
+    return ([[[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err] objectAtIndex:0]);
+}
+@end
+
+@implementation ManureType (FCADataModel)
++(ManureType*)FetchManureTypeForStringID:(NSString*)stringID
+{
+    NSError* err;
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"ManureType"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"stringID == %@", stringID];
+    return ([[[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err] objectAtIndex:0]);
+}
++(NSUInteger)count
+{
+    NSError* err;
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"ManureType"];
+    return ([[[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err] count]);    
+}
++(NSArray*)allManagedObjectsSortedByName
+{
+    NSError* err;
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"ManureType"];
+    fr.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES] ];
+    NSArray* res = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
+    return res;
+}
+
+@end
+
+@implementation ManureQuality (FCADataModel)
++(ManureQuality*)FetchManureQualityForID:(NSNumber*)seqID
+{
+    NSError* err;
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"ManureQuality"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"seqID == %@", seqID];
+    return ([[[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err] objectAtIndex:0]);
+}
++(NSArray*)allSortedManagedObjectsForManureType:(ManureType*)mt
+{
+    NSError* err;
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"ManureQuality"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"manureType == %@", mt];
+    fr.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"seqID" ascending:YES] ];
+    NSArray* res = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
+    return res;
+}
+@end
+
 @implementation Field (FCADataModel)
 
-+(id)InsertFieldWithName:(NSString*)nameString soilType:(SOIL_TYPE)soil_type cropType:(CROP_TYPE)crop_type sizeInHectares:(NSNumber*)size
++(id)InsertFieldWithName:(NSString*)nameString soilType:(SoilType*)soil_type cropType:(CropType*)crop_type sizeInHectares:(NSNumber*)size
 {
+    
     NSEntityDescription* ed = [NSEntityDescription entityForName:@"Field" inManagedObjectContext:[FCA_APP_DELEGATE managedObjectContext]];
     Field* field = [[Field alloc] initWithEntity:ed insertIntoManagedObjectContext:[FCA_APP_DELEGATE managedObjectContext]];
     if (field) {
         field.name = nameString;
-        field.soilType = [NSNumber numberWithInt:soil_type];
-        field.cropType = [NSNumber numberWithInt:crop_type];
+        field.soilType = soil_type;
+        field.cropType = crop_type;
         field.sizeInHectares = size;
+        [FCA_APP_DELEGATE saveContext];
     }
     return field;
 }
+
 -(NSArray*)arrayOfSpreadingEvents
 {
     return [FCADataModel arrayOfSpreadingEventsForField:self];
@@ -42,15 +110,16 @@
 //****************************
 @implementation SpreadingEvent (FCADataModel)
 
-+(SpreadingEvent*)InsertSpreadingEventWithDate:(NSDate*)date manureType:(MANURE_TYPE)manure_type quality:(MANURE_QUALITY)manure_quality density:(NSNumber*)manure_density
++(SpreadingEvent*)InsertSpreadingEventWithDate:(NSDate*)date manureType:(ManureType*)manure_type quality:(ManureQuality*)manure_quality density:(NSNumber*)manure_density
 {
     NSEntityDescription* ed = [NSEntityDescription entityForName:@"SpreadingEvent" inManagedObjectContext:[FCA_APP_DELEGATE managedObjectContext]];
     SpreadingEvent* se = [[SpreadingEvent alloc] initWithEntity:ed insertIntoManagedObjectContext:[FCA_APP_DELEGATE managedObjectContext]];
     if (se) {
         se.date = date;
-        se.manureType = [NSNumber numberWithInt:manure_type];
-        se.quality = [NSNumber numberWithInt:manure_quality];
+        se.manureType = manure_type;
+        se.manureQuality = manure_quality;
         se.density = manure_density;
+        [FCA_APP_DELEGATE saveContext];
     }
     return se;
 }
@@ -72,6 +141,7 @@
     Photo *ph = [[Photo alloc] initWithEntity:ed insertIntoManagedObjectContext:[FCA_APP_DELEGATE managedObjectContext]];
     ph.date = date;
     ph.photo = imageData;
+    [FCA_APP_DELEGATE saveContext];
     return ph;
 }
 +(NSData*)imageDataForPhoto:(Photo*)photo
@@ -92,7 +162,7 @@
 
 
 // Fields
-+(id)addNewFieldWithName:(NSString*)nameString soilType:(SOIL_TYPE)soil_type cropType:(CROP_TYPE)crop_type sizeInHectares:(NSNumber*)size
++(id)addNewFieldWithName:(NSString*)nameString soilType:(SoilType*)soil_type cropType:(CropType*)crop_type sizeInHectares:(NSNumber*)size
 {
     Field* result = [Field InsertFieldWithName:nameString soilType:soil_type cropType:crop_type sizeInHectares:size];
     [FCA_APP_DELEGATE saveContext];
@@ -129,7 +199,7 @@
 #pragma mark - DataModel Wrapper Class Methods - Spreading Events
 
 // Spreading events
-+(id)addNewSpreadingEventWithDate:(NSDate*)date manureType:(MANURE_TYPE)manure_type quality:(MANURE_QUALITY)manure_quality density:(NSNumber*)manure_density toField:(Field*)field
++(id)addNewSpreadingEventWithDate:(NSDate*)date manureType:(ManureType*)manure_type quality:(ManureQuality*)manure_quality density:(NSNumber*)manure_density toField:(Field*)field
 {
     SpreadingEvent* result = [SpreadingEvent InsertSpreadingEventWithDate:date
                                                                manureType:manure_type
