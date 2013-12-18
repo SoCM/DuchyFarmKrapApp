@@ -297,4 +297,42 @@
     //Save to persistent store
     [FCA_APP_DELEGATE saveContext];
 }
+
+#pragma mark - image selection
++(NSString*)imageNameForManureType:(ManureType*)mt andRate:(NSNumber*)rate
+{
+    float fRate = rate.floatValue;
+    if ([mt.stringID isEqualToString:@"CattleSlurry"]) {
+        if (fRate <= 37.5) {
+            return @"cattle_25m3.jpg";
+        } else if (fRate <= 75.0) {
+            return @"cattle_50m3.jpg";
+        } else {
+            return @"cattle_100m3.jpg";
+        }
+    }
+    else if ([mt.stringID isEqualToString:@"FarmyardManure"]) {
+        if (fRate <= 37.5) {
+            return @"fym_25t.jpg";
+        } else {
+            return @"fym_50t.jpg";
+        }
+    }
+    else if ([mt.stringID isEqualToString:@"PigSlurry"]) {
+        if (fRate <= 37.5) {
+            return @"pig_25m3.jpg";
+        } else {
+            return @"pig_50m3.jpg";
+        }
+    }
+    else if ([mt.stringID isEqualToString:@"PoultryLitter"]) {
+        if (fRate <= 7.5) {
+            return @"poultry_5t.jpg";
+        } else {
+            return @"poultry_10t.jpg";
+        }
+    } else {
+        return nil;
+    }
+}
 @end

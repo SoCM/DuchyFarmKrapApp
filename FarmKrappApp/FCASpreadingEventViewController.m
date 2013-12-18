@@ -94,10 +94,15 @@
         FCASpreadingEventCell* cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         NSArray* arrayOfSE = [FCADataModel arrayOfSpreadingEventsForField:self.fieldSelected];
         SpreadingEvent* se = [arrayOfSE objectAtIndex:indexPath.row];
-        cell.manureTypeLabel.text = [MANURETYPE_STRING_DICT objectForKey:se.manureType];
+        cell.manureTypeLabel.text = se.manureType.displayName;
         cell.dateLabel.text = [se.date stringForUKShortFormatUsingGMT:YES];
         return cell;
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 60.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

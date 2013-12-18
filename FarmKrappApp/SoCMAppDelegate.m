@@ -7,6 +7,10 @@
 //
 
 #import "SoCMAppDelegate.h"
+#import "CropType.h"
+#import "SoilType.h"
+#import "ManureType.h"
+#import "ManureQuality.h"
 
 @implementation SoCMAppDelegate
 
@@ -17,6 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [self populateModel];
     return YES;
 }
 							
@@ -50,6 +55,123 @@
 
 
 // CORE DATA CODE
+
+-(void)populateModelSimpleWithEntity:(NSString*)entityName plistName:(NSString*)plistName
+{
+    NSError *err;
+    NSManagedObject* objType;
+    NSEntityDescription* entityCT = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
+    NSFetchRequest* fr;
+    
+    //Read / parse constant data plist (XML)
+    NSString *myPlistFilePath = [[NSBundle mainBundle] pathForResource: plistName ofType: @"plist"];
+    NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile: myPlistFilePath];
+    
+    //Get all keys
+    NSArray* rootKeys = [dict allKeys];
+    
+    //Traverse each - add if not present
+    for (NSString* strRootKey in rootKeys) {
+        //Get data for next object
+        NSDictionary* cropTypeDict = [dict objectForKey:strRootKey];
+        NSString* displayName = [cropTypeDict objectForKey:@"displayName"];
+        NSNumber* seqID = [cropTypeDict objectForKey:@"seqID"];
+        
+        //Is it in the data store?
+        fr = [NSFetchRequest fetchRequestWithEntityName:entityName];
+        fr.predicate = [NSPredicate predicateWithFormat:@"seqID == %@", seqID];
+        NSArray* arrayObjects = [self.managedObjectContext executeFetchRequest:fr error:&err];
+        if ([arrayObjects count] == 0) {
+            objType = [[NSManagedObject alloc] initWithEntity:entityCT insertIntoManagedObjectContext:self.managedObjectContext];
+            [objType setValue:seqID forKey:@"seqID"];
+            [objType setValue:displayName forKey:@"displayName"];
+        } else if ([arrayObjects count] == 1) {
+            objType = [arrayObjects objectAtIndex:0];
+        } else {
+            NSLog(@"ERROR");
+        }
+        [self saveContext];
+    }
+}
+
+
+//Populate data store with data from manure_types.plist
+// This will also bring in any changes made to this plist
+-(void)populateModel
+{
+    [self populateModelSimpleWithEntity:@"CropType" plistName:@"crop_types"];
+    [self populateModelSimpleWithEntity:@"SoilType" plistName:@"soil_types"];
+    
+    NSError *err;
+    ManureType* mt;
+    ManureQuality* mq;
+    
+    //Read / parse constant data plist (XML)
+    NSString *myPlistFilePath = [[NSBundle mainBundle] pathForResource: @"manure_types" ofType: @"plist"];
+    NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile: myPlistFilePath];
+    
+    //Get array of all keys (Manure Type Strings)
+    NSArray* allRootKeys = [dict allKeys];
+    
+    //Traverse - Populate all ManureType entries that do not exist (yum)
+    NSEntityDescription* entityMT = [NSEntityDescription entityForName:@"ManureType" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription* entityMQ = [NSEntityDescription entityForName:@"ManureQuality" inManagedObjectContext:self.managedObjectContext];
+    
+    
+    for (NSString* strRootKey in allRootKeys) {
+        
+        //Is it in the ManureType table?
+        NSFetchRequest* frmt = [NSFetchRequest fetchRequestWithEntityName:@"ManureType"];
+        frmt.predicate = [NSPredicate predicateWithFormat:@"stringID == %@", strRootKey];
+        NSArray* res = [self.managedObjectContext executeFetchRequest:frmt error:&err];
+        
+        //pList object
+        NSDictionary* manureTypeDict = [dict objectForKey:strRootKey];
+        
+        if ([res count] == 0) {
+            //No entry found - create
+            mt = [[ManureType alloc] initWithEntity:entityMT
+                     insertIntoManagedObjectContext:self.managedObjectContext];
+            mt.stringID = strRootKey;
+            mt.displayName = [manureTypeDict objectForKey:@"displayName"];
+            
+        } else if (res.count == 1) {
+            mt = [res objectAtIndex:0];
+        } else {
+            NSLog(@"Error - rebuild core data model");
+        }
+        
+        //For each manure type, get the array of "ManureQuality" keys
+        NSString* kp = [NSString stringWithFormat:@"%@.types", strRootKey];
+        NSArray* manureTypes = [dict valueForKeyPath:kp];
+        
+        //For each manure type, check to see if it exists in the core data store
+        for (NSDictionary* manureTypeDict in manureTypes) {
+            NSString* displayName = [manureTypeDict objectForKey:@"displayName"];
+            NSNumber* seqID = [manureTypeDict objectForKey:@"seqID"];
+            
+            NSFetchRequest* frmq = [NSFetchRequest fetchRequestWithEntityName:@"ManureQuality"];
+            frmq.predicate = [NSPredicate predicateWithFormat:@"seqID == %@", seqID];
+            NSArray* arrayMQ = [self.managedObjectContext executeFetchRequest:frmq error:&err];
+            if ([arrayMQ count] == 0) {
+                mq = [[ManureQuality alloc] initWithEntity:entityMQ
+                            insertIntoManagedObjectContext:self.managedObjectContext];
+                mq.seqID = seqID;
+                mq.name = displayName;
+            } else if ([arrayMQ count] == 1 ) {
+                mq = [arrayMQ objectAtIndex:0];
+            } else {
+                NSLog(@"Error");
+            }
+            
+            //Create relationship
+            [mt addQualitySetObject:mq];
+            [self saveContext];
+        }
+        [self saveContext];
+    }
+}
+
 
 - (void)saveContext
 {

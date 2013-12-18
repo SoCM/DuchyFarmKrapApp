@@ -123,4 +123,7 @@ typedef enum {MANUREQUALITY_THIN_SOUP=100, MANUREQUALITY_THICK_SOUP=200, MANUREQ
 +(NSPersistentStoreCoordinator*)persistentStoreCoordinator;
 +(void)saveContext;
 
+#pragma mark - image selection
++(NSString*)imageNameForManureType:(ManureType*)mt andRate:(NSNumber*)rate;
+
 @end

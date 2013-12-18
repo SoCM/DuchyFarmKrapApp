@@ -8,6 +8,7 @@
 
 #import "FCASpreadingEventDetailsTableViewController.h"
 #import "NSDate+NSDateUOPCategory.h"
+#import "FCAManureTypeViewController.h"
 
 #import "FCADataModel.h"
 #import "FCASpreadingEventSingleLabelCell.h"
@@ -34,6 +35,9 @@
 @property(readwrite, nonatomic, assign) BOOL manureTypePickerShowing;
 @property(readwrite, nonatomic, assign) BOOL manureQualityPickerShowing;
 @property(readwrite, nonatomic, assign) BOOL imageShowing;
+@property(readwrite, nonatomic, strong) ManureQuality* selectedManureQuality;
+@property(readwrite, nonatomic, strong) ManureType* selectedManureType;
+@property(readwrite, nonatomic, strong) NSString* currentImageFileName;
 
 @end
 
@@ -67,8 +71,9 @@
         self.date = [NSDate date];
         self.manureType = nil;
         self.manureQuality = nil;
-        self.applicationRate = nil;
-        
+        self.applicationRate = @10;
+        self.selectedManureQuality = nil;
+        self.selectedManureType = nil;
     }
     if ([obj isKindOfClass:[SpreadingEvent class]]) {
         //This is an existing spreading event
@@ -77,6 +82,8 @@
         self.date = self.spreadingEvent.date;
         self.manureType = ((ManureType*)self.spreadingEvent.manureType).stringID;
         self.manureQuality = ((ManureQuality*)self.spreadingEvent.manureQuality).seqID;
+        self.selectedManureType = self.spreadingEvent.manureType;
+        self.selectedManureQuality = self.spreadingEvent.manureQuality;
         self.applicationRate = self.spreadingEvent.density;
     }
     
@@ -100,7 +107,11 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 5;
+    if (self.imageShowing) {
+        return 5;
+    } else {
+        return 4;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -130,7 +141,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 60.0;
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -193,11 +203,7 @@
             
         case 4:
             //Image
-            if (self.imageShowing) {
-                return 1;
-            } else {
-                return 0;
-            }
+            return 1;
             break;
 
         default:
@@ -246,9 +252,11 @@
             cell = [tableView dequeueReusableCellWithIdentifier:@"ManureCell" forIndexPath:indexPath];
             manureCell = (FCAManureCell*)cell;
             if (self.manureType) {
-                //TBD
+                manureCell.manureTypeLabel.text = self.selectedManureType.displayName;
+                manureCell.manureQualityLabel.text = self.selectedManureQuality.name;
             } else {
-                //TBD
+                manureCell.manureTypeLabel.text = @"Select a Manure Type";
+                manureCell.manureQualityLabel.text = @"";
             }
             break;
             
@@ -256,13 +264,37 @@
             //Application rate
             cell = [tableView dequeueReusableCellWithIdentifier:@"ApplicationRateCell" forIndexPath:indexPath];
             appRateCell = (FCAApplicationRateCell*)cell;
-            //TBD
+            appRateCell.label.text = [NSString stringWithFormat:@"%@", self.applicationRate];
+            
+            //Update slider if different
+            if (appRateCell.slider.value != self.applicationRate.floatValue) {
+                appRateCell.slider.value = self.applicationRate.floatValue;
+            }
+
+            //Set scale depending on manure type
+            if (self.selectedManureType) {
+                if ([self.selectedManureType.stringID isEqualToString:@"PoultryLitter"]) {
+                    appRateCell.slider.maximumValue = 15.0;
+                } else {
+                    appRateCell.slider.maximumValue = 100.0;
+                }
+            }
             break;
             
-        case 5:
+        case 4:
+            
             cell = [tableView dequeueReusableCellWithIdentifier:@"ImageCell" forIndexPath:indexPath];
             imageCell = (FCASquareImageCell*)cell;
-            //TBD
+            if (self.selectedManureType) {
+                NSString* fileName = [FCADataModel imageNameForManureType:self.selectedManureType andRate:self.applicationRate];
+                
+                //Has the image name changed? (changing the image is expensive)
+                if (![self.currentImageFileName isEqualToString:fileName]) {
+                    NSLog(@"Updating %@ to %@", self.currentImageFileName, fileName);
+                    self.currentImageFileName = fileName;
+                    imageCell.poopImageView.image = [UIImage imageNamed:fileName];
+                }
+            }
             break;
                           
                           
@@ -279,45 +311,24 @@
 #pragma mark - UITableViewDelgate methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-#warning NOT FINISHED
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"ROW = %d", indexPath.row);
     
-    switch (indexPath.section) {
-        case 0:
-            //Field name
-            break;
-        case 1:
-            //Date + date picker
-            self.datePickerShowing = !self.datePickerShowing;
-            [tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
-
-            break;
-            
-        case 2:
-            //ManureType + ManureTypePicker
-            self.manureTypePickerShowing = !self.manureTypePickerShowing;
-            [tableView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationAutomatic];
-            break;
-            
-        case 3:
-            //ManureQuality + ManureQualityPicker
-            self.manureQualityPickerShowing = !self.manureQualityPickerShowing;
-            [tableView reloadSections:[NSIndexSet indexSetWithIndex:3] withRowAnimation:UITableViewRowAnimationAutomatic];
-            
-            break;
-        case 4:
-            //Application rate
-            break;
-        case 5:
-            //Image
-            break;
-        default:
-            break;
+    if (indexPath.section == 1) {
+        self.datePickerShowing = !self.datePickerShowing;
+        [tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
+    return;
 }
 
 #pragma mark - actions
+- (IBAction)doApplicationRateSliderUpdate:(id)sender {
+    UISlider* slider = (UISlider*)sender;
+    float v = slider.value;
+    v = roundf(v);
+    self.applicationRate = [NSNumber numberWithInt:(int)v];
+    [self.tableView reloadData];
+}
+
 
 - (IBAction)doSave:(id)sender {
     //Validate form
@@ -342,14 +353,14 @@
     //If we get this far, the data is complete - we simple save
     if (!self.spreadingEvent) {
         self.spreadingEvent = [FCADataModel addNewSpreadingEventWithDate:self.date
-                                                              manureType:[ManureType FetchManureTypeForStringID:self.manureType]
-                                                                 quality:[ManureQuality FetchManureQualityForID:self.manureQuality]
+                                                              manureType:self.selectedManureType
+                                                                 quality:self.selectedManureQuality
                                                                  density:self.applicationRate
                                                                  toField:self.field];
     } else {
         self.spreadingEvent.date = self.date;
-        self.spreadingEvent.manureType = [ManureType FetchManureTypeForStringID:self.manureType];
-        self.spreadingEvent.manureQuality = [ManureQuality FetchManureQualityForID:self.manureQuality];
+        self.spreadingEvent.manureType = self.selectedManureType;
+        self.spreadingEvent.manureQuality = self.selectedManureQuality;
         self.spreadingEvent.density = self.applicationRate;
     }
     //Save and pop back
@@ -370,84 +381,33 @@
     [self.tableView reloadData];
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
 
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
+#pragma mark - Navigation
 
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
+// In a story board-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    
+    UITableViewController* vc;
+    vc = [segue destinationViewController];
+    
+    void(^callBack)(ManureType*, ManureQuality*) = ^(ManureType* manureType, ManureQuality* manureQual) {
+        self.manureType = manureType.displayName;
+        self.manureQuality = manureQual.seqID;
+        self.selectedManureQuality = manureQual;
+        self.selectedManureType = manureType;
+        self.applicationRate = @10.0;   //Reset the application rate
+        self.imageShowing = YES;
+        [self.tableView reloadData];
+    };
+    
+    if ([segue.identifier isEqualToString:@"ManureDetailsSegue"]) {
+        FCAManureTypeViewController* mtva = (FCAManureTypeViewController*)vc;
+        mtva.callBackBlock =callBack;
+    }
+    
+}
 
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-
-/*
- // returns the number of 'columns' to display.
- - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
- {
- return 1;
- }
- 
- // returns the # of rows in each component..
- - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
- {
- return [ManureType count];
- }
- #pragma mark - Picker Delegate
- - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
- {
- NSArray* arrayOfManagedObjects = [ManureType allManagedObjectsSortedByName];
- ManureType* mt = [arrayOfManagedObjects objectAtIndex:row];
- return mt.displayName;
- }
- - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
- {
- return 40.0;
- }
- - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
- {
- NSArray* arrayOfManagedObjects = [ManureType allManagedObjectsSortedByName];
- ManureType* mt = [arrayOfManagedObjects objectAtIndex:row];
- self.manureType = mt.displayName;
- [self.tableView reloadData];
- }
- 
- -(NSNumber*)numberOfManureTypes
- {
- if (_numberOfManureTypes == nil) {
- self.numberOfManureTypes = [NSNumber numberWithInt:[ManureType count]];
- }
- return _numberOfManureTypes;
- 
- }
- */
 @end
