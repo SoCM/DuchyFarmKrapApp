@@ -701,34 +701,49 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="1870" y="1432"/>
         </scene>
-        <!--Manure Type View Controller - Select Manure Type-->
+        <!--Manure Type View Controller - Manure Details-->
         <scene sceneID="rmV-uT-mvg">
             <objects>
                 <tableViewController id="cB2-x3-KFc" customClass="FCAManureTypeViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="79" sectionHeaderHeight="22" sectionFooterHeight="22" id="PEe-XB-yr1">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="PEe-XB-yr1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BasicCell" textLabel="Zme-Z8-awR" rowHeight="79" style="IBUITableViewCellStyleDefault" id="X8z-W8-AhI">
-                                <rect key="frame" x="0.0" y="86" width="320" height="79"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BasicCell" textLabel="Zme-Z8-awR" rowHeight="80" style="IBUITableViewCellStyleDefault" id="X8z-W8-AhI">
+                                <rect key="frame" x="0.0" y="119" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X8z-W8-AhI" id="CVu-v7-tiR">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="78"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zme-Z8-awR">
-                                            <rect key="frame" x="15" y="0.0" width="270" height="78"/>
+                                            <rect key="frame" x="15" y="0.0" width="270" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="Kta-CZ-UMf" kind="push" identifier="ManureQualitySegue" id="fTA-p8-xQk"/>
-                                </connections>
+                                <color key="backgroundColor" red="0.95936650815217395" green="0.95936650815217395" blue="0.95936650815217395" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="2" indentationWidth="0.0" reuseIdentifier="QualityCell" textLabel="PnQ-AI-IRk" rowHeight="60" style="IBUITableViewCellStyleDefault" id="M9M-dV-qwo">
+                                <rect key="frame" x="0.0" y="199" width="320" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M9M-dV-qwo" id="UWR-GZ-ST4">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PnQ-AI-IRk">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -736,55 +751,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outlet property="delegate" destination="cB2-x3-KFc" id="Swp-RN-Btq"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Select Manure Type" id="lpi-3r-77B">
+                    <navigationItem key="navigationItem" title="Manure Details" id="lpi-3r-77B">
                         <barButtonItem key="backBarButtonItem" title="Type" id="Mk6-4K-DiE"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXT-fc-PYE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2332" y="1429"/>
-        </scene>
-        <!--Manure Quality View Controller - Select Manure Quality-->
-        <scene sceneID="khs-az-mb1">
-            <objects>
-                <tableViewController id="Kta-CZ-UMf" customClass="FCAManureQualityViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wgk-0b-RCS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BasicCell" textLabel="5zg-Na-BRR" style="IBUITableViewCellStyleDefault" id="7ry-lY-WEG">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7ry-lY-WEG" id="87a-vr-hJ7">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5zg-Na-BRR">
-                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="KcH-y3-Xmp" kind="unwind" unwindAction="unwindToSpreadingEventDetails:" id="QvB-gy-HAv"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Kta-CZ-UMf" id="fk8-9B-42p"/>
-                            <outlet property="delegate" destination="Kta-CZ-UMf" id="vML-uk-j93"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Select Manure Quality" id="xaY-aq-ZED"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mmm-15-V5k" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="KcH-y3-Xmp" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="2776" y="1429"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hn2-Bn-lCy">
