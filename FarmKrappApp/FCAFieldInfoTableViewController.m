@@ -93,7 +93,7 @@
 - (IBAction)doSegmentedValueChanged:(id)sender {
     //Make k/b go away if visible
     [self.nameTextBox resignFirstResponder];
-    NSLog(@"Segment changed to %u", self.soilTypeSegmentControl.selectedSegmentIndex);
+    NSLog(@"Segment changed to %u", (unsigned)self.soilTypeSegmentControl.selectedSegmentIndex);
     if ([UIScreen deviceClass] == UIScreenDeviceClassiPhone4SAspect1p5) {
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
@@ -133,7 +133,7 @@
             NSLog(@"INVALID SOIL TYPE");
             
     }
-    
+
     //Get the selected crop type
     switch (self.cropTypeSegmentControl.selectedSegmentIndex) {
         case 0:

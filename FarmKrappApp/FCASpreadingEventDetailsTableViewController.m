@@ -177,7 +177,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     switch (section) {
         case 0:
@@ -214,7 +213,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-#warning This needs checking
     UITableViewCell *cell;
     FCASpreadingEventSingleLabelCell* fieldNameCell;
     FCADateStringCell* dateStringCell;
@@ -255,8 +253,8 @@
                 manureCell.manureTypeLabel.text = self.selectedManureType.displayName;
                 manureCell.manureQualityLabel.text = self.selectedManureQuality.name;
             } else {
-                manureCell.manureTypeLabel.text = @"Select a Manure Type";
-                manureCell.manureQualityLabel.text = @"";
+                manureCell.manureTypeLabel.text = @"Manure Type:";
+                manureCell.manureQualityLabel.text = @"None Selected";
             }
             break;
             
@@ -264,7 +262,7 @@
             //Application rate
             cell = [tableView dequeueReusableCellWithIdentifier:@"ApplicationRateCell" forIndexPath:indexPath];
             appRateCell = (FCAApplicationRateCell*)cell;
-            appRateCell.label.text = [NSString stringWithFormat:@"%@", self.applicationRate];
+            appRateCell.label.text = [NSString stringWithFormat:@"%@ m3/ha", self.applicationRate];
             
             //Update slider if different
             if (appRateCell.slider.value != self.applicationRate.floatValue) {
@@ -290,7 +288,6 @@
                 
                 //Has the image name changed? (changing the image is expensive)
                 if (![self.currentImageFileName isEqualToString:fileName]) {
-                    NSLog(@"Updating %@ to %@", self.currentImageFileName, fileName);
                     self.currentImageFileName = fileName;
                     imageCell.poopImageView.image = [UIImage imageNamed:fileName];
                 }

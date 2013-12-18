@@ -79,7 +79,7 @@
         NSArray* fields = [FCADataModel arrayOfFields];
         Field* field = [fields objectAtIndex:indexPath.row];
         cell.nameLabel.text = field.name;
-        cell.spreadingEventLabel.text = [NSString stringWithFormat:@"%u", field.spreadingEvents.count];
+        cell.spreadingEventLabel.text = [NSString stringWithFormat:@"%u", (unsigned)field.spreadingEvents.count];
         cell.sizeLabel.text = [NSString stringWithFormat:@"%5.1f", field.sizeInHectares.doubleValue];
         return cell;
     }

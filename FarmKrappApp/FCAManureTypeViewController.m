@@ -170,8 +170,8 @@
     
     //Chose a different section?
     if (indexPath.row == 0) {
-        int prev = self.selectedSection.intValue;
-        int next = indexPath.section;
+//        int prev = self.selectedSection.intValue;
+        NSInteger next = indexPath.section;
         NSRange r;
         r.location = 0;
         r.length = [ManureType count];

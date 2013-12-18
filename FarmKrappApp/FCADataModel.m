@@ -192,7 +192,7 @@
 }
 +(NSNumber*)numberOfFields
 {
-    return [NSNumber numberWithInt:[[FCADataModel arrayOfFields]count]];
+    return [NSNumber numberWithLong:[[FCADataModel arrayOfFields]count]];
 
 }
 
@@ -230,8 +230,8 @@
 }
 +(NSNumber*)numberOfSpreadingEventsForField:(Field*)field
 {
-    NSInteger N = [[self arrayOfSpreadingEventsForField:field] count];
-    return [NSNumber numberWithInt:N];
+    NSUInteger N = [[self arrayOfSpreadingEventsForField:field] count];
+    return [NSNumber numberWithLong:N];
 }
 
 #pragma mark - DataModel Wrapper Class Methods - Photo
