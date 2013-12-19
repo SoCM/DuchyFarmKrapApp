@@ -110,13 +110,15 @@
 //    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     Field* f1 = nil;
 
-    f1 = [Field InsertFieldWithName:@"Top8576" soilType:SOILTYPE_SANDY_SHALLOW cropType:CROPTYPE_ALL_CROPS sizeInHectares:@2];
+    SoilType* st = [SoilType FetchSoilTypeForID:kSOILTYPE_SANDY_SHALLOW];
+    CropType* ct = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
+    f1 = [Field InsertFieldWithName:@"Top8576" soilType:st cropType:ct sizeInHectares:@2];
     [FCADataModel saveContext];
     XCTAssertNotNil(f1, @"FieldWithName:... failed");
 
     XCTAssertTrue([f1.name isEqualToString:@"Top8576"], @"Field name incorrect - %s", __PRETTY_FUNCTION__);
-    XCTAssertTrue(f1.soilType.intValue == SOILTYPE_SANDY_SHALLOW, @"Field soild type incorrect - %s", __PRETTY_FUNCTION__);
-    XCTAssertTrue(f1.cropType.intValue == CROPTYPE_ALL_CROPS, @"Field crop type incorrect - %s", __PRETTY_FUNCTION__);
+    XCTAssertTrue(((SoilType*)f1.soilType).seqID.intValue == SOILTYPE_SANDY_SHALLOW, @"Field soild type incorrect - %s", __PRETTY_FUNCTION__);
+    XCTAssertTrue(((CropType*)f1.cropType).seqID.intValue == CROPTYPE_ALL_CROPS, @"Field crop type incorrect - %s", __PRETTY_FUNCTION__);
     XCTAssertTrue(f1.sizeInHectares.intValue == 2, @"Field size incorrect - %s", __PRETTY_FUNCTION__);
     XCTAssertNotNil(f1.spreadingEvents, @"No spreading event set - %s", __PRETTY_FUNCTION__);
     
@@ -146,23 +148,26 @@
     NSError* err;
     SpreadingEvent* se;
     
+    ManureType* mt = [ManureType FetchManureTypeForStringID:@"CattleSlurry"];
+    ManureQuality* mq = [ManureQuality FetchManureQualityForID:@200];
     se = [SpreadingEvent InsertSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:0.0]
-                                     manureType:MANURETYPE_CATTLE_SLURRY
-                                        quality:MANUREQUALITY_THICK_SOUP
+                                     manureType:mt
+                                        quality:mq
                                         density:@421];
     [FCADataModel saveContext];
     
     XCTAssertNotNil(se, @"spreadingEventWithData failed - %s", __PRETTY_FUNCTION__);
     XCTAssertTrue([se.date isEqualToDate:[NSDate dateWithTimeIntervalSince1970:0.0]], @"spreadingEventWithDate failed - %s", __PRETTY_FUNCTION__);
-    XCTAssertTrue((se.manureType.intValue == MANURETYPE_CATTLE_SLURRY), @"spreadingEventWithDate failed - %s", __PRETTY_FUNCTION__);
-    XCTAssertTrue((se.quality.intValue == MANUREQUALITY_THICK_SOUP), @"spreadingEventWithDate failed - %s", __PRETTY_FUNCTION__);
+    XCTAssertTrue(([se.manureType.stringID isEqualToString:@"CattleSlurry"]), @"spreadingEventWithDate failed - %s", __PRETTY_FUNCTION__);
+    XCTAssertTrue( (se.manureQuality.seqID.intValue == 200), @"spreadingEventWithDate failed - %s", __PRETTY_FUNCTION__);
     XCTAssertTrue((se.density.intValue == 421), @"spreadingEventWithDate failed - %s", __PRETTY_FUNCTION__);
     
     //Read back from CoreData store
     NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
     fr.predicate = [NSPredicate predicateWithFormat:@"density == 421"];
+    
     NSArray* results = [self.managedObjectContext executeFetchRequest:fr error:&err];
-    XCTAssertTrue((results.count==1), @"Incorrect number of entries = %d", results.count);
+    XCTAssertTrue((results.count==1), @"Incorrect number of entries = %lu", results.count);
     
     //Tidy up
     [[FCADataModel managedObjectContext] deleteObject:se];
@@ -172,7 +177,7 @@
     fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
     fr.predicate = [NSPredicate predicateWithFormat:@"density == 421"];
     results = [self.managedObjectContext executeFetchRequest:fr error:&err];
-    XCTAssertTrue((results.count==0), @"Incorrect number of entries = %d", results.count);
+    XCTAssertTrue((results.count==0), @"Incorrect number of entries = %lu", results.count);
 }
 
 #pragma mark - Photo Category
@@ -199,10 +204,12 @@
     //Check core data (testing imageDateForPhoto)
     fr = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
     fr.predicate = [NSPredicate predicateWithFormat:@"date = %@", [NSDate dateWithTimeIntervalSince1970:123.0]];
+    
     res = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
-    NSUInteger after = [res count];
-    XCTAssertTrue((after-before)==1, @"Wrong number of photos: delta = %u", (after-before));
-    XCTAssertEqualObjects(imgData, [Photo imageDataForPhoto:res[0]], @"Wrong number of photos: delta = %u", (after-before) );
+    
+    NSUInteger after = (NSUInteger)[res count];
+    XCTAssertTrue((after-before)==1, @"Wrong number of photos: delta = %lu", (after-before));
+    XCTAssertEqualObjects(imgData, [Photo imageDataForPhoto:res[0]], @"Wrong number of photos: delta = %lu", (after-before) );
     
     //Tidy up
     [[FCADataModel managedObjectContext] deleteObject:res[0] ];
@@ -224,7 +231,9 @@
     NSError *err;
     NSArray *results;
     
-    Field* f1 = [FCADataModel addNewFieldWithName:@"UPPER183749283" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE sizeInHectares:@20];
+    SoilType *st = [SoilType FetchSoilTypeForID:kSOILTYPE_MEDIUM_HEAVY];
+    CropType *ct = [CropType FetchCropTypeForID:kCROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE];
+    Field* f1 = [FCADataModel addNewFieldWithName:@"UPPER183749283" soilType:st cropType:ct sizeInHectares:@20];
 
     //Now perform a core data query to read back
     NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Field"];
@@ -244,7 +253,9 @@
 {
     NSError* err;
     
-    Field* f1 = [FCADataModel addNewFieldWithName:@"FreddyTheFish" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@123];
+    SoilType *st = [SoilType FetchSoilTypeForID:kSOILTYPE_MEDIUM_HEAVY];
+    CropType *ct = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
+    Field* f1 = [FCADataModel addNewFieldWithName:@"FreddyTheFish" soilType:st cropType:ct sizeInHectares:@123];
     
     //Now perform a core data query to read back
     NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Field"];
@@ -266,9 +277,11 @@
     NSArray* allFields = [FCADataModel arrayOfFields];
     NSUInteger before = [allFields count];
     
-    Field* f1 = [FCADataModel addNewFieldWithName:@"TED" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
-    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:SOILTYPE_SANDY_SHALLOW cropType:CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE sizeInHectares:@20];
-    Field* f3 = [FCADataModel addNewFieldWithName:@"LOWERFIELD" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE sizeInHectares:@30];
+    SoilType *st = [SoilType FetchSoilTypeForID:kSOILTYPE_MEDIUM_HEAVY];
+    CropType *ct = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
+    Field* f1 = [FCADataModel addNewFieldWithName:@"TED" soilType:st cropType:ct sizeInHectares:@10];
+    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:st cropType:ct sizeInHectares:@20];
+    Field* f3 = [FCADataModel addNewFieldWithName:@"LOWERFIELD" soilType:st cropType:ct sizeInHectares:@30];
     
     allFields = [FCADataModel arrayOfFields];
     NSUInteger after = [allFields count];
@@ -285,9 +298,11 @@
     NSArray* allFields = [FCADataModel arrayOfFieldsWithSortString:@"sizeInHectares"];
     NSUInteger before = [allFields count];
     
-    Field* f1 = [FCADataModel addNewFieldWithName:@"TED" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
-    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:SOILTYPE_SANDY_SHALLOW cropType:CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE sizeInHectares:@30];
-    Field* f3 = [FCADataModel addNewFieldWithName:@"LOWERFIELD" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE sizeInHectares:@20];
+    SoilType *st = [SoilType FetchSoilTypeForID:kSOILTYPE_MEDIUM_HEAVY];
+    CropType *ct = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
+    Field* f1 = [FCADataModel addNewFieldWithName:@"TED" soilType:st cropType:ct sizeInHectares:@10];
+    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:st cropType:ct sizeInHectares:@30];
+    Field* f3 = [FCADataModel addNewFieldWithName:@"LOWERFIELD" soilType:st cropType:ct sizeInHectares:@20];
 
     allFields = [FCADataModel arrayOfFieldsWithSortString:@"sizeInHectares"];
     NSUInteger after = [allFields count];
@@ -307,9 +322,11 @@
     NSArray* allFields = [FCADataModel arrayOfFieldsWithSortString:@"sizeInHectares" andPredicateString:@"sizeInHectares > 10"];
     NSUInteger before = [allFields count];
     
-    Field* f1 = [FCADataModel addNewFieldWithName:@"TED" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
-    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:SOILTYPE_SANDY_SHALLOW cropType:CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE sizeInHectares:@30];
-    Field* f3 = [FCADataModel addNewFieldWithName:@"LOWERFIELD" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE sizeInHectares:@20];
+    SoilType *st = [SoilType FetchSoilTypeForID:kSOILTYPE_MEDIUM_HEAVY];
+    CropType *ct = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
+    Field* f1 = [FCADataModel addNewFieldWithName:@"TED" soilType:st cropType:ct sizeInHectares:@10];
+    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:st cropType:ct sizeInHectares:@30];
+    Field* f3 = [FCADataModel addNewFieldWithName:@"LOWERFIELD" soilType:st cropType:ct sizeInHectares:@20];
     
     allFields = [FCADataModel arrayOfFieldsWithSortString:@"sizeInHectares" andPredicateString:@"sizeInHectares > 10"];
     NSUInteger after = [allFields count];
@@ -328,9 +345,11 @@
     NSArray* allFields = [FCADataModel arrayOfFields];
     NSUInteger before = [allFields count];
     
-    Field* f1 = [FCADataModel addNewFieldWithName:@"TED" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
-    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:SOILTYPE_SANDY_SHALLOW cropType:CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE sizeInHectares:@20];
-    Field* f3 = [FCADataModel addNewFieldWithName:@"LOWERFIELD" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE sizeInHectares:@30];
+    SoilType *st = [SoilType FetchSoilTypeForID:kSOILTYPE_MEDIUM_HEAVY];
+    CropType *ct = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
+    Field* f1 = [FCADataModel addNewFieldWithName:@"TED" soilType:st cropType:ct sizeInHectares:@10];
+    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:st cropType:ct sizeInHectares:@20];
+    Field* f3 = [FCADataModel addNewFieldWithName:@"LOWERFIELD" soilType:st cropType:ct sizeInHectares:@30];
     
     NSUInteger after = [[FCADataModel numberOfFields] intValue];
     XCTAssertTrue((after-before)==3, @"Number of fields was expected to be 3.");
@@ -350,17 +369,19 @@
     NSUInteger before = [arrayOfSpreads count];
     
     //Create a field and add a spreading event - these are unique relationships
-    Field* f1 = [FCADataModel addNewFieldWithName:@"TED" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
+    SoilType *st = [SoilType FetchSoilTypeForID:kSOILTYPE_MEDIUM_HEAVY];
+    CropType *ct = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
+    Field* f1 = [FCADataModel addNewFieldWithName:@"TED" soilType:st cropType:ct sizeInHectares:@10];
     
     SpreadingEvent* se1 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:0]
-                                                          manureType:MANURETYPE_CATTLE_SLURRY
-                                                             quality:MANUREQUALITY_THICK_SOUP
+                                                          manureType:[ManureType FetchManureTypeForStringID:@"CattleSlurry"]
+                                                             quality:[ManureQuality FetchManureQualityForID:@200]
                                                              density:@10
                                                              toField:f1];
     
     SpreadingEvent* se2 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:1.0]
-                                                          manureType:MANURETYPE_PIG_SLURRY
-                                                             quality:MANUREQUALITY_PORRIGDE
+                                                          manureType:[ManureType FetchManureTypeForStringID:@"PigSlurry"]
+                                                             quality:[ManureQuality FetchManureQualityForID:@1000]
                                                              density:@20
                                                              toField:f1];
 
@@ -369,16 +390,16 @@
     fr.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"density" ascending:YES] ];
     arrayOfSpreads = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
     SpreadingEvent* res = (SpreadingEvent*)[arrayOfSpreads objectAtIndex:0];
-    XCTAssertTrue(res.manureType.intValue == MANURETYPE_CATTLE_SLURRY, @"Manure type wrong");
-    XCTAssertTrue(res.quality.intValue == MANUREQUALITY_THICK_SOUP, @"Manure quality wrong");
+    XCTAssertTrue([res.manureType.stringID isEqualToString:@"CattleSlurry"], @"Manure type wrong");
+    XCTAssertTrue(res.manureQuality.seqID.intValue == 200, @"Manure quality wrong");
     XCTAssertTrue(res.density.intValue == 10, @"Manure density wrong, should be 10, found %d", res.density.intValue);
 
     //Create additional field and add am identical spreading event - verify these are unique relationships
-    Field* f2 = [FCADataModel addNewFieldWithName:@"TED" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
     
+    Field* f2 = [FCADataModel addNewFieldWithName:@"TED" soilType:st cropType:ct sizeInHectares:@10];
     SpreadingEvent* se3 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:0]
-                                                          manureType:MANURETYPE_CATTLE_SLURRY
-                                                             quality:MANUREQUALITY_THICK_SOUP
+                                                          manureType:[ManureType FetchManureTypeForStringID:@"CattleSlurry"]
+                                                             quality:[ManureQuality FetchManureQualityForID:@200]
                                                              density:@10
                                                              toField:f2];
 
@@ -403,7 +424,7 @@
     fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
     arrayOfSpreads = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
     after = [arrayOfSpreads count];
-    NSLog(@"NUMBER OF SPREADING EVENTS = %u", after);
+    NSLog(@"NUMBER OF SPREADING EVENTS = %lu", after);
     XCTAssertTrue(((after-before)==1), @"Number of spreading events inconsistent");
     
     //Remove field f2 - the relationship is setup as a cascaded delete so the spreading events should also be deleted
@@ -413,7 +434,7 @@
     fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
     arrayOfSpreads = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
     after = [arrayOfSpreads count];
-    NSLog(@"NUMBER OF SPREADING EVENTS = %u", after);
+    NSLog(@"NUMBER OF SPREADING EVENTS = %lu", after);
     XCTAssertTrue(((after-before)==0), @"Number of spreading events inconsistent");
     
     se1 = nil;
@@ -430,25 +451,27 @@
     NSUInteger before = [arrayOfSpreads count];
     
     //Create a field and add a spreading event - these are unique relationships
-    Field* f1 = [FCADataModel addNewFieldWithName:@"TED"   soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
-    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
+    SoilType *st = [SoilType FetchSoilTypeForID:kSOILTYPE_MEDIUM_HEAVY];
+    CropType *ct = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
+    Field* f1 = [FCADataModel addNewFieldWithName:@"TED"   soilType:st cropType:ct sizeInHectares:@10];
+    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:st cropType:ct sizeInHectares:@10];
     
     //Three spreading events, two for field1, and one for field2
     SpreadingEvent* se1 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:0]
-                                                          manureType:MANURETYPE_CATTLE_SLURRY
-                                                             quality:MANUREQUALITY_THICK_SOUP
+                                                          manureType:[ManureType FetchManureTypeForStringID:@"CattleSlurry"]
+                                                             quality:[ManureQuality FetchManureQualityForID:@200]
                                                              density:@10
                                                              toField:f1];
     
     SpreadingEvent* se2 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:1.0]
-                                                          manureType:MANURETYPE_PIG_SLURRY
-                                                             quality:MANUREQUALITY_PORRIGDE
+                                                          manureType:[ManureType FetchManureTypeForStringID:@"PigSlurry"]
+                                                             quality:[ManureQuality FetchManureQualityForID:@1000]
                                                              density:@20
                                                              toField:f1];
 
     SpreadingEvent* se3 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:1.0]
-                                                          manureType:MANURETYPE_PIG_SLURRY
-                                                             quality:MANUREQUALITY_PORRIGDE
+                                                          manureType:[ManureType FetchManureTypeForStringID:@"PigSlurry"]
+                                                             quality:[ManureQuality FetchManureQualityForID:@1000]
                                                              density:@20
                                                              toField:f2];
     
@@ -461,21 +484,21 @@
     fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
     arrayOfSpreads = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
     NSUInteger after = [arrayOfSpreads count];
-    XCTAssertTrue((after-before)==3, @"Inconsistent number of spreading events: delta = %u", (after-before));
+    XCTAssertTrue((after-before)==3, @"Inconsistent number of spreading events: delta = %lu", (after-before));
     
     //Remove fields se2 and se3
     [FCADataModel removeSpreadingEvent:se2];
     [FCADataModel removeSpreadingEvent:se3];
     
     //Check fields 
-    XCTAssertTrue([f1.spreadingEvents count]==1, @"Inconsistent number of spreading events = %d", f1.spreadingEvents.count);
-    XCTAssertTrue([f2.spreadingEvents count]==0, @"Inconsistent number of spreading events = %d", f2.spreadingEvents.count);
+    XCTAssertTrue([f1.spreadingEvents count]==1, @"Inconsistent number of spreading events = %lu", f1.spreadingEvents.count);
+    XCTAssertTrue([f2.spreadingEvents count]==0, @"Inconsistent number of spreading events = %lu", f2.spreadingEvents.count);
 
     //Confirm numbers
     fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
     arrayOfSpreads = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
     after = [arrayOfSpreads count];
-    XCTAssertTrue((after-before)==1, @"Inconsistent number of spreading events: delta = %u", (after-before));
+    XCTAssertTrue((after-before)==1, @"Inconsistent number of spreading events: delta = %lu", (after-before));
     
     //Remove se1
     [FCADataModel removeSpreadingEvent:se1];
@@ -484,8 +507,8 @@
     fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
     arrayOfSpreads = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
     after = [arrayOfSpreads count];
-    XCTAssertTrue((after-before)==0, @"Inconsistent number of spreading events: delta = %u", (after-before));
-    XCTAssertTrue([f1.spreadingEvents count]==0, @"Inconsistent number of spreading events = %d", f1.spreadingEvents.count);
+    XCTAssertTrue((after-before)==0, @"Inconsistent number of spreading events: delta = %lu", (after-before));
+    XCTAssertTrue([f1.spreadingEvents count]==0, @"Inconsistent number of spreading events = %lu", f1.spreadingEvents.count);
 
     //Tidy up
     [FCADataModel removeField:f1];
@@ -505,34 +528,36 @@
     NSUInteger before = [arrayOfSpreads count];
     
     //Create a field and add a spreading event - these are unique relationships
-    Field* f1 = [FCADataModel addNewFieldWithName:@"TED"   soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
-    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
+    SoilType *st = [SoilType FetchSoilTypeForID:kSOILTYPE_MEDIUM_HEAVY];
+    CropType *ct = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
+    Field* f1 = [FCADataModel addNewFieldWithName:@"TED"   soilType:st cropType:ct sizeInHectares:@10];
+    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:st cropType:ct sizeInHectares:@10];
     
     //Three spreading events, two for field1, and one for field2
     SpreadingEvent* se1 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:0]
-                                                          manureType:MANURETYPE_CATTLE_SLURRY
-                                                             quality:MANUREQUALITY_THICK_SOUP
+                                                          manureType:[ManureType FetchManureTypeForStringID:@"CattleSlurry"]
+                                                             quality:[ManureQuality FetchManureQualityForID:@200]
                                                              density:@10
                                                              toField:f1];
     
     SpreadingEvent* se2 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:1.0]
-                                                          manureType:MANURETYPE_PIG_SLURRY
-                                                             quality:MANUREQUALITY_PORRIGDE
+                                                          manureType:[ManureType FetchManureTypeForStringID:@"PigSlurry"]
+                                                             quality:[ManureQuality FetchManureQualityForID:@1000]
                                                              density:@20
                                                              toField:f1];
 
     //This one looks identical, but is added to a different field
     SpreadingEvent* se3 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:1.0]
-                                                          manureType:MANURETYPE_PIG_SLURRY
-                                                             quality:MANUREQUALITY_PORRIGDE
+                                                          manureType:[ManureType FetchManureTypeForStringID:@"PigSlurry"]
+                                                             quality:[ManureQuality FetchManureQualityForID:@1000]
                                                              density:@20
                                                              toField:f2];
     
     //Check array counts
     NSArray* allSpreadingEventsForf1 = [FCADataModel arrayOfSpreadingEventsForField:f1];
     NSArray* allSpreadingEventsForf2 = [FCADataModel arrayOfSpreadingEventsForField:f2];
-    XCTAssertTrue(allSpreadingEventsForf1.count == 2, @"Inconsistent number of spreading events for f1 = %d", allSpreadingEventsForf1.count);
-    XCTAssertTrue(allSpreadingEventsForf2.count == 1, @"Inconsistent number of spreading events for f2 = %d", allSpreadingEventsForf2.count);
+    XCTAssertTrue(allSpreadingEventsForf1.count == 2, @"Inconsistent number of spreading events for f1 = %lu", allSpreadingEventsForf1.count);
+    XCTAssertTrue(allSpreadingEventsForf2.count == 1, @"Inconsistent number of spreading events for f2 = %lu", allSpreadingEventsForf2.count);
     
     //Tidy up
     [FCADataModel removeField:f1];
@@ -542,7 +567,7 @@
     fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
     arrayOfSpreads = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
     NSUInteger after = [arrayOfSpreads count];
-    XCTAssertTrue(after == before, @"Inconsistent number of spreading events: delta=%u", (after-before));
+    XCTAssertTrue(after == before, @"Inconsistent number of spreading events: delta=%lu", (after-before));
     se1 = nil;
     se2 = nil;
     se3 = nil;
@@ -550,24 +575,26 @@
 -(void)testarrayOfSpreadingEventsForFieldWithSortString
 {
     //Create a field and add a spreading event - these are unique relationships
-    Field* f1 = [FCADataModel addNewFieldWithName:@"TED"   soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
+    SoilType *st = [SoilType FetchSoilTypeForID:kSOILTYPE_MEDIUM_HEAVY];
+    CropType *ct = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
+    Field* f1 = [FCADataModel addNewFieldWithName:@"TED"   soilType:st cropType:ct sizeInHectares:@10];
     
     //Three spreading events, two for field1, and one for field2
     SpreadingEvent* se1 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:0]
-                                                          manureType:MANURETYPE_CATTLE_SLURRY
-                                                             quality:MANUREQUALITY_THICK_SOUP
+                                                          manureType:[ManureType FetchManureTypeForStringID:@"CattleSlurry"]
+                                                             quality:[ManureQuality FetchManureQualityForID:@200]
                                                              density:@10
                                                              toField:f1];
     
     SpreadingEvent* se2 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:3.0]
-                                                          manureType:MANURETYPE_PIG_SLURRY
-                                                             quality:MANUREQUALITY_PORRIGDE
+                                                          manureType:[ManureType FetchManureTypeForStringID:@"PigSlurry"]
+                                                             quality:[ManureQuality FetchManureQualityForID:@1000]
                                                              density:@30
                                                              toField:f1];
     
     SpreadingEvent* se3 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:2.0]
-                                                          manureType:MANURETYPE_PIG_SLURRY
-                                                             quality:MANUREQUALITY_PORRIGDE
+                                                          manureType:[ManureType FetchManureTypeForStringID:@"PigSlurry"]
+                                                             quality:[ManureQuality FetchManureQualityForID:@1000]
                                                              density:@20
                                                              toField:f1];
 
@@ -586,33 +613,35 @@
 -(void)testNumberOfSpreadingEventsForField
 {
     //Create a field and add a spreading event - these are unique relationships
-    Field* f1 = [FCADataModel addNewFieldWithName:@"TED"   soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
-    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:SOILTYPE_MEDIUM_HEAVY cropType:CROPTYPE_ALL_CROPS sizeInHectares:@10];
+    SoilType *st = [SoilType FetchSoilTypeForID:kSOILTYPE_MEDIUM_HEAVY];
+    CropType *ct = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
+    Field* f1 = [FCADataModel addNewFieldWithName:@"TED"   soilType:st cropType:ct sizeInHectares:@10];
+    Field* f2 = [FCADataModel addNewFieldWithName:@"RALPH" soilType:st cropType:ct sizeInHectares:@10];
     
     //Three spreading events, two for field1, and one for field2
     SpreadingEvent* se1 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:0]
-                                                          manureType:MANURETYPE_CATTLE_SLURRY
-                                                             quality:MANUREQUALITY_THICK_SOUP
+                                                          manureType:[ManureType FetchManureTypeForStringID:@"CattleSlurry"]
+                                                             quality:[ManureQuality FetchManureQualityForID:@200]
                                                              density:@10
                                                              toField:f1];
     
     SpreadingEvent* se2 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:2.0]
-                                                          manureType:MANURETYPE_PIG_SLURRY
-                                                             quality:MANUREQUALITY_PORRIGDE
+                                                          manureType:[ManureType FetchManureTypeForStringID:@"PigSlurry"]
+                                                             quality:[ManureQuality FetchManureQualityForID:@1000]
                                                              density:@20
                                                              toField:f1];
     
     SpreadingEvent* se3 = [FCADataModel addNewSpreadingEventWithDate:[NSDate dateWithTimeIntervalSince1970:1.0]
-                                                          manureType:MANURETYPE_PIG_SLURRY
-                                                             quality:MANUREQUALITY_PORRIGDE
+                                                          manureType:[ManureType FetchManureTypeForStringID:@"PigSlurry"]
+                                                             quality:[ManureQuality FetchManureQualityForID:@1000]
                                                              density:@20
                                                              toField:f2];
     
     //Test
     NSUInteger seInf1 = [[FCADataModel arrayOfSpreadingEventsForField:f1] count];
     NSUInteger seInf2 = [[FCADataModel arrayOfSpreadingEventsForField:f2] count];
-    XCTAssertTrue(seInf1==2, @"Wrong number of spreading events reported: %u", seInf1);
-    XCTAssertTrue(seInf2==1, @"Wrong number of spreading events reported: %u", seInf2);
+    XCTAssertTrue(seInf1==2, @"Wrong number of spreading events reported: %lu", seInf1);
+    XCTAssertTrue(seInf2==1, @"Wrong number of spreading events reported: %lu", seInf2);
     
     //Tidy
     [FCADataModel removeField:f1];
@@ -632,14 +661,16 @@
     NSUInteger before = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
     
     //Create a new field
+    SoilType *st = [SoilType FetchSoilTypeForID:kSOILTYPE_MEDIUM_HEAVY];
+    CropType *ct = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
     Field *f1 = [FCADataModel addNewFieldWithName:@"FREDDY"
-                                         soilType:SOILTYPE_MEDIUM_HEAVY
-                                         cropType:CROPTYPE_ALL_CROPS
+                                         soilType:st
+                                         cropType:ct
                                    sizeInHectares:@2];
     //Add spreading event
     SpreadingEvent* se = [FCADataModel addNewSpreadingEventWithDate:[NSDate date]
-                                                         manureType:MANURETYPE_CATTLE_SLURRY
-                                                            quality:MANUREQUALITY_THICK_SOUP
+                                                         manureType:[ManureType FetchManureTypeForStringID:@"CattleSlurry"]
+                                                            quality:[ManureQuality FetchManureQualityForID:@200]
                                                             density:@1.5
                                                             toField:f1 ];
     XCTAssertNotNil(se, @"spreading event in test not formed");
@@ -671,7 +702,7 @@
     
     //Check number of photos remains unchanged
     NSUInteger after = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
-    XCTAssertTrue((before==after), @"Was expecting %u photos, found %u", before, after);
+    XCTAssertTrue((before==after), @"Was expecting %lu photos, found %lu", before, after);
 }
 
 -(void)testRemoveImagedata
@@ -682,14 +713,16 @@
     NSUInteger before = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
     
     //    +(void)addImageData:(NSData*)image toSpreadingEvent:(SpreadingEvent*)se;
+    SoilType *st = [SoilType FetchSoilTypeForID:kSOILTYPE_MEDIUM_HEAVY];
+    CropType *ct = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
     Field *f1 = [FCADataModel addNewFieldWithName:@"FREDDY"
-                                         soilType:SOILTYPE_MEDIUM_HEAVY
-                                         cropType:CROPTYPE_ALL_CROPS
+                                         soilType:st
+                                         cropType:ct
                                    sizeInHectares:@2];
     
     SpreadingEvent* se = [FCADataModel addNewSpreadingEventWithDate:[NSDate date]
-                                                         manureType:MANURETYPE_CATTLE_SLURRY
-                                                            quality:MANUREQUALITY_THICK_SOUP
+                                                         manureType:[ManureType FetchManureTypeForStringID:@"CattleSlurry"]
+                                                            quality:[ManureQuality FetchManureQualityForID:@200]
                                                             density:@1.5
                                                             toField:f1 ];
     XCTAssertNotNil(se, @"spreading event in test not formed");
@@ -726,14 +759,14 @@
     
     //Check number
     NSUInteger after = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
-    XCTAssertTrue((after-before)==1, @"Was expecting %u photos, found %u", before-1, after);
+    XCTAssertTrue((after-before)==1, @"Was expecting %lu photos, found %lu", before-1, after);
     
     //Tidy up + cascade delete
     [FCADataModel removeField:f1];
     
     //Check number of photos remains unchanged
     after = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
-    XCTAssertTrue((before==after), @"Was expecting %u photos, found %u", before, after);
+    XCTAssertTrue((before==after), @"Was expecting %lu photos, found %lu", before, after);
 
 }
 -(void)testArrayOfPhotosForSpreadingEvent
@@ -744,14 +777,16 @@
     NSUInteger before = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
     
     //Create a new field
+    SoilType *st = [SoilType FetchSoilTypeForID:kSOILTYPE_MEDIUM_HEAVY];
+    CropType *ct = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
     Field *f1 = [FCADataModel addNewFieldWithName:@"FREDDY"
-                                         soilType:SOILTYPE_MEDIUM_HEAVY
-                                         cropType:CROPTYPE_ALL_CROPS
+                                         soilType:st
+                                         cropType:ct
                                    sizeInHectares:@2];
     //Add spreading event
     SpreadingEvent* se = [FCADataModel addNewSpreadingEventWithDate:[NSDate date]
-                                                         manureType:MANURETYPE_CATTLE_SLURRY
-                                                            quality:MANUREQUALITY_THICK_SOUP
+                                                         manureType:[ManureType FetchManureTypeForStringID:@"CattleSlurry"]
+                                                            quality:[ManureQuality FetchManureQualityForID:@200]
                                                             density:@1.5
                                                             toField:f1 ];
     XCTAssertNotNil(se, @"spreading event in test not formed");
@@ -770,7 +805,7 @@
     
     //Get sorted array of photos for spreading event
     NSArray* arrayOfImages = [FCADataModel arrayOfPhotosForSpreadingEvent:se];
-    XCTAssertTrue(arrayOfImages.count == 2, @"Found %d, expected 2", arrayOfImages.count);
+    XCTAssertTrue(arrayOfImages.count == 2, @"Found %lu, expected 2", arrayOfImages.count);
     
     //Are the images found in the correct order
     XCTAssertEqualObjects(imgData1, arrayOfImages[1], @"Wrong image found");
@@ -781,7 +816,7 @@
     
     //Check number of photos remains unchanged
     NSUInteger after = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
-    XCTAssertTrue((before==after), @"Was expecting %u photos, found %u", before, after);
+    XCTAssertTrue((before==after), @"Was expecting %lu photos, found %lu", before, after);
     
 }
 -(void)testNumberOfPhotosForSpreadingEvent
@@ -792,14 +827,16 @@
     NSUInteger before = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
     
     //Create a new field
+    SoilType *st = [SoilType FetchSoilTypeForID:kSOILTYPE_MEDIUM_HEAVY];
+    CropType *ct = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
     Field *f1 = [FCADataModel addNewFieldWithName:@"FREDDY"
-                                         soilType:SOILTYPE_MEDIUM_HEAVY
-                                         cropType:CROPTYPE_ALL_CROPS
+                                         soilType:st
+                                         cropType:ct
                                    sizeInHectares:@2];
     //Add spreading event
     SpreadingEvent* se = [FCADataModel addNewSpreadingEventWithDate:[NSDate date]
-                                                         manureType:MANURETYPE_CATTLE_SLURRY
-                                                            quality:MANUREQUALITY_THICK_SOUP
+                                                         manureType:[ManureType FetchManureTypeForStringID:@"CattleSlurry"]
+                                                            quality:[ManureQuality FetchManureQualityForID:@200]
                                                             density:@1.5
                                                             toField:f1 ];
     XCTAssertNotNil(se, @"spreading event in test not formed");
@@ -829,7 +866,7 @@
     
     //Check number of photos remains unchanged
     NSUInteger after = [[[FCADataModel managedObjectContext] executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:@"Photo"] error:&err] count];
-    XCTAssertTrue((before==after), @"Was expecting %u photos, found %u", before, after);
+    XCTAssertTrue((before==after), @"Was expecting %lu photos, found %lu", before, after);
 }
 
 
