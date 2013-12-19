@@ -18,6 +18,28 @@
 #import "SpreadingEvent.h"
 
 
+@interface FCAAvailableNutrients : NSObject <NSObject> {
+    
+}
+
+//Set these
+@property(readwrite, nonatomic, strong) SpreadingEvent* spreadingEvent;
+@property(readwrite, nonatomic, assign) BOOL metric;
+
+//Access these for the NPK values
+@property(readonly, nonatomic, strong) NSNumber* nitrogen;
+@property(readonly, nonatomic, strong) NSNumber* phosphate;
+@property(readonly, nonatomic, strong) NSNumber* potassium;
+
+@property(readonly, nonatomic, strong) NSString* strNitrogen;
+@property(readonly, nonatomic, strong) NSString* strPhosphate;
+@property(readonly, nonatomic, strong) NSString* strPotassium;
+
+- (id)initWithSpreadingEvent:(SpreadingEvent*)se inMetric:(BOOL)m;
+-(FCAAvailableNutrients*)availableNutrientsForRate:(NSNumber*)rate andQuality:(ManureQuality*)qual;
+
+@end
+
 #pragma mark - Enumerated
 //ENUMERATED TYPES - ALLOWING FOR SUBCATEGORIES TO BE ADDED LATER
 typedef enum {SOILTYPE_SANDY_SHALLOW=100, SOILTYPE_MEDIUM_HEAVY=200} SOIL_TYPE;
@@ -89,13 +111,15 @@ typedef enum {CROPTYPE_ALL_CROPS=100, CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE=
 +(NSArray*)arrayOfFieldsWithSortString:(NSString*)sortString;
 +(NSArray*)arrayOfFieldsWithSortString:(NSString*)sortString andPredicateString:(NSString*)predicateString;
 +(NSNumber*)numberOfFields;
+
 #pragma mark - SpreadingEvent
 +(id)addNewSpreadingEventWithDate:(NSDate*)date manureType:(ManureType*)manure_type quality:(ManureQuality*)manure_quality density:(NSNumber*)manure_density toField:(Field*)field;
 +(void)removeSpreadingEvent:spreadingEvent;
 +(NSArray*)arrayOfSpreadingEventsForField:(Field*)field;
 +(NSArray*)arrayOfSpreadingEventsForField:(Field*)field withSortString:(NSString*)sortString;
-
++(NSDictionary*)availableNutrients100m3;
 +(NSNumber*)numberOfSpreadingEventsForField:(Field*)field;
+
 #pragma mark - Photo
 +(void)addImageData:(NSData*)image toSpreadingEvent:(SpreadingEvent*)se onDate:(NSDate*)date;
 +(void)removeImageData:(NSData*)image fromSpreadingEvent:(SpreadingEvent*)se;

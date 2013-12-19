@@ -17,6 +17,7 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize availableNutrients100m3 = _availableNutrients100m3;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -53,9 +54,17 @@
     [self saveContext];
 }
 
+//Accessors
+-(NSDictionary*)availableNutrients100m3
+{
+    if (_availableNutrients100m3 == nil) {
+        NSString *myPlistFilePath = [[NSBundle mainBundle] pathForResource: @"Available100m3" ofType: @"plist"];
+        _availableNutrients100m3 = [NSDictionary dictionaryWithContentsOfFile: myPlistFilePath];
+    }
+    return _availableNutrients100m3;
+}
 
 // CORE DATA CODE
-
 -(void)populateModelSimpleWithEntity:(NSString*)entityName plistName:(NSString*)plistName
 {
     NSError *err;
@@ -82,14 +91,18 @@
         fr.predicate = [NSPredicate predicateWithFormat:@"seqID == %@", seqID];
         NSArray* arrayObjects = [self.managedObjectContext executeFetchRequest:fr error:&err];
         if ([arrayObjects count] == 0) {
+            //New
             objType = [[NSManagedObject alloc] initWithEntity:entityCT insertIntoManagedObjectContext:self.managedObjectContext];
-            [objType setValue:seqID forKey:@"seqID"];
-            [objType setValue:displayName forKey:@"displayName"];
         } else if ([arrayObjects count] == 1) {
+            //Update
             objType = [arrayObjects objectAtIndex:0];
         } else {
-            NSLog(@"ERROR");
+            NSLog(@"ERROR - duplicates found in data model : %s", __PRETTY_FUNCTION__);
+            return;
         }
+        [objType setValue:seqID forKey:@"seqID"];
+        [objType setValue:displayName forKey:@"displayName"];
+
         [self saveContext];
     }
 }
