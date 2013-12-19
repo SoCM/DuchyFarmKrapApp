@@ -101,6 +101,8 @@
 		07EACC2E1848689700D6A59E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07EACC2C1848689700D6A59E /* InfoPlist.strings */; };
 		07EACC301848689700D6A59E /* FarmKrappAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EACC2F1848689700D6A59E /* FarmKrappAppTests.m */; };
 		07EACC3A1848697D00D6A59E /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 07EACC391848697D00D6A59E /* TODO */; };
+		07F87ACF1862E578005A8D66 /* Available100m3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07F87ACE1862E578005A8D66 /* Available100m3.plist */; };
+		07F87AD01862E578005A8D66 /* Available100m3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07F87ACE1862E578005A8D66 /* Available100m3.plist */; };
 		07FF4DFD185C690500825A8B /* SoCMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07EACC111848689700D6A59E /* SoCMAppDelegate.m */; };
 /* End PBXBuildFile section */
 
@@ -218,6 +220,7 @@
 		07EACC2D1848689700D6A59E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		07EACC2F1848689700D6A59E /* FarmKrappAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FarmKrappAppTests.m; sourceTree = "<group>"; };
 		07EACC391848697D00D6A59E /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		07F87ACE1862E578005A8D66 /* Available100m3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Available100m3.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,6 +386,7 @@
 				071CF1F5185F08D400F0224B /* crop_types.plist */,
 				071CF1F8185F08ED00F0224B /* soil_types.plist */,
 				071CF1D2185EF7EB00F0224B /* manure_types.plist */,
+				07F87ACE1862E578005A8D66 /* Available100m3.plist */,
 				071CF213185F0C4E00F0224B /* SpreadingEvent.h */,
 				071CF214185F0C4E00F0224B /* SpreadingEvent.m */,
 				071CF20F185F0C4E00F0224B /* SoilType.h */,
@@ -614,6 +618,7 @@
 				077B8424185B89AB00D0F002 /* poultry_5t.jpg in Resources */,
 				07EACC1D1848689700D6A59E /* Images.xcassets in Resources */,
 				077B841C185B89AB00D0F002 /* fym_50t.jpg in Resources */,
+				07F87ACF1862E578005A8D66 /* Available100m3.plist in Resources */,
 				07EACC151848689700D6A59E /* Main_iPhone.storyboard in Resources */,
 				077B841E185B89AB00D0F002 /* pig_25m3.jpg in Resources */,
 				077B842A185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg in Resources */,
@@ -640,6 +645,7 @@
 				077B842B185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg in Resources */,
 				077B841D185B89AB00D0F002 /* fym_50t.jpg in Resources */,
 				071CF1D6185EF7EB00F0224B /* manure_types.plist in Resources */,
+				07F87AD01862E578005A8D66 /* Available100m3.plist in Resources */,
 				071CF1F7185F08D400F0224B /* crop_types.plist in Resources */,
 				077B841F185B89AB00D0F002 /* pig_25m3.jpg in Resources */,
 				077B8419185B89AB00D0F002 /* cattle_50m3.jpg in Resources */,
