@@ -14,6 +14,16 @@
 
 
 #pragma mark - class for calculating nutrient availability
+@interface FCAAvailableNutrients ()
+
+@property(readwrite, nonatomic, strong) SpreadingEvent* spreadingEvent;
+@property(readwrite, nonatomic, assign) BOOL metric;
+
+@property(readonly, nonatomic, strong) NSNumber* nitrogen;
+@property(readonly, nonatomic, strong) NSNumber* phosphate;
+@property(readonly, nonatomic, strong) NSNumber* potassium;
+@end
+
 @implementation FCAAvailableNutrients {
     //Dictionary of data derived from DEFRA
     NSDictionary* _dict;
@@ -29,12 +39,11 @@
     NSArray* _P;
     NSArray* _K;
 }
-@synthesize nitrogen = _nitrogen;
+
+@synthesize spreadingEvent = _spreadingEvent;
 @synthesize phosphate = _phosphate;
 @synthesize potassium = _potassium;
-@synthesize strNitrogen = _strNitrogen;
-@synthesize strPhosphate = _strPhosphate;
-@synthesize strPotassium = _strPotassium;
+@synthesize nitrogen = _nitrogen;
 
 - (id)initWithSpreadingEvent:(SpreadingEvent*)se inMetric:(BOOL)m
 {
@@ -160,7 +169,7 @@
     //Generic block
     BOOL(^foundit)(id, NSUInteger,BOOL*) = ^(id obj, NSUInteger idx, BOOL* stop)
     {
-        NSNumber* next = [obj objectForKey:@"SeqID"];
+        NSNumber* next = [obj objectForKey:@"seqID"];
         if (next.intValue == _qual.seqID.intValue) {
             *stop = YES;
             return YES;
@@ -208,8 +217,6 @@
         default:
             NSLog(@"Invalid crop type: %s", __PRETTY_FUNCTION__);
     }
-    
-
     return self;
 }
 

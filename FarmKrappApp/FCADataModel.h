@@ -22,19 +22,6 @@
     
 }
 
-//Set these
-@property(readwrite, nonatomic, strong) SpreadingEvent* spreadingEvent;
-@property(readwrite, nonatomic, assign) BOOL metric;
-
-//Access these for the NPK values
-@property(readonly, nonatomic, strong) NSNumber* nitrogen;
-@property(readonly, nonatomic, strong) NSNumber* phosphate;
-@property(readonly, nonatomic, strong) NSNumber* potassium;
-
-@property(readonly, nonatomic, strong) NSString* strNitrogen;
-@property(readonly, nonatomic, strong) NSString* strPhosphate;
-@property(readonly, nonatomic, strong) NSString* strPotassium;
-
 - (id)initWithSpreadingEvent:(SpreadingEvent*)se inMetric:(BOOL)m;
 -(FCAAvailableNutrients*)availableNutrientsForRate:(NSNumber*)rate andQuality:(ManureQuality*)qual;
 
