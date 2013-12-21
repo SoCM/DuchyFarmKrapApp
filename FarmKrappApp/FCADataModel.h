@@ -22,6 +22,13 @@
 
 - (id)initWithSpreadingEvent:(SpreadingEvent*)se;
 -(FCAAvailableNutrients*)availableNutrientsForQuality:(ManureQuality*)qual;
+
+//Available nutrient for a given spreading event
+-(NSNumber*)nitrogenAvailableusingMetric:(BOOL)metric;
+-(NSNumber*)phosphateAvailableusingMetric:(BOOL)metric;
+-(NSNumber*)potassiumAvailableusingMetric:(BOOL)metric;
+
+//Available nutrient for a given spreading event given a different rate
 -(NSNumber*)nitrogenAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric;
 -(NSNumber*)phosphateAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric;
 -(NSNumber*)potassiumAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric;
@@ -32,6 +39,7 @@
 //ENUMERATED TYPES - ALLOWING FOR SUBCATEGORIES TO BE ADDED LATER
 typedef enum {SOILTYPE_SANDY_SHALLOW=100, SOILTYPE_MEDIUM_HEAVY=200} SOIL_TYPE;
 typedef enum {CROPTYPE_ALL_CROPS=100, CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE=200} CROP_TYPE;
+typedef enum {CS_DM2=100, CS_DM6=200, CS_DM10=300, FYM_OLDSURF=400, FYM_FRSURF=500, FYM_OLDINC=600, FYM_FRINC=700, PS_DM2=800, PS_DM4=900, PS_DM6=1000, PL_LAY=1100, PL_BROI=1200} QUAL_KEY;
 
 #pragma mark - Constants
 //CONSTANT NSNUMBER WRAPPERS AROUND ENUMERATED TYPES

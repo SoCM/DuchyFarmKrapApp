@@ -189,7 +189,6 @@
 
     pvalueForAllCrops = [[_P objectAtIndex:idxP] objectForKey:@"AllCrops"];
     pvalueForGrassWinterOilseedRape = [[_P objectAtIndex:idxP] objectForKey:@"GrassWinterOilseedRape"];
-
     
     kvalueForAllCrops = [[_K objectAtIndex:idxK] objectForKey:@"AllCrops"];
     kvalueForGrassWinterOilseedRape = [[_K objectAtIndex:idxK] objectForKey:@"GrassWinterOilseedRape"];
@@ -245,7 +244,19 @@
     
     return self;
 }
-
+//Available nutrient for a given spreading event
+-(NSNumber*)nitrogenAvailableusingMetric:(BOOL)metric
+{
+    return [self nitrogenAvailableForRate:self.spreadingEvent.density usingMetric:metric];
+}
+-(NSNumber*)phosphateAvailableusingMetric:(BOOL)metric
+{
+    return [self phosphateAvailableForRate:self.spreadingEvent.density usingMetric:metric];
+}
+-(NSNumber*)potassiumAvailableusingMetric:(BOOL)metric
+{
+    return [self potassiumAvailableForRate:self.spreadingEvent.density usingMetric:metric];
+}
 -(NSNumber*)nitrogenAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric
 {
     if (self.nitrogen == nil) return nil;
