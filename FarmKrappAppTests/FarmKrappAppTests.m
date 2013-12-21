@@ -75,30 +75,37 @@
     [super tearDown];
 }
 #pragma mark - Data model generic
--(void)testConstants
+-(void)testConstantsFCAAvailableNutients
 {
-    NSString *myPlistFilePath = [[NSBundle mainBundle] pathForResource: @"manure_types" ofType: @"plist"];
-    NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile: myPlistFilePath];
-    NSArray* arrayForCattleSlurry = [dict objectForKey:@"Cattle Slurry"];
-    for (NSDictionary* item in arrayForCattleSlurry) {
-        NSLog(@"%@", [item objectForKey:@"desc"]);
-    }
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSGregorianCalendar];
 
-    //These must not crash - require visual verification (for now)
-//    NSLog(@"%@", [SOILTYPE_STRING_DICT objectForKey:kSOILTYPE_MEDIUM_HEAVY] );
-//    NSLog(@"%@", [SOILTYPE_STRING_DICT objectForKey:kSOILTYPE_SANDY_SHALLOW] );
-//    NSLog(@"%@", [CROPTYPE_STRING_DICT objectForKey:kCROPTYPE_ALL_CROPS]);
-//    NSLog(@"%@", [CROPTYPE_STRING_DICT objectForKey:kCROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE]);
-//    NSLog(@"%@", [MANURETYPE_STRING_DICT objectForKey:kMANURETYPE_CATTLE_SLURRY]);
-//    NSLog(@"And today's menu is....");
-//    NSLog(@"%@", [MANURETYPE_STRING_DICT objectForKey:kMANURETYPE_FARMYARD_MANURE]);
-//    NSLog(@"%@", [MANURETYPE_STRING_DICT objectForKey:kMANURETYPE_PIG_SLURRY]);
-//    NSLog(@"%@", [MANURETYPE_STRING_DICT objectForKey:kMANURETYPE_POULTRY_LITTER]);
-//    NSLog(@"And how you you like your food sir?");
-//    NSLog(@"%@", [MANUREQUALITY_STRING_DICT objectForKey:kMANUREQUALITY_THIN_SOUP]);
-//    NSLog(@"%@", [MANUREQUALITY_STRING_DICT objectForKey:kMANUREQUALITY_THICK_SOUP]);
-//    NSLog(@"%@", [MANUREQUALITY_STRING_DICT objectForKey:kMANUREQUALITY_PORRIGDE]);
-//    NSLog(@"With or without onions?");
+    FCAAvailableNutrients *availNutrient;
+    
+    //Create some objects with which to test
+    NSNumber* den1 = @100;
+    NSDateComponents* dc1 = [[NSDateComponents alloc] init];
+    dc1.day = 01; dc1.month = 01; dc1.year = 2013;
+    NSDate *d1 = [gregorian dateFromComponents:dc1];
+
+    SoilType* st1 = [SoilType FetchSoilTypeForID:kSOILTYPE_SANDY_SHALLOW];
+    CropType* ct1 = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
+    ManureType *mt1 = [ManureType FetchManureTypeForStringID:@"CattleSlurry"];
+    ManureQuality *mq1 = [ManureQuality FetchManureQualityForID:@100];
+    Field *f1 = [Field InsertFieldWithName:@"F1" soilType:st1 cropType:ct1 sizeInHectares:@10];
+    SpreadingEvent*s1 = [FCADataModel addNewSpreadingEventWithDate:d1 manureType:mt1 quality:mq1 density:den1 toField:f1];
+    
+    availNutrient = [[FCAAvailableNutrients alloc] initWithSpreadingEvent:s1];
+    availNutrient = [availNutrient availableNutrientsForQuality:mq1];
+    
+    
+    NSLog(@"N = %@", [availNutrient nitrogenAvailableForRate:@100.0 usingMetric:YES]);
+    NSLog(@"P = %@", [availNutrient phosphateAvailableForRate:@100.0 usingMetric:YES]);
+    NSLog(@"K = %@", [availNutrient potassiumAvailableForRate:@100.0 usingMetric:YES]);
+    
+    //Tidy up
+    [FCADataModel removeField:f1];
+    
 }
 
 

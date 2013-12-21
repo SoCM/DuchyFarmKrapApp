@@ -18,11 +18,13 @@
 
 @property(readwrite, nonatomic, strong) SpreadingEvent* spreadingEvent;
 @property(readwrite, nonatomic, assign) BOOL metric;
-
 @property(readonly, nonatomic, strong) NSNumber* nitrogen;
 @property(readonly, nonatomic, strong) NSNumber* phosphate;
 @property(readonly, nonatomic, strong) NSNumber* potassium;
 @end
+
+
+
 
 @implementation FCAAvailableNutrients {
     //Dictionary of data derived from DEFRA
@@ -33,7 +35,6 @@
     NSString* manureTypeID;
     
     //Internal cache
-    NSNumber* _rate;
     ManureQuality* _qual;
     NSArray* _N;
     NSArray* _P;
@@ -45,14 +46,12 @@
 @synthesize potassium = _potassium;
 @synthesize nitrogen = _nitrogen;
 
-- (id)initWithSpreadingEvent:(SpreadingEvent*)se inMetric:(BOOL)m
+- (id)initWithSpreadingEvent:(SpreadingEvent*)se
 {
     self = [super init];
     if (self) {
         self.spreadingEvent = se;
-        self.metric = m;
         _qual = nil;
-        _rate = nil;
         
         //Get the season
         NSString* month = [[se.date dateComponentsAsDictionaryUsingGMT:YES] valueForKey:@"month"];
@@ -149,17 +148,15 @@
         }
         
     }
+    
     return self;
 }
--(FCAAvailableNutrients*)availableNutrientsForRate:(NSNumber*)rate andQuality:(ManureQuality*)qual
+-(FCAAvailableNutrients*)availableNutrientsForQuality:(ManureQuality*)qual
 {
     //Don't re-calculate if the parameters are the same
-    if ((rate.intValue == _rate.intValue ) && (qual.seqID.intValue == _qual.seqID.intValue)) {
+    if (qual.seqID.intValue == _qual.seqID.intValue) {
         return self;
     }
-    //Set internal state
-    _rate = rate;
-    _qual = qual;
     
     //Drill down into the object heirarchy (an array of dictionaries)
     
@@ -170,7 +167,7 @@
     BOOL(^foundit)(id, NSUInteger,BOOL*) = ^(id obj, NSUInteger idx, BOOL* stop)
     {
         NSNumber* next = [obj objectForKey:@"seqID"];
-        if (next.intValue == _qual.seqID.intValue) {
+        if (next.intValue ==  qual.seqID.intValue) {
             *stop = YES;
             return YES;
         } else {
@@ -182,7 +179,7 @@
     NSNumber *nvalueForAllCrops, *pvalueForAllCrops, *kvalueForAllCrops;
     NSNumber *nvalueForGrassWinterOilseedRape, *pvalueForGrassWinterOilseedRape, *kvalueForGrassWinterOilseedRape;
     
-    //Potassium
+    //Look up NPK Values (metric)
     idxN = [_N indexOfObjectPassingTest:foundit];
     idxP = [_P indexOfObjectPassingTest:foundit];
     idxK = [_K indexOfObjectPassingTest:foundit];
@@ -217,8 +214,76 @@
         default:
             NSLog(@"Invalid crop type: %s", __PRETTY_FUNCTION__);
     }
+    
+    // NOW SCALE (depending on manure type data) to units per hectare
+    // I took the bottom table from the DEFRA data
+    double fScale;
+    if ([self.spreadingEvent.manureType.stringID isEqualToString:@"CattleSlurry"]) {
+        //CattleSlurry data based on 100m3/ha
+        fScale = 0.01;
+    }
+    else if ([self.spreadingEvent.manureType.stringID isEqualToString:@"PigSlurry"]) {
+        //Pig slurry data based on 50m3/ha
+        fScale = 0.02;
+    }
+    else if ([self.spreadingEvent.manureType.stringID isEqualToString:@"FarmyardManure"]) {
+        //FYM data based on 50m3/ha
+        fScale = 0.02;
+    }
+    else if ([self.spreadingEvent.manureType.stringID isEqualToString:@"PoultryLitter"]) {
+        //Poultry litter: based on 10t/ha
+        fScale = 0.1;
+    } else {
+        NSLog(@"Serious error in %s", __PRETTY_FUNCTION__);
+        fScale = -1.0;      //This will make it apparent something is wrong (defensive strategy)
+    }
+
+    //Scale to 1 unit / ha
+    _nitrogen  = [NSNumber numberWithDouble:_nitrogen.doubleValue  * fScale];
+    _phosphate = [NSNumber numberWithDouble:_phosphate.doubleValue * fScale];
+    _potassium = [NSNumber numberWithDouble:_potassium.doubleValue * fScale];
+    
     return self;
 }
+
+-(NSNumber*)nitrogenAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric
+{
+    if (self.nitrogen == nil) return nil;
+    
+    float fN1 = [[self nitrogen] doubleValue] * rate.doubleValue;
+    if (metric) {
+        return [NSNumber numberWithDouble:fN1];
+    } else {
+#warning INCOMPLETE
+        return nil;
+    }
+}
+-(NSNumber*)phosphateAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric
+{
+    if (self.phosphate == nil) return nil;
+    float fP1 = self.phosphate.doubleValue * rate.doubleValue;
+    if (metric) {
+        return [NSNumber numberWithDouble:fP1];
+    } else {
+#warning INCOMPLETE
+        return nil;
+    }
+}
+-(NSNumber*)potassiumAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric
+{
+    {
+        if (self.potassium == nil) return nil;
+        
+        float fK1 = [[self potassium] doubleValue] * rate.doubleValue;
+        if (metric) {
+            return [NSNumber numberWithDouble:fK1];
+        } else {
+#warning INCOMPLETE
+            return nil;
+        }
+    }
+}
+
 
 @end
 #pragma mark - Category on SoilType

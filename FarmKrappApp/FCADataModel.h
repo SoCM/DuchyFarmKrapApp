@@ -18,12 +18,13 @@
 #import "SpreadingEvent.h"
 
 
-@interface FCAAvailableNutrients : NSObject <NSObject> {
-    
-}
+@interface FCAAvailableNutrients : NSObject <NSObject>
 
-- (id)initWithSpreadingEvent:(SpreadingEvent*)se inMetric:(BOOL)m;
--(FCAAvailableNutrients*)availableNutrientsForRate:(NSNumber*)rate andQuality:(ManureQuality*)qual;
+- (id)initWithSpreadingEvent:(SpreadingEvent*)se;
+-(FCAAvailableNutrients*)availableNutrientsForQuality:(ManureQuality*)qual;
+-(NSNumber*)nitrogenAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric;
+-(NSNumber*)phosphateAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric;
+-(NSNumber*)potassiumAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric;
 
 @end
 
