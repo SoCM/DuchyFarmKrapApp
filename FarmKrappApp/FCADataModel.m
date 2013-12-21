@@ -21,15 +21,17 @@
 @property(readonly, nonatomic, strong) NSNumber* nitrogen;
 @property(readonly, nonatomic, strong) NSNumber* phosphate;
 @property(readonly, nonatomic, strong) NSNumber* potassium;
+
+-(FCAAvailableNutrients*)calculateAvailableNutrients;
+
 @end
 
-
-
-
+//Seperate class for calculating nutrients
+//This is seperate so it can pre-calculate values and thus improve performance when calculating for different rates
 @implementation FCAAvailableNutrients {
     //Dictionary of data derived from DEFRA
     NSDictionary* _dict;
-    enum {AUTUMN, WINTER, SPRING, SUMMER} season;
+    SEASON season;
     SOIL_TYPE soil_type;
     CROP_TYPE crop_type;
     NSString* manureTypeID;
@@ -149,14 +151,13 @@
         
     }
     
+    //PHASE 2 - calculate
+    [self calculateAvailableNutrients];
+    
     return self;
 }
--(FCAAvailableNutrients*)availableNutrientsForQuality:(ManureQuality*)qual
+-(FCAAvailableNutrients*)calculateAvailableNutrients
 {
-    //Don't re-calculate if the parameters are the same
-    if (qual.seqID.intValue == _qual.seqID.intValue) {
-        return self;
-    }
     
     //Drill down into the object heirarchy (an array of dictionaries)
     
@@ -167,7 +168,7 @@
     BOOL(^foundit)(id, NSUInteger,BOOL*) = ^(id obj, NSUInteger idx, BOOL* stop)
     {
         NSNumber* next = [obj objectForKey:@"seqID"];
-        if (next.intValue ==  qual.seqID.intValue) {
+        if (next.intValue ==  self.spreadingEvent.manureQuality.seqID.intValue) {
             *stop = YES;
             return YES;
         } else {
@@ -259,8 +260,6 @@
 }
 -(NSNumber*)nitrogenAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric
 {
-    if (self.nitrogen == nil) return nil;
-    
     float fN1 = [[self nitrogen] doubleValue] * rate.doubleValue;
     if (metric) {
         return [NSNumber numberWithDouble:fN1];
@@ -271,7 +270,6 @@
 }
 -(NSNumber*)phosphateAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric
 {
-    if (self.phosphate == nil) return nil;
     float fP1 = self.phosphate.doubleValue * rate.doubleValue;
     if (metric) {
         return [NSNumber numberWithDouble:fP1];
@@ -282,16 +280,12 @@
 }
 -(NSNumber*)potassiumAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric
 {
-    {
-        if (self.potassium == nil) return nil;
-        
-        float fK1 = [[self potassium] doubleValue] * rate.doubleValue;
-        if (metric) {
-            return [NSNumber numberWithDouble:fK1];
-        } else {
+    float fK1 = [[self potassium] doubleValue] * rate.doubleValue;
+    if (metric) {
+        return [NSNumber numberWithDouble:fK1];
+    } else {
 #warning INCOMPLETE
-            return nil;
-        }
+        return nil;
     }
 }
 
