@@ -77,31 +77,40 @@
 #pragma mark - Data model generic
 -(void)testConstantsFCAAvailableNutients
 {
+    //Double equivalence check used for testing results
+    BOOL(^isCloseTo)(double, double) = ^(double a, double b) {
+        if (fabs(a-b) < 0.00001) return YES;
+        else return NO;
+    };
+
+    double fVal;
     NSCalendar *gregorian = [[NSCalendar alloc]
                              initWithCalendarIdentifier:NSGregorianCalendar];
 
     FCAAvailableNutrients *availNutrient;
     
-    //Create some objects with which to test
-    NSNumber* den1 = @100;
+    //WINTER
     NSDateComponents* dc1 = [[NSDateComponents alloc] init];
     dc1.day = 01; dc1.month = 01; dc1.year = 2013;
     NSDate *d1 = [gregorian dateFromComponents:dc1];
 
+    //SANDY SHALLOW, ALL CROPS
     SoilType* st1 = [SoilType FetchSoilTypeForID:kSOILTYPE_SANDY_SHALLOW];
     CropType* ct1 = [CropType FetchCropTypeForID:kCROPTYPE_ALL_CROPS];
+    
+    //CATTLE SLURRY
     ManureType *mt1 = [ManureType FetchManureTypeForStringID:@"CattleSlurry"];
-    ManureQuality *mq1 = [ManureQuality FetchManureQualityForID:@100];
+    ManureQuality *mq1 = [ManureQuality FetchManureQualityForID:[NSNumber numberWithInt:CS_DM2]];
+    
+    //SPREAD THAT SLURRY!
     Field *f1 = [Field InsertFieldWithName:@"F1" soilType:st1 cropType:ct1 sizeInHectares:@10];
-    SpreadingEvent*s1 = [FCADataModel addNewSpreadingEventWithDate:d1 manureType:mt1 quality:mq1 density:den1 toField:f1];
+    SpreadingEvent*s1 = [FCADataModel addNewSpreadingEventWithDate:d1 manureType:mt1 quality:mq1 density:@100 toField:f1]; //rate = 100.0
     
+    //CHECK AVAILABLE NUTRIENTS
     availNutrient = [[FCAAvailableNutrients alloc] initWithSpreadingEvent:s1];
-    availNutrient = [availNutrient availableNutrientsForQuality:mq1];
     
-    
-    NSLog(@"N = %@", [availNutrient nitrogenAvailableForRate:@100.0 usingMetric:YES]);
-    NSLog(@"P = %@", [availNutrient phosphateAvailableForRate:@100.0 usingMetric:YES]);
-    NSLog(@"K = %@", [availNutrient potassiumAvailableForRate:@100.0 usingMetric:YES]);
+    fVal = [availNutrient nitrogenAvailableForRate:@100.0 usingMetric:YES].doubleValue;
+    XCTAssertTrue(isCloseTo(48.0, fVal), @"Wrong N value");
     
     //Tidy up
     [FCADataModel removeField:f1];
