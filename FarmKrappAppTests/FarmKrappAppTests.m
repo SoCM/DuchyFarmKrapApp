@@ -108,12 +108,36 @@
     
     //CHECK AVAILABLE NUTRIENTS
     availNutrient = [[FCAAvailableNutrients alloc] initWithSpreadingEvent:s1];
-    
-    fVal = [availNutrient nitrogenAvailableForRate:@100.0 usingMetric:YES].doubleValue;
+    fVal = [availNutrient nitrogenAvailableusingMetric:YES].doubleValue;
     XCTAssertTrue(isCloseTo(48.0, fVal), @"Wrong N value");
+    fVal = [availNutrient nitrogenAvailableForRate:@50.0 usingMetric:YES].doubleValue;
+    XCTAssertTrue(isCloseTo(24.0, fVal), @"Wrong N value");
+    
+
     
     //Tidy up
     [FCADataModel removeField:f1];
+    
+}
+
+-(void)testCoreDataChildParent
+{
+    //Core data tests
+    NSError *cerror, *perror;
+    NSManagedObjectContext* pmoc = [FCADataModel managedObjectContext];
+//    NSManagedObjectContext* cmoc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    NSManagedObjectContext* cmoc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    [cmoc setParentContext:pmoc];
+    
+    
+    NSEntityDescription* ced = [NSEntityDescription entityForName:@"Field" inManagedObjectContext:cmoc];
+    Field* f1 = [[Field alloc] initWithEntity:ced insertIntoManagedObjectContext:cmoc];
+    f1.name = @"Fred";
+    
+    //[cmoc save:&cerror];  //This would save the changes
+    
+    //Should NOT  create a new field
+    [pmoc save:&perror];
     
 }
 
