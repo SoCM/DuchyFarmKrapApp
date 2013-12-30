@@ -11,5 +11,8 @@
 @interface FCAApplicationRateCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
+@property (weak, nonatomic) IBOutlet UILabel *NitrogenLabel;
+@property (weak, nonatomic) IBOutlet UILabel *PhosphateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *PotassiumLabel;
 
 @end
