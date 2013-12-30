@@ -21,6 +21,9 @@
 @interface FCASpreadingEventDetailsTableViewController ()
 - (IBAction)doDateUpdate:(id)sender;
 
+//Nutrient calculation obect
+@property(readwrite, nonatomic, strong) FCAAvailableNutrients* nutrientCalc;
+
 //State
 @property(readwrite, nonatomic, assign) BOOL datePickerShowing;
 @property(readwrite, nonatomic, assign) BOOL manureTypePickerShowing;
@@ -31,6 +34,25 @@
 @end
 
 @implementation FCASpreadingEventDetailsTableViewController
+
+@synthesize  nutrientCalc = _nutrientCalc;
+-(FCAAvailableNutrients*)nutrientCalc
+{
+    if (_nutrientCalc) {
+        return _nutrientCalc;
+    }
+
+    //Make sure all essential data is available
+    if ((self.spreadingEvent.manureQuality == nil) || (self.spreadingEvent.manureType == nil) || (self.spreadingEvent.date == nil)) {
+        _nutrientCalc = nil;
+        return nil;
+    }
+    
+    //If we get this far, the data is available
+    self.nutrientCalc = [[FCAAvailableNutrients alloc] initWithSpreadingEvent:self.spreadingEvent];
+    return _nutrientCalc;
+}
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -55,8 +77,12 @@
     self.datePickerShowing = NO;
     self.manureQualityPickerShowing = NO;
     self.manureTypePickerShowing = NO;
-    self.imageShowing = NO;
-    
+    if ((self.spreadingEvent.manureType) && (self.spreadingEvent.manureQuality) && (self.spreadingEvent.density)) {
+        self.imageShowing = YES;
+    } else {
+        self.imageShowing = NO;
+    }
+    self.nutrientCalc = nil;
     NSLog(@"FIELD: %@", self.spreadingEvent);
 }
 
@@ -65,7 +91,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -125,7 +150,7 @@
             break;
         case 3:
             //Application rate
-            return 130.0;
+            return 200.0;
             break;
         case 4:
             //Image
@@ -241,6 +266,22 @@
                     appRateCell.slider.maximumValue = 100.0;
                 }
             }
+            
+            //Calculate the N P K (conditional on all data being available)
+            
+            if (self.nutrientCalc) {
+                NSNumber *N, *P, *K;
+                N = [self.nutrientCalc nitrogenAvailableForRate:self.spreadingEvent.density usingMetric:YES];
+                P = [self.nutrientCalc phosphateAvailableForRate:self.spreadingEvent.density usingMetric:YES];
+                K = [self.nutrientCalc potassiumAvailableForRate:self.spreadingEvent.density usingMetric:YES];
+                appRateCell.NitrogenLabel.text = [NSString stringWithFormat:@"%4.1f Kg/ha", N.floatValue];
+                appRateCell.PhosphateLabel.text = [NSString stringWithFormat:@"%4.1f Kg/ha", P.floatValue];
+                appRateCell.PotassiumLabel.text = [NSString stringWithFormat:@"%4.1f Kg/ha", K.floatValue];
+            } else {
+                appRateCell.NitrogenLabel.text = @"---";
+                appRateCell.PhosphateLabel.text = @"---";
+                appRateCell.PotassiumLabel.text = @"---";
+            }
             break;
             
         case 4:
@@ -287,6 +328,7 @@
     float v = slider.value;
     v = roundf(v);
     self.spreadingEvent.density = [NSNumber numberWithInt:(int)v];
+    
     [self.tableView reloadData];
 }
 
@@ -329,6 +371,7 @@
 - (IBAction)doDateUpdate:(id)sender {
     UIDatePicker* datePicker = (UIDatePicker*)sender;
     self.spreadingEvent.date = datePicker.date;
+    self.nutrientCalc = nil;        //Reset nutrient calculator
     [self.tableView reloadData];
 }
 
@@ -350,6 +393,7 @@
         self.spreadingEvent.manureQuality = (ManureQuality*)[self.managedChildObjectContext objectWithID:[manureQual objectID]];
         self.spreadingEvent.density = @10.0;   //Reset the application rate
         self.imageShowing = YES;
+        self.nutrientCalc = nil;        //Reset nutrient calculator
         [self.tableView reloadData];
     };
     
