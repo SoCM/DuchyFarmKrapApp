@@ -152,7 +152,6 @@
         self.selectedSection = [NSNumber numberWithInt:indexPath.section];
         self.selectedManureType = self.selectedManureType = [self.arrayOfManureTypes objectAtIndex:indexPath.section];
         self.selectedManureQuality = nil;
-
         updateTable();
         return;
     }

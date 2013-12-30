@@ -12,6 +12,7 @@
 
 @interface FCASpreadingEventSummaryTableViewController : UITableViewController
 
+@property(readwrite, nonatomic, strong) NSManagedObjectContext* managedChildObjectContext;
 @property(readwrite, nonatomic, strong) SpreadingEvent* managedObject;
 
 @end

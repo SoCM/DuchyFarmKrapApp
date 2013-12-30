@@ -21,22 +21,11 @@
 @interface FCASpreadingEventDetailsTableViewController ()
 - (IBAction)doDateUpdate:(id)sender;
 
-@property(readwrite, nonatomic, strong) Field* field;
-@property(readwrite, nonatomic, strong) SpreadingEvent* spreadingEvent;
-
-//Local temporary data
-@property (readwrite, nonatomic, strong) NSDate* date;
-@property (readwrite, nonatomic, strong) NSString* manureType;
-@property (readwrite, nonatomic, strong) NSNumber* manureQuality;
-@property (readwrite, nonatomic, strong) NSNumber* applicationRate;
-
 //State
 @property(readwrite, nonatomic, assign) BOOL datePickerShowing;
 @property(readwrite, nonatomic, assign) BOOL manureTypePickerShowing;
 @property(readwrite, nonatomic, assign) BOOL manureQualityPickerShowing;
 @property(readwrite, nonatomic, assign) BOOL imageShowing;
-@property(readwrite, nonatomic, strong) ManureQuality* selectedManureQuality;
-@property(readwrite, nonatomic, strong) ManureType* selectedManureType;
 @property(readwrite, nonatomic, strong) NSString* currentImageFileName;
 
 @end
@@ -61,39 +50,14 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    id obj = self.managedObject;
-
-    //Introspect
-    if ([obj isKindOfClass:[Field class]]) {
-        //This is a new spreading event - only the field is provided
-        self.field = (Field*)self.managedObject;
-        self.spreadingEvent = nil;
-        self.date = [NSDate date];
-        self.manureType = nil;
-        self.manureQuality = nil;
-        self.applicationRate = @10;
-        self.selectedManureQuality = nil;
-        self.selectedManureType = nil;
-    }
-    if ([obj isKindOfClass:[SpreadingEvent class]]) {
-        //This is an existing spreading event
-        self.spreadingEvent = (SpreadingEvent*)self.managedObject;
-        self.field = self.spreadingEvent.field;
-        self.date = self.spreadingEvent.date;
-        self.manureType = ((ManureType*)self.spreadingEvent.manureType).stringID;
-        self.manureQuality = ((ManureQuality*)self.spreadingEvent.manureQuality).seqID;
-        self.selectedManureType = self.spreadingEvent.manureType;
-        self.selectedManureQuality = self.spreadingEvent.manureQuality;
-        self.applicationRate = self.spreadingEvent.density;
-    }
-    
-    //Eitherway, we know the field
     
     //Initial state
     self.datePickerShowing = NO;
     self.manureQualityPickerShowing = NO;
     self.manureTypePickerShowing = NO;
     self.imageShowing = NO;
+    
+    NSLog(@"FIELD: %@", self.spreadingEvent);
 }
 
 - (void)didReceiveMemoryWarning
@@ -226,7 +190,7 @@
             //Field
             cell = [tableView dequeueReusableCellWithIdentifier:@"SingleLabelCell" forIndexPath:indexPath];
             fieldNameCell = (FCASpreadingEventSingleLabelCell*)cell;
-            fieldNameCell.label.text = self.field.name;
+            fieldNameCell.label.text = self.spreadingEvent.field.name;
             break;
             
         case 1:
@@ -234,13 +198,13 @@
             if (indexPath.row == 0) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"DateStringCell" forIndexPath:indexPath];
                 dateStringCell = (FCADateStringCell*)cell;
-                dateStringCell.label.text = [self.date stringForUKShortFormatUsingGMT:YES];
+                dateStringCell.label.text = [self.spreadingEvent.date stringForUKShortFormatUsingGMT:YES];
                 //TBD
             } else {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"DatePickerCell" forIndexPath:indexPath];
                 datePickerCell = (FCADatePickerCell*)cell;
-                if (self.date) {
-                    datePickerCell.datePicker.date = self.date;
+                if (self.spreadingEvent.date) {
+                    datePickerCell.datePicker.date = self.spreadingEvent.date;
                 }
             }
             break;
@@ -249,9 +213,9 @@
             //Manure type + quality
             cell = [tableView dequeueReusableCellWithIdentifier:@"ManureCell" forIndexPath:indexPath];
             manureCell = (FCAManureCell*)cell;
-            if (self.manureType) {
-                manureCell.manureTypeLabel.text = self.selectedManureType.displayName;
-                manureCell.manureQualityLabel.text = self.selectedManureQuality.name;
+            if (self.spreadingEvent.manureType) {
+                manureCell.manureTypeLabel.text = self.spreadingEvent.manureType.displayName;
+                manureCell.manureQualityLabel.text = self.spreadingEvent.manureQuality.name;
             } else {
                 manureCell.manureTypeLabel.text = @"Manure Type:";
                 manureCell.manureQualityLabel.text = @"None Selected";
@@ -262,16 +226,16 @@
             //Application rate
             cell = [tableView dequeueReusableCellWithIdentifier:@"ApplicationRateCell" forIndexPath:indexPath];
             appRateCell = (FCAApplicationRateCell*)cell;
-            appRateCell.label.text = [NSString stringWithFormat:@"%@ m3/ha", self.applicationRate];
+            appRateCell.label.text = [NSString stringWithFormat:@"%@ m3/ha", self.spreadingEvent.density];
             
             //Update slider if different
-            if (appRateCell.slider.value != self.applicationRate.floatValue) {
-                appRateCell.slider.value = self.applicationRate.floatValue;
+            if (appRateCell.slider.value != self.spreadingEvent.density.floatValue) {
+                appRateCell.slider.value = self.spreadingEvent.density.floatValue;
             }
 
             //Set scale depending on manure type
-            if (self.selectedManureType) {
-                if ([self.selectedManureType.stringID isEqualToString:@"PoultryLitter"]) {
+            if (self.spreadingEvent.manureType) {
+                if ([self.spreadingEvent.manureType.stringID isEqualToString:@"PoultryLitter"]) {
                     appRateCell.slider.maximumValue = 15.0;
                 } else {
                     appRateCell.slider.maximumValue = 100.0;
@@ -283,8 +247,8 @@
             
             cell = [tableView dequeueReusableCellWithIdentifier:@"ImageCell" forIndexPath:indexPath];
             imageCell = (FCASquareImageCell*)cell;
-            if (self.selectedManureType) {
-                NSString* fileName = [FCADataModel imageNameForManureType:self.selectedManureType andRate:self.applicationRate];
+            if (self.spreadingEvent.manureType) {
+                NSString* fileName = [FCADataModel imageNameForManureType:self.spreadingEvent.manureType andRate:self.spreadingEvent.density];
                 
                 //Has the image name changed? (changing the image is expensive)
                 if (![self.currentImageFileName isEqualToString:fileName]) {
@@ -322,46 +286,36 @@
     UISlider* slider = (UISlider*)sender;
     float v = slider.value;
     v = roundf(v);
-    self.applicationRate = [NSNumber numberWithInt:(int)v];
+    self.spreadingEvent.density = [NSNumber numberWithInt:(int)v];
     [self.tableView reloadData];
 }
 
 
 - (IBAction)doSave:(id)sender {
     //Validate form
-    if (!self.date) {
+    if (!self.spreadingEvent.date) {
         UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please provide a date" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         [av show];
         return;
     }
-    if (!self.manureType) {
+    if (!self.spreadingEvent.manureType) {
         UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please select a manure type" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         [av show];
         return;
     }
-    if (!self.applicationRate) {
+    if (!self.spreadingEvent.density) {
         UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please provide a spreading rate" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         [av show];
         return;
     }
     //If we get this far, the data is complete - we simple save
-    if (!self.spreadingEvent) {
-        self.spreadingEvent = [FCADataModel addNewSpreadingEventWithDate:self.date
-                                                              manureType:self.selectedManureType
-                                                                 quality:self.selectedManureQuality
-                                                                 density:self.applicationRate
-                                                                 toField:self.field];
-    } else {
-        self.spreadingEvent.date = self.date;
-        self.spreadingEvent.manureType = self.selectedManureType;
-        self.spreadingEvent.manureQuality = self.selectedManureQuality;
-        self.spreadingEvent.density = self.applicationRate;
-    }
-    //Save and pop back
-    [FCADataModel saveContext];
+     //Save and pop back
+    NSError* err;
+    [self.managedChildObjectContext save:&err];
+    [self.managedChildObjectContext.parentContext save:&err];       //DO I NEED THIS?
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -374,7 +328,7 @@
 
 - (IBAction)doDateUpdate:(id)sender {
     UIDatePicker* datePicker = (UIDatePicker*)sender;
-    self.date = datePicker.date;
+    self.spreadingEvent.date = datePicker.date;
     [self.tableView reloadData];
 }
 
@@ -391,11 +345,10 @@
     vc = [segue destinationViewController];
     
     void(^callBack)(ManureType*, ManureQuality*) = ^(ManureType* manureType, ManureQuality* manureQual) {
-        self.manureType = manureType.displayName;
-        self.manureQuality = manureQual.seqID;
-        self.selectedManureQuality = manureQual;
-        self.selectedManureType = manureType;
-        self.applicationRate = @10.0;   //Reset the application rate
+        //managedobjects passed are from a different context
+        self.spreadingEvent.manureType = (ManureType*)[self.managedChildObjectContext objectWithID:[manureType objectID]];
+        self.spreadingEvent.manureQuality = (ManureQuality*)[self.managedChildObjectContext objectWithID:[manureQual objectID]];
+        self.spreadingEvent.density = @10.0;   //Reset the application rate
         self.imageShowing = YES;
         [self.tableView reloadData];
     };

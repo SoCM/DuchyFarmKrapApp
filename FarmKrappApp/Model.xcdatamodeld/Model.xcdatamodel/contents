@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="v1" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B40" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="v1" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C32" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="CropType" representedClassName="CropType" syncable="YES">
         <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="seqID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -43,12 +43,12 @@
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="spreadingEvent" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Field" positionX="-4547" positionY="-585" width="128" height="118"/>
-        <element name="ManureQuality" positionX="-4347" positionY="-751" width="128" height="103"/>
-        <element name="ManureType" positionX="-4538" positionY="-751" width="128" height="103"/>
-        <element name="Photo" positionX="-4538" positionY="-441" width="128" height="88"/>
-        <element name="SpreadingEvent" positionX="-4329" positionY="-556" width="128" height="133"/>
-        <element name="CropType" positionX="-4788" positionY="-675" width="128" height="88"/>
-        <element name="SoilType" positionX="-4790" positionY="-475" width="128" height="88"/>
+        <element name="CropType" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Field" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ManureQuality" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ManureType" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Photo" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SoilType" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="SpreadingEvent" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

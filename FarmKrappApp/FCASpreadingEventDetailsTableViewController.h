@@ -12,6 +12,6 @@
 #import "FCADataModel.h"
  
 @interface FCASpreadingEventDetailsTableViewController : UITableViewController
-
-@property(readwrite, nonatomic, strong) NSManagedObject* managedObject;
+@property(readwrite, nonatomic, strong) NSManagedObjectContext* managedChildObjectContext;
+@property(readwrite, nonatomic, strong) SpreadingEvent* spreadingEvent;
 @end

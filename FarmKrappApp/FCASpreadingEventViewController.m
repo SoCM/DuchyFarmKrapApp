@@ -186,20 +186,40 @@
     UITableViewController* vc;
     vc = [segue destinationViewController];
     NSString* identifier = [segue identifier];
+
+    //Desination view controller
+    FCASpreadingEventDetailsTableViewController* dest = (FCASpreadingEventDetailsTableViewController*)vc;
+    
+    //Create child context
+    NSManagedObjectContext* childContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    [childContext setParentContext:[FCADataModel managedObjectContext]];
+    
+    //Set MOC for destination view controller
+    dest.managedChildObjectContext = childContext;
     
     if ([identifier isEqualToString:@"EditSegue"]) {
+        //****
         //EDIT - pass reference of managed object to destination controller
-        FCASpreadingEventDetailsTableViewController* dest = (FCASpreadingEventDetailsTableViewController*)vc;
+        //****
         NSIndexPath* indexPath = (NSIndexPath*)sender;
-        //Pass the selected (existing) spreading event
-        dest.managedObject = [[FCADataModel arrayOfSpreadingEventsForField:self.fieldSelected] objectAtIndex:indexPath.row];
+        
+        //Get reference to selected spreading event from current (parent) context
+        SpreadingEvent* currentSpreadingEvent = [[FCADataModel arrayOfSpreadingEventsForField:self.fieldSelected] objectAtIndex:indexPath.row];
+        
+        //Pass reference to the view controller
+        dest.spreadingEvent = (SpreadingEvent*)[childContext objectWithID:[currentSpreadingEvent objectID]];
     }
     else if ([identifier isEqualToString:@"AddSegue"]) {
-        //Ensure the reference to the managed object is nil (signals a new entity)
-        FCASpreadingEventDetailsTableViewController* dest = (FCASpreadingEventDetailsTableViewController*)vc;
-        //Flag this is a new record by passing a field (not a spreading event)
-        dest.managedObject = self.fieldSelected;
-        
+        //***
+        //ADD
+        //***
+        //This is a new temporary record - pass to destination using child context
+        dest.spreadingEvent = [NSEntityDescription insertNewObjectForEntityForName:@"SpreadingEvent" inManagedObjectContext:childContext];
+        dest.spreadingEvent.density = @10;
+        dest.spreadingEvent.date = [NSDate date];
+        NSManagedObjectID  *currentFieldID = [self.fieldSelected objectID];
+        Field* fieldInNewContext = (Field*)[childContext objectWithID:currentFieldID];
+        [fieldInNewContext addSpreadingEventsObject:dest.spreadingEvent];
     }
     else if ([identifier isEqualToString:@"SummarySegue"])
     {

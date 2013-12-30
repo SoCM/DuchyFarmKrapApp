@@ -125,19 +125,38 @@
     //Core data tests
     NSError *cerror, *perror;
     NSManagedObjectContext* pmoc = [FCADataModel managedObjectContext];
-//    NSManagedObjectContext* cmoc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     NSManagedObjectContext* cmoc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [cmoc setParentContext:pmoc];
+
+    //Add field to child context
+    Field* f1 = (Field*)[NSEntityDescription insertNewObjectForEntityForName:@"Field" inManagedObjectContext:cmoc];
+    f1.name = @"Fred19756";
+    [cmoc save:&cerror];  //This will save the changes to the child moc
+    [pmoc save:&perror];  //Save the changes to the parent
+
+    //Check it was committed
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Field"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"name == \"Fred19756\""];
+    NSArray* res = [pmoc executeFetchRequest:fr error:&perror];
+    XCTAssertTrue(res.count == 1, @"Error - got back %lu", res.count);
+
+    //Create spreading event using ONLY CHILD CONTEXT
+    Field *fieldFromParentContext = [res objectAtIndex:0];
+    NSManagedObjectID *f1ID = [fieldFromParentContext objectID];
+    Field* f2 = (Field*)[cmoc objectWithID:f1ID];
+    SpreadingEvent* se1 = [NSEntityDescription insertNewObjectForEntityForName:@"SpreadingEvent" inManagedObjectContext:cmoc];
+//    [fieldFromParentContext addSpreadingEventsObject:se1];
+    [f2 addSpreadingEventsObject:se1];
+    [cmoc save:&cerror];
     
-    
-    NSEntityDescription* ced = [NSEntityDescription entityForName:@"Field" inManagedObjectContext:cmoc];
-    Field* f1 = [[Field alloc] initWithEntity:ced insertIntoManagedObjectContext:cmoc];
-    f1.name = @"Fred";
-    
-    //[cmoc save:&cerror];  //This would save the changes
-    
-    //Should NOT  create a new field
+    //Delete field
+    [cmoc deleteObject:f1];
+    [cmoc save:&cerror];  //This will save the changes to the child moc
     [pmoc save:&perror];
+    
+    //Recheck
+    res = [pmoc executeFetchRequest:fr error:&perror];
+    XCTAssertTrue(res.count == 0, @"Error - got back %lu", res.count);
     
 }
 
@@ -167,6 +186,7 @@
     fr.predicate = [NSPredicate predicateWithFormat:@"name == \"Top8576\""];
     NSArray* results = [self.managedObjectContext executeFetchRequest:fr error:&err];
     XCTAssertTrue((results.count==1), @"Incorrect number of entries");
+    
     
     //Now tidy up
     [[FCADataModel managedObjectContext] deleteObject:f1];
@@ -208,6 +228,8 @@
     
     NSArray* results = [self.managedObjectContext executeFetchRequest:fr error:&err];
     XCTAssertTrue((results.count==1), @"Incorrect number of entries = %lu", results.count);
+    
+    
     
     //Tidy up
     [[FCADataModel managedObjectContext] deleteObject:se];
