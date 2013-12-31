@@ -14,5 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *NitrogenLabel;
 @property (weak, nonatomic) IBOutlet UILabel *PhosphateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *PotassiumLabel;
+@property (weak, nonatomic) IBOutlet UILabel *NitrogenCostLabel;
+@property (weak, nonatomic) IBOutlet UILabel *PhosphateCostLabel;
+@property (weak, nonatomic) IBOutlet UILabel *PotassiumCostLabel;
 
 @end
