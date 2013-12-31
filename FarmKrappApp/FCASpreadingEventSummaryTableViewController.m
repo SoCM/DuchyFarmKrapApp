@@ -7,8 +7,29 @@
 //
 
 #import "FCASpreadingEventSummaryTableViewController.h"
+#import "NSDate+FCADateAndSeason.h"
+#import "FCADataModel.h"
 
 @interface FCASpreadingEventSummaryTableViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *amountLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *qualityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *seasonLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cropLabel;
+@property (weak, nonatomic) IBOutlet UILabel *soilLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *availableNLabel;
+@property (weak, nonatomic) IBOutlet UILabel *availablePLabel;
+@property (weak, nonatomic) IBOutlet UILabel *availableKLabel;
+@property (weak, nonatomic) IBOutlet UILabel *costNLabel;
+@property (weak, nonatomic) IBOutlet UILabel *costPLabel;
+@property (weak, nonatomic) IBOutlet UILabel *costKLabel;
+
 
 @end
 
@@ -32,6 +53,34 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.typeLabel.text = self.spreadingEvent.manureType.displayName;
+    self.dateLabel.text = [self.spreadingEvent.date stringForUKShortFormatUsingGMT:YES];
+    self.amountLabel.text = [NSString stringWithFormat:@"%@ Kg/ha", self.spreadingEvent.density];
+    self.qualityLabel.text = self.spreadingEvent.manureQuality.name;
+    self.seasonLabel.text = [self.spreadingEvent.date seasonString];
+    self.cropLabel.text = ((CropType*)self.spreadingEvent.field.cropType).displayName;
+    self.soilLabel.text = ((SoilType*)self.spreadingEvent.field.soilType).displayName;
+    self.sizeLabel.text = [NSString stringWithFormat:@"%@ ha", self.spreadingEvent.field.sizeInHectares];
+    double totalAmount = self.spreadingEvent.density.doubleValue * self.spreadingEvent.field.sizeInHectares.doubleValue;
+    self.totalAmountLabel.text = [NSString stringWithFormat:@"%3.0f m3", totalAmount];
+    FCAAvailableNutrients* calc = [[FCAAvailableNutrients alloc] initWithSpreadingEvent:self.spreadingEvent];
+    double fSize = self.spreadingEvent.field.sizeInHectares.doubleValue;
+    double fN = [calc nitrogenAvailableusingMetric:YES].doubleValue * fSize;
+    double fP = [calc phosphateAvailableusingMetric:YES].doubleValue * fSize;
+    double fK = [calc potassiumAvailableusingMetric:YES].doubleValue * fSize;
+    
+    self.availableNLabel.text = [NSString stringWithFormat:@"%4.1f Kg", fN];
+    self.availablePLabel.text = [NSString stringWithFormat:@"%4.1f Kg", fP];
+    self.availableKLabel.text = [NSString stringWithFormat:@"%4.1f Kg", fK];
+    
+    double fCostN = [[NSUserDefaults standardUserDefaults] doubleForKey:@"NperKg"];
+    double fCostP = [[NSUserDefaults standardUserDefaults] doubleForKey:@"PperKg"];
+    double fCostK = [[NSUserDefaults standardUserDefaults] doubleForKey:@"KperKg"];
+    
+    self.costNLabel.text = [NSString stringWithFormat:@"£%5.2f", fCostN * fN];
+    self.costPLabel.text = [NSString stringWithFormat:@"£%5.2f", fCostP * fP];
+    self.costKLabel.text = [NSString stringWithFormat:@"£%5.2f", fCostK * fK];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,15 +92,15 @@
 #pragma mark - Table view data source
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    static NSString *CellIdentifier = @"Cell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//    
+//    // Configure the cell...
+//    
+//    return cell;
+//}
 
 /*
 // Override to support conditional editing of the table view.
