@@ -116,7 +116,7 @@
             return @"MANURE TYPE & QUALITY";
             break;
         case 3:
-            return @"APPLICATION RATE";
+            return @"CROP AVAIL. & EST. EQUIV. PRICE";
             break;
         case 4:
             return @"Guide image:";
@@ -150,7 +150,7 @@
             break;
         case 3:
             //Application rate
-            return 200.0;
+            return 210.0;
             break;
         case 4:
             //Image
@@ -274,9 +274,22 @@
                 N = [self.nutrientCalc nitrogenAvailableForRate:self.spreadingEvent.density usingMetric:YES];
                 P = [self.nutrientCalc phosphateAvailableForRate:self.spreadingEvent.density usingMetric:YES];
                 K = [self.nutrientCalc potassiumAvailableForRate:self.spreadingEvent.density usingMetric:YES];
-                appRateCell.NitrogenLabel.text = [NSString stringWithFormat:@"%4.1f Kg/ha", N.floatValue];
-                appRateCell.PhosphateLabel.text = [NSString stringWithFormat:@"%4.1f Kg/ha", P.floatValue];
-                appRateCell.PotassiumLabel.text = [NSString stringWithFormat:@"%4.1f Kg/ha", K.floatValue];
+                appRateCell.NitrogenLabel.text = [NSString stringWithFormat:@"%4.1f", N.floatValue];
+                appRateCell.PhosphateLabel.text = [NSString stringWithFormat:@"%4.1f", P.floatValue];
+                appRateCell.PotassiumLabel.text = [NSString stringWithFormat:@"%4.1f", K.floatValue];
+                
+                //Costings
+                double Ncost = [[NSUserDefaults standardUserDefaults] doubleForKey:@"NperKg"]*N.doubleValue;
+                double Pcost = [[NSUserDefaults standardUserDefaults] doubleForKey:@"PperKg"]*P.doubleValue;
+                double Kcost = [[NSUserDefaults standardUserDefaults] doubleForKey:@"KperKg"]*K.doubleValue;
+                Ncost *= self.spreadingEvent.field.sizeInHectares.doubleValue;
+                Pcost *= self.spreadingEvent.field.sizeInHectares.doubleValue;
+                Kcost *= self.spreadingEvent.field.sizeInHectares.doubleValue;
+                
+                appRateCell.NitrogenCostLabel.text = [NSString stringWithFormat:@"£%6.2f", Ncost];
+                appRateCell.PhosphateCostLabel.text = [NSString stringWithFormat:@"£%6.2f", Pcost];
+                appRateCell.PotassiumCostLabel.text = [NSString stringWithFormat:@"£%6.2f", Kcost];
+                
             } else {
                 appRateCell.NitrogenLabel.text = @"---";
                 appRateCell.PhosphateLabel.text = @"---";
