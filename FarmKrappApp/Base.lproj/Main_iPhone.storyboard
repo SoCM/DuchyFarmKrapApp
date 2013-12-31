@@ -120,8 +120,8 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spreading Events:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3Y-Ly-Mqn">
-                                            <rect key="frame" x="125" y="51" width="118" height="17"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spreading Events:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="70" translatesAutoresizingMaskIntoConstraints="NO" id="d3Y-Ly-Mqn">
+                                            <rect key="frame" x="166" y="43" width="70" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="highlightedColor"/>
@@ -150,12 +150,12 @@
                                         <constraint firstItem="BeY-MJ-uHs" firstAttribute="centerY" secondItem="d3Y-Ly-Mqn" secondAttribute="centerY" id="7lo-6a-l5h"/>
                                         <constraint firstItem="g8i-uk-3Aa" firstAttribute="centerY" secondItem="Kdq-nr-RFq" secondAttribute="centerY" id="AQ8-3g-kNI"/>
                                         <constraint firstItem="Kdq-nr-RFq" firstAttribute="top" secondItem="rR7-r8-a01" secondAttribute="bottom" constant="8" id="D05-cV-mSM"/>
-                                        <constraint firstItem="BeY-MJ-uHs" firstAttribute="leading" secondItem="d3Y-Ly-Mqn" secondAttribute="trailing" constant="8" id="YDj-vM-Pby"/>
                                         <constraint firstItem="rR7-r8-a01" firstAttribute="leading" secondItem="pqD-oJ-d51" secondAttribute="leading" constant="20" id="aG9-gV-KIX"/>
                                         <constraint firstItem="g8i-uk-3Aa" firstAttribute="leading" secondItem="Kdq-nr-RFq" secondAttribute="trailing" constant="8" id="cZB-4R-9or"/>
                                         <constraint firstItem="d3Y-Ly-Mqn" firstAttribute="centerY" secondItem="g8i-uk-3Aa" secondAttribute="centerY" id="lkG-bM-Tqi"/>
                                         <constraint firstItem="rR7-r8-a01" firstAttribute="top" secondItem="pqD-oJ-d51" secondAttribute="top" constant="20" id="rBq-qI-VWl"/>
                                         <constraint firstItem="rR7-r8-a01" firstAttribute="leading" secondItem="Kdq-nr-RFq" secondAttribute="leading" id="so8-IK-Dvx"/>
+                                        <constraint firstItem="BeY-MJ-uHs" firstAttribute="leading" secondItem="d3Y-Ly-Mqn" secondAttribute="trailing" constant="15" id="xvC-Ak-MgE"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -201,7 +201,11 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Qgr-eG-KEQ"/>
                         <barButtonItem title="Calc" id="Vzl-ZF-KTr"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="uwm-QR-OeB"/>
-                        <barButtonItem title="Units" id="w2U-9w-QSd"/>
+                        <barButtonItem title="Units" id="w2U-9w-QSd">
+                            <connections>
+                                <action selector="doSetUnits:" destination="QAi-wO-pA8" id="Uyl-ta-C59"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="xCd-da-Lhh"/>
                         <barButtonItem systemItem="action" id="5GL-77-PZe"/>
                     </toolbarItems>
