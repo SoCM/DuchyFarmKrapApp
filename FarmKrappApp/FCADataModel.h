@@ -16,6 +16,7 @@
 #import "ManureQuality.h"
 #import "Photo.h"
 #import "SpreadingEvent.h"
+#import "NSDate+FCADateAndSeason.h"
 
 
 @interface FCAAvailableNutrients : NSObject <NSObject>
@@ -39,7 +40,7 @@
 typedef enum {SOILTYPE_SANDY_SHALLOW=100, SOILTYPE_MEDIUM_HEAVY=200} SOIL_TYPE;
 typedef enum {CROPTYPE_ALL_CROPS=100, CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE=200} CROP_TYPE;
 typedef enum {CS_DM2=100, CS_DM6=200, CS_DM10=300, FYM_OLDSURF=400, FYM_FRSURF=500, FYM_OLDINC=600, FYM_FRINC=700, PS_DM2=800, PS_DM4=900, PS_DM6=1000, PL_LAY=1100, PL_BROI=1200} QUAL_KEY;
-typedef enum {AUTUMN, WINTER, SPRING, SUMMER} SEASON;
+//typedef enum {AUTUMN, WINTER, SPRING, SUMMER} SEASON;
 
 #pragma mark - Constants
 

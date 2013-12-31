@@ -7,7 +7,7 @@
 //
 
 #import "FCADataModel.h"
-#import "NSDate+NSDateUOPCategory.h"
+
 
 //Singleton Application Delegate
 #define FCA_APP_DELEGATE (SoCMAppDelegate*)[[UIApplication sharedApplication] delegate]
@@ -56,34 +56,7 @@
         _qual = nil;
         
         //Get the season
-        NSString* month = [[se.date dateComponentsAsDictionaryUsingGMT:YES] valueForKey:@"month"];
-        NSUInteger uMonth = [month intValue];
-        switch (uMonth) {
-            case 8:
-            case 9:
-            case 10:
-                season = AUTUMN;
-                break;
-            case 11:
-            case 12:
-            case 1:
-                season = WINTER;
-                break;
-            case 2:
-            case 3:
-            case 4:
-                season = SPRING;
-                break;
-            case 5:
-            case 6:
-            case 7:
-                season = SUMMER;
-                break;
-            default:
-                //OOPS
-                season = -1;
-                break;
-        }
+        season = [se.date season];
         
         //Soil type
         SoilType* st = (SoilType*)se.field.soilType;
