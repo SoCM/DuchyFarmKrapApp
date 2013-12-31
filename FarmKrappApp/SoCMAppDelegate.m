@@ -22,8 +22,10 @@
 +(void)initialize
 {
     NSString *myPlistFilePath = [[NSBundle mainBundle] pathForResource: @"costings" ofType: @"plist"];
-    NSDictionary *costs = [NSDictionary dictionaryWithContentsOfFile: myPlistFilePath];
-    [[NSUserDefaults standardUserDefaults] registerDefaults:costs];
+    NSMutableDictionary *defaults = [NSMutableDictionary dictionaryWithContentsOfFile: myPlistFilePath];
+    [defaults addEntriesFromDictionary:@{ @"Metric": @YES }];
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
     
