@@ -223,7 +223,18 @@
     }
     else if ([identifier isEqualToString:@"SummarySegue"])
     {
-        NSLog(@"HERE WE GO");
+        //This leads to a summary view. Although it's "mostly" read-only, there is the option to add an image
+        //Hence, a child context is used to allow for changes that can be discarded.
+        FCASpreadingEventSummaryTableViewController* dest = (FCASpreadingEventSummaryTableViewController*)vc;
+        dest.managedChildObjectContext = childContext;
+        
+        //Get the row that was selected
+        UITableViewCell* cell = (UITableViewCell*)sender;
+        NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
+        
+        //Get reference to selected spreading event from current (parent) context
+        SpreadingEvent* currentSpreadingEvent = [[FCADataModel arrayOfSpreadingEventsForField:self.fieldSelected] objectAtIndex:indexPath.row];
+        dest.spreadingEvent = currentSpreadingEvent;
     }
     
     //Turn off editing before the transition
