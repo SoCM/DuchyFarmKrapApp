@@ -80,7 +80,11 @@
         Field* field = [fields objectAtIndex:indexPath.row];
         cell.nameLabel.text = field.name;
         cell.spreadingEventLabel.text = [NSString stringWithFormat:@"%u", (unsigned)field.spreadingEvents.count];
-        cell.sizeLabel.text = [NSString stringWithFormat:@"%5.1f", field.sizeInHectares.doubleValue];
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"]) {
+            cell.sizeLabel.text = [NSString stringWithFormat:@"%5.1f ha", field.sizeInHectares.doubleValue];
+        } else {
+            cell.sizeLabel.text = [NSString stringWithFormat:@"%5.1f acres", field.sizeInHectares.doubleValue*kACRES_PER_HECTARE];
+        }
         return cell;
     }
 }
@@ -154,6 +158,32 @@
 
 
 #pragma mark - Navigation
+- (IBAction)doSetUnits:(id)sender {
+    UIActionSheet* as = [[UIActionSheet alloc] initWithTitle:@"UNITS"
+                                                    delegate:self
+                                           cancelButtonTitle:@"Cancel"
+                                      destructiveButtonTitle:nil
+                                           otherButtonTitles:@"Metric", @"Imperial", nil];
+    [as showFromToolbar:self.navigationController.toolbar];
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            //Metric
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Metric"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self.tableView reloadData];
+            break;
+        case 1:
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Metric"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self.tableView reloadData];
+            break;
+        default:
+            break;
+    }
+}
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

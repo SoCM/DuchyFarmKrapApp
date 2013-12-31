@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FCAFieldsViewController : UITableViewController
+@interface FCAFieldsViewController : UITableViewController <UIActionSheetDelegate>
 
 @end
