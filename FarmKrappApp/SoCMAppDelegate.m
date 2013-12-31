@@ -19,6 +19,14 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize availableNutrients100m3 = _availableNutrients100m3;
 
++(void)initialize
+{
+    NSString *myPlistFilePath = [[NSBundle mainBundle] pathForResource: @"costings" ofType: @"plist"];
+    NSDictionary *costs = [NSDictionary dictionaryWithContentsOfFile: myPlistFilePath];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:costs];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+    
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
