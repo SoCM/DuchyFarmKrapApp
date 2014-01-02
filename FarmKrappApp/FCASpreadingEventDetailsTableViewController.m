@@ -99,7 +99,7 @@
     if (self.imageShowing) {
         return 5;
     } else {
-        return 4;
+        return 3;
     }
 }
 
@@ -129,7 +129,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 60.0;
+    return 40.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -210,6 +210,8 @@
     FCAApplicationRateCell* appRateCell;
     FCASquareImageCell* imageCell;
     
+    BOOL isMetric = [[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"];
+    
     switch (indexPath.section) {
         case 0:
             //Field
@@ -251,7 +253,9 @@
             //Application rate
             cell = [tableView dequeueReusableCellWithIdentifier:@"ApplicationRateCell" forIndexPath:indexPath];
             appRateCell = (FCAApplicationRateCell*)cell;
-            appRateCell.label.text = [NSString stringWithFormat:@"%@ m3/ha", self.spreadingEvent.density];
+            
+//            appRateCell.label.text = [NSString stringWithFormat:@"%@ m3/ha", self.spreadingEvent.density];
+            appRateCell.label.text = [self.spreadingEvent rateAsStringUsingMetric:isMetric];
             
             //Update slider if different
             if (appRateCell.slider.value != self.spreadingEvent.density.floatValue) {
@@ -271,12 +275,14 @@
             
             if (self.nutrientCalc) {
                 NSNumber *N, *P, *K;
-                N = [self.nutrientCalc nitrogenAvailableForRate:self.spreadingEvent.density usingMetric:YES];
-                P = [self.nutrientCalc phosphateAvailableForRate:self.spreadingEvent.density usingMetric:YES];
-                K = [self.nutrientCalc potassiumAvailableForRate:self.spreadingEvent.density usingMetric:YES];
-                appRateCell.NitrogenLabel.text = [NSString stringWithFormat:@"%4.1f", N.floatValue];
-                appRateCell.PhosphateLabel.text = [NSString stringWithFormat:@"%4.1f", P.floatValue];
-                appRateCell.PotassiumLabel.text = [NSString stringWithFormat:@"%4.1f", K.floatValue];
+                N = [self.nutrientCalc nitrogenAvailableForRate:self.spreadingEvent.density];
+                P = [self.nutrientCalc phosphateAvailableForRate:self.spreadingEvent.density];
+                K = [self.nutrientCalc potassiumAvailableForRate:self.spreadingEvent.density];
+                
+//                appRateCell.NitrogenLabel.text = [NSString stringWithFormat:@"%4.1f", N.floatValue];
+                appRateCell.NitrogenLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:N usingMetric:isMetric];
+                appRateCell.PhosphateLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:P usingMetric:isMetric];
+                appRateCell.PotassiumLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:K usingMetric:isMetric];
                 
                 //Costings
                 double Ncost = [[NSUserDefaults standardUserDefaults] doubleForKey:@"NperKg"]*N.doubleValue;

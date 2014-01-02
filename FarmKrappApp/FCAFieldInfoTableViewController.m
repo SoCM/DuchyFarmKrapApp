@@ -10,10 +10,15 @@
 #import "UIScreen+OOTY.h"
 
 @interface FCAFieldInfoTableViewController ()
-
+@property(readonly) BOOL isMetric;
 @end
 
 @implementation FCAFieldInfoTableViewController
+
+-(BOOL)isMetric
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -104,12 +109,20 @@
     double val = self.fieldSizeSlider.value;
     val = 0.5*round(val*2.0);
     self.fieldSizeStepper.value = val;
-    self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f", val];
+    if (self.isMetric) {
+        self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f ha", val];
+    } else {
+        self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f acres", val*kACRES_PER_HECTARE];
+    }
 }
 
 - (IBAction)doStepperChanged:(id)sender {
     double val = self.fieldSizeStepper.value;
-    self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f", val];
+    if (self.isMetric) {
+        self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f ha", val];
+    } else {
+        self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f acres", val*kACRES_PER_HECTARE];
+    }
     self.fieldSizeSlider.value = val;
 }
 
@@ -156,6 +169,7 @@
 //Update view based on model data
 -(void)updateViewFromModel
 {
+    BOOL isMetric = [[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"];
     //Field name
     self.nameTextBox.text = self.name;
     
@@ -192,7 +206,11 @@
     
     //Field size
     // TBD - I need one access for all of these
-    self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f", self.fieldSize.floatValue];
+    if (isMetric) {
+        self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f ha", self.fieldSize.floatValue];
+    } else {
+        self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f acres", self.fieldSize.floatValue * kACRES_PER_HECTARE];
+    }
     self.fieldSizeSlider.value = self.fieldSize.floatValue;
     self.fieldSizeStepper.value = self.fieldSize.floatValue;
     

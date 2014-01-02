@@ -50,28 +50,34 @@
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+    BOOL isMetric = [[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"];
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.typeLabel.text = self.spreadingEvent.manureType.displayName;
     self.dateLabel.text = [self.spreadingEvent.date stringForUKShortFormatUsingGMT:YES];
-    self.amountLabel.text = [NSString stringWithFormat:@"%@ Kg/ha", self.spreadingEvent.density];
+    self.amountLabel.text = [self.spreadingEvent rateAsStringUsingMetric:isMetric];
     self.qualityLabel.text = self.spreadingEvent.manureQuality.name;
     self.seasonLabel.text = [self.spreadingEvent.date seasonString];
     self.cropLabel.text = ((CropType*)self.spreadingEvent.field.cropType).displayName;
     self.soilLabel.text = ((SoilType*)self.spreadingEvent.field.soilType).displayName;
-    self.sizeLabel.text = [NSString stringWithFormat:@"%@ ha", self.spreadingEvent.field.sizeInHectares];
-    double totalAmount = self.spreadingEvent.density.doubleValue * self.spreadingEvent.field.sizeInHectares.doubleValue;
-    self.totalAmountLabel.text = [NSString stringWithFormat:@"%3.0f m3", totalAmount];
+    if (isMetric) {
+        self.sizeLabel.text = [NSString stringWithFormat:@"%@ ha", self.spreadingEvent.field.sizeInHectares];
+    } else {
+        self.sizeLabel.text = [NSString stringWithFormat:@"%5.1f acres", self.spreadingEvent.field.sizeInHectares.doubleValue*kACRES_PER_HECTARE];
+    }
+//    double totalAmount = self.spreadingEvent.density.doubleValue * self.spreadingEvent.field.sizeInHectares.doubleValue;
+    self.totalAmountLabel.text = [self.spreadingEvent volumeAsStringUsingMetric:isMetric];
+    
     FCAAvailableNutrients* calc = [[FCAAvailableNutrients alloc] initWithSpreadingEvent:self.spreadingEvent];
     double fSize = self.spreadingEvent.field.sizeInHectares.doubleValue;
-    double fN = [calc nitrogenAvailableusingMetric:YES].doubleValue * fSize;
-    double fP = [calc phosphateAvailableusingMetric:YES].doubleValue * fSize;
-    double fK = [calc potassiumAvailableusingMetric:YES].doubleValue * fSize;
+    double fN = [calc nitrogenAvailable].doubleValue * fSize;
+    double fP = [calc phosphateAvailable].doubleValue * fSize;
+    double fK = [calc potassiumAvailable].doubleValue * fSize;
     
-    self.availableNLabel.text = [NSString stringWithFormat:@"%4.1f Kg", fN];
-    self.availablePLabel.text = [NSString stringWithFormat:@"%4.1f Kg", fP];
-    self.availableKLabel.text = [NSString stringWithFormat:@"%4.1f Kg", fK];
+    self.availableNLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:[calc nitrogenAvailable]  usingMetric:isMetric];;
+    self.availablePLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:[calc phosphateAvailable] usingMetric:isMetric];;
+    self.availableKLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:[calc potassiumAvailable] usingMetric:isMetric];;
     
     double fCostN = [[NSUserDefaults standardUserDefaults] doubleForKey:@"NperKg"];
     double fCostP = [[NSUserDefaults standardUserDefaults] doubleForKey:@"PperKg"];

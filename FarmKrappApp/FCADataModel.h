@@ -18,20 +18,24 @@
 #import "SpreadingEvent.h"
 #import "NSDate+FCADateAndSeason.h"
 
-
+#pragma mark - FCAAvailableNutrients class
+//Class for calculating NPK values efficiently.
 @interface FCAAvailableNutrients : NSObject <NSObject>
 
 - (id)initWithSpreadingEvent:(SpreadingEvent*)se;
 
 //Available nutrient for a given spreading event
--(NSNumber*)nitrogenAvailableusingMetric:(BOOL)metric;
--(NSNumber*)phosphateAvailableusingMetric:(BOOL)metric;
--(NSNumber*)potassiumAvailableusingMetric:(BOOL)metric;
+-(NSNumber*)nitrogenAvailable;
+-(NSNumber*)phosphateAvailable;
+-(NSNumber*)potassiumAvailable;
 
 //Available nutrient for a given spreading event given a different rate
--(NSNumber*)nitrogenAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric;
--(NSNumber*)phosphateAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric;
--(NSNumber*)potassiumAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric;
+-(NSNumber*)nitrogenAvailableForRate:(NSNumber*) rate;
+-(NSNumber*)phosphateAvailableForRate:(NSNumber*) rate;
+-(NSNumber*)potassiumAvailableForRate:(NSNumber*) rate;
+
+//Formatting convenience method
++(NSString*)stringFormatForNutrientRate:(NSNumber*)rate usingMetric:(BOOL)isMetric;
 
 @end
 
@@ -89,6 +93,8 @@ typedef enum {CS_DM2=100, CS_DM6=200, CS_DM10=300, FYM_OLDSURF=400, FYM_FRSURF=5
 @interface SpreadingEvent (FCADataModel)
 +(SpreadingEvent*)InsertSpreadingEventWithDate:(NSDate*)date manureType:(ManureType*)manure_type quality:(ManureQuality*)manure_quality density:(NSNumber*)manure_density;
 -(NSArray*)arrayOfPhotos;
+-(NSString*)rateAsStringUsingMetric:(BOOL)isMetric;
+-(NSString*)volumeAsStringUsingMetric:(BOOL)isMetric;
 @end
 
 #pragma mark - Category on Photo

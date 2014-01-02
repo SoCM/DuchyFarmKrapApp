@@ -219,47 +219,43 @@
     return self;
 }
 //Available nutrient for a given spreading event
--(NSNumber*)nitrogenAvailableusingMetric:(BOOL)metric
+-(NSNumber*)nitrogenAvailable
 {
-    return [self nitrogenAvailableForRate:self.spreadingEvent.density usingMetric:metric];
+    return [self nitrogenAvailableForRate:self.spreadingEvent.density];
 }
--(NSNumber*)phosphateAvailableusingMetric:(BOOL)metric
+-(NSNumber*)phosphateAvailable
 {
-    return [self phosphateAvailableForRate:self.spreadingEvent.density usingMetric:metric];
+    return [self phosphateAvailableForRate:self.spreadingEvent.density];
 }
--(NSNumber*)potassiumAvailableusingMetric:(BOOL)metric
+-(NSNumber*)potassiumAvailable
 {
-    return [self potassiumAvailableForRate:self.spreadingEvent.density usingMetric:metric];
+    return [self potassiumAvailableForRate:self.spreadingEvent.density];
 }
--(NSNumber*)nitrogenAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric
++(NSString*)stringFormatForNutrientRate:(NSNumber*)rate usingMetric:(BOOL)isMetric
+{
+    double fValue = [rate doubleValue];
+    if (isMetric == NO) {
+        fValue *= 0.8130081300813;
+        return [NSString stringWithFormat:@"%5.1f units/acre", fValue];
+    } else {
+        return [NSString stringWithFormat:@"%5.1f Kg/ha", fValue];
+    }
+}
+
+-(NSNumber*)nitrogenAvailableForRate:(NSNumber*)rate
 {
     float fN1 = [[self nitrogen] doubleValue] * rate.doubleValue;
-    if (metric) {
-        return [NSNumber numberWithDouble:fN1];
-    } else {
-#warning INCOMPLETE
-        return nil;
-    }
+    return [NSNumber numberWithDouble:fN1];
 }
--(NSNumber*)phosphateAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric
+-(NSNumber*)phosphateAvailableForRate:(NSNumber*)rate
 {
     float fP1 = self.phosphate.doubleValue * rate.doubleValue;
-    if (metric) {
-        return [NSNumber numberWithDouble:fP1];
-    } else {
-#warning INCOMPLETE
-        return nil;
-    }
+    return [NSNumber numberWithDouble:fP1];
 }
--(NSNumber*)potassiumAvailableForRate:(NSNumber*) rate usingMetric:(BOOL)metric
+-(NSNumber*)potassiumAvailableForRate:(NSNumber*) rate
 {
     float fK1 = [[self potassium] doubleValue] * rate.doubleValue;
-    if (metric) {
-        return [NSNumber numberWithDouble:fK1];
-    } else {
-#warning INCOMPLETE
-        return nil;
-    }
+    return [NSNumber numberWithDouble:fK1];
 }
 
 
@@ -383,7 +379,71 @@
 {
     return [FCADataModel arrayOfPhotosForSpreadingEvent:self];
 }
+-(NSString*)rateAsStringUsingMetric:(BOOL)isMetric
+{
+    NSString *units;
+    
+    //First the manure type
+    BOOL isSlurry;
+    double fRate = self.density.doubleValue;
+    
+    if ([self.manureType.stringID isEqualToString:@"CattleSlurry"] || [self.manureType.stringID isEqualToString:@"PigSlurry"]) {
+        isSlurry = YES;
+    } else {
+        isSlurry = NO;
+    }
 
+    //Now derive the label based on metric/imperial setting
+    if (isMetric) {
+        if (isSlurry) {
+            units = @"m3/ha";
+        } else {
+            units = @"tonnes/ha";
+        }
+    } else {
+        if (isSlurry) {
+            fRate *= 89.0183597;
+            units = @"gallons/acre";
+        } else {
+            fRate *= 0.398294251;
+            units = @"tons/acre";
+        }
+    }
+    return [NSString stringWithFormat:@"%u %@", (unsigned)round(fRate), units];
+}
+
+-(NSString*)volumeAsStringUsingMetric:(BOOL)isMetric
+{
+    NSString *units;
+    
+    //First the manure type
+    BOOL isSlurry;
+    double fQuantity = self.density.doubleValue * self.field.sizeInHectares.doubleValue;
+    
+    if ([self.manureType.stringID isEqualToString:@"CattleSlurry"] || [self.manureType.stringID isEqualToString:@"PigSlurry"]) {
+        isSlurry = YES;
+    } else {
+        isSlurry = NO;
+    }
+    
+    //Now derive the label based on metric/imperial setting
+    if (isMetric) {
+        if (isSlurry) {
+            units = @"m3";
+        } else {
+            units = @"tonnes";
+        }
+    } else {
+        if (isSlurry) {
+            fQuantity *= 219.969157;
+            units = @"gallons";
+        } else {
+            fQuantity *= 0.984206528;
+            units = @"tons";
+        }
+    }
+    return [NSString stringWithFormat:@"%u %@", (unsigned)round(fQuantity), units];
+}
 @end
 
 #pragma mark - Category on Photo
