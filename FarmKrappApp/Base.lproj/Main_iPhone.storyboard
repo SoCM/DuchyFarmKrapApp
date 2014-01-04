@@ -1386,7 +1386,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="WAK-bG-5Y6"/>
         <segue reference="PSI-FG-Hmp"/>
-        <segue reference="bEM-te-Fym"/>
     </inferredMetricsTieBreakers>
 </document>

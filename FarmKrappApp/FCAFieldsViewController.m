@@ -95,7 +95,7 @@
     if (indexPath.row == numberOfFields) {
         return 80.0;
     } else {
-        return 88.0;
+        return  (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 110 : 80;
     }
 }
 

@@ -139,22 +139,26 @@
     switch (section) {
         case 0:
             //Field name
-            return 60.0;
+            return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 64.0 : 60.0;
             break;
         case 1:
             //Date + Picker
-            return (row==0) ? 60.0 : 160.0;
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+                return (row==0) ? 60.0 : 160.0;
+            } else {
+                return (row==0) ? 64.0 : 217.0;
+            }
         case 2:
             //Manure type + quality
-            return 100;
+            return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 120.0 : 100.0;
             break;
         case 3:
             //Application rate
-            return 210.0;
+            return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 230.0 : 210.0;
             break;
         case 4:
             //Image
-            return 320.0;
+            return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 768.0 : 320.0;
             break;
             //Should not be needed
         default:
@@ -281,6 +285,7 @@
                 
 //                appRateCell.NitrogenLabel.text = [NSString stringWithFormat:@"%4.1f", N.floatValue];
                 appRateCell.NitrogenLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:N usingMetric:isMetric];
+                
                 appRateCell.PhosphateLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:P usingMetric:isMetric];
                 appRateCell.PotassiumLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:K usingMetric:isMetric];
                 

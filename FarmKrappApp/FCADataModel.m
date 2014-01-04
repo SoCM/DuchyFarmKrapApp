@@ -88,6 +88,7 @@
                         break;
                     case SOILTYPE_MEDIUM_HEAVY:
                         _N = [_dict valueForKeyPath:@"N.Autumn.MediumHeavy"];
+                        break;
                     default:
                         NSLog(@"Error - did not recognise soil type");
                         _N = nil;
@@ -102,6 +103,7 @@
                         break;
                     case SOILTYPE_MEDIUM_HEAVY:
                         _N = [_dict valueForKeyPath:@"N.Winter.MediumHeavy"];
+                        break;
                     default:
                         NSLog(@"Error - did not recognise soil type");
                         _N = nil;
