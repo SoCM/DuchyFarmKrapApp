@@ -163,9 +163,6 @@
             return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 210 : 210.0;
             break;
         case 5:
-            return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 230.0 : 210.0;
-            break;
-        case 6:
             //Image
             return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 768.0 : 320.0;
             break;
