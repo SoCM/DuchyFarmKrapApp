@@ -13,4 +13,6 @@
 -(NSDictionary*)dateComponentsAsDictionaryUsingGMT:(BOOL)usingGMT;
 -(NSString*)filenameFriendlyDescription;
 -(NSString*)stringForUKShortFormatUsingGMT:(BOOL)usingGMT;
++(NSDate*)dateWithYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day;
+
 @end

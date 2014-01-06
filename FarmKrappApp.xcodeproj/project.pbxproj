@@ -41,6 +41,8 @@
 		0734513D184DC717004FBC1E /* UIViewController+FCAFrontPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */; };
 		0748E55218728DA6009096A2 /* costings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0748E55118728DA6009096A2 /* costings.plist */; };
 		0748E55318728DA6009096A2 /* costings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0748E55118728DA6009096A2 /* costings.plist */; };
+		074C971818798B0300ED0CB8 /* FCASoilTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 074C971718798B0300ED0CB8 /* FCASoilTypeCell.m */; };
+		074C971B18798B1700ED0CB8 /* FCACropTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 074C971A18798B1700ED0CB8 /* FCACropTypeCell.m */; };
 		07609F5F185B013E00177718 /* FCASpreadingEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F5E185B013E00177718 /* FCASpreadingEventViewController.m */; };
 		07609F64185B04A000177718 /* FCASpreadingEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F63185B04A000177718 /* FCASpreadingEventCell.m */; };
 		07609F69185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F68185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m */; };
@@ -71,6 +73,7 @@
 		077B8428185B8BB500D0F002 /* 30m3ha cattle.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8426185B8BB500D0F002 /* 30m3ha cattle.jpg */; };
 		077B842A185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8429185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg */; };
 		077B842B185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8429185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg */; };
+		077DE124187A9DB800FB08A8 /* FCASeasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 077DE123187A9DB800FB08A8 /* FCASeasonCell.m */; };
 		078B278618519AB000E78747 /* FCADataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B278518519AB000E78747 /* FCADataModel.m */; };
 		078B278718519AB000E78747 /* FCADataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B278518519AB000E78747 /* FCADataModel.m */; };
 		079E840D1861798D003309B6 /* FCAManureTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 079E840C1861798D003309B6 /* FCAManureTypeViewController.m */; };
@@ -89,6 +92,7 @@
 		07BC263C1872A37E00BE3D50 /* NSDate+FCADateAndSeason.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BC263B1872A37E00BE3D50 /* NSDate+FCADateAndSeason.m */; };
 		07BC263D1872A37E00BE3D50 /* NSDate+FCADateAndSeason.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BC263B1872A37E00BE3D50 /* NSDate+FCADateAndSeason.m */; };
 		07C3FC1A186049EC007C7442 /* FCADateStringCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C3FC19186049EC007C7442 /* FCADateStringCell.m */; };
+		07C5F54D18792A1F005A2B5A /* FCACaclulatorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C5F54C18792A1F005A2B5A /* FCACaclulatorTableViewController.m */; };
 		07EACC021848689700D6A59E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC011848689700D6A59E /* Foundation.framework */; };
 		07EACC041848689700D6A59E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC031848689700D6A59E /* CoreGraphics.framework */; };
 		07EACC061848689700D6A59E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07EACC051848689700D6A59E /* UIKit.framework */; };
@@ -160,6 +164,10 @@
 		0734513B184DC717004FBC1E /* UIViewController+FCAFrontPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FCAFrontPage.h"; sourceTree = "<group>"; };
 		0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FCAFrontPage.m"; sourceTree = "<group>"; };
 		0748E55118728DA6009096A2 /* costings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = costings.plist; sourceTree = "<group>"; };
+		074C971618798B0300ED0CB8 /* FCASoilTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASoilTypeCell.h; sourceTree = "<group>"; };
+		074C971718798B0300ED0CB8 /* FCASoilTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCASoilTypeCell.m; sourceTree = "<group>"; };
+		074C971918798B1700ED0CB8 /* FCACropTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCACropTypeCell.h; sourceTree = "<group>"; };
+		074C971A18798B1700ED0CB8 /* FCACropTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCACropTypeCell.m; sourceTree = "<group>"; };
 		07609F5D185B013E00177718 /* FCASpreadingEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASpreadingEventViewController.h; sourceTree = "<group>"; };
 		07609F5E185B013E00177718 /* FCASpreadingEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCASpreadingEventViewController.m; sourceTree = "<group>"; };
 		07609F62185B04A000177718 /* FCASpreadingEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASpreadingEventCell.h; sourceTree = "<group>"; };
@@ -184,6 +192,8 @@
 		077B8413185B89AB00D0F002 /* poultry_5t.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = poultry_5t.jpg; sourceTree = "<group>"; };
 		077B8426185B8BB500D0F002 /* 30m3ha cattle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "30m3ha cattle.jpg"; sourceTree = "<group>"; };
 		077B8429185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pig slurry 75m3 dm 4.jpg"; sourceTree = "<group>"; };
+		077DE122187A9DB800FB08A8 /* FCASeasonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASeasonCell.h; sourceTree = "<group>"; };
+		077DE123187A9DB800FB08A8 /* FCASeasonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCASeasonCell.m; sourceTree = "<group>"; };
 		078B278418519AB000E78747 /* FCADataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCADataModel.h; sourceTree = "<group>"; };
 		078B278518519AB000E78747 /* FCADataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCADataModel.m; sourceTree = "<group>"; };
 		079E840B1861798D003309B6 /* FCAManureTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAManureTypeViewController.h; sourceTree = "<group>"; };
@@ -206,6 +216,8 @@
 		07BC263B1872A37E00BE3D50 /* NSDate+FCADateAndSeason.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+FCADateAndSeason.m"; sourceTree = "<group>"; };
 		07C3FC18186049EC007C7442 /* FCADateStringCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCADateStringCell.h; sourceTree = "<group>"; };
 		07C3FC19186049EC007C7442 /* FCADateStringCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCADateStringCell.m; sourceTree = "<group>"; };
+		07C5F54B18792A1F005A2B5A /* FCACaclulatorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCACaclulatorTableViewController.h; sourceTree = "<group>"; };
+		07C5F54C18792A1F005A2B5A /* FCACaclulatorTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCACaclulatorTableViewController.m; sourceTree = "<group>"; };
 		07EACBFE1848689700D6A59E /* FarmKrappApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarmKrappApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EACC011848689700D6A59E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07EACC031848689700D6A59E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -456,6 +468,21 @@
 			name = PhotoViewController;
 			sourceTree = "<group>";
 		};
+		07C5F54A18792780005A2B5A /* Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				07C5F54B18792A1F005A2B5A /* FCACaclulatorTableViewController.h */,
+				07C5F54C18792A1F005A2B5A /* FCACaclulatorTableViewController.m */,
+				074C971618798B0300ED0CB8 /* FCASoilTypeCell.h */,
+				074C971718798B0300ED0CB8 /* FCASoilTypeCell.m */,
+				074C971918798B1700ED0CB8 /* FCACropTypeCell.h */,
+				074C971A18798B1700ED0CB8 /* FCACropTypeCell.m */,
+				077DE122187A9DB800FB08A8 /* FCASeasonCell.h */,
+				077DE123187A9DB800FB08A8 /* FCASeasonCell.m */,
+			);
+			name = Calculator;
+			sourceTree = "<group>";
+		};
 		07EACBF51848689700D6A59E = {
 			isa = PBXGroup;
 			children = (
@@ -496,6 +523,7 @@
 		07EACC071848689700D6A59E /* FarmKrappApp */ = {
 			isa = PBXGroup;
 			children = (
+				07C5F54A18792780005A2B5A /* Calculator */,
 				0734513A184DC32E004FBC1E /* Front Page */,
 				070F18E118574BD40008FA19 /* FieldsViewController */,
 				07609F5C185B010000177718 /* SpreadingEventsController */,
@@ -683,8 +711,11 @@
 				073028CF185F6B3500DFD9F9 /* FCASquareImageCell.m in Sources */,
 				070B850618616FBE00609C72 /* FCAManureCell.m in Sources */,
 				0777B54A184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */,
+				074C971B18798B1700ED0CB8 /* FCACropTypeCell.m in Sources */,
+				07C5F54D18792A1F005A2B5A /* FCACaclulatorTableViewController.m in Sources */,
 				079E84101861799D003309B6 /* FCAManureQualityViewController.m in Sources */,
 				071CF209185F0C4E00F0224B /* Photo.m in Sources */,
+				077DE124187A9DB800FB08A8 /* FCASeasonCell.m in Sources */,
 				070F18E418574C9D0008FA19 /* FCAFieldsViewController.m in Sources */,
 				07EACC1B1848689700D6A59E /* SoCMViewController.m in Sources */,
 				071CF201185F0C4E00F0224B /* Field.m in Sources */,
@@ -700,6 +731,7 @@
 				07B7E28C185612AA00B90F61 /* PhotoViewController.m in Sources */,
 				070F18E9185762990008FA19 /* FCAFieldCell.m in Sources */,
 				079E840D1861798D003309B6 /* FCAManureTypeViewController.m in Sources */,
+				074C971818798B0300ED0CB8 /* FCASoilTypeCell.m in Sources */,
 				073028C6185F6ADE00DFD9F9 /* FCADatePickerCell.m in Sources */,
 				07609F64185B04A000177718 /* FCASpreadingEventCell.m in Sources */,
 				07EACC0E1848689700D6A59E /* main.m in Sources */,

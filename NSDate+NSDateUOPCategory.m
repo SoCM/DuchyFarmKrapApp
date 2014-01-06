@@ -50,4 +50,13 @@
     NSString *result = [NSString stringWithFormat:@"%@/%@/%@", dd, mm, yyyy];
     return result;
 }
++(NSDate*)dateWithYear:(NSUInteger)year month:(NSUInteger)month day:(NSUInteger)day
+{
+    NSCalendar* cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents* dc = [[NSDateComponents alloc] init];
+    dc.day = day;
+    dc.year = year;
+    dc.month = month;
+    return [cal dateFromComponents:dc];
+}
 @end
