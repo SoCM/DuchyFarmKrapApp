@@ -108,9 +108,9 @@
     
     //CHECK AVAILABLE NUTRIENTS
     availNutrient = [[FCAAvailableNutrients alloc] initWithSpreadingEvent:s1];
-    fVal = [availNutrient nitrogenAvailableusingMetric:YES].doubleValue;
+    fVal = [availNutrient nitrogenAvailable].doubleValue;
     XCTAssertTrue(isCloseTo(48.0, fVal), @"Wrong N value");
-    fVal = [availNutrient nitrogenAvailableForRate:@50.0 usingMetric:YES].doubleValue;
+    fVal = [availNutrient nitrogenAvailableForRate:@50.0].doubleValue;
     XCTAssertTrue(isCloseTo(24.0, fVal), @"Wrong N value");
     
 
