@@ -106,7 +106,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     if (self.spreadingEvent.manureType) {
         return 6;
@@ -117,7 +116,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return 1;
 }
@@ -151,7 +149,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger section = indexPath.section;
-    NSUInteger row = indexPath.row;
+//    NSUInteger row = indexPath.row;
     switch (section) {
         case 0:
             return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 120.0 : 100.0;
@@ -185,7 +183,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
     BOOL isMetric = [[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"];
     
     //Section 0 - manure type
