@@ -31,14 +31,25 @@
 //Change the name of this method to match the view controller you are using
 - (IBAction)unwindToFrontPageViewController:(UIStoryboardSegue*)sender
 {
-    
+    BOOL tAndC = [[NSUserDefaults standardUserDefaults] boolForKey:@"T&C"];
+    if (tAndC) {
+        [self performSegueWithIdentifier:@"proceed" sender:self];
+    }
+}
+- (IBAction)doDisclaimer:(id)sender {
+    [self performSegueWithIdentifier:@"disclaimer" sender:self];
 }
 
 - (IBAction)doGetStarted:(id)sender {
+    BOOL tAndC = [[NSUserDefaults standardUserDefaults] boolForKey:@"T&C"];
+    if (tAndC) {
+        [self performSegueWithIdentifier:@"proceed" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"disclaimer" sender:self];
+    }
     NSLog(@"GO");
     
 }
-
 
 
 @end

@@ -67,16 +67,25 @@
                                 <segue destination="WgR-Nd-kGF" kind="modal" identifier="creditsModal" id="2Ch-ZD-tID"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="6ne-1V-Jhn"/>
+                        <barButtonItem title="Disclaimer" id="Uct-rx-bV3">
+                            <connections>
+                                <action selector="doDisclaimer:" destination="vXZ-lx-hvc" id="OPQ-OS-92U"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Farm Crap App" id="cmr-xQ-KWm">
                         <barButtonItem key="backBarButtonItem" title="Back" id="qfp-5o-VvN"/>
                         <barButtonItem key="rightBarButtonItem" title="Begin" id="NKK-LZ-uEp">
                             <connections>
-                                <action selector="doGetStarted:" destination="vXZ-lx-hvc" id="CSn-fV-8ob"/>
-                                <segue destination="QAi-wO-pA8" kind="push" identifier="BeginSegue" id="tCS-wv-xL0"/>
+                                <action selector="doGetStarted:" destination="vXZ-lx-hvc" id="wsd-gU-9o7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="LQv-8y-5EJ" kind="modal" identifier="disclaimer" id="luL-gL-y0c"/>
+                        <segue destination="QAi-wO-pA8" kind="push" identifier="proceed" id="neO-b5-U1u"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="yJQ-WU-XEz">
@@ -1668,6 +1677,96 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-369" y="1517"/>
+        </scene>
+        <!--Disclaimer View Controller-->
+        <scene sceneID="Gv5-gb-VjK">
+            <objects>
+                <viewController id="LQv-8y-5EJ" customClass="FCADisclaimerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yK7-su-6OQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="K6w-Pr-ECX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="olA-hg-uCp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niA-RP-a8o">
+                                <rect key="frame" x="20" y="99" width="280" height="394"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">The Farm Crap App offers information for guidance purposes only and is not intended to amount to professional advice or opinion. FoAM Kernow, Duchy College, University of Plymouth and Rothamsted Research North Wyke cannot be held responsible for any losses or damage resulting from the use of information provided by this app.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accept:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8M-8n-a2A">
+                                <rect key="frame" x="20" y="513" width="60" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disclaimer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bd-X6-gfe">
+                                <rect key="frame" x="20" y="40" width="147" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="g86-RU-eNA">
+                                <rect key="frame" x="240" y="30" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3T-Cj-QQ0">
+                                <rect key="frame" x="160" y="513" width="30" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="No">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doNo:" destination="LQv-8y-5EJ" eventType="touchUpInside" id="lz0-mY-Cz9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leC-mm-UT2">
+                                <rect key="frame" x="262" y="513" width="38" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="YES">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doYes:" destination="LQv-8y-5EJ" eventType="touchUpInside" id="5gQ-pj-tN9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="leC-mm-UT2" secondAttribute="trailing" constant="20" id="6cF-7b-pz5"/>
+                            <constraint firstItem="leC-mm-UT2" firstAttribute="top" secondItem="b8M-8n-a2A" secondAttribute="top" id="FDh-48-OO0"/>
+                            <constraint firstItem="0bd-X6-gfe" firstAttribute="top" secondItem="yK7-su-6OQ" secondAttribute="bottom" constant="20" id="Faf-HK-9G8"/>
+                            <constraint firstItem="niA-RP-a8o" firstAttribute="top" secondItem="0bd-X6-gfe" secondAttribute="bottom" constant="20" id="Fg8-3d-O8P"/>
+                            <constraint firstItem="b8M-8n-a2A" firstAttribute="centerY" secondItem="l3T-Cj-QQ0" secondAttribute="centerY" id="IRA-OD-jbE"/>
+                            <constraint firstItem="K6w-Pr-ECX" firstAttribute="top" secondItem="leC-mm-UT2" secondAttribute="bottom" constant="15" id="M83-o5-fC1"/>
+                            <constraint firstAttribute="trailing" secondItem="niA-RP-a8o" secondAttribute="trailing" constant="20" id="Nxl-hd-Nwj"/>
+                            <constraint firstItem="0bd-X6-gfe" firstAttribute="leading" secondItem="olA-hg-uCp" secondAttribute="leading" constant="20" id="Pfk-FX-RVx"/>
+                            <constraint firstItem="leC-mm-UT2" firstAttribute="leading" secondItem="l3T-Cj-QQ0" secondAttribute="trailing" constant="72" id="Q78-o0-iR5"/>
+                            <constraint firstItem="l3T-Cj-QQ0" firstAttribute="centerY" secondItem="leC-mm-UT2" secondAttribute="centerY" constant="-2" id="SAg-kW-arP"/>
+                            <constraint firstItem="niA-RP-a8o" firstAttribute="leading" secondItem="olA-hg-uCp" secondAttribute="leading" constant="20" id="mDA-dV-4ek"/>
+                            <constraint firstItem="b8M-8n-a2A" firstAttribute="top" secondItem="niA-RP-a8o" secondAttribute="bottom" constant="20" id="o2x-hs-kA1"/>
+                            <constraint firstAttribute="trailing" secondItem="g86-RU-eNA" secondAttribute="trailing" constant="20" id="pLN-D6-HF4"/>
+                            <constraint firstItem="leC-mm-UT2" firstAttribute="top" secondItem="l3T-Cj-QQ0" secondAttribute="top" id="tdg-ZT-5sb"/>
+                            <constraint firstItem="b8M-8n-a2A" firstAttribute="leading" secondItem="olA-hg-uCp" secondAttribute="leading" constant="20" id="vFg-NQ-kGp"/>
+                            <constraint firstItem="g86-RU-eNA" firstAttribute="centerY" secondItem="0bd-X6-gfe" secondAttribute="centerY" constant="0.5" id="vQc-bJ-AmT"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <connections>
+                        <segue destination="tCG-A5-QHw" kind="unwind" identifier="BackToMainPage" unwindAction="unwindToFrontPageViewController:" id="ms3-IJ-YFl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IIK-7G-N0Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="tCG-A5-QHw" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="175" y="1532"/>
         </scene>
     </scenes>
     <resources>
