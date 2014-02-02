@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SoCMViewControllerCommonBase.h"
 
-@interface SoCMViewController : SoCMViewControllerCommonBase
+@interface SoCMViewController : SoCMViewControllerCommonBase<UIPopoverControllerDelegate>
 
 
 

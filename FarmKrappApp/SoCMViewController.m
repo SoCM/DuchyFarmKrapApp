@@ -59,12 +59,32 @@
     if ([segue.identifier isEqualToString:@"about"]){
         if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]){
             poc = [(UIStoryboardPopoverSegue *)segue popoverController];
+            poc.delegate = self;
             [poc setPopoverContentSize:CGSizeMake(480, 640)];
         }
     }
 }
-//- (void)popoverController:(UIPopoverController *)popoverController willRepositionPopoverToRect:(inout CGRect *)rect inView:(inout UIView **)view
-//{
-//    NSLog(@"pop over");
-//}
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if ([identifier isEqualToString:@"about"]){
+        if (poc) {
+            [poc dismissPopoverAnimated:YES];
+            poc = nil;
+            return NO;
+        } else {
+            return YES;
+        }
+    }
+    return YES;
+}
+//Called when dismissed
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    poc = nil;
+}
+- (void)popoverController:(UIPopoverController *)popoverController willRepositionPopoverToRect:(inout CGRect *)rect inView:(inout UIView **)view
+{
+    NSLog(@"pop over");
+}
+
 @end
