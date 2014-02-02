@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FCAAboutViewController : UIViewController
+@interface FCAAboutViewController : UIViewController<UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
 - (IBAction)doBack:(id)sender;
 

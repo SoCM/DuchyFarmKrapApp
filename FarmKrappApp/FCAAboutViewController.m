@@ -34,6 +34,7 @@
     NSString* path = [[NSBundle mainBundle] pathForResource:@"about" ofType:@"html"];
     NSURL* url = [NSURL fileURLWithPath:path];
     [self.webview loadRequest:[NSURLRequest requestWithURL:url]];
+    self.webview.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,5 +45,15 @@
 
 - (IBAction)doBack:(id)sender {
     [self.webview goBack];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if (request.URL.host) {
+        [[UIApplication sharedApplication] openURL:request.URL];
+        return NO;
+    } else {
+        return YES;
+    }
 }
 @end

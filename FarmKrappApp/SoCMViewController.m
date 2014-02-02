@@ -14,7 +14,9 @@
 
 @end
 
-@implementation SoCMViewController
+@implementation SoCMViewController {
+    UIPopoverController* __strong poc;
+}
 
 - (void)viewDidLoad
 {
@@ -51,5 +53,18 @@
     
 }
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    //iPad only - the segue has a different identifier on iPad
+    if ([segue.identifier isEqualToString:@"about"]){
+        if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]){
+            poc = [(UIStoryboardPopoverSegue *)segue popoverController];
+            [poc setPopoverContentSize:CGSizeMake(480, 640)];
+        }
+    }
+}
+//- (void)popoverController:(UIPopoverController *)popoverController willRepositionPopoverToRect:(inout CGRect *)rect inView:(inout UIView **)view
+//{
+//    NSLog(@"pop over");
+//}
 @end
