@@ -160,6 +160,14 @@
                                 </segue>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="GlR-PZ-g1t"/>
+                        <barButtonItem title="About" id="e0q-Aw-G8b">
+                            <connections>
+                                <segue destination="wmh-Ek-Xvm" kind="popover" identifier="about" popoverAnchorBarButtonItem="e0q-Aw-G8b" id="a1x-m0-32D">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Farm Crap App" id="Uvu-No-Zc5">
                         <barButtonItem key="backBarButtonItem" title="Back" id="oKf-UO-afn"/>
@@ -296,7 +304,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Info" id="Q3E-VF-VHr"/>
+                        <barButtonItem title="Costs" id="Q3E-VF-VHr"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="q5F-fD-tYl"/>
                         <barButtonItem title="Calc" id="z61-5h-DbS">
                             <connections>
@@ -304,7 +312,11 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Fz8-HC-RpJ"/>
-                        <barButtonItem title="Units" id="W0a-k0-nUc"/>
+                        <barButtonItem title="Units" id="W0a-k0-nUc">
+                            <connections>
+                                <action selector="doSetUnits:" destination="rGe-Hx-6w7" id="q8c-PQ-lhb"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="yKR-zV-ViU"/>
                         <barButtonItem systemItem="action" id="EvK-mR-ti5"/>
                     </toolbarItems>
@@ -512,6 +524,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a3y-fn-Ve9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1356" y="-867"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="Zfq-3G-ISs">
+            <objects>
+                <viewController id="wmh-Ek-Xvm" customClass="FCAAboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jJj-Wf-997"/>
+                        <viewControllerLayoutGuide type="bottom" id="6gI-Lq-Kgt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7LQ-Mk-P9g">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OvM-V2-gCI">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OvM-V2-gCI" firstAttribute="top" secondItem="7LQ-Mk-P9g" secondAttribute="top" id="7Qf-vL-ysU"/>
+                            <constraint firstAttribute="trailing" secondItem="OvM-V2-gCI" secondAttribute="trailing" id="INk-20-cad"/>
+                            <constraint firstItem="OvM-V2-gCI" firstAttribute="leading" secondItem="7LQ-Mk-P9g" secondAttribute="leading" id="cJQ-eg-mzi"/>
+                            <constraint firstItem="6gI-Lq-Kgt" firstAttribute="top" secondItem="OvM-V2-gCI" secondAttribute="bottom" id="fRg-ed-AFM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webview" destination="OvM-V2-gCI" id="gyi-YT-P20"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hOc-rG-M3l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-601" y="958"/>
         </scene>
         <!--Caclulator Table View Controller - Calculator-->
         <scene sceneID="vrP-xi-fXn">
@@ -950,7 +996,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="AMOUNT:" id="k0g-lI-Oaf">
+                            <tableViewSection headerTitle="APPLICATION RATE:" id="k0g-lI-Oaf">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="eRL-9q-oSJ">
                                         <rect key="frame" x="0.0" y="303" width="768" height="44"/>
@@ -1728,7 +1774,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wy-Wb-lkc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="vDT-11-YKX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-657" y="980"/>
+            <point key="canvasLocation" x="-1628" y="972"/>
         </scene>
     </scenes>
     <resources>

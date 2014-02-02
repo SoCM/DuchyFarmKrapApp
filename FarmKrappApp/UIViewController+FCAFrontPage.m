@@ -35,4 +35,7 @@
     [self openSiteWithURLString:@"http://www.duchy.ac.uk"];
 }
 
+- (IBAction)showThinkManures:(id)sender {
+    [self openSiteWithURLString:@"http://www.swarmhub.co.uk/think_manure.php?id=3121"];
+}
 @end

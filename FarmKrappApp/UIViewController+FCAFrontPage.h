@@ -17,4 +17,5 @@
 - (IBAction)showSWARMWWW:(id)sender;
 - (IBAction)showDuchyRBSWWW:(id)sender;
 - (IBAction)showDuchyCollegeWWW:(id)sender;
+- (IBAction)showThinkManures:(id)sender;
 @end
