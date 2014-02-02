@@ -336,6 +336,7 @@
 		0734513A184DC32E004FBC1E /* Front Page */ = {
 			isa = PBXGroup;
 			children = (
+				07171799189E587B00BD6C82 /* About */,
 				07EACC191848689700D6A59E /* SoCMViewController.h */,
 				07EACC1A1848689700D6A59E /* SoCMViewController.m */,
 				07345137184DC316004FBC1E /* SoCMAboutViewController-iPhone.h */,
@@ -539,7 +540,6 @@
 		07EACC071848689700D6A59E /* FarmKrappApp */ = {
 			isa = PBXGroup;
 			children = (
-				07171799189E587B00BD6C82 /* About */,
 				0777B547184DDCD300842DBA /* CommonCodeForViewControllers */,
 				07B7E274185611DD00B90F61 /* Categories */,
 				078B27741850EB2600E78747 /* CoreDataModel */,
