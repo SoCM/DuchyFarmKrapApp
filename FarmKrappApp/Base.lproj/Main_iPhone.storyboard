@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sZi-52-jpw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C48" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sZi-52-jpw">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -71,6 +71,12 @@
                         <barButtonItem title="Disclaimer" id="Uct-rx-bV3">
                             <connections>
                                 <action selector="doDisclaimer:" destination="vXZ-lx-hvc" id="OPQ-OS-92U"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="837-dl-eiC"/>
+                        <barButtonItem title="About" id="AZS-yT-Cto">
+                            <connections>
+                                <segue destination="4BB-al-jKt" kind="modal" identifier="about" id="M5M-iz-nji"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -206,7 +212,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Info" id="2xA-oy-HSf"/>
+                        <barButtonItem title="Costs" id="2xA-oy-HSf"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Qgr-eG-KEQ"/>
                         <barButtonItem title="Calc" id="Vzl-ZF-KTr">
                             <connections>
@@ -542,7 +548,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="AMOUNT:" id="twI-Ad-E9g">
+                            <tableViewSection headerTitle="APPLICATION RATE:" id="twI-Ad-E9g">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="utE-Cv-c3d">
                                         <rect key="frame" x="0.0" y="303" width="320" height="44"/>
@@ -1676,7 +1682,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-369" y="1517"/>
+            <point key="canvasLocation" x="-745" y="1532"/>
         </scene>
         <!--Disclaimer View Controller-->
         <scene sceneID="Gv5-gb-VjK">
@@ -1766,7 +1772,62 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IIK-7G-N0Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="tCG-A5-QHw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="175" y="1532"/>
+            <point key="canvasLocation" x="-369" y="1532"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="eKm-s2-Zxr">
+            <objects>
+                <viewController id="4BB-al-jKt" customClass="FCAAboutViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fbG-fp-BF6"/>
+                        <viewControllerLayoutGuide type="bottom" id="Anb-sZ-1P4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ar0-NP-jJd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CR7-yH-3Lr">
+                                <rect key="frame" x="0.0" y="20" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.73978855298913038" green="0.73978855298913038" blue="0.73978855298913038" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXR-yS-6oE">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="&lt;" id="b7u-L6-hWb">
+                                        <connections>
+                                            <action selector="doBack:" destination="4BB-al-jKt" id="kdx-Eq-nkD"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="qQX-O7-EnW"/>
+                                    <barButtonItem title="Dismiss" id="kaX-DY-Duv">
+                                        <connections>
+                                            <segue destination="bje-YT-3M2" kind="unwind" unwindAction="unwindToFrontPageViewController:" id="F80-5B-jVh"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uXR-yS-6oE" firstAttribute="leading" secondItem="ar0-NP-jJd" secondAttribute="leading" id="4gn-ow-dhB"/>
+                            <constraint firstAttribute="trailing" secondItem="CR7-yH-3Lr" secondAttribute="trailing" id="DgW-y0-9OE"/>
+                            <constraint firstItem="Anb-sZ-1P4" firstAttribute="top" secondItem="uXR-yS-6oE" secondAttribute="bottom" id="JhD-gR-JFf"/>
+                            <constraint firstItem="CR7-yH-3Lr" firstAttribute="leading" secondItem="ar0-NP-jJd" secondAttribute="leading" id="afo-uO-vPH"/>
+                            <constraint firstItem="uXR-yS-6oE" firstAttribute="top" secondItem="CR7-yH-3Lr" secondAttribute="bottom" id="ok7-c3-eUf"/>
+                            <constraint firstAttribute="trailing" secondItem="uXR-yS-6oE" secondAttribute="trailing" id="puB-eQ-zrL"/>
+                            <constraint firstItem="CR7-yH-3Lr" firstAttribute="top" secondItem="fbG-fp-BF6" secondAttribute="bottom" id="rRO-89-eiS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webview" destination="CR7-yH-3Lr" id="TlI-m0-l8G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Vh-7x-Hys" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="bje-YT-3M2" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="178" y="1534"/>
         </scene>
     </scenes>
     <resources>
@@ -1781,6 +1842,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     <inferredMetricsTieBreakers>
         <segue reference="PSI-FG-Hmp"/>
         <segue reference="WAK-bG-5Y6"/>
-        <segue reference="cr3-tN-keW"/>
+        <segue reference="aZV-dK-7oo"/>
     </inferredMetricsTieBreakers>
 </document>

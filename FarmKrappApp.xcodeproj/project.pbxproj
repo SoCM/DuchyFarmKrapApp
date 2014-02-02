@@ -10,6 +10,8 @@
 		070B850618616FBE00609C72 /* FCAManureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070B850518616FBE00609C72 /* FCAManureCell.m */; };
 		070F18E418574C9D0008FA19 /* FCAFieldsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F18E318574C9D0008FA19 /* FCAFieldsViewController.m */; };
 		070F18E9185762990008FA19 /* FCAFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F18E8185762990008FA19 /* FCAFieldCell.m */; };
+		0717179C189E589D00BD6C82 /* FCAAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0717179B189E589D00BD6C82 /* FCAAboutViewController.m */; };
+		0717179E189E5E4D00BD6C82 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 0717179D189E5E4D00BD6C82 /* about.html */; };
 		071CF1D5185EF7EB00F0224B /* manure_types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 071CF1D2185EF7EB00F0224B /* manure_types.plist */; };
 		071CF1D6185EF7EB00F0224B /* manure_types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 071CF1D2185EF7EB00F0224B /* manure_types.plist */; };
 		071CF1D7185EF7EB00F0224B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 071CF1D3185EF7EB00F0224B /* Model.xcdatamodeld */; };
@@ -132,6 +134,9 @@
 		070F18E318574C9D0008FA19 /* FCAFieldsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAFieldsViewController.m; sourceTree = "<group>"; };
 		070F18E7185762990008FA19 /* FCAFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAFieldCell.h; sourceTree = "<group>"; };
 		070F18E8185762990008FA19 /* FCAFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAFieldCell.m; sourceTree = "<group>"; };
+		0717179A189E589D00BD6C82 /* FCAAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAAboutViewController.h; sourceTree = "<group>"; };
+		0717179B189E589D00BD6C82 /* FCAAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAAboutViewController.m; sourceTree = "<group>"; };
+		0717179D189E5E4D00BD6C82 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		071CF1D2185EF7EB00F0224B /* manure_types.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = manure_types.plist; sourceTree = "<group>"; };
 		071CF1D4185EF7EB00F0224B /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		071CF1F5185F08D400F0224B /* crop_types.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = crop_types.plist; sourceTree = "<group>"; };
@@ -288,6 +293,16 @@
 				070F18E8185762990008FA19 /* FCAFieldCell.m */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		07171799189E587B00BD6C82 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				0717179D189E5E4D00BD6C82 /* about.html */,
+				0717179A189E589D00BD6C82 /* FCAAboutViewController.h */,
+				0717179B189E589D00BD6C82 /* FCAAboutViewController.m */,
+			);
+			name = About;
 			sourceTree = "<group>";
 		};
 		072B83B218576D3F00339018 /* FieldInfo */ = {
@@ -524,6 +539,7 @@
 		07EACC071848689700D6A59E /* FarmKrappApp */ = {
 			isa = PBXGroup;
 			children = (
+				07171799189E587B00BD6C82 /* About */,
 				0777B547184DDCD300842DBA /* CommonCodeForViewControllers */,
 				07B7E274185611DD00B90F61 /* Categories */,
 				078B27741850EB2600E78747 /* CoreDataModel */,
@@ -656,6 +672,7 @@
 				077B841A185B89AB00D0F002 /* fym_25t.jpg in Resources */,
 				071CF1D5185EF7EB00F0224B /* manure_types.plist in Resources */,
 				077B8422185B89AB00D0F002 /* poultry_10t.jpg in Resources */,
+				0717179E189E5E4D00BD6C82 /* about.html in Resources */,
 				07EACC3A1848697D00D6A59E /* TODO in Resources */,
 				077B8424185B89AB00D0F002 /* poultry_5t.jpg in Resources */,
 				07EACC1D1848689700D6A59E /* Images.xcassets in Resources */,
@@ -737,6 +754,7 @@
 				079E840D1861798D003309B6 /* FCAManureTypeViewController.m in Sources */,
 				0752D4D9187F09D600803090 /* FCADisclaimerViewController.m in Sources */,
 				074C971818798B0300ED0CB8 /* FCASoilTypeCell.m in Sources */,
+				0717179C189E589D00BD6C82 /* FCAAboutViewController.m in Sources */,
 				073028C6185F6ADE00DFD9F9 /* FCADatePickerCell.m in Sources */,
 				07609F64185B04A000177718 /* FCASpreadingEventCell.m in Sources */,
 				07EACC0E1848689700D6A59E /* main.m in Sources */,
@@ -918,6 +936,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FarmKrappApp/FarmKrappApp-Prefix.pch";
 				INFOPLIST_FILE = "FarmKrappApp/FarmKrappApp-Info.plist";

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C32" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="lns-pP-19F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C48" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="lns-pP-19F">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -160,6 +160,8 @@
                                 </segue>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Y6N-lc-psf"/>
+                        <barButtonItem title="About" id="e0q-Aw-G8b"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Farm Crap App" id="Uvu-No-Zc5">
                         <barButtonItem key="backBarButtonItem" title="Back" id="oKf-UO-afn"/>
@@ -296,7 +298,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Info" id="Q3E-VF-VHr"/>
+                        <barButtonItem title="Costs" id="Q3E-VF-VHr"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="q5F-fD-tYl"/>
                         <barButtonItem title="Calc" id="z61-5h-DbS">
                             <connections>
@@ -950,7 +952,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="AMOUNT:" id="k0g-lI-Oaf">
+                            <tableViewSection headerTitle="APPLICATION RATE:" id="k0g-lI-Oaf">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="eRL-9q-oSJ">
                                         <rect key="frame" x="0.0" y="303" width="768" height="44"/>
@@ -1728,7 +1730,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wy-Wb-lkc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="vDT-11-YKX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-657" y="980"/>
+            <point key="canvasLocation" x="-1628" y="972"/>
         </scene>
     </scenes>
     <resources>
