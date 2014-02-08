@@ -11,6 +11,7 @@
 #import "FCAFieldInfoTableViewController.h"
 #import "FCAFieldCell.h"
 #import "FCASpreadingEventViewController.h"
+#import "NSBundleUOPCategory.h"
 
 @interface FCAFieldsViewController ()
 
@@ -215,6 +216,122 @@
     
     //Turn off editing before the transition
     [self setEditing:FALSE animated:YES];
+    
+}
+
+//Action button for sending data
+- (IBAction)doActionButton:(id)sender {
+    
+    NSError* err;
+    NSMutableString* attachment = [NSMutableString string];
+    BOOL isMetric = [[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"];
+    
+    [attachment appendString:@"Field name,Size,Size units,Soil,Crop,Manure,Date,N, P, K, Nutrient units,Spreading rate,Spreading rate units,Total Amount,Total units,Quality,Season,N Field Saving,P Field Saving,K Field Saving,N Unit price,P Unit price,K Unit price"];
+    [attachment appendString:@"\n"];
+    
+    NSManagedObjectContext* moc = [FCADataModel managedObjectContext];
+    
+//    NSEntityDescription* ed = [NSEntityDescription entityForName:@"Field" inManagedObjectContext:moc];
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Field"];
+    fr.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
+    NSArray* fields = [moc executeFetchRequest:fr error:&err];
+    for (Field* field in fields) {
+        NSFetchRequest* fr_se = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
+        fr_se.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
+        fr_se.predicate = [NSPredicate predicateWithFormat:@"field = %@", field];
+        NSArray* spreadingEvents = [moc executeFetchRequest:fr_se error:&err];
+        for (SpreadingEvent* se in spreadingEvents) {
+            
+            FCAAvailableNutrients* calc = [[FCAAvailableNutrients alloc] initWithSpreadingEvent:se];
+            double fSize = se.field.sizeInHectares.doubleValue;
+            NSNumber* N = [calc nitrogenAvailable];
+            NSNumber* P = [calc phosphateAvailable];
+            NSNumber* K = [calc potassiumAvailable];
+            
+            //Name
+            [attachment appendString:[NSString stringWithFormat:@"%@,", field.name]];   //name
+            
+            //Field Size
+            double fieldSize = (isMetric==YES) ? field.sizeInHectares.doubleValue : field.sizeInHectares.doubleValue*kACRES_PER_HECTARE;
+            [attachment appendString:[NSString stringWithFormat:@"%5.1f,", fieldSize]];
+
+            //Field size units
+            [attachment appendString:(isMetric==YES) ? @"Ha," : @"Acres,"];
+
+            //Soil type
+            [attachment appendString:[NSString stringWithFormat:@"%@,", ((SoilType*)field.soilType).displayName]];
+            
+            //Crop type
+            [attachment appendString:[NSString stringWithFormat:@"%@,", ((CropType*)field.cropType).displayName]];
+            
+            //Manure type
+            [attachment appendString:[NSString stringWithFormat:@"%@,", se.manureType.displayName]];
+             
+            //Spreading date
+            [attachment appendString:[NSString stringWithFormat:@"%@,", se.date]];
+            
+            //N,P,K
+            [attachment appendString:[NSString stringWithFormat:@"%1.1f,", N.doubleValue]];
+            [attachment appendString:[NSString stringWithFormat:@"%1.1f,", P.doubleValue]];
+            [attachment appendString:[NSString stringWithFormat:@"%1.1f,", K.doubleValue]];
+            
+            //Nutrient units
+            [attachment appendString:(isMetric==YES) ? @"Kg/Ha," : @"Units/Acre,"];
+            
+            //Spreading rate
+            [attachment appendString:[NSString stringWithFormat:@"%@,", se.density]];
+            
+            //spreading rate units - TODO - sort this out
+            NSString* rateAsString = [se rateAsStringUsingMetric:isMetric]; //%u %s
+            char strUnits[64]; unsigned int rate;
+            sscanf([rateAsString cStringUsingEncoding:NSUTF8StringEncoding],"%u %s", &rate, strUnits);
+            [attachment appendString:[NSString stringWithFormat:@"%s,", strUnits]];
+            
+            //Total amount
+            [attachment appendString:[NSString stringWithFormat:@"%lu,", se.density.longValue * field.sizeInHectares.longValue]];
+
+            //Total amount units
+            char strTop[64]; char strBottom[64];
+            sscanf(strUnits, "%s/%s", strTop, strBottom);
+            [attachment appendString:[NSString stringWithFormat:@"%s,", strTop]];
+            
+            //Quality
+            [attachment appendString:[NSString stringWithFormat:@"%@,", se.manureQuality.name]];
+            
+            //Season
+            [attachment appendString:[NSString stringWithFormat:@"%@,", se.date.seasonString]];
+            
+            //NPK savings
+            double fN = N.doubleValue * fSize;
+            double fP = N.doubleValue * fSize;
+            double fK = K.doubleValue * fSize;
+            double fCostN = [[NSUserDefaults standardUserDefaults] doubleForKey:@"NperKg"];
+            double fCostP = [[NSUserDefaults standardUserDefaults] doubleForKey:@"PperKg"];
+            double fCostK = [[NSUserDefaults standardUserDefaults] doubleForKey:@"KperKg"];
+            [attachment appendString:[NSString stringWithFormat:@"£%1.2f,", fN*fCostN]];
+            [attachment appendString:[NSString stringWithFormat:@"£%1.2f,", fP*fCostP]];
+            [attachment appendString:[NSString stringWithFormat:@"£%1.2f,", fK*fCostK]];
+
+            //NPK unit prices
+            [attachment appendString:[NSString stringWithFormat:@"£%1.2f,", fCostN]];
+            [attachment appendString:[NSString stringWithFormat:@"£%1.2f,", fCostP]];
+            [attachment appendString:[NSString stringWithFormat:@"£%1.2f\n", fCostK]];
+            
+            //DEBUG
+            //NSLog(@"%@", attachment);
+            
+        }
+    }
+    
+    NSString* path = [NSBundle pathToFileInDocumentsFolder:@"fields.csv"];
+
+    NSFileManager* fm = [NSFileManager defaultManager];
+    [fm createFileAtPath:path contents:[attachment dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
+
+    NSURL* url = [NSURL fileURLWithPath:path];
+    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[attachment, url] applicationActivities:nil];
+    
+    [self presentViewController:vc animated:YES completion:^(){ }];
     
 }
 
