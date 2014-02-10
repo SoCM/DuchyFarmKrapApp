@@ -50,6 +50,7 @@
 		07609F64185B04A000177718 /* FCASpreadingEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F63185B04A000177718 /* FCASpreadingEventCell.m */; };
 		07609F69185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F68185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m */; };
 		07609F6E185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F6D185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m */; };
+		0768234F18A8ABC9008D67AD /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0768234E18A8ABC9008D67AD /* MessageUI.framework */; };
 		0777B4F4184DD4E300842DBA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0777B4F3184DD4E300842DBA /* CoreData.framework */; };
 		0777B54A184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */; };
 		0777B54B184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */; };
@@ -184,6 +185,7 @@
 		07609F68185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCASpreadingEventDetailsTableViewController.m; sourceTree = "<group>"; };
 		07609F6C185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASpreadingEventSummaryTableViewController.h; sourceTree = "<group>"; };
 		07609F6D185B0CE400177718 /* FCASpreadingEventSummaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCASpreadingEventSummaryTableViewController.m; sourceTree = "<group>"; };
+		0768234E18A8ABC9008D67AD /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		0777B4F3184DD4E300842DBA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		0777B548184DDE3C00842DBA /* SoCMViewControllerCommonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoCMViewControllerCommonBase.h; sourceTree = "<group>"; };
 		0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoCMViewControllerCommonBase.m; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0768234F18A8ABC9008D67AD /* MessageUI.framework in Frameworks */,
 				0777B4F4184DD4E300842DBA /* CoreData.framework in Frameworks */,
 				07EACC041848689700D6A59E /* CoreGraphics.framework in Frameworks */,
 				07EACC061848689700D6A59E /* UIKit.framework in Frameworks */,
@@ -528,6 +531,7 @@
 		07EACC001848689700D6A59E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0768234E18A8ABC9008D67AD /* MessageUI.framework */,
 				07EACC011848689700D6A59E /* Foundation.framework */,
 				07EACC031848689700D6A59E /* CoreGraphics.framework */,
 				0777B4F3184DD4E300842DBA /* CoreData.framework */,

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
-@interface FCAFieldsViewController : UITableViewController <UIActionSheetDelegate>
+@interface FCAFieldsViewController : UITableViewController <UIActionSheetDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
 @end

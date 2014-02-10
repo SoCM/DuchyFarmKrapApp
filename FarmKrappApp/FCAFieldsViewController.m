@@ -5,7 +5,6 @@
 //  Created by Nicholas Outram on 10/12/2013.
 //  Copyright (c) 2013 Plymouth University. All rights reserved.
 //
-
 #import "FCAFieldsViewController.h"
 #import "FCADataModel.h"
 #import "FCAFieldInfoTableViewController.h"
@@ -223,6 +222,14 @@
 - (IBAction)doActionButton:(id)sender {
     
     NSError* err;
+    
+    if ([MFMailComposeViewController canSendMail] == NO) {
+        UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Cannot send email" message:@"You cannot send email from this device. Check your settings or device capabilities" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+        return;
+    }
+    
+    
     NSMutableString* attachment = [NSMutableString string];
     BOOL isMetric = [[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"];
     
@@ -268,7 +275,7 @@
             [attachment appendString:[NSString stringWithFormat:@"%@,", se.manureType.displayName]];
              
             //Spreading date
-            [attachment appendString:[NSString stringWithFormat:@"%@,", se.date]];
+            [attachment appendString:[NSString stringWithFormat:@"%@,", [se.date stringForUKShortFormatUsingGMT:NO] ]];
             
             //N,P,K
             [attachment appendString:[NSString stringWithFormat:@"%1.1f,", N.doubleValue]];
@@ -317,24 +324,32 @@
             [attachment appendString:[NSString stringWithFormat:@"£%1.2f,", fCostP]];
             [attachment appendString:[NSString stringWithFormat:@"£%1.2f\n", fCostK]];
             
-            //DEBUG
-            //NSLog(@"%@", attachment);
-            
         }
     }
+    
+    //DEBUG
+//    NSLog(@"%@", attachment);
     
     NSString* path = [NSBundle pathToFileInDocumentsFolder:@"fields.csv"];
 
     NSFileManager* fm = [NSFileManager defaultManager];
     [fm createFileAtPath:path contents:[attachment dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
 
-    NSURL* url = [NSURL fileURLWithPath:path];
-    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[attachment, url] applicationActivities:nil];
+    UIImage* img = [UIImage imageNamed:@"logo"];
+    NSData* imgData = UIImageJPEGRepresentation(img, 1.0);
     
+    MFMailComposeViewController* vc = [[MFMailComposeViewController alloc] init];
+    [vc setSubject:@"Field data from the FarmCrapApp"];
+    [vc addAttachmentData:[attachment dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/csv" fileName:@"fields"];
+    [vc addAttachmentData:imgData mimeType:@"image/jpeg" fileName:@"logo"];
+    [vc setMailComposeDelegate:self];
     [self presentViewController:vc animated:YES completion:^(){ }];
     
 }
 
-
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
 
 @end
