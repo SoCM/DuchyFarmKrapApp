@@ -161,13 +161,13 @@
     idxK = [_K indexOfObjectPassingTest:foundit];
     
     nvalueForAllCrops = [[_N objectAtIndex:idxN] objectForKey:@"AllCrops"];
-    nvalueForGrassWinterOilseedRape = [[_N objectAtIndex:idxN] objectForKey:@"GrassWinterOilseedRape"];
+//    nvalueForGrassWinterOilseedRape = [[_N objectAtIndex:idxN] objectForKey:@"GrassWinterOilseedRape"];
 
     pvalueForAllCrops = [[_P objectAtIndex:idxP] objectForKey:@"AllCrops"];
-    pvalueForGrassWinterOilseedRape = [[_P objectAtIndex:idxP] objectForKey:@"GrassWinterOilseedRape"];
+//    pvalueForGrassWinterOilseedRape = [[_P objectAtIndex:idxP] objectForKey:@"GrassWinterOilseedRape"];
     
     kvalueForAllCrops = [[_K objectAtIndex:idxK] objectForKey:@"AllCrops"];
-    kvalueForGrassWinterOilseedRape = [[_K objectAtIndex:idxK] objectForKey:@"GrassWinterOilseedRape"];
+//    kvalueForGrassWinterOilseedRape = [[_K objectAtIndex:idxK] objectForKey:@"GrassWinterOilseedRape"];
     
     switch (crop_type) {
         case CROPTYPE_ALL_CROPS:
