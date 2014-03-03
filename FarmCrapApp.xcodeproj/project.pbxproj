@@ -228,14 +228,14 @@
 		07C3FC19186049EC007C7442 /* FCADateStringCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCADateStringCell.m; sourceTree = "<group>"; };
 		07C5F54B18792A1F005A2B5A /* FCACaclulatorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCACaclulatorTableViewController.h; sourceTree = "<group>"; };
 		07C5F54C18792A1F005A2B5A /* FCACaclulatorTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCACaclulatorTableViewController.m; sourceTree = "<group>"; };
-		07EACBFE1848689700D6A59E /* FarmKrappApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarmKrappApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		07EACBFE1848689700D6A59E /* FarmCrapApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarmCrapApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EACC011848689700D6A59E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07EACC031848689700D6A59E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		07EACC051848689700D6A59E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		07EACC091848689700D6A59E /* FarmKrappApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FarmKrappApp-Info.plist"; sourceTree = "<group>"; };
+		07EACC091848689700D6A59E /* FarmCrapApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FarmCrapApp-Info.plist"; sourceTree = "<group>"; };
 		07EACC0B1848689700D6A59E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		07EACC0D1848689700D6A59E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		07EACC0F1848689700D6A59E /* FarmKrappApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FarmKrappApp-Prefix.pch"; sourceTree = "<group>"; };
+		07EACC0F1848689700D6A59E /* FarmCrapApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FarmCrapApp-Prefix.pch"; sourceTree = "<group>"; };
 		07EACC101848689700D6A59E /* SoCMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoCMAppDelegate.h; sourceTree = "<group>"; };
 		07EACC111848689700D6A59E /* SoCMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoCMAppDelegate.m; sourceTree = "<group>"; };
 		07EACC141848689700D6A59E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
@@ -243,9 +243,9 @@
 		07EACC191848689700D6A59E /* SoCMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoCMViewController.h; sourceTree = "<group>"; };
 		07EACC1A1848689700D6A59E /* SoCMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SoCMViewController.m; sourceTree = "<group>"; };
 		07EACC1C1848689700D6A59E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		07EACC221848689700D6A59E /* FarmKrappAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FarmKrappAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		07EACC221848689700D6A59E /* FarmCrapAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FarmCrapAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EACC231848689700D6A59E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		07EACC2B1848689700D6A59E /* FarmKrappAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FarmKrappAppTests-Info.plist"; sourceTree = "<group>"; };
+		07EACC2B1848689700D6A59E /* FarmCrapAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FarmCrapAppTests-Info.plist"; sourceTree = "<group>"; };
 		07EACC2D1848689700D6A59E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		07EACC2F1848689700D6A59E /* FarmKrappAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FarmKrappAppTests.m; sourceTree = "<group>"; };
 		07EACC391848697D00D6A59E /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
@@ -522,8 +522,8 @@
 		07EACBFF1848689700D6A59E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07EACBFE1848689700D6A59E /* FarmKrappApp.app */,
-				07EACC221848689700D6A59E /* FarmKrappAppTests.xctest */,
+				07EACBFE1848689700D6A59E /* FarmCrapApp.app */,
+				07EACC221848689700D6A59E /* FarmCrapAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -564,10 +564,10 @@
 		07EACC081848689700D6A59E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				07EACC091848689700D6A59E /* FarmKrappApp-Info.plist */,
+				07EACC091848689700D6A59E /* FarmCrapApp-Info.plist */,
 				07EACC0A1848689700D6A59E /* InfoPlist.strings */,
 				07EACC0D1848689700D6A59E /* main.m */,
-				07EACC0F1848689700D6A59E /* FarmKrappApp-Prefix.pch */,
+				07EACC0F1848689700D6A59E /* FarmCrapApp-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			path = FarmKrappApp;
@@ -585,7 +585,7 @@
 		07EACC2A1848689700D6A59E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				07EACC2B1848689700D6A59E /* FarmKrappAppTests-Info.plist */,
+				07EACC2B1848689700D6A59E /* FarmCrapAppTests-Info.plist */,
 				07EACC2C1848689700D6A59E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -594,9 +594,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		07EACBFD1848689700D6A59E /* FarmKrappApp */ = {
+		07EACBFD1848689700D6A59E /* FarmCrapApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07EACC331848689700D6A59E /* Build configuration list for PBXNativeTarget "FarmKrappApp" */;
+			buildConfigurationList = 07EACC331848689700D6A59E /* Build configuration list for PBXNativeTarget "FarmCrapApp" */;
 			buildPhases = (
 				07EACBFA1848689700D6A59E /* Sources */,
 				07EACBFB1848689700D6A59E /* Frameworks */,
@@ -606,14 +606,14 @@
 			);
 			dependencies = (
 			);
-			name = FarmKrappApp;
+			name = FarmCrapApp;
 			productName = FarmKrappApp;
-			productReference = 07EACBFE1848689700D6A59E /* FarmKrappApp.app */;
+			productReference = 07EACBFE1848689700D6A59E /* FarmCrapApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		07EACC211848689700D6A59E /* FarmKrappAppTests */ = {
+		07EACC211848689700D6A59E /* FarmCrapAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 07EACC361848689700D6A59E /* Build configuration list for PBXNativeTarget "FarmKrappAppTests" */;
+			buildConfigurationList = 07EACC361848689700D6A59E /* Build configuration list for PBXNativeTarget "FarmCrapAppTests" */;
 			buildPhases = (
 				07EACC1E1848689700D6A59E /* Sources */,
 				07EACC1F1848689700D6A59E /* Frameworks */,
@@ -624,9 +624,9 @@
 			dependencies = (
 				07EACC281848689700D6A59E /* PBXTargetDependency */,
 			);
-			name = FarmKrappAppTests;
+			name = FarmCrapAppTests;
 			productName = FarmKrappAppTests;
-			productReference = 07EACC221848689700D6A59E /* FarmKrappAppTests.xctest */;
+			productReference = 07EACC221848689700D6A59E /* FarmCrapAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -640,14 +640,14 @@
 				ORGANIZATIONNAME = "Plymouth University";
 				TargetAttributes = {
 					07EACBFD1848689700D6A59E = {
-						DevelopmentTeam = A5RDWYM8E9;
+						DevelopmentTeam = FNUE8G7Y4Q;
 					};
 					07EACC211848689700D6A59E = {
 						TestTargetID = 07EACBFD1848689700D6A59E;
 					};
 				};
 			};
-			buildConfigurationList = 07EACBF91848689700D6A59E /* Build configuration list for PBXProject "FarmKrappApp" */;
+			buildConfigurationList = 07EACBF91848689700D6A59E /* Build configuration list for PBXProject "FarmCrapApp" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -660,8 +660,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				07EACBFD1848689700D6A59E /* FarmKrappApp */,
-				07EACC211848689700D6A59E /* FarmKrappAppTests */,
+				07EACBFD1848689700D6A59E /* FarmCrapApp */,
+				07EACC211848689700D6A59E /* FarmCrapAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -804,7 +804,7 @@
 /* Begin PBXTargetDependency section */
 		07EACC281848689700D6A59E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 07EACBFD1848689700D6A59E /* FarmKrappApp */;
+			target = 07EACBFD1848689700D6A59E /* FarmCrapApp */;
 			targetProxy = 07EACC271848689700D6A59E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -925,11 +925,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FarmKrappApp/FarmKrappApp-Prefix.pch";
-				INFOPLIST_FILE = "FarmKrappApp/FarmKrappApp-Info.plist";
+				GCC_PREFIX_HEADER = "FarmKrappApp/FarmCrapApp-Prefix.pch";
+				INFOPLIST_FILE = "FarmKrappApp/FarmCrapApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FarmCrapApp;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -940,12 +942,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FarmKrappApp/FarmKrappApp-Prefix.pch";
-				INFOPLIST_FILE = "FarmKrappApp/FarmKrappApp-Info.plist";
+				GCC_PREFIX_HEADER = "FarmKrappApp/FarmCrapApp-Prefix.pch";
+				INFOPLIST_FILE = "FarmKrappApp/FarmCrapApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FarmCrapApp;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -966,8 +969,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "FarmKrappAppTests/FarmKrappAppTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "FarmKrappAppTests/FarmCrapAppTests-Info.plist";
+				PRODUCT_NAME = FarmCrapAppTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -985,8 +988,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FarmKrappApp/FarmKrappApp-Prefix.pch";
-				INFOPLIST_FILE = "FarmKrappAppTests/FarmKrappAppTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "FarmKrappAppTests/FarmCrapAppTests-Info.plist";
+				PRODUCT_NAME = FarmCrapAppTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -995,7 +998,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		07EACBF91848689700D6A59E /* Build configuration list for PBXProject "FarmKrappApp" */ = {
+		07EACBF91848689700D6A59E /* Build configuration list for PBXProject "FarmCrapApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07EACC311848689700D6A59E /* Debug */,
@@ -1004,7 +1007,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		07EACC331848689700D6A59E /* Build configuration list for PBXNativeTarget "FarmKrappApp" */ = {
+		07EACC331848689700D6A59E /* Build configuration list for PBXNativeTarget "FarmCrapApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07EACC341848689700D6A59E /* Debug */,
@@ -1013,7 +1016,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		07EACC361848689700D6A59E /* Build configuration list for PBXNativeTarget "FarmKrappAppTests" */ = {
+		07EACC361848689700D6A59E /* Build configuration list for PBXNativeTarget "FarmCrapAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				07EACC371848689700D6A59E /* Debug */,
