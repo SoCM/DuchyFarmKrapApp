@@ -377,75 +377,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="80" id="55H-QZ-x4h">
-                                        <rect key="frame" x="0.0" y="164" width="1024" height="80"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="55H-QZ-x4h" id="9hY-RB-sFv">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="79"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soil Type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkP-Bi-wTu">
-                                                    <rect key="frame" x="20" y="29" width="75" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="h2u-yD-Ipt">
-                                                    <rect key="frame" x="407" y="26" width="211" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <segments>
-                                                        <segment title="Sandy/Shallow"/>
-                                                        <segment title="Medium/Heavy"/>
-                                                    </segments>
-                                                    <connections>
-                                                        <action selector="doSegmentedValueChanged:" destination="hEJ-9P-1qo" eventType="valueChanged" id="YuJ-BK-4tf"/>
-                                                    </connections>
-                                                </segmentedControl>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="centerY" secondItem="ZkP-Bi-wTu" secondAttribute="centerY" id="mSG-Z9-WgK"/>
-                                                <constraint firstItem="ZkP-Bi-wTu" firstAttribute="leading" secondItem="9hY-RB-sFv" secondAttribute="leading" constant="20" id="yHx-XL-H4R"/>
-                                                <constraint firstAttribute="centerY" secondItem="h2u-yD-Ipt" secondAttribute="centerY" constant="-0.5" id="yMz-6c-p9G"/>
-                                                <constraint firstAttribute="centerX" secondItem="h2u-yD-Ipt" secondAttribute="centerX" id="zUq-es-hXa"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="80" id="KmC-oD-8GN">
-                                        <rect key="frame" x="0.0" y="244" width="1024" height="80"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KmC-oD-8GN" id="UPM-Fe-2AU">
-                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="79"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crop Type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFT-Bg-cK8">
-                                                    <rect key="frame" x="20" y="29" width="84" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tTE-pe-4gj">
-                                                    <rect key="frame" x="316" y="26" width="393" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <segments>
-                                                        <segment title="All"/>
-                                                        <segment title="Grassland/Winter oilseed rape"/>
-                                                    </segments>
-                                                    <connections>
-                                                        <action selector="doSegmentedValueChanged:" destination="hEJ-9P-1qo" eventType="valueChanged" id="Bmz-V1-PTN"/>
-                                                    </connections>
-                                                </segmentedControl>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="centerX" secondItem="tTE-pe-4gj" secondAttribute="centerX" id="2gb-2Q-Gaa"/>
-                                                <constraint firstAttribute="centerY" secondItem="tTE-pe-4gj" secondAttribute="centerY" id="K1A-oI-SBj"/>
-                                                <constraint firstAttribute="centerY" secondItem="KFT-Bg-cK8" secondAttribute="centerY" id="QhA-h3-ab1"/>
-                                                <constraint firstItem="KFT-Bg-cK8" firstAttribute="leading" secondItem="UPM-Fe-2AU" secondAttribute="leading" constant="20" id="gaZ-Pf-Jt9"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="100" id="8Rb-Od-SIw">
-                                        <rect key="frame" x="0.0" y="324" width="1024" height="100"/>
+                                        <rect key="frame" x="0.0" y="164" width="1024" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Rb-Od-SIw" id="sAL-PN-eQb">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="99"/>
@@ -494,6 +427,73 @@
                                                 <constraint firstAttribute="centerY" secondItem="Cws-Ab-cuv" secondAttribute="centerY" constant="0.5" id="Rbs-VW-YWf"/>
                                                 <constraint firstAttribute="centerY" secondItem="0Tz-sU-lhQ" secondAttribute="centerY" constant="0.5" id="ZNB-3c-orA"/>
                                                 <constraint firstItem="sIt-9h-Ngb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0Tz-sU-lhQ" secondAttribute="trailing" constant="40" id="lrt-Wg-lPd"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="80" id="55H-QZ-x4h">
+                                        <rect key="frame" x="0.0" y="264" width="1024" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="55H-QZ-x4h" id="9hY-RB-sFv">
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soil Type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkP-Bi-wTu">
+                                                    <rect key="frame" x="20" y="29" width="75" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="h2u-yD-Ipt">
+                                                    <rect key="frame" x="407" y="26" width="211" height="29"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <segments>
+                                                        <segment title="Sandy/Shallow"/>
+                                                        <segment title="Medium/Heavy"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="doSegmentedValueChanged:" destination="hEJ-9P-1qo" eventType="valueChanged" id="YuJ-BK-4tf"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="ZkP-Bi-wTu" secondAttribute="centerY" id="mSG-Z9-WgK"/>
+                                                <constraint firstItem="ZkP-Bi-wTu" firstAttribute="leading" secondItem="9hY-RB-sFv" secondAttribute="leading" constant="20" id="yHx-XL-H4R"/>
+                                                <constraint firstAttribute="centerY" secondItem="h2u-yD-Ipt" secondAttribute="centerY" constant="-0.5" id="yMz-6c-p9G"/>
+                                                <constraint firstAttribute="centerX" secondItem="h2u-yD-Ipt" secondAttribute="centerX" id="zUq-es-hXa"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="80" id="KmC-oD-8GN">
+                                        <rect key="frame" x="0.0" y="344" width="1024" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KmC-oD-8GN" id="UPM-Fe-2AU">
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crop Type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFT-Bg-cK8">
+                                                    <rect key="frame" x="20" y="29" width="84" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tTE-pe-4gj">
+                                                    <rect key="frame" x="316" y="26" width="393" height="29"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <segments>
+                                                        <segment title="All"/>
+                                                        <segment title="Grassland/Winter oilseed rape"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="doSegmentedValueChanged:" destination="hEJ-9P-1qo" eventType="valueChanged" id="Bmz-V1-PTN"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerX" secondItem="tTE-pe-4gj" secondAttribute="centerX" id="2gb-2Q-Gaa"/>
+                                                <constraint firstAttribute="centerY" secondItem="tTE-pe-4gj" secondAttribute="centerY" id="K1A-oI-SBj"/>
+                                                <constraint firstAttribute="centerY" secondItem="KFT-Bg-cK8" secondAttribute="centerY" id="QhA-h3-ab1"/>
+                                                <constraint firstItem="KFT-Bg-cK8" firstAttribute="leading" secondItem="UPM-Fe-2AU" secondAttribute="leading" constant="20" id="gaZ-Pf-Jt9"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
