@@ -289,17 +289,30 @@
                 appRateCell.PhosphateLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:P usingMetric:isMetric];
                 appRateCell.PotassiumLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:K usingMetric:isMetric];
                 
-                //Costings
+                //Costings (per area)
                 double Ncost = [[NSUserDefaults standardUserDefaults] doubleForKey:@"NperKg"]*N.doubleValue;
                 double Pcost = [[NSUserDefaults standardUserDefaults] doubleForKey:@"PperKg"]*P.doubleValue;
                 double Kcost = [[NSUserDefaults standardUserDefaults] doubleForKey:@"KperKg"]*K.doubleValue;
-                Ncost *= self.spreadingEvent.field.sizeInHectares.doubleValue;
-                Pcost *= self.spreadingEvent.field.sizeInHectares.doubleValue;
-                Kcost *= self.spreadingEvent.field.sizeInHectares.doubleValue;
+                /*
+                 Cost is given per ha or acre
+                 */
                 
-                appRateCell.NitrogenCostLabel.text = [NSString stringWithFormat:@"£%6.2f", Ncost];
-                appRateCell.PhosphateCostLabel.text = [NSString stringWithFormat:@"£%6.2f", Pcost];
-                appRateCell.PotassiumCostLabel.text = [NSString stringWithFormat:@"£%6.2f", Kcost];
+//                Ncost *= self.spreadingEvent.field.sizeInHectares.doubleValue;
+//                Pcost *= self.spreadingEvent.field.sizeInHectares.doubleValue;
+//                Kcost *= self.spreadingEvent.field.sizeInHectares.doubleValue;
+                if (isMetric) {
+                    appRateCell.NitrogenCostLabel.text = [NSString stringWithFormat:@"£%6.2f/ha", Ncost];
+                    appRateCell.PhosphateCostLabel.text = [NSString stringWithFormat:@"£%6.2f/ha", Pcost];
+                    appRateCell.PotassiumCostLabel.text = [NSString stringWithFormat:@"£%6.2f/ha", Kcost];
+                } else {
+                    double fScale = kACRES_PER_HECTARE;
+                    Ncost *= fScale;
+                    Pcost *= fScale;
+                    Kcost *= fScale;
+                    appRateCell.NitrogenCostLabel.text = [NSString stringWithFormat:@"£%6.2f/acre", Ncost];
+                    appRateCell.PhosphateCostLabel.text = [NSString stringWithFormat:@"£%6.2f/acre", Pcost];
+                    appRateCell.PotassiumCostLabel.text = [NSString stringWithFormat:@"£%6.2f/acre", Kcost];
+                }
                 
             } else {
                 appRateCell.NitrogenLabel.text = @"---";
@@ -352,7 +365,9 @@
     float v = slider.value;
     v = roundf(v);
     self.spreadingEvent.density = [NSNumber numberWithInt:(int)v];
-    
+    double r = v / slider.maximumValue;
+    double b = 1.0-r;
+    [slider setTintColor:[UIColor colorWithRed:r green:0.0 blue:b alpha:1.0]];
     [self.tableView reloadData];
 }
 
