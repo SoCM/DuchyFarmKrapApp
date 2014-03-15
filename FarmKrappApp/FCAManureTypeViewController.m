@@ -149,7 +149,7 @@
     //No selection yet been made
     if (self.selectedSection == nil) {
         //Simply flag which section (and hence manure type) has been chosen
-        self.selectedSection = [NSNumber numberWithInt:indexPath.section];
+        self.selectedSection = [NSNumber numberWithLong:indexPath.section];
         self.selectedManureType = self.selectedManureType = [self.arrayOfManureTypes objectAtIndex:indexPath.section];
         self.selectedManureQuality = nil;
         updateTable();
@@ -176,7 +176,7 @@
         r.length = [ManureType count];
         NSIndexSet* indexSet = [NSIndexSet indexSetWithIndexesInRange:r];
         
-        self.selectedSection = [NSNumber numberWithInt:next];
+        self.selectedSection = [NSNumber numberWithLong:next];
         self.selectedManureType = self.selectedManureType = [self.arrayOfManureTypes objectAtIndex:next];
         self.selectedManureQuality = nil;
         
