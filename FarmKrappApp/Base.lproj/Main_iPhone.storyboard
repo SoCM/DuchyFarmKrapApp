@@ -1444,6 +1444,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outlet property="delegate" destination="dq7-ZN-cKu" id="n2s-Of-zON"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Take Photo" id="NBG-Qb-iwu">
+                            <connections>
+                                <action selector="doPhoto:" destination="dq7-ZN-cKu" id="aP8-28-g8K"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Event Details" id="SNR-au-4I9">
                         <barButtonItem key="backBarButtonItem" title="Back" id="qCt-ol-1Wk"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="DDV-7L-ldR">
@@ -1840,7 +1847,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="PSI-FG-Hmp"/>
-        <segue reference="bEM-te-Fym"/>
+        <segue reference="WAK-bG-5Y6"/>
         <segue reference="aZV-dK-7oo"/>
     </inferredMetricsTieBreakers>
 </document>

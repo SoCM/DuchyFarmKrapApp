@@ -11,7 +11,7 @@
 #import "Field.h"
 #import "FCADataModel.h"
  
-@interface FCASpreadingEventDetailsTableViewController : UITableViewController
+@interface FCASpreadingEventDetailsTableViewController : UITableViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property(readwrite, nonatomic, strong) NSManagedObjectContext* managedChildObjectContext;
 @property(readwrite, nonatomic, strong) SpreadingEvent* spreadingEvent;
 @end

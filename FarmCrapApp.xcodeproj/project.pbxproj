@@ -26,14 +26,10 @@
 		071CF202185F0C4E00F0224B /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF200185F0C4E00F0224B /* Field.m */; };
 		071CF205185F0C4E00F0224B /* ManureType.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF204185F0C4E00F0224B /* ManureType.m */; };
 		071CF206185F0C4E00F0224B /* ManureType.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF204185F0C4E00F0224B /* ManureType.m */; };
-		071CF209185F0C4E00F0224B /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF208185F0C4E00F0224B /* Photo.m */; };
-		071CF20A185F0C4E00F0224B /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF208185F0C4E00F0224B /* Photo.m */; };
 		071CF20D185F0C4E00F0224B /* CropType.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF20C185F0C4E00F0224B /* CropType.m */; };
 		071CF20E185F0C4E00F0224B /* CropType.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF20C185F0C4E00F0224B /* CropType.m */; };
 		071CF211185F0C4E00F0224B /* SoilType.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF210185F0C4E00F0224B /* SoilType.m */; };
 		071CF212185F0C4E00F0224B /* SoilType.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF210185F0C4E00F0224B /* SoilType.m */; };
-		071CF215185F0C4E00F0224B /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF214185F0C4E00F0224B /* SpreadingEvent.m */; };
-		071CF216185F0C4E00F0224B /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF214185F0C4E00F0224B /* SpreadingEvent.m */; };
 		072B83B518576D7B00339018 /* FCAFieldInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072B83B418576D7B00339018 /* FCAFieldInfoTableViewController.m */; };
 		073028BA185F683900DFD9F9 /* FCASpreadingEventSingleLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 073028B9185F683900DFD9F9 /* FCASpreadingEventSingleLabelCell.m */; };
 		073028C6185F6ADE00DFD9F9 /* FCADatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 073028C5185F6ADE00DFD9F9 /* FCADatePickerCell.m */; };
@@ -82,6 +78,8 @@
 		078B278718519AB000E78747 /* FCADataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B278518519AB000E78747 /* FCADataModel.m */; };
 		079E840D1861798D003309B6 /* FCAManureTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 079E840C1861798D003309B6 /* FCAManureTypeViewController.m */; };
 		079E84101861799D003309B6 /* FCAManureQualityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 079E840F1861799D003309B6 /* FCAManureQualityViewController.m */; };
+		07B21FE618D5EDE000419DE9 /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B21FE518D5EDE000419DE9 /* SpreadingEvent.m */; };
+		07B21FE718D5EDE000419DE9 /* SpreadingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B21FE518D5EDE000419DE9 /* SpreadingEvent.m */; };
 		07B7E27F185611FA00B90F61 /* NSBundleUOPCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E276185611FA00B90F61 /* NSBundleUOPCategory.m */; };
 		07B7E280185611FA00B90F61 /* NSBundleUOPCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E276185611FA00B90F61 /* NSBundleUOPCategory.m */; };
 		07B7E281185611FA00B90F61 /* UIImageUOPCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B7E278185611FA00B90F61 /* UIImageUOPCategory.m */; };
@@ -148,14 +146,10 @@
 		071CF200185F0C4E00F0224B /* Field.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Field.m; path = ../Field.m; sourceTree = "<group>"; };
 		071CF203185F0C4E00F0224B /* ManureType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManureType.h; path = ../ManureType.h; sourceTree = "<group>"; };
 		071CF204185F0C4E00F0224B /* ManureType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManureType.m; path = ../ManureType.m; sourceTree = "<group>"; };
-		071CF207185F0C4E00F0224B /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = ../Photo.h; sourceTree = "<group>"; };
-		071CF208185F0C4E00F0224B /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Photo.m; path = ../Photo.m; sourceTree = "<group>"; };
 		071CF20B185F0C4E00F0224B /* CropType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CropType.h; path = ../CropType.h; sourceTree = "<group>"; };
 		071CF20C185F0C4E00F0224B /* CropType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CropType.m; path = ../CropType.m; sourceTree = "<group>"; };
 		071CF20F185F0C4E00F0224B /* SoilType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoilType.h; path = ../SoilType.h; sourceTree = "<group>"; };
 		071CF210185F0C4E00F0224B /* SoilType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoilType.m; path = ../SoilType.m; sourceTree = "<group>"; };
-		071CF213185F0C4E00F0224B /* SpreadingEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpreadingEvent.h; path = ../SpreadingEvent.h; sourceTree = "<group>"; };
-		071CF214185F0C4E00F0224B /* SpreadingEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpreadingEvent.m; path = ../SpreadingEvent.m; sourceTree = "<group>"; };
 		072B83B318576D7B00339018 /* FCAFieldInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAFieldInfoTableViewController.h; sourceTree = "<group>"; };
 		072B83B418576D7B00339018 /* FCAFieldInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAFieldInfoTableViewController.m; sourceTree = "<group>"; };
 		073028B8185F683900DFD9F9 /* FCASpreadingEventSingleLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASpreadingEventSingleLabelCell.h; sourceTree = "<group>"; };
@@ -210,6 +204,8 @@
 		079E840C1861798D003309B6 /* FCAManureTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAManureTypeViewController.m; sourceTree = "<group>"; };
 		079E840E1861799D003309B6 /* FCAManureQualityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAManureQualityViewController.h; sourceTree = "<group>"; };
 		079E840F1861799D003309B6 /* FCAManureQualityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAManureQualityViewController.m; sourceTree = "<group>"; };
+		07B21FE418D5EDE000419DE9 /* SpreadingEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpreadingEvent.h; sourceTree = "<group>"; };
+		07B21FE518D5EDE000419DE9 /* SpreadingEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpreadingEvent.m; sourceTree = "<group>"; };
 		07B7E275185611FA00B90F61 /* NSBundleUOPCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBundleUOPCategory.h; sourceTree = "<group>"; };
 		07B7E276185611FA00B90F61 /* NSBundleUOPCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBundleUOPCategory.m; sourceTree = "<group>"; };
 		07B7E277185611FA00B90F61 /* UIImageUOPCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageUOPCategory.h; sourceTree = "<group>"; };
@@ -430,14 +426,10 @@
 				071CF1D2185EF7EB00F0224B /* manure_types.plist */,
 				07F87ACE1862E578005A8D66 /* Available100m3.plist */,
 				0748E55118728DA6009096A2 /* costings.plist */,
-				071CF213185F0C4E00F0224B /* SpreadingEvent.h */,
-				071CF214185F0C4E00F0224B /* SpreadingEvent.m */,
 				071CF20F185F0C4E00F0224B /* SoilType.h */,
 				071CF210185F0C4E00F0224B /* SoilType.m */,
 				071CF20B185F0C4E00F0224B /* CropType.h */,
 				071CF20C185F0C4E00F0224B /* CropType.m */,
-				071CF207185F0C4E00F0224B /* Photo.h */,
-				071CF208185F0C4E00F0224B /* Photo.m */,
 				071CF203185F0C4E00F0224B /* ManureType.h */,
 				071CF204185F0C4E00F0224B /* ManureType.m */,
 				071CF1FF185F0C4E00F0224B /* Field.h */,
@@ -445,6 +437,8 @@
 				071CF1FB185F0C4D00F0224B /* ManureQuality.h */,
 				071CF1FC185F0C4D00F0224B /* ManureQuality.m */,
 				071CF1D3185EF7EB00F0224B /* Model.xcdatamodeld */,
+				07B21FE418D5EDE000419DE9 /* SpreadingEvent.h */,
+				07B21FE518D5EDE000419DE9 /* SpreadingEvent.m */,
 				078B278418519AB000E78747 /* FCADataModel.h */,
 				078B278518519AB000E78747 /* FCADataModel.m */,
 			);
@@ -732,6 +726,7 @@
 				073028BA185F683900DFD9F9 /* FCASpreadingEventSingleLabelCell.m in Sources */,
 				0734513D184DC717004FBC1E /* UIViewController+FCAFrontPage.m in Sources */,
 				07BC263C1872A37E00BE3D50 /* NSDate+FCADateAndSeason.m in Sources */,
+				07B21FE618D5EDE000419DE9 /* SpreadingEvent.m in Sources */,
 				073028CC185F6B0200DFD9F9 /* FCAApplicationRateCell.m in Sources */,
 				073028CF185F6B3500DFD9F9 /* FCASquareImageCell.m in Sources */,
 				070B850618616FBE00609C72 /* FCAManureCell.m in Sources */,
@@ -739,14 +734,12 @@
 				074C971B18798B1700ED0CB8 /* FCACropTypeCell.m in Sources */,
 				07C5F54D18792A1F005A2B5A /* FCACaclulatorTableViewController.m in Sources */,
 				079E84101861799D003309B6 /* FCAManureQualityViewController.m in Sources */,
-				071CF209185F0C4E00F0224B /* Photo.m in Sources */,
 				077DE124187A9DB800FB08A8 /* FCASeasonCell.m in Sources */,
 				070F18E418574C9D0008FA19 /* FCAFieldsViewController.m in Sources */,
 				07EACC1B1848689700D6A59E /* SoCMViewController.m in Sources */,
 				071CF201185F0C4E00F0224B /* Field.m in Sources */,
 				071CF1FD185F0C4D00F0224B /* ManureQuality.m in Sources */,
 				071CF20D185F0C4E00F0224B /* CropType.m in Sources */,
-				071CF215185F0C4E00F0224B /* SpreadingEvent.m in Sources */,
 				07345139184DC316004FBC1E /* SoCMAboutViewController-iPhone.m in Sources */,
 				072B83B518576D7B00339018 /* FCAFieldInfoTableViewController.m in Sources */,
 				07B7E281185611FA00B90F61 /* UIImageUOPCategory.m in Sources */,
@@ -778,7 +771,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				071CF20A185F0C4E00F0224B /* Photo.m in Sources */,
 				07EACC301848689700D6A59E /* FarmKrappAppTests.m in Sources */,
 				0777B54B184DDE3C00842DBA /* SoCMViewControllerCommonBase.m in Sources */,
 				07B7E286185611FA00B90F61 /* NSString+OOTY.m in Sources */,
@@ -788,7 +780,7 @@
 				07FF4DFD185C690500825A8B /* SoCMAppDelegate.m in Sources */,
 				071CF202185F0C4E00F0224B /* Field.m in Sources */,
 				071CF206185F0C4E00F0224B /* ManureType.m in Sources */,
-				071CF216185F0C4E00F0224B /* SpreadingEvent.m in Sources */,
+				07B21FE718D5EDE000419DE9 /* SpreadingEvent.m in Sources */,
 				071CF20E185F0C4E00F0224B /* CropType.m in Sources */,
 				078B278718519AB000E78747 /* FCADataModel.m in Sources */,
 				071CF1D8185EF7EB00F0224B /* Model.xcdatamodeld in Sources */,

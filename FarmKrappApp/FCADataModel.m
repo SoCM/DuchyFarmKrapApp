@@ -377,10 +377,7 @@
     }
     return se;
 }
--(NSArray*)arrayOfPhotos
-{
-    return [FCADataModel arrayOfPhotosForSpreadingEvent:self];
-}
+
 -(NSString*)rateAsStringUsingMetric:(BOOL)isMetric
 {
     NSString *units;
@@ -447,30 +444,6 @@
     return [NSString stringWithFormat:@"%u %@", (unsigned)round(fQuantity), units];
 }
 @end
-
-#pragma mark - Category on Photo
-//*******************
-//CATEGORY ON PHOTO *
-//*******************
-@implementation Photo (FCADataModel)
-
-+(Photo*)InsertPhotoWithImageData:(NSData*)imageData onDate:(NSDate*)date
-{
-    NSEntityDescription* ed = [NSEntityDescription entityForName:@"Photo" inManagedObjectContext:[FCA_APP_DELEGATE managedObjectContext]];
-    Photo *ph = [[Photo alloc] initWithEntity:ed insertIntoManagedObjectContext:[FCA_APP_DELEGATE managedObjectContext]];
-    ph.date = date;
-    ph.photo = imageData;
-    [FCA_APP_DELEGATE saveContext];
-    return ph;
-}
-+(NSData*)imageDataForPhoto:(Photo*)photo
-{
-    return photo.photo;
-}
-
-@end
-
-
 
 
 #pragma mark - DataModel Wrapper Class Methods - Field
@@ -557,39 +530,6 @@
     return [FCA_APP_DELEGATE availableNutrients100m3];
 }
 
-
-#pragma mark - DataModel Wrapper Class Methods - Photo
-+(void)addImageData:(NSData*)image toSpreadingEvent:(SpreadingEvent*)se onDate:(NSDate*)date
-{
-    Photo* photo = [Photo InsertPhotoWithImageData:image onDate:date];
-    [se addPhotos:[NSSet setWithObject:photo]];
-    [FCADataModel saveContext];
-}
-+(void)removeImageData:(NSData*)image fromSpreadingEvent:(SpreadingEvent*)se
-{
-    //Fetch the matching image
-    NSError* err;
-    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
-    fr.predicate = [NSPredicate predicateWithFormat:@"photo == %@", image];
-    NSArray* array = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
-    Photo* photoToBeDeleted = (Photo*)array[0];
-    [[FCADataModel managedObjectContext] deleteObject:photoToBeDeleted];
-    [FCADataModel saveContext];
-}
-+(NSArray*)arrayOfPhotosForSpreadingEvent:(SpreadingEvent*)se
-{
-    NSError* err;
-    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Photo"];
-    fr.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ];
-    fr.predicate = [NSPredicate predicateWithFormat:@"spreadingEvent == %@", se];
-    NSArray* arrayOfPhotos = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
-    //Extract the array of imageData
-    return [arrayOfPhotos valueForKeyPath:@"photo"];
-}
-+(NSNumber*)numberOfPhotosForSpreadingEvent:(SpreadingEvent*)se
-{
-    return ([NSNumber numberWithInteger:se.photos.count]);
-}
 
 #pragma mark - CORE DATA Convenience Methods
 

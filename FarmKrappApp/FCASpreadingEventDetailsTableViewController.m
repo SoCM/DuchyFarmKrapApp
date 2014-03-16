@@ -20,6 +20,7 @@
 
 @interface FCASpreadingEventDetailsTableViewController ()
 - (IBAction)doDateUpdate:(id)sender;
+- (IBAction)doPhoto:(id)sender;
 
 //Nutrient calculation obect
 @property(readwrite, nonatomic, strong) FCAAvailableNutrients* nutrientCalc;
@@ -97,7 +98,14 @@
 {
     // Return the number of sections.
     if (self.imageShowing) {
-        return 5;
+        if (self.spreadingEvent.photo == nil) {
+            //Guide image only
+            return 5;
+        } else {
+            //Photo
+            return 6;
+        }
+
     } else {
         return 3;
     }
@@ -122,7 +130,7 @@
             return @"Guide image:";
             break;
         default:
-            return @"";
+            return @"Photo";
             break;
     }
 }
@@ -157,6 +165,7 @@
             return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 230.0 : 210.0;
             break;
         case 4:
+        case 5:
             //Image
             return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 768.0 : 320.0;
             break;
@@ -194,6 +203,7 @@
             break;
             
         case 4:
+        case 5:
             //Image
             return 1;
             break;
@@ -213,6 +223,8 @@
     FCAManureCell* manureCell;
     FCAApplicationRateCell* appRateCell;
     FCASquareImageCell* imageCell;
+    FCASquareImageCell* photoCell;
+    UIImage* piccy;
     
     BOOL isMetric = [[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"];
     
@@ -335,8 +347,14 @@
                 }
             }
             break;
-                          
-                          
+            
+        case 5:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"ImageCell" forIndexPath:indexPath];
+            photoCell = (FCASquareImageCell*)cell;
+            piccy = [UIImage imageWithData:self.spreadingEvent.photo];
+            photoCell.poopImageView.image = piccy;
+            break;
+            
         default:
             break;
     }
@@ -428,6 +446,41 @@
     [self.tableView reloadData];
 }
 
+- (IBAction)doPhoto:(id)sender {
+    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera] == NO) {
+        return;
+    }
+    UIImagePickerController *imgPicker = [[UIImagePickerController alloc] init];
+    imgPicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    imgPicker.allowsEditing = YES;
+    imgPicker.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+    imgPicker.showsCameraControls = YES;
+    imgPicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+    imgPicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+    imgPicker.delegate = self;
+    [self presentViewController:imgPicker animated:YES completion:^(){}];
+}
+
+- (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
+    [self dismissViewControllerAnimated:YES completion:^(){}];
+}
+// For responding to the user accepting a newly-captured picture or movie
+- (void) imagePickerController: (UIImagePickerController *)picker didFinishPickingMediaWithInfo: (NSDictionary *) info
+{
+    // Handle a still image capture
+    UIImage* image = (UIImage *) [info objectForKey: UIImagePickerControllerEditedImage];
+    
+    //Choose the image
+    if (image == nil) {
+        image = (UIImage *) [info objectForKey: UIImagePickerControllerOriginalImage];
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:^(){
+        //Save
+        self.spreadingEvent.photo = UIImagePNGRepresentation(image);
+        [self.tableView reloadData];
+    }];
+}
 
 #pragma mark - Navigation
 

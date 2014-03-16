@@ -14,7 +14,6 @@
 #import "Field.h"
 #import "ManureType.h"
 #import "ManureQuality.h"
-#import "Photo.h"
 #import "SpreadingEvent.h"
 #import "NSDate+FCADateAndSeason.h"
 
@@ -92,16 +91,8 @@ typedef enum {CS_DM2=100, CS_DM6=200, CS_DM10=300, FYM_OLDSURF=400, FYM_FRSURF=5
 //Category on Spreading Event
 @interface SpreadingEvent (FCADataModel)
 +(SpreadingEvent*)InsertSpreadingEventWithDate:(NSDate*)date manureType:(ManureType*)manure_type quality:(ManureQuality*)manure_quality density:(NSNumber*)manure_density;
--(NSArray*)arrayOfPhotos;
 -(NSString*)rateAsStringUsingMetric:(BOOL)isMetric;
 -(NSString*)volumeAsStringUsingMetric:(BOOL)isMetric;
-@end
-
-#pragma mark - Category on Photo
-//Category on Photo
-@interface Photo (FCADataModel)
-+(Photo*)InsertPhotoWithImageData:(NSData*)imageData onDate:(NSDate*)date;
-+(NSData*)imageDataForPhoto:(Photo*)photo;
 @end
 
 #pragma mark - FCADataModel CLASS
@@ -123,12 +114,6 @@ typedef enum {CS_DM2=100, CS_DM6=200, CS_DM10=300, FYM_OLDSURF=400, FYM_FRSURF=5
 +(NSArray*)arrayOfSpreadingEventsForField:(Field*)field withSortString:(NSString*)sortString;
 +(NSDictionary*)availableNutrients100m3;
 +(NSNumber*)numberOfSpreadingEventsForField:(Field*)field;
-
-#pragma mark - Photo
-+(void)addImageData:(NSData*)image toSpreadingEvent:(SpreadingEvent*)se onDate:(NSDate*)date;
-+(void)removeImageData:(NSData*)image fromSpreadingEvent:(SpreadingEvent*)se;
-+(NSArray*)arrayOfPhotosForSpreadingEvent:(SpreadingEvent*)se;
-+(NSNumber*)numberOfPhotosForSpreadingEvent:(SpreadingEvent*)se;
 
 #pragma mark - CoreData Convenience Methods
 //CORE DATA Convenience Methods

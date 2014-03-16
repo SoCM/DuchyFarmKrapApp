@@ -3,6 +3,7 @@
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--SoCM View Controller - Farm Crap App-->
@@ -155,7 +156,7 @@
                     <toolbarItems>
                         <barButtonItem title="Disclaimer" id="6zd-cW-qTF">
                             <connections>
-                                <segue destination="rvk-kC-Ink" kind="popover" popoverAnchorBarButtonItem="6zd-cW-qTF" id="uaG-cf-ySz">
+                                <segue destination="rvk-kC-Ink" kind="popover" identifier="disclaimer" popoverAnchorBarButtonItem="6zd-cW-qTF" id="uaG-cf-ySz">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -1591,6 +1592,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <outlet property="delegate" destination="oQ6-AG-ocy" id="87U-LQ-caZ"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Take Photo" id="EXX-i6-3gJ">
+                            <connections>
+                                <action selector="doPhoto:" destination="oQ6-AG-ocy" id="Hi0-Nt-Bqa"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Event Details" id="kti-Gn-g7N">
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="save" id="q6F-9N-1ja">
                             <connections>
@@ -1700,19 +1708,19 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6b5-3y-LWi">
-                                <rect key="frame" x="156" y="315" width="456" height="266"/>
+                                <rect key="frame" x="156" y="315" width="456" height="187"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="456" id="98V-bm-ZJa"/>
-                                    <constraint firstAttribute="height" constant="266" id="cgJ-Lw-8Tv"/>
+                                    <constraint firstAttribute="height" constant="187" id="cgJ-Lw-8Tv"/>
                                 </constraints>
                                 <string key="text">The Farm Crap App offers information for guidance purposes only and is not intended to amount to professional advice or opinion. FoAM Kernow, Duchy College, University of Plymouth and Rothamsted Research North Wyke cannot be held responsible for any losses or damage resulting from the use of information provided by this app.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accept:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7a-c3-GGX">
-                                <rect key="frame" x="348" y="673" width="72" height="26"/>
+                                <rect key="frame" x="348" y="557" width="72" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1729,7 +1737,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJJ-we-ByE">
-                                <rect key="frame" x="311" y="764" width="30" height="36"/>
+                                <rect key="frame" x="311" y="661" width="30" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="NO">
@@ -1740,7 +1748,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VxB-Gc-7bH">
-                                <rect key="frame" x="413" y="764" width="38" height="36"/>
+                                <rect key="frame" x="413" y="661" width="38" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="YES">
@@ -1753,13 +1761,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LJJ-we-ByE" firstAttribute="top" secondItem="R7a-c3-GGX" secondAttribute="bottom" constant="65" id="1Vn-fD-Zbc"/>
+                            <constraint firstItem="LJJ-we-ByE" firstAttribute="top" secondItem="R7a-c3-GGX" secondAttribute="bottom" constant="78" id="1Vn-fD-Zbc"/>
                             <constraint firstAttribute="centerX" secondItem="VxB-Gc-7bH" secondAttribute="centerX" constant="-48" id="1iy-Bi-if4"/>
                             <constraint firstAttribute="centerX" secondItem="LJJ-we-ByE" secondAttribute="centerX" constant="58" id="I6H-8r-VJf"/>
                             <constraint firstItem="8un-4P-bZm" firstAttribute="top" secondItem="uq8-PN-3nt" secondAttribute="bottom" constant="90" id="Mca-Z5-Zk0"/>
                             <constraint firstAttribute="centerX" secondItem="uq8-PN-3nt" secondAttribute="centerX" constant="-0.5" id="dNL-Fo-ssf"/>
-                            <constraint firstItem="VxB-Gc-7bH" firstAttribute="top" secondItem="R7a-c3-GGX" secondAttribute="bottom" constant="65" id="exl-Pp-hEg"/>
-                            <constraint firstItem="R7a-c3-GGX" firstAttribute="top" secondItem="6b5-3y-LWi" secondAttribute="bottom" constant="92" id="jDO-g4-mrl"/>
+                            <constraint firstItem="VxB-Gc-7bH" firstAttribute="top" secondItem="R7a-c3-GGX" secondAttribute="bottom" constant="78" id="exl-Pp-hEg"/>
+                            <constraint firstItem="R7a-c3-GGX" firstAttribute="top" secondItem="6b5-3y-LWi" secondAttribute="bottom" multiplier="0.9" constant="105.19999999999999" id="jDO-g4-mrl"/>
                             <constraint firstItem="uq8-PN-3nt" firstAttribute="top" secondItem="THg-Nu-JJu" secondAttribute="bottom" constant="31" id="jaq-rW-Wrl"/>
                             <constraint firstItem="8un-4P-bZm" firstAttribute="centerX" secondItem="uq8-PN-3nt" secondAttribute="centerX" constant="-0.5" id="k5y-ZR-c4Y"/>
                             <constraint firstItem="R7a-c3-GGX" firstAttribute="centerX" secondItem="6b5-3y-LWi" secondAttribute="centerX" id="l7M-1E-5G8"/>
