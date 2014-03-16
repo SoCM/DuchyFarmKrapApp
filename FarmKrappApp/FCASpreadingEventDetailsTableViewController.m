@@ -8,6 +8,7 @@
 
 #import "FCASpreadingEventDetailsTableViewController.h"
 #import "NSDate+NSDateUOPCategory.h"
+#import "UIImageUOPCategory.h"
 #import "FCAManureTypeViewController.h"
 
 #import "FCADataModel.h"
@@ -477,7 +478,10 @@
     
     [self dismissViewControllerAnimated:YES completion:^(){
         //Save
-        self.spreadingEvent.photo = UIImagePNGRepresentation(image);
+//        self.spreadingEvent.photo = UIImagePNGRepresentation(image);]
+        UIImage* smaller = [image resizeByFactor:0.5];
+        self.spreadingEvent.photo = UIImageJPEGRepresentation(smaller, 0.5);
+        
         [self.tableView reloadData];
     }];
 }

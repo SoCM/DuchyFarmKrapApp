@@ -30,6 +30,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *costPLabel;
 @property (weak, nonatomic) IBOutlet UILabel *costKLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
+
+
 
 @end
 
@@ -87,6 +90,11 @@
     self.costNLabel.text = [NSString stringWithFormat:@"£%5.2f", fCostN * fN];
     self.costPLabel.text = [NSString stringWithFormat:@"£%5.2f", fCostP * fP];
     self.costKLabel.text = [NSString stringWithFormat:@"£%5.2f", fCostK * fK];
+    
+    NSData* imgData = self.spreadingEvent.photo;
+    if (imgData) {
+        self.photoImageView.image = [UIImage imageWithData:imgData];
+    }
 
 }
 

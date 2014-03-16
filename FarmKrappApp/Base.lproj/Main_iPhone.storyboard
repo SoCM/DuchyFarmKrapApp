@@ -852,6 +852,7 @@
                         <outlet property="costPLabel" destination="Fku-ps-Qh6" id="n52-nv-xcZ"/>
                         <outlet property="cropLabel" destination="SO9-nX-b0j" id="FJL-SG-5BF"/>
                         <outlet property="dateLabel" destination="dHo-AA-R04" id="yiG-JR-x4T"/>
+                        <outlet property="photoImageView" destination="rRH-lx-Qbd" id="LZy-6F-u23"/>
                         <outlet property="qualityLabel" destination="zLK-qJ-RhA" id="yGz-xI-aso"/>
                         <outlet property="seasonLabel" destination="oJ8-yN-bjO" id="1Z8-f7-42P"/>
                         <outlet property="sizeLabel" destination="xbu-2Z-oqJ" id="3oG-VL-ivS"/>
