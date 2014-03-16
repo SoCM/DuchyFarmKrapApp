@@ -11,4 +11,5 @@
 
 @interface FCAManureTypeViewController : UITableViewController
 @property (readwrite,nonatomic, copy) void(^callBackBlock)(ManureType*, ManureQuality*);
+@property (readwrite, nonatomic, assign) SEASON season;
 @end

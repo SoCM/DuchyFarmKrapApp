@@ -83,7 +83,14 @@
     if (self.selectedSection == nil) return 1;
     
     if (self.selectedSection.intValue == section) {
-        return [self.arrayOfAllManureQuality count]+1;
+        ManureType* mt = [self.arrayOfManureTypes objectAtIndex:section];
+        NSString* strMT = mt.displayName;
+        if ((self.season == SUMMER) && ([strMT isEqualToString:@"Farmyard Manure"])) {
+            //Special case - no soil incorporated in summer (farmers don't dig up their crops!)
+            return [self.arrayOfAllManureQuality count]-1;
+        } else {
+            return [self.arrayOfAllManureQuality count]+1;
+        }
     } else {
         return 1;
     }

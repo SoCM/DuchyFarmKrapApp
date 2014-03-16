@@ -409,8 +409,22 @@
 
 - (IBAction)doDateUpdate:(id)sender {
     UIDatePicker* datePicker = (UIDatePicker*)sender;
+    
+    //First the special case -
+    //  FYM is already selected as soil incorporated
+    //  If the date is set to summer, nullify the MT
+    ManureQuality* mq = self.spreadingEvent.manureQuality;
+    bool isIncorporated = ( (mq.seqID.intValue == FYM_OLDINC) || (mq.seqID.intValue == FYM_FRINC));
+    
     self.spreadingEvent.date = datePicker.date;
     self.nutrientCalc = nil;        //Reset nutrient calculator
+    
+    //No not allow SAVE if date is moved to summer and a soil-incorporated quality is already selected
+    if (([self.spreadingEvent.date season] == SUMMER) && (isIncorporated)) {
+        self.spreadingEvent.manureType = nil;
+        self.spreadingEvent.manureQuality = nil;
+        self.imageShowing = NO;
+    }
     [self.tableView reloadData];
 }
 
@@ -439,6 +453,7 @@
     if ([segue.identifier isEqualToString:@"ManureDetailsSegue"]) {
         FCAManureTypeViewController* mtva = (FCAManureTypeViewController*)vc;
         mtva.callBackBlock =callBack;
+        mtva.season = [self.spreadingEvent.date season];
     }
     
 }
