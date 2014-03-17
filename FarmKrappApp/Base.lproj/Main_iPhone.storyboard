@@ -173,6 +173,7 @@
                                         <constraint firstItem="BeY-MJ-uHs" firstAttribute="leading" secondItem="d3Y-Ly-Mqn" secondAttribute="trailing" constant="15" id="xvC-Ak-MgE"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.71323823333864089" green="0.94376273777173914" blue="0.70627091332455338" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="nameLabel" destination="rR7-r8-a01" id="90J-Ma-R5p"/>
                                     <outlet property="sizeLabel" destination="g8i-uk-3Aa" id="Ykh-Kj-xAZ"/>
@@ -447,6 +448,7 @@
                                         <constraint firstItem="EJj-vp-GPv" firstAttribute="leading" secondItem="fr4-mR-oTR" secondAttribute="leading" constant="16" id="rzY-pl-3uD"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.98993421424905437" green="1" blue="0.0" alpha="0.19" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dateLabel" destination="L7f-wf-mkA" id="Mx7-pr-Hup"/>
                                     <outlet property="manureTypeLabel" destination="EJj-vp-GPv" id="yiJ-rL-QbV"/>
@@ -525,6 +527,7 @@
                                                 <constraint firstItem="xOb-cP-RH3" firstAttribute="leading" secondItem="wv9-j5-z1N" secondAttribute="leading" constant="20" id="xi1-W4-OJx"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.98993421420000005" green="1" blue="0.0" alpha="0.19" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1187,6 +1190,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.44246285489999998" green="0.77152683420000001" blue="0.36247094790000001" alpha="0.48999999999999999" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="centerY" secondItem="6Tm-2E-Beb" secondAttribute="centerY" id="2Qh-19-6fO"/>
                                         <constraint firstItem="6Tm-2E-Beb" firstAttribute="leading" secondItem="1rH-7G-NIM" secondAttribute="leading" constant="20" id="oaf-aR-VP2"/>
@@ -1549,11 +1553,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pxS-rz-9qV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.73978855300000002" green="0.73978855300000002" blue="0.73978855300000002" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="kUt-SX-DfE">
                         <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.73978855300000002" green="0.73978855300000002" blue="0.73978855300000002" alpha="1" colorSpace="calibratedRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="M2T-gf-apo"/>

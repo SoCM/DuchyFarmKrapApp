@@ -938,7 +938,7 @@
 				INFOPLIST_FILE = "FarmKrappApp/FarmCrapApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = FarmCrapApp;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "379ADE18-CC55-4F04-B14E-9A2BDDF6EFA9";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

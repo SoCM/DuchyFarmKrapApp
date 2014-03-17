@@ -302,7 +302,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Costs" id="Q3E-VF-VHr"/>
+                        <barButtonItem enabled="NO" title="Costs" id="Q3E-VF-VHr"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="q5F-fD-tYl"/>
                         <barButtonItem title="Calc" id="z61-5h-DbS">
                             <connections>
