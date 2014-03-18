@@ -30,6 +30,8 @@
 		071CF20E185F0C4E00F0224B /* CropType.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF20C185F0C4E00F0224B /* CropType.m */; };
 		071CF211185F0C4E00F0224B /* SoilType.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF210185F0C4E00F0224B /* SoilType.m */; };
 		071CF212185F0C4E00F0224B /* SoilType.m in Sources */ = {isa = PBXBuildFile; fileRef = 071CF210185F0C4E00F0224B /* SoilType.m */; };
+		0726AE7218D840B600026547 /* FCANVZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0726AE7118D840B600026547 /* FCANVZViewController.m */; };
+		0726AE7518D8451300026547 /* NVZ.html in Resources */ = {isa = PBXBuildFile; fileRef = 0726AE7418D8451300026547 /* NVZ.html */; };
 		072B83B518576D7B00339018 /* FCAFieldInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072B83B418576D7B00339018 /* FCAFieldInfoTableViewController.m */; };
 		073028BA185F683900DFD9F9 /* FCASpreadingEventSingleLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 073028B9185F683900DFD9F9 /* FCASpreadingEventSingleLabelCell.m */; };
 		073028C6185F6ADE00DFD9F9 /* FCADatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 073028C5185F6ADE00DFD9F9 /* FCADatePickerCell.m */; };
@@ -150,6 +152,9 @@
 		071CF20C185F0C4E00F0224B /* CropType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CropType.m; path = ../CropType.m; sourceTree = "<group>"; };
 		071CF20F185F0C4E00F0224B /* SoilType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoilType.h; path = ../SoilType.h; sourceTree = "<group>"; };
 		071CF210185F0C4E00F0224B /* SoilType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoilType.m; path = ../SoilType.m; sourceTree = "<group>"; };
+		0726AE7018D840B600026547 /* FCANVZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCANVZViewController.h; sourceTree = "<group>"; };
+		0726AE7118D840B600026547 /* FCANVZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCANVZViewController.m; sourceTree = "<group>"; };
+		0726AE7418D8451300026547 /* NVZ.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NVZ.html; sourceTree = "<group>"; };
 		072B83B318576D7B00339018 /* FCAFieldInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAFieldInfoTableViewController.h; sourceTree = "<group>"; };
 		072B83B418576D7B00339018 /* FCAFieldInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAFieldInfoTableViewController.m; sourceTree = "<group>"; };
 		073028B8185F683900DFD9F9 /* FCASpreadingEventSingleLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASpreadingEventSingleLabelCell.h; sourceTree = "<group>"; };
@@ -304,6 +309,16 @@
 			name = About;
 			sourceTree = "<group>";
 		};
+		0726AE7318D8450500026547 /* NVZ */ = {
+			isa = PBXGroup;
+			children = (
+				0726AE7418D8451300026547 /* NVZ.html */,
+				0726AE7018D840B600026547 /* FCANVZViewController.h */,
+				0726AE7118D840B600026547 /* FCANVZViewController.m */,
+			);
+			name = NVZ;
+			sourceTree = "<group>";
+		};
 		072B83B218576D3F00339018 /* FieldInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,6 +359,7 @@
 				0734513C184DC717004FBC1E /* UIViewController+FCAFrontPage.m */,
 				0752D4D7187F09D600803090 /* FCADisclaimerViewController.h */,
 				0752D4D8187F09D600803090 /* FCADisclaimerViewController.m */,
+				0726AE7318D8450500026547 /* NVZ */,
 			);
 			name = "Front Page";
 			sourceTree = "<group>";
@@ -679,6 +695,7 @@
 				07EACC151848689700D6A59E /* Main_iPhone.storyboard in Resources */,
 				077B841E185B89AB00D0F002 /* pig_25m3.jpg in Resources */,
 				077B842A185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg in Resources */,
+				0726AE7518D8451300026547 /* NVZ.html in Resources */,
 				077B8416185B89AB00D0F002 /* cattle_25m3.jpg in Resources */,
 				077B8414185B89AB00D0F002 /* cattle_100m3.jpg in Resources */,
 				07EACC0C1848689700D6A59E /* InfoPlist.strings in Resources */,
@@ -737,6 +754,7 @@
 				077DE124187A9DB800FB08A8 /* FCASeasonCell.m in Sources */,
 				070F18E418574C9D0008FA19 /* FCAFieldsViewController.m in Sources */,
 				07EACC1B1848689700D6A59E /* SoCMViewController.m in Sources */,
+				0726AE7218D840B600026547 /* FCANVZViewController.m in Sources */,
 				071CF201185F0C4E00F0224B /* Field.m in Sources */,
 				071CF1FD185F0C4D00F0224B /* ManureQuality.m in Sources */,
 				071CF20D185F0C4E00F0224B /* CropType.m in Sources */,

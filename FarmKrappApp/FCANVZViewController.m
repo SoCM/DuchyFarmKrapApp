@@ -1,18 +1,19 @@
 //
-//  FCAAboutViewController.m
-//  FarmKrappApp
+//  FCANVZViewController.m
+//  FarmCrapApp
 //
-//  Created by Nicholas Outram on 02/02/2014.
+//  Created by Nicholas Outram on 18/03/2014.
 //  Copyright (c) 2014 Plymouth University. All rights reserved.
 //
 
-#import "FCAAboutViewController.h"
+#import "FCANVZViewController.h"
 
-@interface FCAAboutViewController ()
+@interface FCANVZViewController ()
+@property (weak, nonatomic) IBOutlet UIWebView *webview;
 
 @end
 
-@implementation FCAAboutViewController
+@implementation FCANVZViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,12 +27,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
     
-
-//        [webVu loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:fileName ofType:@"html"]isDirectory:NO]]];
-
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"about" ofType:@"html"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"NVZ" ofType:@"html"];
     NSURL* url = [NSURL fileURLWithPath:path];
     [self.webview loadRequest:[NSURLRequest requestWithURL:url]];
     self.webview.delegate = self;
@@ -56,10 +54,15 @@
         return YES;
     }
 }
+/*
+#pragma mark - Navigation
 
-//Change the name of this method to match the view controller you are using
-- (IBAction)unwindToAboutViewController:(UIStoryboardSegue*)sender
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
+*/
+
 @end
