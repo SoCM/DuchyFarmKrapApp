@@ -54,6 +54,12 @@
         self.fieldSize = @10.0;
     }
     [self updateViewFromModel];
+    
+    //Tweak stepper increment if imperial
+    // there are 0.0404686 acres in 0.1 ha
+    if (!self.isMetric) {
+        self.fieldSizeStepper.stepValue = 0.0404686;
+    }
 
 }
 

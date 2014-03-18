@@ -409,7 +409,7 @@
                                                         <action selector="doSliderChanged:" destination="hEJ-9P-1qo" eventType="valueChanged" id="f6h-32-wA7"/>
                                                     </connections>
                                                 </slider>
-                                                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" stepValue="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="sIt-9h-Ngb">
+                                                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" stepValue="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="sIt-9h-Ngb">
                                                     <rect key="frame" x="910" y="35" width="94" height="29"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <connections>
