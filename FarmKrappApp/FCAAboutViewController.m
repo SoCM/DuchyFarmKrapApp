@@ -56,4 +56,10 @@
         return YES;
     }
 }
+
+//Change the name of this method to match the view controller you are using
+- (IBAction)unwindToAboutViewController:(UIStoryboardSegue*)sender
+{
+    
+}
 @end

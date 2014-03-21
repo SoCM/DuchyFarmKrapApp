@@ -56,7 +56,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     //iPad only - the segue has a different identifier on iPad
-    if ([segue.identifier isEqualToString:@"about"]){
+    if (![segue.identifier isEqualToString:@"disclaimer"]){
         if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]){
             poc = [(UIStoryboardPopoverSegue *)segue popoverController];
             poc.delegate = self;

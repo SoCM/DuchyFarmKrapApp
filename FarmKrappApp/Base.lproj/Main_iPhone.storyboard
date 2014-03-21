@@ -62,21 +62,21 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems>
-                        <barButtonItem title="Credits" id="a27-nN-bht">
+                        <barButtonItem title="About" id="AZS-yT-Cto">
                             <connections>
-                                <segue destination="WgR-Nd-kGF" kind="modal" identifier="creditsModal" id="2Ch-ZD-tID"/>
+                                <segue destination="4BB-al-jKt" kind="modal" identifier="about" id="M5M-iz-nji"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="6ne-1V-Jhn"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="7dU-vf-kDK"/>
                         <barButtonItem title="Disclaimer" id="Uct-rx-bV3">
                             <connections>
                                 <action selector="doDisclaimer:" destination="vXZ-lx-hvc" id="OPQ-OS-92U"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="837-dl-eiC"/>
-                        <barButtonItem title="About" id="AZS-yT-Cto">
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="T8f-oH-95s"/>
+                        <barButtonItem title="NVZ" id="LZF-xn-wQ7">
                             <connections>
-                                <segue destination="4BB-al-jKt" kind="modal" identifier="about" id="M5M-iz-nji"/>
+                                <segue destination="51n-nP-mZY" kind="modal" id="Aav-0P-vyF"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -173,7 +173,7 @@
                                         <constraint firstItem="BeY-MJ-uHs" firstAttribute="leading" secondItem="d3Y-Ly-Mqn" secondAttribute="trailing" constant="15" id="xvC-Ak-MgE"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.71323823333864089" green="0.94376273777173914" blue="0.70627091332455338" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.44246285489999998" green="0.77152683420000001" blue="0.36247094790000001" alpha="0.48999999999999999" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="nameLabel" destination="rR7-r8-a01" id="90J-Ma-R5p"/>
                                     <outlet property="sizeLabel" destination="g8i-uk-3Aa" id="Ykh-Kj-xAZ"/>
@@ -485,9 +485,7 @@
                             <outlet property="delegate" destination="wYY-BN-6hE" id="3ib-zt-lRG"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem title="Plot" id="mIn-LH-Ze4"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Spreading Events" id="wK0-aF-AMg"/>
                     <connections>
                         <segue destination="dq7-ZN-cKu" kind="push" identifier="EditSegue" id="WAK-bG-5Y6"/>
@@ -1632,7 +1630,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="f00-TC-fE2" kind="unwind" unwindAction="unwindToFrontPageViewController:" id="qJM-j1-qfy"/>
+                                    <segue destination="f00-TC-fE2" kind="unwind" unwindAction="unwindToAboutViewController:" id="hZO-zJ-X4z"/>
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Km6-tT-udl">
@@ -1718,7 +1716,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-745" y="1532"/>
+            <point key="canvasLocation" x="178" y="2273"/>
         </scene>
         <!--Disclaimer View Controller-->
         <scene sceneID="Gv5-gb-VjK">
@@ -1826,11 +1824,17 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <rect key="frame" x="0.0" y="20" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.73978855298913038" green="0.73978855298913038" blue="0.73978855298913038" alpha="1" colorSpace="calibratedRGB"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
                             </webView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXR-yS-6oE">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
+                                    <barButtonItem title="Credits" id="kEW-xs-Dxe">
+                                        <connections>
+                                            <segue destination="WgR-Nd-kGF" kind="modal" id="h6C-gp-JNx"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="qQX-O7-EnW"/>
                                     <barButtonItem title="Dismiss" id="kaX-DY-Duv">
                                         <connections>
@@ -1859,6 +1863,59 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <exit id="bje-YT-3M2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="178" y="1534"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="gZf-G9-R49">
+            <objects>
+                <viewController id="51n-nP-mZY" customClass="FCANVZViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rf0-hZ-ve7"/>
+                        <viewControllerLayoutGuide type="bottom" id="v7W-24-Asl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uCi-Mn-HX3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="koS-eg-dBk">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="tyC-vQ-wID"/>
+                                    <barButtonItem title="Dismiss" id="xpH-fC-8mS">
+                                        <connections>
+                                            <segue destination="Ow0-4r-tOI" kind="unwind" unwindAction="unwindToFrontPageViewController:" id="SS6-5X-wDM"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdx-DK-8To">
+                                <rect key="frame" x="0.0" y="20" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Jdx-DK-8To" secondAttribute="trailing" id="4ee-Mb-m6Y"/>
+                            <constraint firstItem="koS-eg-dBk" firstAttribute="leading" secondItem="uCi-Mn-HX3" secondAttribute="leading" id="5Tb-p1-4WF"/>
+                            <constraint firstItem="koS-eg-dBk" firstAttribute="top" secondItem="Jdx-DK-8To" secondAttribute="bottom" id="NKO-rg-A53"/>
+                            <constraint firstItem="Jdx-DK-8To" firstAttribute="leading" secondItem="uCi-Mn-HX3" secondAttribute="leading" id="QeS-Ew-bMd"/>
+                            <constraint firstItem="v7W-24-Asl" firstAttribute="top" secondItem="koS-eg-dBk" secondAttribute="bottom" id="UVT-k3-eg8"/>
+                            <constraint firstItem="Jdx-DK-8To" firstAttribute="top" secondItem="uCi-Mn-HX3" secondAttribute="top" constant="20" id="tVP-Cr-ogQ"/>
+                            <constraint firstAttribute="trailing" secondItem="koS-eg-dBk" secondAttribute="trailing" id="uZY-6Z-K5S"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="dkt-V9-PG6"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="webview" destination="Jdx-DK-8To" id="U5Q-Br-dcy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eGa-Jq-aUt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Ow0-4r-tOI" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="667" y="1519"/>
         </scene>
     </scenes>
     <resources>
