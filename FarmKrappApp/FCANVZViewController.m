@@ -29,9 +29,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"NVZ" ofType:@"html"];
-    NSURL* url = [NSURL fileURLWithPath:path];
-    [self.webview loadRequest:[NSURLRequest requestWithURL:url]];
+//    NSString* path = [[NSBundle mainBundle] pathForResource:@"NVZ" ofType:@"pages"];
+//    NSURL* url = [NSURL fileURLWithPath:path];
+//    [self.webview loadRequest:[NSURLRequest requestWithURL:url]];
+    
+//    [self.webview setScalesPageToFit:NO];
+    [self loadDocument:@"NVZ9" inView:self.webview];
     self.webview.delegate = self;
 }
 
@@ -43,6 +46,15 @@
 
 - (IBAction)doBack:(id)sender {
     [self.webview goBack];
+}
+
+-(void)loadDocument:(NSString*)documentName inView:(UIWebView*)webView
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:documentName ofType:@"pages"];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [webView loadRequest:request];
+
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13D17" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="lns-pP-19F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13D21" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="lns-pP-19F">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -272,6 +272,7 @@
                                         <constraint firstAttribute="centerX" secondItem="O8e-Ex-I4f" secondAttribute="centerX" constant="-0.5" id="hdq-de-RQ1"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.44246285489999998" green="0.77152683420000001" blue="0.36247094790000001" alpha="0.48999999999999999" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="nameLabel" destination="O8e-Ex-I4f" id="5cN-Lx-3L9"/>
                                     <outlet property="sizeLabel" destination="X8o-Ar-Ibi" id="vjr-V7-5dn"/>
@@ -310,7 +311,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem enabled="NO" title="Costs" id="Q3E-VF-VHr"/>
+                        <barButtonItem title="Costs" id="Q3E-VF-VHr"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="q5F-fD-tYl"/>
                         <barButtonItem title="Calc" id="z61-5h-DbS">
                             <connections>
@@ -937,6 +938,7 @@
                                         <constraint firstAttribute="centerY" secondItem="k4E-E3-ZnF" secondAttribute="centerY" id="pbp-Wn-2Jb"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.98993421420000005" green="1" blue="0.0" alpha="0.19" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dateLabel" destination="bm7-6w-G0Q" id="RUi-80-oEL"/>
                                     <outlet property="manureTypeLabel" destination="k4E-E3-ZnF" id="Edc-nl-he4"/>
@@ -1013,6 +1015,7 @@
                                                 <constraint firstAttribute="centerY" secondItem="tKg-O0-lhc" secondAttribute="centerY" id="PQS-Bd-jPg"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.98993421420000005" green="1" blue="0.0" alpha="0.19" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1384,6 +1387,7 @@
                                         <constraint firstAttribute="centerY" secondItem="kSr-U7-Ioc" secondAttribute="centerY" constant="0.5" id="pYj-52-WLg"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.44246285489999998" green="0.77152683420000001" blue="0.36247094790000001" alpha="0.48999999999999999" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="label" destination="kSr-U7-Ioc" id="ELw-lT-KFK"/>
                                 </connections>
@@ -1742,11 +1746,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8eT-kh-qaw">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.73978855300000002" green="0.73978855300000002" blue="0.73978855300000002" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="p5N-cU-BLJ">
                         <rect key="frame" x="0.0" y="980" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.73978855300000002" green="0.73978855300000002" blue="0.73978855300000002" alpha="1" colorSpace="calibratedRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="i7B-ge-9L0"/>

@@ -44,6 +44,8 @@
 		074C971818798B0300ED0CB8 /* FCASoilTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 074C971718798B0300ED0CB8 /* FCASoilTypeCell.m */; };
 		074C971B18798B1700ED0CB8 /* FCACropTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 074C971A18798B1700ED0CB8 /* FCACropTypeCell.m */; };
 		0752D4D9187F09D600803090 /* FCADisclaimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0752D4D8187F09D600803090 /* FCADisclaimerViewController.m */; };
+		076001E318D8B428009BA0D5 /* NVZ.pages in Resources */ = {isa = PBXBuildFile; fileRef = 076001E218D8B428009BA0D5 /* NVZ.pages */; };
+		076001E718D8B77B009BA0D5 /* NVZ9.pages in Resources */ = {isa = PBXBuildFile; fileRef = 076001E618D8B77B009BA0D5 /* NVZ9.pages */; };
 		07609F5F185B013E00177718 /* FCASpreadingEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F5E185B013E00177718 /* FCASpreadingEventViewController.m */; };
 		07609F64185B04A000177718 /* FCASpreadingEventCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F63185B04A000177718 /* FCASpreadingEventCell.m */; };
 		07609F69185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07609F68185B0C4E00177718 /* FCASpreadingEventDetailsTableViewController.m */; };
@@ -176,6 +178,8 @@
 		074C971A18798B1700ED0CB8 /* FCACropTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCACropTypeCell.m; sourceTree = "<group>"; };
 		0752D4D7187F09D600803090 /* FCADisclaimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCADisclaimerViewController.h; sourceTree = "<group>"; };
 		0752D4D8187F09D600803090 /* FCADisclaimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCADisclaimerViewController.m; sourceTree = "<group>"; };
+		076001E218D8B428009BA0D5 /* NVZ.pages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = NVZ.pages; sourceTree = "<group>"; };
+		076001E618D8B77B009BA0D5 /* NVZ9.pages */ = {isa = PBXFileReference; lastKnownFileType = file; path = NVZ9.pages; sourceTree = "<group>"; };
 		07609F5D185B013E00177718 /* FCASpreadingEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASpreadingEventViewController.h; sourceTree = "<group>"; };
 		07609F5E185B013E00177718 /* FCASpreadingEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCASpreadingEventViewController.m; sourceTree = "<group>"; };
 		07609F62185B04A000177718 /* FCASpreadingEventCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASpreadingEventCell.h; sourceTree = "<group>"; };
@@ -312,6 +316,8 @@
 		0726AE7318D8450500026547 /* NVZ */ = {
 			isa = PBXGroup;
 			children = (
+				076001E618D8B77B009BA0D5 /* NVZ9.pages */,
+				076001E218D8B428009BA0D5 /* NVZ.pages */,
 				0726AE7418D8451300026547 /* NVZ.html */,
 				0726AE7018D840B600026547 /* FCANVZViewController.h */,
 				0726AE7118D840B600026547 /* FCANVZViewController.m */,
@@ -686,6 +692,7 @@
 				077B841A185B89AB00D0F002 /* fym_25t.jpg in Resources */,
 				071CF1D5185EF7EB00F0224B /* manure_types.plist in Resources */,
 				077B8422185B89AB00D0F002 /* poultry_10t.jpg in Resources */,
+				076001E318D8B428009BA0D5 /* NVZ.pages in Resources */,
 				0717179E189E5E4D00BD6C82 /* about.html in Resources */,
 				07EACC3A1848697D00D6A59E /* TODO in Resources */,
 				077B8424185B89AB00D0F002 /* poultry_5t.jpg in Resources */,
@@ -700,6 +707,7 @@
 				077B8414185B89AB00D0F002 /* cattle_100m3.jpg in Resources */,
 				07EACC0C1848689700D6A59E /* InfoPlist.strings in Resources */,
 				077B8418185B89AB00D0F002 /* cattle_50m3.jpg in Resources */,
+				076001E718D8B77B009BA0D5 /* NVZ9.pages in Resources */,
 				071CF1F9185F08ED00F0224B /* soil_types.plist in Resources */,
 				077B8427185B8BB500D0F002 /* 30m3ha cattle.jpg in Resources */,
 				077B8420185B89AB00D0F002 /* pig_50m3.jpg in Resources */,
