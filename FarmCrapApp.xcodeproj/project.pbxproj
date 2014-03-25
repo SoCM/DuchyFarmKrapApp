@@ -78,6 +78,7 @@
 		077B842A185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8429185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg */; };
 		077B842B185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 077B8429185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg */; };
 		077DE124187A9DB800FB08A8 /* FCASeasonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 077DE123187A9DB800FB08A8 /* FCASeasonCell.m */; };
+		0784354A18DCAC5900445740 /* FCACostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0784354918DCAC5900445740 /* FCACostsViewController.m */; };
 		078B278618519AB000E78747 /* FCADataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B278518519AB000E78747 /* FCADataModel.m */; };
 		078B278718519AB000E78747 /* FCADataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 078B278518519AB000E78747 /* FCADataModel.m */; };
 		079E840D1861798D003309B6 /* FCAManureTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 079E840C1861798D003309B6 /* FCAManureTypeViewController.m */; };
@@ -207,6 +208,8 @@
 		077B8429185B8BC000D0F002 /* pig slurry 75m3 dm 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pig slurry 75m3 dm 4.jpg"; sourceTree = "<group>"; };
 		077DE122187A9DB800FB08A8 /* FCASeasonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCASeasonCell.h; sourceTree = "<group>"; };
 		077DE123187A9DB800FB08A8 /* FCASeasonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCASeasonCell.m; sourceTree = "<group>"; };
+		0784354818DCAC5900445740 /* FCACostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCACostsViewController.h; sourceTree = "<group>"; };
+		0784354918DCAC5900445740 /* FCACostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCACostsViewController.m; sourceTree = "<group>"; };
 		078B278418519AB000E78747 /* FCADataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCADataModel.h; sourceTree = "<group>"; };
 		078B278518519AB000E78747 /* FCADataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCADataModel.m; sourceTree = "<group>"; };
 		079E840B1861798D003309B6 /* FCAManureTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAManureTypeViewController.h; sourceTree = "<group>"; };
@@ -286,6 +289,7 @@
 		070F18E118574BD40008FA19 /* FieldsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0784354718DCAC3300445740 /* Costs */,
 				070F18E6185761880008FA19 /* Cells */,
 				070F18E218574C9D0008FA19 /* FCAFieldsViewController.h */,
 				070F18E318574C9D0008FA19 /* FCAFieldsViewController.m */,
@@ -438,6 +442,15 @@
 				077B8413185B89AB00D0F002 /* poultry_5t.jpg */,
 			);
 			path = "poop-piccies";
+			sourceTree = "<group>";
+		};
+		0784354718DCAC3300445740 /* Costs */ = {
+			isa = PBXGroup;
+			children = (
+				0784354818DCAC5900445740 /* FCACostsViewController.h */,
+				0784354918DCAC5900445740 /* FCACostsViewController.m */,
+			);
+			name = Costs;
 			sourceTree = "<group>";
 		};
 		078B27741850EB2600E78747 /* CoreDataModel */ = {
@@ -776,6 +789,7 @@
 				070F18E9185762990008FA19 /* FCAFieldCell.m in Sources */,
 				079E840D1861798D003309B6 /* FCAManureTypeViewController.m in Sources */,
 				0752D4D9187F09D600803090 /* FCADisclaimerViewController.m in Sources */,
+				0784354A18DCAC5900445740 /* FCACostsViewController.m in Sources */,
 				074C971818798B0300ED0CB8 /* FCASoilTypeCell.m in Sources */,
 				0717179C189E589D00BD6C82 /* FCAAboutViewController.m in Sources */,
 				073028C6185F6ADE00DFD9F9 /* FCADatePickerCell.m in Sources */,
