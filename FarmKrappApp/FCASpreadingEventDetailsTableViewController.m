@@ -65,10 +65,20 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self setHidesBottomBarWhenPushed:NO];
+    self.navigationController.toolbarHidden = NO;
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self setHidesBottomBarWhenPushed:YES];
+    self.navigationController.toolbarHidden = YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -380,13 +390,20 @@
 
 #pragma mark - actions
 - (IBAction)doApplicationRateSliderUpdate:(id)sender {
+    
     UISlider* slider = (UISlider*)sender;
     float v = slider.value;
     v = roundf(v);
     self.spreadingEvent.density = [NSNumber numberWithInt:(int)v];
-    double r = v / slider.maximumValue;
-    double b = 1.0-r;
-    [slider setTintColor:[UIColor colorWithRed:r green:0.0 blue:b alpha:1.0]];
+    
+    //iOS7 only code
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+        //Code for iOS 6.1 or earlier
+        double r = v / slider.maximumValue;
+        double b = 1.0-r;
+        [slider setTintColor:[UIColor colorWithRed:r green:0.0 blue:b alpha:1.0]];
+    }
+    
     [self.tableView reloadData];
 }
 
