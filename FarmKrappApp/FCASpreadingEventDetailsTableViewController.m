@@ -70,6 +70,10 @@
     [self setHidesBottomBarWhenPushed:NO];
     self.navigationController.toolbarHidden = NO;
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
+}
 -(void)viewWillDisappear:(BOOL)animated
 {
     [self setHidesBottomBarWhenPushed:YES];
@@ -140,8 +144,10 @@
         case 4:
             return @"Guide image:";
             break;
-        default:
+        case 5:
             return @"Photo";
+        default:
+            return @"";
             break;
     }
 }
@@ -439,6 +445,7 @@
 //Change the name of this method to match the view controller you are using
 - (IBAction)unwindToSpreadingEventDetails:(UIStoryboardSegue*)sender
 {
+    [self.tableView reloadData];
     NSLog(@"Back!");
 }
 
@@ -521,12 +528,12 @@
         self.spreadingEvent.density = @10.0;   //Reset the application rate
         self.imageShowing = YES;
         self.nutrientCalc = nil;        //Reset nutrient calculator
-        [self.tableView reloadData];
+//        [self.tableView reloadData];  //This needs to be called later - moved to viewDidAppear
     };
     
     if ([segue.identifier isEqualToString:@"ManureDetailsSegue"]) {
         FCAManureTypeViewController* mtva = (FCAManureTypeViewController*)vc;
-        mtva.callBackBlock =callBack;
+        mtva.callBackBlock = callBack;
         mtva.season = [self.spreadingEvent.date season];
     }
     
