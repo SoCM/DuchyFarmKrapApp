@@ -46,7 +46,12 @@
     NSUInteger lastRow = [[FCADataModel numberOfSpreadingEventsForField:self.fieldSelected] intValue];
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:lastRow inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
-
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row < [[FCADataModel numberOfSpreadingEventsForField:self.fieldSelected] intValue]) {
+        cell.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.0 alpha:0.1];
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

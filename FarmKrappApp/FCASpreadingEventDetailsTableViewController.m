@@ -79,7 +79,14 @@
     [self setHidesBottomBarWhenPushed:YES];
     self.navigationController.toolbarHidden = YES;
 }
-
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            cell.backgroundColor = [UIColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:0.1];
+        }
+    }
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
