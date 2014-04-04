@@ -16,7 +16,9 @@
 
 @end
 
-@implementation FCAFieldsViewController
+@implementation FCAFieldsViewController {
+    BOOL _isMetric;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -39,6 +41,8 @@
 //    UIImage *image = [UIImage imageNamed:@"bg.png"];
 //    self.tableView.backgroundView = nil;
 //    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    _isMetric = [[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -90,7 +94,7 @@
         Field* field = [fields objectAtIndex:indexPath.row];
         cell.nameLabel.text = field.name;
         cell.spreadingEventLabel.text = [NSString stringWithFormat:@"%u", (unsigned)field.spreadingEvents.count];
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"]) {
+        if (_isMetric) {
             cell.sizeLabel.text = [NSString stringWithFormat:@"%5.1f ha", field.sizeInHectares.doubleValue];
         } else {
             cell.sizeLabel.text = [NSString stringWithFormat:@"%5.1f acres", field.sizeInHectares.doubleValue*kACRES_PER_HECTARE];
@@ -183,11 +187,13 @@
             //Metric
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"Metric"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            _isMetric = YES;
             [self.tableView reloadData];
             break;
         case 1:
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"Metric"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            _isMetric = NO;
             [self.tableView reloadData];
             break;
         default:
