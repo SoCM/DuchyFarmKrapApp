@@ -17,7 +17,6 @@
 @interface FCAAvailableNutrients ()
 
 @property(readwrite, nonatomic, strong) SpreadingEvent* spreadingEvent;
-@property(readwrite, nonatomic, assign) BOOL metric;
 @property(readonly, nonatomic, strong) NSNumber* nitrogen;
 @property(readonly, nonatomic, strong) NSNumber* phosphate;
 @property(readonly, nonatomic, strong) NSNumber* potassium;
@@ -378,6 +377,9 @@
     return se;
 }
 
+#define ISSLURRYTYPE ([self.manureType.stringID isEqualToString:@"CattleSlurry"] || [self.manureType.stringID isEqualToString:@"PigSlurry"]) ? YES : NO
+#define ISPOULTRYLITTERTYPE ([self.manureType.stringID isEqualToString:@"PoultryLitter"])  ? YES : NO
+
 -(NSString*)rateAsStringUsingMetric:(BOOL)isMetric
 {
     NSString *units;
@@ -386,11 +388,12 @@
     BOOL isSlurry;
     double fRate = self.density.doubleValue;
     
-    if ([self.manureType.stringID isEqualToString:@"CattleSlurry"] || [self.manureType.stringID isEqualToString:@"PigSlurry"]) {
-        isSlurry = YES;
-    } else {
-        isSlurry = NO;
-    }
+    isSlurry = ISSLURRYTYPE;
+//    if ([self.manureType.stringID isEqualToString:@"CattleSlurry"] || [self.manureType.stringID isEqualToString:@"PigSlurry"]) {
+//        isSlurry = YES;
+//    } else {
+//        isSlurry = NO;
+//    }
 
     //Now derive the label based on metric/imperial setting
     if (isMetric) {
@@ -411,6 +414,30 @@
     return [NSString stringWithFormat:@"%u %@", (unsigned)round(fRate), units];
 }
 
+-(NSString*)rateUnitsAsStringUsingMetric:(BOOL)isMetric
+{
+    NSString *units;
+    
+    //First the manure type
+    BOOL isSlurry = ISSLURRYTYPE;
+    
+    //Now derive the label based on metric/imperial setting
+    if (isMetric) {
+        if (isSlurry) {
+            units = @"m3/ha";
+        } else {
+            units = @"tonnes/ha";
+        }
+    } else {
+        if (isSlurry) {
+            units = @"gallons/acre";
+        } else {
+            units = @"tons/acre";
+        }
+    }
+    return units;
+}
+
 -(NSString*)volumeAsStringUsingMetric:(BOOL)isMetric
 {
     NSString *units;
@@ -419,11 +446,7 @@
     BOOL isSlurry;
     double fQuantity = self.density.doubleValue * self.field.sizeInHectares.doubleValue;
     
-    if ([self.manureType.stringID isEqualToString:@"CattleSlurry"] || [self.manureType.stringID isEqualToString:@"PigSlurry"]) {
-        isSlurry = YES;
-    } else {
-        isSlurry = NO;
-    }
+    isSlurry = ISSLURRYTYPE;
     
     //Now derive the label based on metric/imperial setting
     if (isMetric) {
@@ -443,6 +466,22 @@
     }
     return [NSString stringWithFormat:@"%u %@", (unsigned)round(fQuantity), units];
 }
+
+-(double)maximumValueUsingMetric:(BOOL)isMetric
+{
+    BOOL isSlurry = ISSLURRYTYPE;
+    BOOL isPL = ISPOULTRYLITTERTYPE;
+    
+    if (isMetric) {
+        //METRIC VERSION
+        return isPL ? 15.0 : 100.0;
+    } else {
+        if (isSlurry) {
+            return 9900.0;
+        }
+        return (isPL) ? 10.0 : 100.0;
+    }
+}
 @end
 
 
@@ -450,8 +489,11 @@
 //*************************
 //DATA MODEL WRAPPER CLASS*
 //*************************
-@implementation FCADataModel
+@implementation FCADataModel {
+    dispatch_once_t pred_isMetric;
+}
 
+@synthesize isMetric = _isMetric;
 
 // Fields
 +(id)addNewFieldWithName:(NSString*)nameString soilType:(SoilType*)soil_type cropType:(CropType*)crop_type sizeInHectares:(NSNumber*)size
@@ -530,6 +572,14 @@
     return [FCA_APP_DELEGATE availableNutrients100m3];
 }
 
+#pragma mark - Reuseable Code
+
+-(BOOL)isMetric {
+    dispatch_once(&pred_isMetric, ^() {
+        _isMetric = [[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"];
+    });
+    return _isMetric;
+}
 
 #pragma mark - CORE DATA Convenience Methods
 

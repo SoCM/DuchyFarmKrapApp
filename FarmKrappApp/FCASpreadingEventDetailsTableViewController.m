@@ -32,12 +32,23 @@
 @property(readwrite, nonatomic, assign) BOOL manureQualityPickerShowing;
 @property(readwrite, nonatomic, assign) BOOL imageShowing;
 @property(readwrite, nonatomic, strong) NSString* currentImageFileName;
-
+@property(readonly) BOOL isMetric;
 @end
 
-@implementation FCASpreadingEventDetailsTableViewController
+@implementation FCASpreadingEventDetailsTableViewController {
+    dispatch_once_t pred_isMetric;
+}
 
 @synthesize  nutrientCalc = _nutrientCalc;
+@synthesize isMetric = _isMetric;
+
+-(BOOL)isMetric {
+    dispatch_once(&pred_isMetric, ^() {
+        _isMetric = [[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"];
+    });
+    return _isMetric;
+}
+
 -(FCAAvailableNutrients*)nutrientCalc
 {
     if (_nutrientCalc) {
@@ -250,8 +261,6 @@
     FCASquareImageCell* photoCell;
     UIImage* piccy;
     
-    BOOL isMetric = [[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"];
-    
     switch (indexPath.section) {
         case 0:
             //Field
@@ -295,21 +304,24 @@
             appRateCell = (FCAApplicationRateCell*)cell;
             
 //            appRateCell.label.text = [NSString stringWithFormat:@"%@ m3/ha", self.spreadingEvent.density];
-            appRateCell.label.text = [self.spreadingEvent rateAsStringUsingMetric:isMetric];
+//            appRateCell.label.text = [self.spreadingEvent rateAsStringUsingMetric:self.isMetric];
+            appRateCell.label.text = [NSString stringWithFormat:@"%4.0f %@", appRateCell.slider.value, [self.spreadingEvent rateUnitsAsStringUsingMetric:self.isMetric]];
             
             //Update slider if different
-            if (appRateCell.slider.value != self.spreadingEvent.density.floatValue) {
-                appRateCell.slider.value = self.spreadingEvent.density.floatValue;
-            }
+#warning - TODO
+//            if (appRateCell.slider.value != self.spreadingEvent.density.floatValue) {
+//                appRateCell.slider.value = self.spreadingEvent.density.floatValue;
+//            }
 
             //Set scale depending on manure type
-            if (self.spreadingEvent.manureType) {
-                if ([self.spreadingEvent.manureType.stringID isEqualToString:@"PoultryLitter"]) {
-                    appRateCell.slider.maximumValue = 15.0;
-                } else {
-                    appRateCell.slider.maximumValue = 100.0;
-                }
-            }
+            appRateCell.slider.maximumValue = [self.spreadingEvent maximumValueUsingMetric:self.isMetric];
+//            if (self.spreadingEvent.manureType) {
+//                if ([self.spreadingEvent.manureType.stringID isEqualToString:@"PoultryLitter"]) {
+//                    appRateCell.slider.maximumValue = 15.0;
+//                } else {
+//                    appRateCell.slider.maximumValue = 100.0;
+//                }
+//            }
             
             //Calculate the N P K (conditional on all data being available)
             
@@ -320,10 +332,10 @@
                 K = [self.nutrientCalc potassiumAvailableForRate:self.spreadingEvent.density];
                 
 //                appRateCell.NitrogenLabel.text = [NSString stringWithFormat:@"%4.1f", N.floatValue];
-                appRateCell.NitrogenLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:N usingMetric:isMetric];
+                appRateCell.NitrogenLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:N usingMetric:self.isMetric];
                 
-                appRateCell.PhosphateLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:P usingMetric:isMetric];
-                appRateCell.PotassiumLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:K usingMetric:isMetric];
+                appRateCell.PhosphateLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:P usingMetric:self.isMetric];
+                appRateCell.PotassiumLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:K usingMetric:self.isMetric];
                 
                 //Costings (per area)
                 double Ncost = [[NSUserDefaults standardUserDefaults] doubleForKey:@"NperKg"]*N.doubleValue;
@@ -336,7 +348,7 @@
 //                Ncost *= self.spreadingEvent.field.sizeInHectares.doubleValue;
 //                Pcost *= self.spreadingEvent.field.sizeInHectares.doubleValue;
 //                Kcost *= self.spreadingEvent.field.sizeInHectares.doubleValue;
-                if (isMetric) {
+                if (self.isMetric) {
                     appRateCell.NitrogenCostLabel.text = [NSString stringWithFormat:@"£%6.2f/ha", Ncost];
                     appRateCell.PhosphateCostLabel.text = [NSString stringWithFormat:@"£%6.2f/ha", Pcost];
                     appRateCell.PotassiumCostLabel.text = [NSString stringWithFormat:@"£%6.2f/ha", Kcost];
@@ -402,11 +414,17 @@
 }
 
 #pragma mark - actions
+#warning TODO Update this. Assumes metric
 - (IBAction)doApplicationRateSliderUpdate:(id)sender {
     
     UISlider* slider = (UISlider*)sender;
-    float v = slider.value;
-    v = roundf(v);
+    double v = slider.value;
+    if (self.isMetric) {
+        v = roundf(v);
+    } else {
+        //Convert to metric
+        v =
+    }
     self.spreadingEvent.density = [NSNumber numberWithInt:(int)v];
     
     //iOS7 only code

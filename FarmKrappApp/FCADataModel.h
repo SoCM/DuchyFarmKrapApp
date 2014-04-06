@@ -92,12 +92,15 @@ typedef enum {CS_DM2=100, CS_DM6=200, CS_DM10=300, FYM_OLDSURF=400, FYM_FRSURF=5
 @interface SpreadingEvent (FCADataModel)
 +(SpreadingEvent*)InsertSpreadingEventWithDate:(NSDate*)date manureType:(ManureType*)manure_type quality:(ManureQuality*)manure_quality density:(NSNumber*)manure_density;
 -(NSString*)rateAsStringUsingMetric:(BOOL)isMetric;
+-(NSString*)rateUnitsAsStringUsingMetric:(BOOL)isMetric;
 -(NSString*)volumeAsStringUsingMetric:(BOOL)isMetric;
+-(double)maximumValueUsingMetric:(BOOL)isMetric;
 @end
 
 #pragma mark - FCADataModel CLASS
 //DATA MODEL WRAPPER CLASS
 @interface FCADataModel : NSObject
+
 //MODEL API
 #pragma mark - Field
 +(id)addNewFieldWithName:(NSString*)nameString soilType:(SoilType*)soil_type cropType:(CropType*)crop_type sizeInHectares:(NSNumber*)size;
@@ -106,6 +109,7 @@ typedef enum {CS_DM2=100, CS_DM6=200, CS_DM10=300, FYM_OLDSURF=400, FYM_FRSURF=5
 +(NSArray*)arrayOfFieldsWithSortString:(NSString*)sortString;
 +(NSArray*)arrayOfFieldsWithSortString:(NSString*)sortString andPredicateString:(NSString*)predicateString;
 +(NSNumber*)numberOfFields;
+@property(readonly) BOOL isMetric;
 
 #pragma mark - SpreadingEvent
 +(id)addNewSpreadingEventWithDate:(NSDate*)date manureType:(ManureType*)manure_type quality:(ManureQuality*)manure_quality density:(NSNumber*)manure_density toField:(Field*)field;

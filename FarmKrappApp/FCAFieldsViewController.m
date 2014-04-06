@@ -47,6 +47,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
     [[self tableView] reloadData];
 }
 -(void)viewDidAppear:(BOOL)animated
