@@ -482,6 +482,41 @@
         return (isPL) ? 10.0 : 100.0;
     }
 }
+//Sets the rate using either metric or imperial measurement
+-(void)setRate:(double)rate usingMetric:(BOOL)isMetric
+{
+    BOOL isSlurry = ISSLURRYTYPE;
+    if (isMetric) {
+        self.density = [NSNumber numberWithDouble:rate];
+    } else {
+        if (isSlurry) {
+            //Gal/Acre -> m3/ha
+            self.density = [NSNumber numberWithDouble:rate*0.0112336377];
+        } else {
+            //Ton/acre -> Tonnes/ha
+            self.density = [NSNumber numberWithDouble:rate*2.51070659];
+        }
+    }
+}
+//Conditionally convert a spreading rate (in metric) to imperial rates
+-(double)rateUsingMetric:(BOOL)isMetric
+{
+    BOOL isSlurry = ISSLURRYTYPE;
+    if (isMetric) {
+        return [self.density doubleValue];
+    } else {
+        double convertedRate;
+        if (isSlurry) {
+            //m3/ha -> Gal/Acre
+            convertedRate = self.density.doubleValue * 89.01835956486295;
+        } else {
+            //tonnes/ha -> ton/acre
+            convertedRate = self.density.doubleValue * 0.39829425070334;
+        }
+        return (convertedRate);
+    }
+}
+
 @end
 
 

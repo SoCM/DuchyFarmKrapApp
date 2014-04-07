@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="v1" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13D17" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="v1" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13D33" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="CropType" representedClassName="CropType" syncable="YES">
         <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="seqID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -31,7 +31,7 @@
     </entity>
     <entity name="SpreadingEvent" representedClassName="SpreadingEvent" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="density" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="density" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="field" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Field" inverseName="spreadingEvents" inverseEntity="Field" syncable="YES"/>
         <relationship name="manureQuality" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManureQuality" inverseName="spreadingEvents" inverseEntity="ManureQuality" syncable="YES"/>

@@ -25,6 +25,7 @@
 
 //Nutrient calculation obect
 @property(readwrite, nonatomic, strong) FCAAvailableNutrients* nutrientCalc;
+@property(readwrite, nonatomic, assign) BOOL guiNeedsUpdating;
 
 //State
 @property(readwrite, nonatomic, assign) BOOL datePickerShowing;
@@ -63,6 +64,7 @@
     
     //If we get this far, the data is available
     self.nutrientCalc = [[FCAAvailableNutrients alloc] initWithSpreadingEvent:self.spreadingEvent];
+    self.guiNeedsUpdating = YES;
     return _nutrientCalc;
 }
 
@@ -117,6 +119,7 @@
         self.imageShowing = NO;
     }
     self.nutrientCalc = nil;
+    self.guiNeedsUpdating = YES;
     NSLog(@"FIELD: %@", self.spreadingEvent);
 }
 
@@ -305,23 +308,23 @@
             
 //            appRateCell.label.text = [NSString stringWithFormat:@"%@ m3/ha", self.spreadingEvent.density];
 //            appRateCell.label.text = [self.spreadingEvent rateAsStringUsingMetric:self.isMetric];
-            appRateCell.label.text = [NSString stringWithFormat:@"%4.0f %@", appRateCell.slider.value, [self.spreadingEvent rateUnitsAsStringUsingMetric:self.isMetric]];
             
-            //Update slider if different
-#warning - TODO
-//            if (appRateCell.slider.value != self.spreadingEvent.density.floatValue) {
-//                appRateCell.slider.value = self.spreadingEvent.density.floatValue;
-//            }
+            //Update slider if needed
+#warning - UNDER REVIEW
+            if (self.guiNeedsUpdating) {
+                NSLog(@"UPDATE GUI: %@", self.spreadingEvent.density);
+                
+                //Set scale depending on manure type
+                appRateCell.slider.maximumValue = [self.spreadingEvent maximumValueUsingMetric:self.isMetric];
 
-            //Set scale depending on manure type
-            appRateCell.slider.maximumValue = [self.spreadingEvent maximumValueUsingMetric:self.isMetric];
-//            if (self.spreadingEvent.manureType) {
-//                if ([self.spreadingEvent.manureType.stringID isEqualToString:@"PoultryLitter"]) {
-//                    appRateCell.slider.maximumValue = 15.0;
-//                } else {
-//                    appRateCell.slider.maximumValue = 100.0;
-//                }
-//            }
+                //Set slider position
+                appRateCell.slider.value = [self.spreadingEvent rateUsingMetric:self.isMetric];
+                self.guiNeedsUpdating = NO;
+                //appRateCell.slider.value = self.spreadingEvent.density.floatValue;
+            }
+            
+            //Match text to slider
+            appRateCell.label.text = [NSString stringWithFormat:@"%4.0f %@", appRateCell.slider.value, [self.spreadingEvent rateUnitsAsStringUsingMetric:self.isMetric]];
             
             //Calculate the N P K (conditional on all data being available)
             
@@ -414,19 +417,12 @@
 }
 
 #pragma mark - actions
-#warning TODO Update this. Assumes metric
 - (IBAction)doApplicationRateSliderUpdate:(id)sender {
     
     UISlider* slider = (UISlider*)sender;
     double v = slider.value;
-    if (self.isMetric) {
-        v = roundf(v);
-    } else {
-        //Convert to metric
-        v =
-    }
-    self.spreadingEvent.density = [NSNumber numberWithInt:(int)v];
-    
+    v = round(v);
+    [self.spreadingEvent setRate:v usingMetric:self.isMetric];
     //iOS7 only code
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         //Code for iOS 6.1 or earlier
@@ -550,8 +546,9 @@
         //managedobjects passed are from a different context
         self.spreadingEvent.manureType = (ManureType*)[self.managedChildObjectContext objectWithID:[manureType objectID]];
         self.spreadingEvent.manureQuality = (ManureQuality*)[self.managedChildObjectContext objectWithID:[manureQual objectID]];
-        self.spreadingEvent.density = @10.0;   //Reset the application rate
+        self.spreadingEvent.density = @0.0;   //Reset the application rate
         self.imageShowing = YES;
+        self.guiNeedsUpdating = YES;
         self.nutrientCalc = nil;        //Reset nutrient calculator
 //        [self.tableView reloadData];  //This needs to be called later - moved to viewDidAppear
     };

@@ -95,6 +95,8 @@ typedef enum {CS_DM2=100, CS_DM6=200, CS_DM10=300, FYM_OLDSURF=400, FYM_FRSURF=5
 -(NSString*)rateUnitsAsStringUsingMetric:(BOOL)isMetric;
 -(NSString*)volumeAsStringUsingMetric:(BOOL)isMetric;
 -(double)maximumValueUsingMetric:(BOOL)isMetric;
+-(void)setRate:(double)rate usingMetric:(BOOL)isMetric;
+-(double)rateUsingMetric:(BOOL)isMetric;
 @end
 
 #pragma mark - FCADataModel CLASS
