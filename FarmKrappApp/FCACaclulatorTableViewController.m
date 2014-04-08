@@ -24,6 +24,7 @@
 @property(readwrite, nonatomic, strong) SpreadingEvent* spreadingEvent;
 @property(readwrite, nonatomic, strong) FCAAvailableNutrients* nutrientCalc;
 @property(readwrite, nonatomic, strong) NSString* currentImageFileName;
+@property(readwrite, nonatomic, assign) BOOL guiNeedsRefresh;
 @end
 
 @implementation FCACaclulatorTableViewController {
@@ -91,9 +92,11 @@
     self.field.cropType = [self.managedObjectContext objectWithID:ct.objectID];
     SoilType *st = [SoilType FetchSoilTypeForID:@100];
     self.field.soilType = [self.managedObjectContext objectWithID:st.objectID];
-    self.spreadingEvent.density = @10;
+
     self.spreadingEvent.date = [NSDate dateWithYear:2000 month:9 day:1];
+    self.spreadingEvent.density = @0.0;
     self.nutrientCalc = nil;
+    self.guiNeedsRefresh = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -208,38 +211,47 @@
     }
     else if (indexPath.section == 3) {
         FCASeasonCell* sCell = (FCASeasonCell*)[self.tableView dequeueReusableCellWithIdentifier:@"SeasonCell"];
+        
+        NSString* strManureType = self.spreadingEvent.manureQuality.name;
+        if (strManureType) {
+            NSUInteger loc = [strManureType rangeOfString:@"incorporated"].location;
+            if  (loc == NSNotFound) {
+                //Disable the last segment summer
+                [sCell.segmentedControl setEnabled:YES forSegmentAtIndex:3];
+            } else {
+                [sCell.segmentedControl setEnabled:NO forSegmentAtIndex:3];
+            }
+        }
+
+        
+//([self.spreadingEvent.date season] == SUMMER)        
         return sCell;
     }
     else if (indexPath.section == 4) {
         FCAApplicationRateCell* appRateCell = (FCAApplicationRateCell*)[self.tableView dequeueReusableCellWithIdentifier:@"ApplicationRateCell"];
-        
-        appRateCell.label.text = [self.spreadingEvent rateAsStringUsingMetric:isMetric];
-        
-        //Update slider if different
-        if (appRateCell.slider.value != self.spreadingEvent.density.floatValue) {
-            appRateCell.slider.value = self.spreadingEvent.density.floatValue;
+#warning - TODO - this line needs to be run ONLY when the manure type is changed
+        if ( self.guiNeedsRefresh ) {
+            //Everytime this is reset, reset the GUI
+            appRateCell.slider.value = 0.0;
+            self.guiNeedsRefresh = NO;
         }
         
-        //Set scale depending on manure type
-        if (self.spreadingEvent.manureType) {
-            if ([self.spreadingEvent.manureType.stringID isEqualToString:@"PoultryLitter"]) {
-                appRateCell.slider.maximumValue = 15.0;
-            } else {
-                appRateCell.slider.maximumValue = 100.0;
-            }
-        }
+        appRateCell.slider.maximumValue = [self.spreadingEvent maximumValueUsingMetric:isMetric];
+        double val = appRateCell.slider.value;
+        val = round(val);
+        appRateCell.slider.value = val;
+        
+        //Set label to match
+        appRateCell.label.text = [NSString stringWithFormat:@"%5.0f %@", val, [self.spreadingEvent rateUnitsAsStringUsingMetric:isMetric]];
         
         //Calculate the N P K (conditional on all data being available)
-        
         if (self.nutrientCalc) {
             NSNumber *N, *P, *K;
             N = [self.nutrientCalc nitrogenAvailableForRate:self.spreadingEvent.density];
             P = [self.nutrientCalc phosphateAvailableForRate:self.spreadingEvent.density];
             K = [self.nutrientCalc potassiumAvailableForRate:self.spreadingEvent.density];
             
-            //                appRateCell.NitrogenLabel.text = [NSString stringWithFormat:@"%4.1f", N.floatValue];
             appRateCell.NitrogenLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:N usingMetric:isMetric];
-            
             appRateCell.PhosphateLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:P usingMetric:isMetric];
             appRateCell.PotassiumLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:K usingMetric:isMetric];
             
@@ -280,45 +292,6 @@
         return nil;
     }
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Navigation
 - (IBAction)doSoilTypeChanged:(id)sender {
@@ -382,8 +355,25 @@
     [self.tableView reloadData];
 }
 - (IBAction)doApplicationRateChanged:(id)sender {
+    BOOL isMetric = [[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"];
+    
+    //Get value
     UISlider* slider = (UISlider*)sender;
-    self.spreadingEvent.density = [NSNumber numberWithFloat:slider.value];
+    double v = slider.value;
+    
+    //For large values, quantise to 100 steps
+    double fMax = slider.maximumValue;
+    if (fMax>100) {
+        //Quantise
+        double fRes = (fMax * 0.01);
+        v = fRes * round(v/fRes);
+    }
+    
+    //Round
+    v =round(v);
+    slider.value = v;
+
+    [self.spreadingEvent setRate:v usingMetric:isMetric];
     
     //Refresh view
     [self.tableView reloadData];
@@ -400,11 +390,14 @@
             self.spreadingEvent.manureQuality = (ManureQuality*)[self.managedObjectContext objectWithID:mq.objectID];
             self.spreadingEvent.manureType = (ManureType*)[self.managedObjectContext objectWithID:mt.objectID];
             self.nutrientCalc = nil;
-            self.spreadingEvent.density = @10;
+            self.spreadingEvent.density = @0;
+            self.guiNeedsRefresh = YES;
+            
             [self.tableView reloadData];
         };
         
         FCAManureTypeViewController* vc = (FCAManureTypeViewController*)segue.destinationViewController;
+        vc.season = [self.spreadingEvent.date season];
         vc.callBackBlock = callBack;
     }
 }
