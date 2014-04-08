@@ -51,14 +51,13 @@
         self.name = @"";
         self.soilType = kSOILTYPE_SANDY_SHALLOW;
         self.cropType = kCROPTYPE_ALL_CROPS;
-        self.fieldSize = @10.0;
+        self.fieldSize = @0.0;
     }
     [self updateViewFromModel];
     
     //Tweak stepper increment if imperial
-    // there are 0.0404686 acres in 0.1 ha
     if (!self.isMetric) {
-        self.fieldSizeStepper.stepValue = 0.0404686;
+        self.fieldSizeStepper.stepValue = 0.04;
     }
 
 }
@@ -101,6 +100,7 @@
     [textField resignFirstResponder];
     return YES;
 }
+
 - (IBAction)doSegmentedValueChanged:(id)sender {
     //Make k/b go away if visible
     [self.nameTextBox resignFirstResponder];
@@ -108,28 +108,49 @@
     if ([UIScreen deviceClass] == UIScreenDeviceClassiPhone4SAspect1p5) {
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
-
 }
 
+//The slider holds a value 0..100. For imperial, this must be multiplied by kFIELDSIZE_IMPERIAL_SCALING_FACTOR to get a sensible value in Acres
 - (IBAction)doSliderChanged:(id)sender {
     double val = self.fieldSizeSlider.value;
-    val = 0.5*round(val*2.0);
-    self.fieldSizeStepper.value = val;
+    
+    //Slider can return fractional values - quantise
+    if (self.isMetric) {
+        val = 0.1*round(val*10.0);
+    } else {
+        val *= 2.5;
+        val = 0.1*round(val*10.0);
+        val *= 0.4;
+    }
+    self.fieldSizeSlider.value = val;
+    
+    //Synchronise stepper and slider
+    self.fieldSizeStepper.value = val;          //Keep stepper in sync
+
+    
+    if (self.isMetric == NO) {
+        val = val * 2.5;     //Scale by 2.5 to get a sensible range (in Acres)
+    }
+    
     if (self.isMetric) {
         self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f ha", val];
     } else {
-        self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f acres", val*kACRES_PER_HECTARE];
+        self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f acres", val];
     }
 }
 
 - (IBAction)doStepperChanged:(id)sender {
     double val = self.fieldSizeStepper.value;
+    
+    //Synchronise stepper with slider
+    self.fieldSizeSlider.value = val;
+    
     if (self.isMetric) {
         self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f ha", val];
     } else {
-        self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f acres", val*kACRES_PER_HECTARE];
+        val *= 2.5;
+        self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f acres", val];
     }
-    self.fieldSizeSlider.value = val;
 }
 
 //Update internal data state from view components
@@ -150,7 +171,7 @@
         default:
             //Do nothing - very bad!
             NSLog(@"INVALID SOIL TYPE");
-            
+            break;
     }
 
     //Get the selected crop type
@@ -168,18 +189,25 @@
             NSLog(@"INVALID CROP TYPE");
             break;
     }
-    float sz = self.fieldSizeSlider.value;
-    sz = 0.5*round(sz*2.0);
-    self.fieldSize = [NSNumber numberWithFloat:sz];
+    double sz = self.fieldSizeSlider.value;
+    if (self.isMetric) {
+        sz = 0.1*round(sz*10.0);
+        self.fieldSize = [NSNumber numberWithDouble:sz];
+    } else {
+        sz = sz * 2.5;              //Scale to Acres
+        sz = 0.1*round(sz*10.0);    //Round to 1dp
+        sz *= kHECTARES_PER_ACRE;   //Convert to ha
+        self.fieldSize = [NSNumber numberWithDouble:sz];
+    }
+   
 }
 //Update view based on model data
 -(void)updateViewFromModel
 {
     BOOL isMetric = [[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"];
+    
     //Field name
     self.nameTextBox.text = self.name;
-    
-    //Segmented controls
     
     //Soil type
     switch (self.soilType.intValue) {
@@ -212,13 +240,20 @@
     
     //Field size
     // TBD - I need one access for all of these
+    double val = self.fieldSize.doubleValue;        //Size in ha
+    
     if (isMetric) {
-        self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f ha", self.fieldSize.floatValue];
+        val = 0.1*round(val*10.0);
+        self.fieldSizeSlider.value = val;
+        self.fieldSizeStepper.value = val;
+        self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f ha", val];
     } else {
-        self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f acres", self.fieldSize.floatValue * kACRES_PER_HECTARE];
+        val *= kACRES_PER_HECTARE;  //Convert to Acres
+        self.fieldSizeLabel.text = [NSString stringWithFormat:@"%5.1f acres", 0.1*round(val*10.0)];
+        val *= 0.4;                 //Scale
+        self.fieldSizeStepper.value = val;
+        self.fieldSizeSlider.value = val;
     }
-    self.fieldSizeSlider.value = self.fieldSize.floatValue;
-    self.fieldSizeStepper.value = self.fieldSize.floatValue;
     
 }
 - (IBAction)doSave:(id)sender {
@@ -246,6 +281,12 @@
         self.managedFieldObject.soilType = st;
         self.managedFieldObject.cropType = ct;
         self.managedFieldObject.sizeInHectares = self.fieldSize;
+//        if (self.isMetric) {
+//            self.managedFieldObject.sizeInHectares = self.fieldSize;
+//        } else {
+//            self.managedFieldObject.sizeInHectares = [NSNumber numberWithDouble:self.fieldSize.doubleValue * kHECTARES_PER_ACRE];
+//        }
+        
         //Persist the changes
         [FCADataModel saveContext];
         

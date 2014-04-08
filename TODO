@@ -1,25 +1,7 @@
-1. ICONS
+Enter field in Imperial
 
-60,40,29pt for Phone
-76,40,29pt for iPad
+Set step size to 50 for imperial gallons
 
-
-
+Track down issues with NPK variance and imperial input
 
 
-2. SplashImage
-
-640 x 1136 pixels for iPhone
-
-1536 x 2048 pixels for iPad
-2048 x 1536
-
-
-
-3. ABOUT button - displays popover more than once. Dismiss button?
-
-4. Camera
-
-5. Check ammendments
-
-6. Email results
