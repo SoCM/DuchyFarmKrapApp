@@ -420,8 +420,22 @@
 - (IBAction)doApplicationRateSliderUpdate:(id)sender {
     
     UISlider* slider = (UISlider*)sender;
+    
+    //Get value
     double v = slider.value;
-    v = round(v);
+    
+    //For large values, quantise to 100 steps
+    double fMax = slider.maximumValue;
+    if (fMax>100) {
+        //Quantise
+        double fRes = (fMax * 0.01);
+        v = fRes * round(v/fRes);
+    }
+    
+    //Round
+    v =round(v);
+    slider.value = v;
+    
     [self.spreadingEvent setRate:v usingMetric:self.isMetric];
     //iOS7 only code
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {

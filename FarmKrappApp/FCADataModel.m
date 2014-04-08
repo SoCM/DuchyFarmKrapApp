@@ -479,7 +479,7 @@
         return isPL ? 15.0 : 100.0;
     } else {
         if (isSlurry) {
-            return 9900.0;
+            return 10000.0;
         }
         return (isPL) ? 10.0 : 100.0;
     }
