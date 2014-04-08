@@ -229,7 +229,6 @@
     }
     else if (indexPath.section == 4) {
         FCAApplicationRateCell* appRateCell = (FCAApplicationRateCell*)[self.tableView dequeueReusableCellWithIdentifier:@"ApplicationRateCell"];
-#warning - TODO - this line needs to be run ONLY when the manure type is changed
         if ( self.guiNeedsRefresh ) {
             //Everytime this is reset, reset the GUI
             appRateCell.slider.value = 0.0;

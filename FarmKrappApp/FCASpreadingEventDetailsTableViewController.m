@@ -310,7 +310,6 @@
 //            appRateCell.label.text = [self.spreadingEvent rateAsStringUsingMetric:self.isMetric];
             
             //Update slider if needed
-#warning - UNDER REVIEW
             if (self.guiNeedsUpdating) {
                 NSLog(@"UPDATE GUI: %@", self.spreadingEvent.density);
                 
