@@ -237,7 +237,8 @@
 {
     double fValue = [rate doubleValue];
     if (isMetric == NO) {
-        fValue *= 0.8130081300813;
+        //Scaling factor to convert kg/ha to units/acre
+        fValue *= kKgPerHa_to_UnitsPerAcre;
         return [NSString stringWithFormat:@"%5.1f units/acre", fValue];
     } else {
         return [NSString stringWithFormat:@"%5.1f Kg/ha", fValue];
@@ -405,10 +406,10 @@
         }
     } else {
         if (isSlurry) {
-            fRate *= 89.0183597;
+            fRate *= km3PerHa_to_GalPerAcre;
             units = @"gallons/acre";
         } else {
-            fRate *= 0.398294251;
+            fRate *= kTonnesPerHa_to_TonPerAcre;
             units = @"tons/acre";
         }
     }
@@ -458,11 +459,10 @@
         }
     } else {
         if (isSlurry) {
-            fQuantity *= 219.969157;
+            fQuantity *= kGallonsPerm3;
             units = @"gallons";
         } else {
-#warning TO BE REVIEWED
-            fQuantity *= 0.984206528;
+            fQuantity *= kImperialTonPerTonne;
             units = @"tons";
         }
     }
@@ -493,10 +493,10 @@
     } else {
         if (isSlurry) {
             //Gal/Acre -> m3/ha
-            self.density = [NSNumber numberWithDouble:rate*0.0112336377];
+            self.density = [NSNumber numberWithDouble:rate*kGalPerAcre_to_m3Perha];
         } else {
             //Ton/acre -> Tonnes/ha
-            self.density = [NSNumber numberWithDouble:rate*2.51070659];
+            self.density = [NSNumber numberWithDouble:rate*kTonPerAcre_to_TonnesPerHa];
         }
     }
 }
@@ -510,10 +510,10 @@
         double convertedRate;
         if (isSlurry) {
             //m3/ha -> Gal/Acre
-            convertedRate = self.density.doubleValue * 89.01835956486295;
+            convertedRate = self.density.doubleValue * km3PerHa_to_GalPerAcre;
         } else {
             //tonnes/ha -> ton/acre
-            convertedRate = self.density.doubleValue * 0.39829425070334;
+            convertedRate = self.density.doubleValue * kTonnesPerHa_to_TonPerAcre;
         }
         return (convertedRate);
     }
