@@ -62,7 +62,7 @@
         } else {
             _dictionaryOfExtents = @{@"CattleSlurry" :   @{@"MAX" : @10000, @"STEP" : @50},
                                      @"FarmyardManure" : @{@"MAX" : @100,   @"STEP" : @1},
-                                     @"PigSlurry" :      @{@"MAX" : @10000, @"STEP" : @1},
+                                     @"PigSlurry" :      @{@"MAX" : @10000, @"STEP" : @50},
                                      @"PoultryLitter" :  @{@"MAX" : @10,    @"STEP" : @0.5}
                                      };
         }
@@ -109,7 +109,7 @@
 //Update the maxium value of the slider and the value itself
 -(void)updateAttributesOfSlider:(UISlider *)slider andLabel:(UILabel*)label
 {
-    NSString* manureType = self.spreadingEvent.manureType.description;
+    NSString* manureType = self.spreadingEvent.manureType.stringID;
     NSDictionary* metrics = [self.dictionaryOfExtents objectForKey:manureType];
     
     //Maximim value of slider
@@ -151,7 +151,10 @@
 //Convert the slider value back to metric, round and store in model
 -(void)updateModelFromSlider:(UISlider *)slider
 {
-    NSString* manureType = self.spreadingEvent.manureType.description;
+    //Cludge - slider value should always be an integer
+    slider.value = round(slider.value);
+    
+    NSString* manureType = self.spreadingEvent.manureType.stringID;
     NSDictionary* metrics = [self.dictionaryOfExtents objectForKey:manureType];
     
     //Increment of slider (value per unit on the slider)

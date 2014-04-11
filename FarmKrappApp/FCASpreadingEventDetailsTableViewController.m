@@ -317,23 +317,10 @@
             cell = [tableView dequeueReusableCellWithIdentifier:@"ApplicationRateCell" forIndexPath:indexPath];
             appRateCell = (FCAApplicationRateCell*)cell;
             
-            //Update slider if needed
-            if (self.guiNeedsUpdating) {
-                NSLog(@"UPDATE GUI: %@", self.spreadingEvent.density);
-                
-                //Set scale depending on manure type
-                appRateCell.slider.maximumValue = [self.spreadingEvent maximumValueUsingMetric:self.isMetric];
-
-                //Set slider position
-                appRateCell.slider.value = [self.spreadingEvent rateUsingMetric:self.isMetric];
-                self.guiNeedsUpdating = NO;
-            }
-            
-            //Match text to slider
-            appRateCell.label.text = [NSString stringWithFormat:@"%4.0f %@", appRateCell.slider.value, [self.spreadingEvent rateUnitsAsStringUsingMetric:self.isMetric]];
+            //Update text and slider
+            [self.binder updateAttributesOfSlider:appRateCell.slider andLabel:appRateCell.label];
             
             //Calculate the N P K (conditional on all data being available)
-            
             if (self.nutrientCalc) {
                 NSNumber *N, *P, *K;
                 N = [self.nutrientCalc nitrogenAvailableForRate:self.spreadingEvent.density];
@@ -427,25 +414,12 @@
     
     UISlider* slider = (UISlider*)sender;
     
-    //Get value
-    double v = slider.value;
+    [self.binder updateModelFromSlider:slider];
     
-    //For large values, quantise to 100 steps
-    double fMax = slider.maximumValue;
-    if (fMax>100) {
-        //Quantise
-        double fRes = (fMax * 0.01);
-        v = fRes * round(v/fRes);
-    }
-    
-    //Round
-    v =round(v);
-    slider.value = v;
-    
-    [self.spreadingEvent setRate:v usingMetric:self.isMetric];
     //iOS7 only code
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
-        //Code for iOS 6.1 or earlier
+        //Code for iOS 7 or later
+        double v = slider.value;
         double r = v / slider.maximumValue;
         double b = 1.0-r;
         [slider setTintColor:[UIColor colorWithRed:r green:0.0 blue:b alpha:1.0]];
