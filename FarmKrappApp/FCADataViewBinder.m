@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Plymouth University. All rights reserved.
 //
 
-#import "FCADataViewAdapter.h"
+#import "FCADataViewBinder.h"
 
 //Private methods
-@interface FCADataViewAdapter ()
+@interface FCADataViewBinder ()
 @property(readonly) BOOL isMetric;
 @property(readonly) BOOL isSlurry;
 @property(readonly) BOOL isPoultryLitter;
@@ -18,7 +18,7 @@
 @end
 
 
-@implementation FCADataViewAdapter {
+@implementation FCADataViewBinder {
     //Private instance variables
     BOOL _isMetric;
     dispatch_once_t pred;

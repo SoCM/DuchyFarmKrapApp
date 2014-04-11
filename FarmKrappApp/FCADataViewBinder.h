@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FCADataModel.h"
 
-@interface FCADataViewAdapter : NSObject {
+@interface FCADataViewBinder : NSObject {
     //Public iVars
 }
 
