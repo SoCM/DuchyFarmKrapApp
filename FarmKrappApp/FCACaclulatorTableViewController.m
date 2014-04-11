@@ -17,6 +17,7 @@
 #import "FCAManureTypeViewController.h"
 #import "SpreadingEvent.h"
 #import "Field.h"
+#import "FCADataViewBinder.h"
 
 @interface FCACaclulatorTableViewController ()
 @property(readonly) NSManagedObjectContext* managedObjectContext;
@@ -25,6 +26,7 @@
 @property(readwrite, nonatomic, strong) FCAAvailableNutrients* nutrientCalc;
 @property(readwrite, nonatomic, strong) NSString* currentImageFileName;
 @property(readwrite, nonatomic, assign) BOOL guiNeedsRefresh;
+@property(readwrite, nonatomic, strong) FCADataViewBinder* binder;
 @end
 
 @implementation FCACaclulatorTableViewController {
@@ -34,6 +36,7 @@
 @synthesize field = _field;
 @synthesize spreadingEvent = _spreadingEvent;
 @synthesize nutrientCalc = _nutrientCalc;
+@synthesize binder = _binder;
 
 //Child managed object context
 -(NSManagedObjectContext*)managedObjectContext
@@ -43,6 +46,13 @@
         _managedObjectContext.parentContext = [FCADataModel managedObjectContext];
     }
     return _managedObjectContext;
+}
+-(FCADataViewBinder *)binder
+{
+    if (_binder == nil) {
+        _binder = [[FCADataViewBinder alloc] initWithSpreadingEvent:self.spreadingEvent];
+    }
+    return _binder;
 }
 -(Field*)field
 {
@@ -235,13 +245,8 @@
             self.guiNeedsRefresh = NO;
         }
         
-        appRateCell.slider.maximumValue = [self.spreadingEvent maximumValueUsingMetric:isMetric];
-        double val = appRateCell.slider.value;
-        val = round(val);
-        appRateCell.slider.value = val;
-        
-        //Set label to match
-        appRateCell.label.text = [NSString stringWithFormat:@"%5.0f %@", val, [self.spreadingEvent rateUnitsAsStringUsingMetric:isMetric]];
+        //Update slider and text label
+        [self.binder updateAttributesOfSlider:appRateCell.slider andLabel:appRateCell.label];
         
         //Calculate the N P K (conditional on all data being available)
         if (self.nutrientCalc) {
@@ -354,26 +359,11 @@
     [self.tableView reloadData];
 }
 - (IBAction)doApplicationRateChanged:(id)sender {
-    BOOL isMetric = [[NSUserDefaults standardUserDefaults] boolForKey:@"Metric"];
     
     //Get value
     UISlider* slider = (UISlider*)sender;
-    double v = slider.value;
-    
-    //For large values, quantise to 100 steps
-    double fMax = slider.maximumValue;
-    if (fMax>100) {
-        //Quantise
-        double fRes = (fMax * 0.01);
-        v = fRes * round(v/fRes);
-    }
-    
-    //Round
-    v =round(v);
-    slider.value = v;
+    [self.binder updateModelFromSlider:slider];
 
-    [self.spreadingEvent setRate:v usingMetric:isMetric];
-    
     //Refresh view
     [self.tableView reloadData];
 }
