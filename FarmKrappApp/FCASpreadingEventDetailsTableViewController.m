@@ -19,6 +19,8 @@
 #import "FCAApplicationRateCell.h"
 #import "FCASquareImageCell.h"
 
+#import "FCADataViewBinder.h"
+
 @interface FCASpreadingEventDetailsTableViewController ()
 - (IBAction)doDateUpdate:(id)sender;
 - (IBAction)doPhoto:(id)sender;
@@ -26,6 +28,7 @@
 //Nutrient calculation obect
 @property(readwrite, nonatomic, strong) FCAAvailableNutrients* nutrientCalc;
 @property(readwrite, nonatomic, assign) BOOL guiNeedsUpdating;
+@property(readwrite, nonatomic, strong) FCADataViewBinder* binder;
 
 //State
 @property(readwrite, nonatomic, assign) BOOL datePickerShowing;
@@ -42,6 +45,7 @@
 
 @synthesize  nutrientCalc = _nutrientCalc;
 @synthesize isMetric = _isMetric;
+@synthesize binder = _binder;
 
 -(BOOL)isMetric {
     dispatch_once(&pred_isMetric, ^() {
@@ -68,6 +72,13 @@
     return _nutrientCalc;
 }
 
+-(FCADataViewBinder *)binder
+{
+    if (_binder == nil) {
+        _binder = [[FCADataViewBinder alloc] initWithSpreadingEvent:self.spreadingEvent];
+    }
+    return _binder;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -306,9 +317,6 @@
             cell = [tableView dequeueReusableCellWithIdentifier:@"ApplicationRateCell" forIndexPath:indexPath];
             appRateCell = (FCAApplicationRateCell*)cell;
             
-//            appRateCell.label.text = [NSString stringWithFormat:@"%@ m3/ha", self.spreadingEvent.density];
-//            appRateCell.label.text = [self.spreadingEvent rateAsStringUsingMetric:self.isMetric];
-            
             //Update slider if needed
             if (self.guiNeedsUpdating) {
                 NSLog(@"UPDATE GUI: %@", self.spreadingEvent.density);
@@ -319,7 +327,6 @@
                 //Set slider position
                 appRateCell.slider.value = [self.spreadingEvent rateUsingMetric:self.isMetric];
                 self.guiNeedsUpdating = NO;
-                //appRateCell.slider.value = self.spreadingEvent.density.floatValue;
             }
             
             //Match text to slider
