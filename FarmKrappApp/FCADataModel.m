@@ -25,7 +25,7 @@
 -(FCAAvailableNutrients*)calculateAvailableNutrients;
 
 @end
-
+ 
 //Seperate class for calculating nutrients
 //This is seperate so it can pre-calculate values and thus improve performance when calculating for different rates
 @implementation FCAAvailableNutrients {

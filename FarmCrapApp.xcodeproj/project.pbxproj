@@ -10,6 +10,7 @@
 		070B850618616FBE00609C72 /* FCAManureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070B850518616FBE00609C72 /* FCAManureCell.m */; };
 		070F18E418574C9D0008FA19 /* FCAFieldsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F18E318574C9D0008FA19 /* FCAFieldsViewController.m */; };
 		070F18E9185762990008FA19 /* FCAFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070F18E8185762990008FA19 /* FCAFieldCell.m */; };
+		0713DEAD18F7FAC900C7783C /* FCADataViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0713DEAC18F7FAC900C7783C /* FCADataViewAdapter.m */; };
 		0717179C189E589D00BD6C82 /* FCAAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0717179B189E589D00BD6C82 /* FCAAboutViewController.m */; };
 		0717179E189E5E4D00BD6C82 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 0717179D189E5E4D00BD6C82 /* about.html */; };
 		071CF1D5185EF7EB00F0224B /* manure_types.plist in Resources */ = {isa = PBXBuildFile; fileRef = 071CF1D2185EF7EB00F0224B /* manure_types.plist */; };
@@ -138,6 +139,8 @@
 		070F18E318574C9D0008FA19 /* FCAFieldsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAFieldsViewController.m; sourceTree = "<group>"; };
 		070F18E7185762990008FA19 /* FCAFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAFieldCell.h; sourceTree = "<group>"; };
 		070F18E8185762990008FA19 /* FCAFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAFieldCell.m; sourceTree = "<group>"; };
+		0713DEAB18F7FAC900C7783C /* FCADataViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCADataViewAdapter.h; sourceTree = "<group>"; };
+		0713DEAC18F7FAC900C7783C /* FCADataViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCADataViewAdapter.m; sourceTree = "<group>"; };
 		0717179A189E589D00BD6C82 /* FCAAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCAAboutViewController.h; sourceTree = "<group>"; };
 		0717179B189E589D00BD6C82 /* FCAAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCAAboutViewController.m; sourceTree = "<group>"; };
 		0717179D189E5E4D00BD6C82 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
@@ -422,6 +425,8 @@
 			children = (
 				0777B548184DDE3C00842DBA /* SoCMViewControllerCommonBase.h */,
 				0777B549184DDE3C00842DBA /* SoCMViewControllerCommonBase.m */,
+				0713DEAB18F7FAC900C7783C /* FCADataViewAdapter.h */,
+				0713DEAC18F7FAC900C7783C /* FCADataViewAdapter.m */,
 			);
 			name = CommonCodeForViewControllers;
 			sourceTree = "<group>";
@@ -762,6 +767,7 @@
 				07EACC121848689700D6A59E /* SoCMAppDelegate.m in Sources */,
 				07B7E27F185611FA00B90F61 /* NSBundleUOPCategory.m in Sources */,
 				073028BA185F683900DFD9F9 /* FCASpreadingEventSingleLabelCell.m in Sources */,
+				0713DEAD18F7FAC900C7783C /* FCADataViewAdapter.m in Sources */,
 				0734513D184DC717004FBC1E /* UIViewController+FCAFrontPage.m in Sources */,
 				07BC263C1872A37E00BE3D50 /* NSDate+FCADateAndSeason.m in Sources */,
 				07B21FE618D5EDE000419DE9 /* SpreadingEvent.m in Sources */,
