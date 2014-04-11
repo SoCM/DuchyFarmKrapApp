@@ -57,13 +57,13 @@
             _dictionaryOfExtents = @{@"CattleSlurry" :   @{@"MAX" : @100, @"STEP" : @1},
                                      @"FarmyardManure" : @{@"MAX" : @100, @"STEP" : @1},
                                      @"PigSlurry" :      @{@"MAX" : @100, @"STEP" : @1},
-                                     @"PoultryLitter" :  @{@"MAX" : @15,  @"STEP" : @0.5}
+                                     @"PoultryLitter" :  @{@"MAX" : @15,  @"STEP" : @0.1}
                                      };
         } else {
             _dictionaryOfExtents = @{@"CattleSlurry" :   @{@"MAX" : @10000, @"STEP" : @50},
                                      @"FarmyardManure" : @{@"MAX" : @100,   @"STEP" : @1},
                                      @"PigSlurry" :      @{@"MAX" : @10000, @"STEP" : @50},
-                                     @"PoultryLitter" :  @{@"MAX" : @10,    @"STEP" : @0.5}
+                                     @"PoultryLitter" :  @{@"MAX" : @10,    @"STEP" : @0.1}
                                      };
         }
     }
