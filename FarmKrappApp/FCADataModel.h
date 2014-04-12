@@ -58,7 +58,7 @@ typedef enum {CS_DM2=100, CS_DM6=200, CS_DM10=300, FYM_OLDSURF=400, FYM_FRSURF=5
 //#define kACRES_PER_HECTARE 2.47105
 //#define kHECTARES_PER_ACRE 0.404686
 #define kACRES_PER_HECTARE 2.5
-#define kHECTARES_PER_ACRE 0.5
+#define kHECTARES_PER_ACRE 0.4
 
 //#define kKgPerHa_to_UnitsPerAcre 0.8130081300813    //Scaling factor to convert kg/ha to units/acre
 #define kKgPerHa_to_UnitsPerAcre 0.8    //Scaling factor to convert kg/ha to units/acre
