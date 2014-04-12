@@ -55,30 +55,24 @@ typedef enum {CS_DM2=100, CS_DM6=200, CS_DM10=300, FYM_OLDSURF=400, FYM_FRSURF=5
 #define kCROPTYPE_ALL_CROPS [NSNumber numberWithInt:(CROP_TYPE)CROPTYPE_ALL_CROPS]
 #define kCROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE [NSNumber numberWithInt:(CROP_TYPE)CROPTYPE_GRASSLAND_OR_WINTER_OILSEED_RAPE]
 
-#define kACRES_PER_HECTARE 2.47105
-#define kHECTARES_PER_ACRE 0.404686
+//#define kACRES_PER_HECTARE 2.47105
+//#define kHECTARES_PER_ACRE 0.404686
+#define kACRES_PER_HECTARE 2.5
+#define kHECTARES_PER_ACRE 0.5
 
 //#define kKgPerHa_to_UnitsPerAcre 0.8130081300813    //Scaling factor to convert kg/ha to units/acre
 #define kKgPerHa_to_UnitsPerAcre 0.8    //Scaling factor to convert kg/ha to units/acre
 
-#define kGallonsPerm3 219.969157                    //Scaling factor to convert m3 to gallons
-#define kGalPerAcre_to_m3Perha 0.0112336377         //Scaling factor to convert from Gal/Acre -> m3/ha
-#define km3PerHa_to_GalPerAcre 89.01835956486295    //Scaling factor to convert m3/ha -> Gal/Acre
+#define kGallonsPerm3 220.0                           //Scaling factor to convert m3 to gallons
+//#define kGalPerAcre_to_m3Perha 0.0112336377         //Scaling factor to convert from Gal/Acre -> m3/ha
+//#define km3PerHa_to_GalPerAcre 89.01835956486295    //Scaling factor to convert m3/ha -> Gal/Acre
+#define kGalPerAcre_to_m3Perha 0.011111111111         //Scaling factor to convert from Gal/Acre -> m3/ha
+#define km3PerHa_to_GalPerAcre 90.0    //Scaling factor to convert m3/ha -> Gal/Acre
 
-
-//#define USEIMPERIALTONS
-
-#ifdef USEIMPERIALTONS
-//Do conversions based on imperial tons
-#define kTonPerAcre_to_TonnesPerHa 2.51070659       //Scaling factor to convert Ton/acre -> Tonnes/ha
-#define kTonnesPerHa_to_TonPerAcre 0.39829425070334 //Scaling factor to convert tonnes/ha -> ton/acre
-#define kImperialTonPerTonne 0.984206528            //Scaling factor to convert Metric Tonnes to Imperial Tons
-#else
 //Do conversions based on metric tonnes
-#define kTonPerAcre_to_TonnesPerHa 2.47105381       //Scaling factor to convert Ton/acre -> Tonnes/ha
-#define kTonnesPerHa_to_TonPerAcre 0.404685642      //Scaling factor to convert tonnes/ha -> ton/acre
-#define kImperialTonPerTonne 1.0                    //Scaling factor to convert Metric Tonnes to Imperial Tons
-#endif
+#define kTonPerAcre_to_TonnesPerHa 2.5       //Scaling factor to convert Ton/acre -> Tonnes/ha
+#define kTonnesPerHa_to_TonPerAcre 0.4       //Scaling factor to convert tonnes/ha -> ton/acre
+#define kImperialTonPerTonne 1.0             //Scaling factor to convert Metric Tonnes to Imperial Tons
 
 
 
