@@ -302,29 +302,33 @@
             //Spreading date
             [attachment appendString:[NSString stringWithFormat:@"%@,", [se.date stringForUKShortFormatUsingGMT:NO] ]];
             
-            //N,P,K
-            [attachment appendString:[NSString stringWithFormat:@"%1.1f,", N.doubleValue]];
-            [attachment appendString:[NSString stringWithFormat:@"%1.1f,", P.doubleValue]];
-            [attachment appendString:[NSString stringWithFormat:@"%1.1f,", K.doubleValue]];
             
-            //Nutrient units
-            [attachment appendString:(isMetric==YES) ? @"Kg/Ha," : @"Units/Acre,"];
+            //N,P,K
+            if (isMetric) {
+                [attachment appendString:[NSString stringWithFormat:@"%3.1f,", N.doubleValue]];
+                [attachment appendString:[NSString stringWithFormat:@"%3.1f,", P.doubleValue]];
+                [attachment appendString:[NSString stringWithFormat:@"%3.1f,Kg/Ha,", K.doubleValue]];
+            } else {
+                [attachment appendString:[NSString stringWithFormat:@"%3.1f,", N.doubleValue * kKgPerHa_to_UnitsPerAcre]];
+                [attachment appendString:[NSString stringWithFormat:@"%3.1f,", P.doubleValue * kKgPerHa_to_UnitsPerAcre]];
+                [attachment appendString:[NSString stringWithFormat:@"%3.1f,Units/Acre,", K.doubleValue * kKgPerHa_to_UnitsPerAcre]];
+            }
             
             //Spreading rate
-            [attachment appendString:[NSString stringWithFormat:@"%@,", se.density]];
-            
-            //spreading rate units - TODO - sort this out
+//            [attachment appendString:[NSString stringWithFormat:@"%@,", se.density]];
+
+            //spreading rate and units - TODO - sort this out
             NSString* rateAsString = [se rateAsStringUsingMetric:isMetric]; //%u %s
-            char strUnits[64]; unsigned int rate;
-            sscanf([rateAsString cStringUsingEncoding:NSUTF8StringEncoding],"%u %s", &rate, strUnits);
-            [attachment appendString:[NSString stringWithFormat:@"%s,", strUnits]];
+            char strUnits[64]; double rate;
+            sscanf([rateAsString cStringUsingEncoding:NSUTF8StringEncoding],"%lf %s", &rate, strUnits);
+            [attachment appendString:[NSString stringWithFormat:@"%3.1f,%s,", rate, strUnits]];
             
             //Total amount
             [attachment appendString:[NSString stringWithFormat:@"%lu,", se.density.longValue * field.sizeInHectares.longValue]];
 
             //Total amount units
             char strTop[64]; char strBottom[64];
-            sscanf(strUnits, "%s/%s", strTop, strBottom);
+            sscanf(strUnits, "%[^/]/%s", strTop, strBottom);
             [attachment appendString:[NSString stringWithFormat:@"%s,", strTop]];
             
             //Quality

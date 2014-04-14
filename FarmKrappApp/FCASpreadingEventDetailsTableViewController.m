@@ -329,7 +329,6 @@
                 
 //                appRateCell.NitrogenLabel.text = [NSString stringWithFormat:@"%4.1f", N.floatValue];
                 appRateCell.NitrogenLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:N usingMetric:self.isMetric];
-                
                 appRateCell.PhosphateLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:P usingMetric:self.isMetric];
                 appRateCell.PotassiumLabel.text = [FCAAvailableNutrients stringFormatForNutrientRate:K usingMetric:self.isMetric];
                 
