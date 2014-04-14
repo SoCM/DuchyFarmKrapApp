@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13D33" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="lns-pP-19F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D38" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="lns-pP-19F">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -1991,18 +1991,21 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LJJ-we-ByE" firstAttribute="top" secondItem="R7a-c3-GGX" secondAttribute="bottom" constant="78" id="1Vn-fD-Zbc"/>
+                            <constraint firstItem="LJJ-we-ByE" firstAttribute="top" secondItem="R7a-c3-GGX" secondAttribute="bottom" priority="750" constant="78" id="1Vn-fD-Zbc"/>
                             <constraint firstAttribute="centerX" secondItem="VxB-Gc-7bH" secondAttribute="centerX" constant="-48" id="1iy-Bi-if4"/>
                             <constraint firstAttribute="centerX" secondItem="LJJ-we-ByE" secondAttribute="centerX" constant="58" id="I6H-8r-VJf"/>
                             <constraint firstItem="8un-4P-bZm" firstAttribute="top" secondItem="uq8-PN-3nt" secondAttribute="bottom" constant="90" id="Mca-Z5-Zk0"/>
+                            <constraint firstItem="VxB-Gc-7bH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="R7a-c3-GGX" secondAttribute="bottom" constant="78" id="P1h-5K-42u"/>
+                            <constraint firstItem="f3s-8r-572" firstAttribute="top" relation="greaterThanOrEqual" secondItem="VxB-Gc-7bH" secondAttribute="bottom" constant="20" symbolic="YES" id="VpZ-6R-ZWi"/>
                             <constraint firstAttribute="centerX" secondItem="uq8-PN-3nt" secondAttribute="centerX" constant="-0.5" id="dNL-Fo-ssf"/>
-                            <constraint firstItem="VxB-Gc-7bH" firstAttribute="top" secondItem="R7a-c3-GGX" secondAttribute="bottom" constant="78" id="exl-Pp-hEg"/>
-                            <constraint firstItem="R7a-c3-GGX" firstAttribute="top" secondItem="6b5-3y-LWi" secondAttribute="bottom" multiplier="0.9" constant="105.19999999999999" id="jDO-g4-mrl"/>
+                            <constraint firstItem="VxB-Gc-7bH" firstAttribute="top" secondItem="R7a-c3-GGX" secondAttribute="bottom" priority="750" constant="78" id="exl-Pp-hEg"/>
+                            <constraint firstItem="R7a-c3-GGX" firstAttribute="top" secondItem="6b5-3y-LWi" secondAttribute="bottom" multiplier="0.9" priority="750" constant="105.19999999999999" id="jDO-g4-mrl"/>
                             <constraint firstItem="uq8-PN-3nt" firstAttribute="top" secondItem="THg-Nu-JJu" secondAttribute="bottom" constant="31" id="jaq-rW-Wrl"/>
                             <constraint firstItem="8un-4P-bZm" firstAttribute="centerX" secondItem="uq8-PN-3nt" secondAttribute="centerX" constant="-0.5" id="k5y-ZR-c4Y"/>
                             <constraint firstItem="R7a-c3-GGX" firstAttribute="centerX" secondItem="6b5-3y-LWi" secondAttribute="centerX" id="l7M-1E-5G8"/>
                             <constraint firstItem="8un-4P-bZm" firstAttribute="centerX" secondItem="6b5-3y-LWi" secondAttribute="centerX" id="tgz-Tr-2kR"/>
                             <constraint firstItem="6b5-3y-LWi" firstAttribute="top" secondItem="8un-4P-bZm" secondAttribute="bottom" constant="75" id="u0l-I7-TWq"/>
+                            <constraint firstItem="f3s-8r-572" firstAttribute="top" relation="greaterThanOrEqual" secondItem="LJJ-we-ByE" secondAttribute="bottom" constant="20" symbolic="YES" id="zhh-S7-Z4b"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
