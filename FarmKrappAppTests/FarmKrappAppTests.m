@@ -486,7 +486,7 @@
     fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
     arrayOfSpreads = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
     after = [arrayOfSpreads count];
-    NSLog(@"NUMBER OF SPREADING EVENTS = %lu", after);
+//    NSLog(@"NUMBER OF SPREADING EVENTS = %lu", after);
     XCTAssertTrue(((after-before)==1), @"Number of spreading events inconsistent");
     
     //Remove field f2 - the relationship is setup as a cascaded delete so the spreading events should also be deleted
@@ -496,7 +496,7 @@
     fr = [NSFetchRequest fetchRequestWithEntityName:@"SpreadingEvent"];
     arrayOfSpreads = [[FCADataModel managedObjectContext] executeFetchRequest:fr error:&err];
     after = [arrayOfSpreads count];
-    NSLog(@"NUMBER OF SPREADING EVENTS = %lu", after);
+//    NSLog(@"NUMBER OF SPREADING EVENTS = %lu", after);
     XCTAssertTrue(((after-before)==0), @"Number of spreading events inconsistent");
     
     se1 = nil;

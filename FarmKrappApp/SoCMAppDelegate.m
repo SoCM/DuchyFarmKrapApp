@@ -162,7 +162,7 @@
         } else if (res.count == 1) {
             mt = [res objectAtIndex:0];
         } else {
-            NSLog(@"Error - rebuild core data model");
+//            NSLog(@"Error - rebuild core data model");
         }
         
         //For each manure type, get the array of "ManureQuality" keys
@@ -185,7 +185,7 @@
             } else if ([arrayMQ count] == 1 ) {
                 mq = [arrayMQ objectAtIndex:0];
             } else {
-                NSLog(@"Error");
+//                NSLog(@"Error");
             }
             
             //Create relationship

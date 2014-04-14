@@ -90,7 +90,7 @@
                         _N = [_dict valueForKeyPath:@"N.Autumn.MediumHeavy"];
                         break;
                     default:
-                        NSLog(@"Error - did not recognise soil type");
+//                        NSLog(@"Error - did not recognise soil type");
                         _N = nil;
                         break;
                 }
@@ -105,7 +105,7 @@
                         _N = [_dict valueForKeyPath:@"N.Winter.MediumHeavy"];
                         break;
                     default:
-                        NSLog(@"Error - did not recognise soil type");
+//                        NSLog(@"Error - did not recognise soil type");
                         _N = nil;
                         break;
                 }
@@ -120,7 +120,7 @@
                 break;
 
             default:
-                NSLog(@"Error");
+//                NSLog(@"Error");
                 break;
         }
         
@@ -187,7 +187,8 @@
             break;
             
         default:
-            NSLog(@"Invalid crop type: %s", __PRETTY_FUNCTION__);
+            break;
+//            NSLog(@"Invalid crop type: %s", __PRETTY_FUNCTION__);
     }
     
     // NOW SCALE (depending on manure type data) to units per hectare
@@ -209,7 +210,7 @@
         //Poultry litter: based on 10t/ha
         fScale = 0.1;
     } else {
-        NSLog(@"Serious error in %s", __PRETTY_FUNCTION__);
+//        NSLog(@"Serious error in %s", __PRETTY_FUNCTION__);
         fScale = -1.0;      //This will make it apparent something is wrong (defensive strategy)
     }
 

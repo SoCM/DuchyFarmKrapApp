@@ -104,7 +104,7 @@
 - (IBAction)doSegmentedValueChanged:(id)sender {
     //Make k/b go away if visible
     [self.nameTextBox resignFirstResponder];
-    NSLog(@"Segment changed to %u", (unsigned)self.soilTypeSegmentControl.selectedSegmentIndex);
+//    NSLog(@"Segment changed to %u", (unsigned)self.soilTypeSegmentControl.selectedSegmentIndex);
     if ([UIScreen deviceClass] == UIScreenDeviceClassiPhone4SAspect1p5) {
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
@@ -170,7 +170,7 @@
             break;
         default:
             //Do nothing - very bad!
-            NSLog(@"INVALID SOIL TYPE");
+//            NSLog(@"INVALID SOIL TYPE");
             break;
     }
 
@@ -186,7 +186,7 @@
             
         default:
             //Do nothing - very bad!
-            NSLog(@"INVALID CROP TYPE");
+//            NSLog(@"INVALID CROP TYPE");
             break;
     }
     double sz = self.fieldSizeSlider.value;
@@ -219,7 +219,7 @@
             break;
             
         default:
-            NSLog(@"INVALID SOIL TYPE");
+//            NSLog(@"INVALID SOIL TYPE");
             break;
     }
     
@@ -234,7 +234,7 @@
             break;
             
         default:
-            NSLog(@"INVALID CROP TYPE");
+//            NSLog(@"INVALID CROP TYPE");
             break;
     }
     
@@ -276,7 +276,7 @@
     
     if (self.managedFieldObject) {
         //EDIT MODE - SIMPLY UPDATE THE RECORD
-        NSLog(@"EDIT FIELD");
+//        NSLog(@"EDIT FIELD");
         self.managedFieldObject.name = self.name;
         self.managedFieldObject.soilType = st;
         self.managedFieldObject.cropType = ct;
@@ -293,7 +293,7 @@
     } else {
         //ADD MODE - create new managed object (via my own model API)
         [Field InsertFieldWithName:self.name soilType:st cropType:ct sizeInHectares:self.fieldSize];
-        NSLog(@"ADDED FIELD");
+//        NSLog(@"ADDED FIELD");
     }
     
     //Pop back to fields view

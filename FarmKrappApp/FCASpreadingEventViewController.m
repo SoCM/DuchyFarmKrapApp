@@ -69,7 +69,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSLog(@"Field: %@", self.fieldSelected.name);
+//    NSLog(@"Field: %@", self.fieldSelected.name);
     NSInteger N = [[FCADataModel numberOfSpreadingEventsForField:self.fieldSelected] intValue]+1;
     return N;
 }

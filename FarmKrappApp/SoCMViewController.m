@@ -49,7 +49,7 @@
     } else {
         [self performSegueWithIdentifier:@"disclaimer" sender:self];
     }
-    NSLog(@"GO");
+//    NSLog(@"GO");
     
 }
 
@@ -84,7 +84,7 @@
 }
 - (void)popoverController:(UIPopoverController *)popoverController willRepositionPopoverToRect:(inout CGRect *)rect inView:(inout UIView **)view
 {
-    NSLog(@"pop over");
+//    NSLog(@"pop over");
 }
 
 @end

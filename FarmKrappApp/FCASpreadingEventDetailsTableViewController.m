@@ -131,7 +131,7 @@
     }
     self.nutrientCalc = nil;
     self.guiNeedsUpdating = YES;
-    NSLog(@"FIELD: %@", self.spreadingEvent);
+//    NSLog(@"FIELD: %@", self.spreadingEvent);
 }
 
 - (void)didReceiveMemoryWarning
@@ -461,7 +461,7 @@
 - (IBAction)unwindToSpreadingEventDetails:(UIStoryboardSegue*)sender
 {
     [self.tableView reloadData];
-    NSLog(@"Back!");
+//    NSLog(@"Back!");
 }
 
 

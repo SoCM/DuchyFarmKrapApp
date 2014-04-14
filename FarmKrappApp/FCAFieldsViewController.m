@@ -228,14 +228,14 @@
     }
     else if ([identifier isEqualToString:@"costs"]) {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            NSLog(@"TO DO - change size of popover");
+//            NSLog(@"TO DO - change size of popover");
             if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]){
                 [[(UIStoryboardPopoverSegue *)segue popoverController] setPopoverContentSize:CGSizeMake(480, 640)];
             }
         }
         
     } else {
-        NSLog(@"ERROR!");
+//        NSLog(@"ERROR!");
     }
     
     //Turn off editing before the transition

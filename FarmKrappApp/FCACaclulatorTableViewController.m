@@ -347,7 +347,7 @@
             date = [NSDate dateWithYear:2000 month:6 day:1];
             break;
         default:
-            NSLog(@"Error: %s", __PRETTY_FUNCTION__);
+//            NSLog(@"Error: %s", __PRETTY_FUNCTION__);
             break;
     }
     self.spreadingEvent.date = date;
