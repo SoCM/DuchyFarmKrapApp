@@ -178,7 +178,7 @@
                                                     delegate:self
                                            cancelButtonTitle:@"Cancel"
                                       destructiveButtonTitle:nil
-                                           otherButtonTitles:@"Metric", @"Imperial", nil];
+                                           otherButtonTitles:@"kg/ha", @"gallons/acre", nil];
     [as showFromToolbar:self.navigationController.toolbar];
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
