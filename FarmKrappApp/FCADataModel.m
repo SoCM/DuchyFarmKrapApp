@@ -414,7 +414,8 @@
             units = @"tons/acre";
         }
     }
-    return [NSString stringWithFormat:@"%u %@", (unsigned)round(fRate), units];
+    fRate = 0.1*round(fRate*10.0);
+    return [NSString stringWithFormat:@"%3.1f %@", fRate, units];
 }
 
 -(NSString*)rateUnitsAsStringUsingMetric:(BOOL)isMetric

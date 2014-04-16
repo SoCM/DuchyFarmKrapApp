@@ -316,7 +316,7 @@
             
             //Spreading rate
 //            [attachment appendString:[NSString stringWithFormat:@"%@,", se.density]];
-
+  
             //spreading rate and units - TODO - sort this out
             NSString* rateAsString = [se rateAsStringUsingMetric:isMetric]; //%u %s
             char strUnits[64]; double rate;
