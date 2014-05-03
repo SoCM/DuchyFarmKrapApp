@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D38" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="lns-pP-19F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="lns-pP-19F">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -19,26 +19,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Farm Crap App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wk-Dn-lim">
-                                <rect key="frame" x="207" y="140" width="339" height="47"/>
+                                <rect key="frame" x="215" y="63" width="339" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="39"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage your muck with the Farm Crap App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QY5-bR-7Y0">
-                                <rect key="frame" x="173" y="206" width="424" height="27"/>
+                                <rect key="frame" x="172" y="140" width="424" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOS Version Developed by:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r16-Xy-V8O">
-                                <rect key="frame" x="282" y="304" width="205" height="21"/>
+                                <rect key="frame" x="282" y="299" width="205" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plymouth University, UK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMH-so-Nlx">
-                                <rect key="frame" x="262" y="333" width="244" height="28"/>
+                                <rect key="frame" x="262" y="338" width="244" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
@@ -49,13 +49,13 @@
                                 </connections>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="on behalf of" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Leb-8c-os4">
-                                <rect key="frame" x="331" y="493" width="91" height="21"/>
+                                <rect key="frame" x="339" y="443" width="91" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The SWARM Knowledge Hub" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ti3-09-UoE">
-                                <rect key="frame" x="235" y="527" width="299" height="28"/>
+                                <rect key="frame" x="235" y="476" width="299" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
@@ -66,31 +66,19 @@
                                 </connections>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="a Rural Development Programme for England (RDPE)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNJ-Xt-o6H">
-                                <rect key="frame" x="180" y="563" width="407" height="21"/>
+                                <rect key="frame" x="181" y="518" width="407" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initiative managed by:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rj-OH-hdG">
-                                <rect key="frame" x="300" y="718" width="169" height="21"/>
+                                <rect key="frame" x="300" y="653" width="169" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="logo_duchy" translatesAutoresizingMaskIntoConstraints="NO" id="505-VC-5TG">
-                                <rect key="frame" x="289" y="8" width="190" height="96"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="190" id="Obk-Kj-BA1"/>
-                                    <constraint firstAttribute="height" constant="96" id="Q4m-0Z-Ocn"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="DvS-jG-vn4" appends="YES" id="fhj-nF-CKh"/>
-                                </connections>
-                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duchy College Rural Business School" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guc-Vs-lad">
-                                <rect key="frame" x="194" y="761" width="382" height="28"/>
+                                <rect key="frame" x="193" y="686" width="382" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
@@ -101,7 +89,7 @@
                                 </connections>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBM-eh-tjm">
-                                <rect key="frame" x="298" y="802" width="173" height="53"/>
+                                <rect key="frame" x="298" y="808" width="173" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <state key="normal" title="Get Started">
@@ -112,44 +100,40 @@
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="rbx-fS-mNN">
-                                <rect key="frame" x="110" y="134" width="60" height="60"/>
+                                <rect key="frame" x="116" y="57" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Xnh-7R-djw">
-                                <rect key="frame" x="583" y="134" width="60" height="60"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="E7l-5e-VuH">
+                                <rect key="frame" x="604" y="57" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="r16-Xy-V8O" secondAttribute="centerY" priority="750" constant="165.5" id="0CV-OY-xXM"/>
-                            <constraint firstAttribute="centerX" secondItem="r16-Xy-V8O" secondAttribute="centerX" constant="-0.5" id="0Qf-0l-rgt"/>
-                            <constraint firstItem="lNJ-Xt-o6H" firstAttribute="centerX" secondItem="Leb-8c-os4" secondAttribute="centerX" constant="7.5" id="0jD-aI-hKo"/>
-                            <constraint firstAttribute="centerY" secondItem="Leb-8c-os4" secondAttribute="centerY" constant="-23.5" id="1z4-D8-th5"/>
-                            <constraint firstItem="FMH-so-Nlx" firstAttribute="top" secondItem="r16-Xy-V8O" secondAttribute="bottom" constant="8" id="2Hr-4p-lGU"/>
-                            <constraint firstItem="rbx-fS-mNN" firstAttribute="centerY" secondItem="9wk-Dn-lim" secondAttribute="centerY" constant="0.5" id="3ki-8m-Y97"/>
-                            <constraint firstAttribute="centerX" secondItem="Leb-8c-os4" secondAttribute="centerX" constant="7.5" id="DQB-DP-Ydc"/>
-                            <constraint firstItem="r16-Xy-V8O" firstAttribute="top" relation="greaterThanOrEqual" secondItem="QY5-bR-7Y0" secondAttribute="bottom" constant="40" id="Ida-Qt-gmn"/>
-                            <constraint firstAttribute="centerY" secondItem="MBM-eh-tjm" secondAttribute="centerY" priority="750" constant="-348.5" id="LvI-JL-G9L"/>
-                            <constraint firstItem="Leb-8c-os4" firstAttribute="centerX" secondItem="ti3-09-UoE" secondAttribute="centerX" constant="-8" id="Maz-so-a82"/>
-                            <constraint firstItem="ti3-09-UoE" firstAttribute="top" secondItem="Leb-8c-os4" secondAttribute="bottom" constant="13" id="NGY-4v-xmL"/>
-                            <constraint firstItem="9wk-Dn-lim" firstAttribute="leading" secondItem="rbx-fS-mNN" secondAttribute="trailing" constant="37" id="Q0V-19-Z7p"/>
-                            <constraint firstAttribute="centerX" secondItem="9wk-Dn-lim" secondAttribute="centerX" constant="7.5" id="Qt4-zM-Stl"/>
-                            <constraint firstItem="505-VC-5TG" firstAttribute="top" secondItem="UeP-bv-x6d" secondAttribute="bottom" constant="20" symbolic="YES" id="Trr-YF-bUW"/>
-                            <constraint firstAttribute="centerX" secondItem="QY5-bR-7Y0" secondAttribute="centerX" constant="-0.5" id="UHD-Gl-HPP"/>
-                            <constraint firstItem="lNJ-Xt-o6H" firstAttribute="top" secondItem="ti3-09-UoE" secondAttribute="bottom" constant="8" id="crE-r1-47q"/>
-                            <constraint firstAttribute="centerX" secondItem="FMH-so-Nlx" secondAttribute="centerX" id="f9n-zf-k0v"/>
-                            <constraint firstItem="MBM-eh-tjm" firstAttribute="top" secondItem="Guc-Vs-lad" secondAttribute="bottom" constant="13" id="gNu-0q-dY9"/>
-                            <constraint firstItem="Xnh-7R-djw" firstAttribute="centerY" secondItem="9wk-Dn-lim" secondAttribute="centerY" constant="0.5" id="gjh-b2-ghg"/>
-                            <constraint firstItem="4rj-OH-hdG" firstAttribute="centerX" secondItem="Guc-Vs-lad" secondAttribute="centerX" constant="-0.5" id="imR-Nn-0fF"/>
-                            <constraint firstItem="9wk-Dn-lim" firstAttribute="top" secondItem="505-VC-5TG" secondAttribute="bottom" constant="36" id="lyH-o3-BTT"/>
-                            <constraint firstItem="Xnh-7R-djw" firstAttribute="leading" secondItem="9wk-Dn-lim" secondAttribute="trailing" constant="37" id="nfL-1X-zSG"/>
-                            <constraint firstItem="Guc-Vs-lad" firstAttribute="top" secondItem="4rj-OH-hdG" secondAttribute="bottom" constant="22" id="nmX-h3-CEX"/>
-                            <constraint firstItem="QY5-bR-7Y0" firstAttribute="top" secondItem="9wk-Dn-lim" secondAttribute="bottom" constant="19" id="pS4-Am-sUU"/>
-                            <constraint firstAttribute="centerX" secondItem="505-VC-5TG" secondAttribute="centerX" id="rRl-s8-mbV"/>
-                            <constraint firstAttribute="centerX" secondItem="MBM-eh-tjm" secondAttribute="centerX" constant="-0.5" id="vwi-b2-fam"/>
-                            <constraint firstItem="MBM-eh-tjm" firstAttribute="centerX" secondItem="Guc-Vs-lad" secondAttribute="centerX" constant="-0.5" id="vy3-sP-qOd"/>
-                            <constraint firstItem="60G-oV-Wes" firstAttribute="top" relation="greaterThanOrEqual" secondItem="MBM-eh-tjm" secondAttribute="bottom" constant="20" id="xlg-C9-Kml"/>
+                            <constraint firstItem="lNJ-Xt-o6H" firstAttribute="top" secondItem="ti3-09-UoE" secondAttribute="bottom" constant="14" id="0Y5-Cf-5pJ"/>
+                            <constraint firstAttribute="centerX" secondItem="Leb-8c-os4" secondAttribute="centerX" id="53g-Jc-5T4"/>
+                            <constraint firstAttribute="centerX" secondItem="FMH-so-Nlx" secondAttribute="centerX" id="Ahg-5H-yAs"/>
+                            <constraint firstAttribute="centerX" secondItem="9wk-Dn-lim" secondAttribute="centerX" id="CWD-a1-g2L"/>
+                            <constraint firstAttribute="centerX" secondItem="QY5-bR-7Y0" secondAttribute="centerX" id="DNc-KH-nuP"/>
+                            <constraint firstItem="9wk-Dn-lim" firstAttribute="leading" secondItem="rbx-fS-mNN" secondAttribute="trailing" constant="39" id="ENh-7v-5Mr"/>
+                            <constraint firstItem="FMH-so-Nlx" firstAttribute="bottom" secondItem="60G-oV-Wes" secondAttribute="top" multiplier="0.4" id="GtF-4E-AXm"/>
+                            <constraint firstItem="MBM-eh-tjm" firstAttribute="bottom" secondItem="60G-oV-Wes" secondAttribute="top" multiplier="0.94" id="LJs-92-Slj"/>
+                            <constraint firstItem="QY5-bR-7Y0" firstAttribute="top" secondItem="9wk-Dn-lim" secondAttribute="bottom" constant="30" id="NVd-TM-3Bu"/>
+                            <constraint firstItem="E7l-5e-VuH" firstAttribute="centerY" secondItem="9wk-Dn-lim" secondAttribute="centerY" constant="0.5" id="TNK-lC-3hD"/>
+                            <constraint firstItem="ti3-09-UoE" firstAttribute="bottom" secondItem="60G-oV-Wes" secondAttribute="top" multiplier="0.55" id="V9p-zV-drm"/>
+                            <constraint firstItem="9wk-Dn-lim" firstAttribute="centerY" secondItem="rbx-fS-mNN" secondAttribute="centerY" constant="-0.5" id="X9w-Kd-d1k"/>
+                            <constraint firstAttribute="centerX" secondItem="Guc-Vs-lad" secondAttribute="centerX" id="Y6G-xw-AO4"/>
+                            <constraint firstAttribute="centerX" secondItem="lNJ-Xt-o6H" secondAttribute="centerX" id="ces-pb-hui"/>
+                            <constraint firstItem="FMH-so-Nlx" firstAttribute="top" secondItem="r16-Xy-V8O" secondAttribute="bottom" constant="18" id="iVM-1L-JUz"/>
+                            <constraint firstItem="E7l-5e-VuH" firstAttribute="leading" secondItem="9wk-Dn-lim" secondAttribute="trailing" constant="50" id="ib2-xI-mq7"/>
+                            <constraint firstItem="Guc-Vs-lad" firstAttribute="bottom" secondItem="60G-oV-Wes" secondAttribute="top" multiplier="0.78" id="nZN-5C-x1k"/>
+                            <constraint firstItem="9wk-Dn-lim" firstAttribute="bottom" secondItem="60G-oV-Wes" secondAttribute="top" multiplier="0.12" id="nct-zA-Lev"/>
+                            <constraint firstAttribute="centerX" secondItem="r16-Xy-V8O" secondAttribute="centerX" id="p1s-Qj-V36"/>
+                            <constraint firstAttribute="centerX" secondItem="ti3-09-UoE" secondAttribute="centerX" id="pwa-vA-2bM"/>
+                            <constraint firstItem="ti3-09-UoE" firstAttribute="top" secondItem="Leb-8c-os4" secondAttribute="bottom" constant="12" id="qeH-1N-KiP"/>
+                            <constraint firstAttribute="centerX" secondItem="4rj-OH-hdG" secondAttribute="centerX" id="u2X-Ot-Y9R"/>
+                            <constraint firstAttribute="centerX" secondItem="MBM-eh-tjm" secondAttribute="centerX" id="vAo-Lw-i47"/>
+                            <constraint firstItem="Guc-Vs-lad" firstAttribute="top" secondItem="4rj-OH-hdG" secondAttribute="bottom" constant="12" id="vdN-vp-XUn"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -2021,7 +2005,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </scenes>
     <resources>
         <image name="logo" width="60" height="60"/>
-        <image name="logo_duchy" width="320" height="144"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

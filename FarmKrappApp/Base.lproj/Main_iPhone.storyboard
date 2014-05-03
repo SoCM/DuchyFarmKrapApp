@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D38" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sZi-52-jpw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D45a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sZi-52-jpw">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -17,27 +17,15 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="logo_duchy" translatesAutoresizingMaskIntoConstraints="NO" id="hEp-T4-cME">
-                                <rect key="frame" x="79" y="20" width="160" height="72"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="VdQ-5D-lay"/>
-                                    <constraint firstAttribute="width" constant="160" id="yv5-Xs-bwJ"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="yJQ-WU-XEz" appends="YES" id="OCf-dl-Jow"/>
-                                </connections>
-                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage your muck with the Farm Crap App" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="189" translatesAutoresizingMaskIntoConstraints="NO" id="Nwk-11-GA2">
-                                <rect key="frame" x="65" y="177" width="189" height="41"/>
+                                <rect key="frame" x="65" y="133" width="189" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Farm Crap App" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="226" translatesAutoresizingMaskIntoConstraints="NO" id="Xgn-GZ-kfX">
-                                <rect key="frame" x="46" y="109" width="226" height="30"/>
+                                <rect key="frame" x="46" y="62" width="226" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -50,12 +38,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hEp-T4-cME" firstAttribute="top" secondItem="wdg-vE-FYJ" secondAttribute="bottom" constant="20" id="Giq-Vz-jdK"/>
-                            <constraint firstAttribute="centerX" secondItem="hEp-T4-cME" secondAttribute="centerX" constant="1" id="HTN-0F-fAq"/>
                             <constraint firstAttribute="centerX" secondItem="Nwk-11-GA2" secondAttribute="centerX" constant="0.5" id="YbL-xG-NWn"/>
-                            <constraint firstItem="Nwk-11-GA2" firstAttribute="top" secondItem="Xgn-GZ-kfX" secondAttribute="bottom" constant="38" id="eQK-Nd-sta"/>
-                            <constraint firstItem="Xgn-GZ-kfX" firstAttribute="top" secondItem="hEp-T4-cME" secondAttribute="bottom" constant="17" id="gOj-2R-ss4"/>
-                            <constraint firstItem="Szv-T0-dKY" firstAttribute="top" secondItem="Nwk-11-GA2" secondAttribute="bottom" constant="44" id="lFu-Kb-y6B"/>
+                            <constraint firstItem="Nwk-11-GA2" firstAttribute="top" secondItem="Xgn-GZ-kfX" secondAttribute="bottom" constant="41" id="eQK-Nd-sta"/>
+                            <constraint firstItem="Szv-T0-dKY" firstAttribute="top" secondItem="Nwk-11-GA2" secondAttribute="bottom" constant="88" id="lFu-Kb-y6B"/>
+                            <constraint firstItem="Xgn-GZ-kfX" firstAttribute="top" secondItem="wdg-vE-FYJ" secondAttribute="bottom" constant="62" id="oek-SL-9Mk"/>
                             <constraint firstAttribute="centerX" secondItem="Szv-T0-dKY" secondAttribute="centerX" constant="1" id="p7Q-tU-DWH"/>
                             <constraint firstAttribute="centerX" secondItem="Xgn-GZ-kfX" secondAttribute="centerX" constant="1" id="ssm-eN-6zf"/>
                         </constraints>
@@ -124,8 +110,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="AFb-UK-Ghh">
-                                <rect key="frame" x="130" y="126" width="60" height="60"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="AFb-UK-Ghh">
+                                <rect key="frame" x="130" y="97" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="XnB-5p-i5g"/>
